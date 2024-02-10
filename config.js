@@ -12,3 +12,5 @@ export const DB_DATABASE = process.env.DB_DATABASE;
 
 export const DOMAIN = process.env.DOMAIN;
 export const PROTOCOL = process.env.PROTOCOL;
+export const HOST_SERVER = process.env.HOST_SERVER;
+export const PORT_SERVER = process.env.PORT_SERVER;

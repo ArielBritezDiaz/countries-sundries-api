@@ -8,32 +8,17 @@ import validator from 'validator';
 
 import { PORT, DOMAIN, PROTOCOL } from './config.js';
 
-import countryRouter from './server/routes/country.routes.js';
+import allCountriesRoutes from './src/server/routes/allCountries.routes.js';
+import viewFlag from './src/server/routes/viewFlag.routes.js';
 
 const app = express()
 
-const validateNameParameter = (req, res, next) => {
-    const allowedParams = ["name", "id", "official_name"]
+app.use(cors())
+app.use(express.json());
+app.use(bodyParser.json());
 
-    for (const param in req.query) {
-        if (!allowedParams.includes(param)) {
-            return res.status(400).json({
-                message: `The parameter '${param}' is not found.`
-            })
-        }
-    }
-
-    next()
-}
-
-app.use(json())
-app.use(compression())
-app.use(bodyParser.json())
-
-//Middleware para rutas específicas y que valide que las query en parámetros estén permitidas
-app.use(['/country'], validateNameParameter)
-
-app.use(countryRouter)
+app.use(allCountriesRoutes)
+app.use(viewFlag)
 
 app.listen(PORT, () => {
     console.log(`Server on port ${PORT} listen`)

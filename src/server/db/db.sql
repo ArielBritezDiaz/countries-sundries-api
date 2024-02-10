@@ -23,30 +23,46 @@ CREATE TABLE Currency(
     id_currency INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     abbr VARCHAR(20) NOT NULL,
     name VARCHAR(40) NOT NULL,
-    symbol VARCHAR(2) NOT NULL
+    symbol VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE Flag(
+    id_flag INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    type VARCHAR(10) NOT NULL,
+    url VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Coat_Of_Arms(
+    id_coat_of_arms INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    type VARCHAR(10) NOT NULL,
+    url VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Country(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_country INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(40) NOT NULL,
     official_name VARCHAR(60) NOT NULL,
     abbr VARCHAR(3) NOT NULL,
     internet_tld VARCHAR(20) NOT NULL,
-    coat VARCHAR(50) NOT NULL,
-    flag VARCHAR(255) NOT NULL,
-    motto VARCHAR(30),
-    anthem VARCHAR(50),
+    motto VARCHAR(80),
+    anthem VARCHAR(80),
     capital VARCHAR(40) NOT NULL,
     official_language VARCHAR(30) NOT NULL,
     population INT NOT NULL,
     iso_3166_1_alpha_2 VARCHAR(5) NOT NULL,
     iso_3166_1_alpha_3 VARCHAR(5) NOT NULL,
     calling_code VARCHAR(5) NOT NULL,
-    timezone VARCHAR(10) NOT NULL,
-    id_currency INT NOT NULL,
-    id_date_format INT NOT NULL,
-    id_region INT NOT NULL,
-    id_sub_region INT NOT NULL,
+    timezone VARCHAR(20) NOT NULL,
+    id_coat_of_arms INT NULL,
+    id_flag INT NULL,
+    id_currency INT NULL,
+    id_date_format INT NULL,
+    id_region INT NULL,
+    id_sub_region INT NULL,
+    FOREIGN KEY(id_coat_of_arms) REFERENCES Coat_Of_Arms(id_coat_of_arms),
+    FOREIGN KEY(id_flag) REFERENCES Flag(id_flag),
     FOREIGN KEY(id_currency) REFERENCES Currency(id_currency),
     FOREIGN KEY(id_date_format) REFERENCES Date_Format(id_date_format),
     FOREIGN KEY(id_region) REFERENCES Region(id_region),
@@ -56,1352 +72,746 @@ CREATE TABLE Country(
 
 
 /* Region inserts */
-INSERT INTO Region(name) VALUES('America');
-INSERT INTO Region(name) VALUES('Asia');
-INSERT INTO Region(name) VALUES('Africa');
-INSERT INTO Region(name) VALUES('Europe');
-INSERT INTO Region(name) VALUES('Oceania');
-INSERT INTO Region(name) VALUES('Antartica');
+INSERT INTO Region(name)
+VALUES
+    ('America'),
+    ('Asia'),
+    ('Africa'),
+    ('Europe'),
+    ('Oceania'),
+    ('Antartica');
 
 
 
 /* Sub_Region inserts */
-INSERT INTO Sub_Region(name, id_region) VALUES('South America', 1);
-INSERT INTO Sub_Region(name, id_region) VALUES('Caribbean', 1);
-INSERT INTO Sub_Region(name, id_region) VALUES('Central America', 1);
-INSERT INTO Sub_Region(name, id_region) VALUES('Northern America', 1);
+INSERT INTO Sub_Region(name, id_region)
+VALUES
+    ('South America', 1),
+    ('Caribbean', 1),
+    ('Central America', 1),
+    ('Northern America', 1),
 
-INSERT INTO Sub_Region(name, id_region) VALUES('Central Asia', 2);
-INSERT INTO Sub_Region(name, id_region) VALUES('Eastern Asia', 2);
-INSERT INTO Sub_Region(name, id_region) VALUES('South-eastern Asia', 2);
-INSERT INTO Sub_Region(name, id_region) VALUES('Sourthern Asia', 2);
-INSERT INTO Sub_Region(name, id_region) VALUES('Western Asia', 2);
+INSERT INTO Sub_Region(name, id_region)
+VALUES
+    ('Central Asia', 2),
+    ('Eastern Asia', 2),
+    ('South-eastern Asia', 2),
+    ('Sourthern Asia', 2),
+    ('Western Asia', 2),
+    ('Middle East', 2);
 
-INSERT INTO Sub_Region(name, id_region) VALUES('Northern Africa', 3);
-INSERT INTO Sub_Region(name, id_region) VALUES('Eastern Africa', 3);
-INSERT INTO Sub_Region(name, id_region) VALUES('Middle Africa', 3);
-INSERT INTO Sub_Region(name, id_region) VALUES('Southern Africa', 3);
-INSERT INTO Sub_Region(name, id_region) VALUES('Western Africa', 3);
+INSERT INTO Sub_Region(name, id_region)
+VALUES
+    ('Northern Africa', 3),
+    ('Eastern Africa', 3),
+    ('Middle Africa', 3),
+    ('Southern Africa', 3),
+    ('Western Africa', 3);
 
-INSERT INTO Sub_Region(name, id_region) VALUES('Eastern Europe', 4);
-INSERT INTO Sub_Region(name, id_region) VALUES('Northern Europe', 4);
-INSERT INTO Sub_Region(name, id_region) VALUES('Southern Europe', 4);
-INSERT INTO Sub_Region(name, id_region) VALUES('Western Europe', 4);
+INSERT INTO Sub_Region(name, id_region)
+VALUES
+    ('Eastern Europe', 4),
+    ('Northern Europe', 4),
+    ('Southern Europe', 4),
+    ('Western Europe', 4);
 
-INSERT INTO Sub_Region(name, id_region) VALUES('Australia and New Zealand', 5);
-INSERT INTO Sub_Region(name, id_region) VALUES('Melanesia', 5);
-INSERT INTO Sub_Region(name, id_region) VALUES('Micronesia', 5);
-INSERT INTO Sub_Region(name, id_region) VALUES('Polynesia', 5);
+INSERT INTO Sub_Region(name, id_region)
+VALUES
+    ('Australia and New Zealand', 5),
+    ('Melanesia', 5),
+    ('Micronesia', 5),
+    ('Polynesia', 5);
 
-INSERT INTO Sub_Region(name, id_region) VALUES('North-east Antarctic Peninsula', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('South Orkney Islands', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('North-west Antarctic Peninsula', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('Enderby Land', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('Dronning Maud Land', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('East Antarctica', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('North Victoria Land', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('South Victoria Land', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('Transantarctic Mountains', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('Ellsworth Mountains', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('Marie Byrd Land', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('Adélie Land', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('Ellsworth Land', 6);
-INSERT INTO Sub_Region(name, id_region) VALUES('South Antarctic Peninsula.', 6);
+INSERT INTO Sub_Region(name, id_region)
+VALUES
+    ('North-east Antarctic Peninsula', 6),
+    ('South Orkney Islands', 6),
+    ('North-west Antarctic Peninsula', 6),
+    ('Enderby Land', 6),
+    ('Dronning Maud Land', 6),
+    ('East Antarctica', 6),
+    ('North Victoria Land', 6),
+    ('South Victoria Land', 6),
+    ('Transantarctic Mountains', 6),
+    ('Ellsworth Mountains', 6),
+    ('Marie Byrd Land', 6),
+    ('Adélie Land', 6),
+    ('Ellsworth Land', 6),
+    ('South Antarctic Peninsula.', 6);
 
 
 
 /* Date_Format inserts */
-INSERT INTO Date_Format(format) VALUES('dd/mm/yyyy');
-INSERT INTO Date_Format(format) VALUES('yyyy/mm/dd');
-INSERT INTO Date_Format(format) VALUES('mm/dd/yyyy');
+INSERT INTO Date_Format(format)
+VALUES
+    ('dd/mm/yyyy'),
+    ('yyyy/mm/dd'),
+    ('mm/dd/yyyy');
 
 
 
 /* Currency inserts */
-INSERT INTO Currency(abbr, name, symbol) VALUES('ARS', 'Argentine Peso', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('AFN', 'Afghan Afghani', '؋');
-INSERT INTO Currency(abbr, name, symbol) VALUES('ALL', 'Albanian Lek', 'Lek');
-INSERT INTO Currency(abbr, name, symbol) VALUES('DZD', 'Algerian Dinar', 'DA');
-INSERT INTO Currency(abbr, name, symbol) VALUES('USD', 'US Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('AOA', 'Angolan Kwanza', 'Kz');
-INSERT INTO Currency(abbr, name, symbol) VALUES('AMD', 'Armenian Dram', '֏');
-INSERT INTO Currency(abbr, name, symbol) VALUES('AUD', 'Australian Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('AZN', 'Azerbaijan Manat', '₼');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BHD', 'Bahraini Dinar', 'BD');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BDT', 'Bangladeshi Taka', 'Tk');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BBD', 'Bajan Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BYN', 'Belarusian Ruble', 'p.');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BZD', 'Belizean Dollar', 'BZ$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BTN', 'Bhutanese Ngultrum', 'Ngultrum');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BOB', 'Bolivian Bolíviano', '$b');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BAM', 'Bosnian Convertible Mark', 'KM');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BWP', 'Botswana Pula', 'P');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BRL', 'Brazilian Real', 'R$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('GBP', 'British Pound', '£');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BND', 'Bruneian Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BGN', 'Bulgarian Lev', 'лв');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BIF', 'Burundian Franc', 'Franc');
-INSERT INTO Currency(abbr, name, symbol) VALUES('KHR', 'Cambodian Riel', '៛');
-INSERT INTO Currency(abbr, name, symbol) VALUES('CAD', 'Canadian Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('XAF', 'Central African CFA Franc BEAC', 'XAF');
-INSERT INTO Currency(abbr, name, symbol) VALUES('CLP', 'Chilean Peso', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('CNY', 'Chinese Yuan Renminbi', '¥');
-INSERT INTO Currency(abbr, name, symbol) VALUES('COP', 'Colombian Peso', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('KMF', 'Comorian Franc', 'Franc');
-INSERT INTO Currency(abbr, name, symbol) VALUES('CRC', 'Costa Rican Colon', '₡');
-INSERT INTO Currency(abbr, name, symbol) VALUES('HRK', 'Croatian Kuna', 'kn');
-INSERT INTO Currency(abbr, name, symbol) VALUES('CUP', 'Cuban Peso', '₱');
-INSERT INTO Currency(abbr, name, symbol) VALUES('CZK', 'Czech Koruna', 'Kč');
-INSERT INTO Currency(abbr, name, symbol) VALUES('DKK', 'Danish Krone', 'kr.');
-INSERT INTO Currency(abbr, name, symbol) VALUES('CDF', 'Congolese Franc', 'Franc');
-INSERT INTO Currency(abbr, name, symbol) VALUES('DJF', 'Djiboutian Franc', 'Franc');
-INSERT INTO Currency(abbr, name, symbol) VALUES('DOP', 'Dominican Peso', 'RD$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('EUR', 'Euro', '€');
-INSERT INTO Currency(abbr, name, symbol) VALUES('EGP', 'Egyptian Pound', '£');
-INSERT INTO Currency(abbr, name, symbol) VALUES('ERN', 'Eritrean Nakfa', 'Nkf');
-INSERT INTO Currency(abbr, name, symbol) VALUES('ETB', 'Ethiopian Birr', 'Br');
-INSERT INTO Currency(abbr, name, symbol) VALUES('FJD', 'Fijian Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('PHP', 'Philippine Peso', '₱');
-INSERT INTO Currency(abbr, name, symbol) VALUES('AWG', 'Aruban or Dutch Guilder', 'ƒ');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BMD', 'Bermudian Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('CVE', 'Cape Verdean Escudo', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('XOF', 'CFA Franc', 'Franc');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SZL', 'Swazi Lilangeni', 'Lilangeni');
-INSERT INTO Currency(abbr, name, symbol) VALUES('XPF', 'CFP Franc', 'Franc');
-INSERT INTO Currency(abbr, name, symbol) VALUES('GGP', 'Guernsey Pound', '£');
-INSERT INTO Currency(abbr, name, symbol) VALUES('JEP', 'Jersey Pound', 'p');
-INSERT INTO Currency(abbr, name, symbol) VALUES('LSL', 'Basotho Loti', 'Loti');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MOP', 'Macau Pataca', 'MOP$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MDL', 'Moldovan Leu', 'lei');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MMK', 'Burmese Kyat', 'K');
-INSERT INTO Currency(abbr, name, symbol) VALUES('NIO', 'Nicaraguan Cordoba', 'C$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MKD', 'Macedonian Denar', 'ден');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SHP', 'Saint Helenian Pound', '£');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SLE', 'Sierra Leonean Leone', 'Le');
-INSERT INTO Currency(abbr, name, symbol) VALUES('ZAR', 'South African Rand', 'R');
-INSERT INTO Currency(abbr, name, symbol) VALUES('BSD', 'Bahamian Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('KYD', 'Caymanian Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('FKP', 'Falkland Island Pound', '£');
-INSERT INTO Currency(abbr, name, symbol) VALUES('DKK', 'Faroese Króna', 'kr');
-INSERT INTO Currency(abbr, name, symbol) VALUES('GMD', 'Gambian Dalasi', 'Dalasi');
-INSERT INTO Currency(abbr, name, symbol) VALUES('GIP', 'Gibraltar Pound', '£');
-INSERT INTO Currency(abbr, name, symbol) VALUES('IMP', 'Isle of Man Pound', '£');
-INSERT INTO Currency(abbr, name, symbol) VALUES('ANG', 'Dutch Guilder', 'ƒ');
-INSERT INTO Currency(abbr, name, symbol) VALUES('HKD', 'Hong Kong Dollar', 'HK$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('AED', 'Emirati Dirham', 'د.إ');
-INSERT INTO Currency(abbr, name, symbol) VALUES('TRY', 'Turkish Lira', '₺');
-INSERT INTO Currency(abbr, name, symbol) VALUES('GEL', 'Georgian Lari', 'Lari');
-INSERT INTO Currency(abbr, name, symbol) VALUES('GHS', 'Ghanaian Cedi', 'GH¢');
-INSERT INTO Currency(abbr, name, symbol) VALUES('GTQ', 'Guatemalan Quetzal', 'Q');
-INSERT INTO Currency(abbr, name, symbol) VALUES('GNF', 'Guinean Franc', 'Franc');
-INSERT INTO Currency(abbr, name, symbol) VALUES('GYD', 'Guyanese Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('HTG', 'Haitian Gourde', 'G');
-INSERT INTO Currency(abbr, name, symbol) VALUES('HNL', 'Honduran Lempira', 'L');
-INSERT INTO Currency(abbr, name, symbol) VALUES('HUF', 'Hungarian Forint', 'Ft');
-INSERT INTO Currency(abbr, name, symbol) VALUES('ISK', 'Icelandic Krona', 'kr');
-INSERT INTO Currency(abbr, name, symbol) VALUES('XDR', 'IMF Special Drawing Rights', 'Special Drawing Rights');
-INSERT INTO Currency(abbr, name, symbol) VALUES('INR', 'Indian Rupee', '₹');
-INSERT INTO Currency(abbr, name, symbol) VALUES('IDR', 'Indonesian Rupiah', 'Rp');
-INSERT INTO Currency(abbr, name, symbol) VALUES('IRR', 'Iranian Rial', '﷼');
-INSERT INTO Currency(abbr, name, symbol) VALUES('IQD', 'Iraqi Dinar', 'د.ع');
-INSERT INTO Currency(abbr, name, symbol) VALUES('ILS', 'Israeli Shekel', '₪');
-INSERT INTO Currency(abbr, name, symbol) VALUES('JMD', 'Jamaican Dollar', 'J$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('JPY', 'Japanese Yen', '¥');
-INSERT INTO Currency(abbr, name, symbol) VALUES('JOD', 'Jordanian Dinar', 'Dinar');
-INSERT INTO Currency(abbr, name, symbol) VALUES('KZT', 'Kazakhstani Tenge', '₸');
-INSERT INTO Currency(abbr, name, symbol) VALUES('KES', 'Kenyan Shilling', 'KSh');
-INSERT INTO Currency(abbr, name, symbol) VALUES('KID', 'Kiribati Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('KWD', 'Kuwaiti Dinar', 'ك');
-INSERT INTO Currency(abbr, name, symbol) VALUES('KGS', 'Kyrgyzstani Som', 'лв');
-INSERT INTO Currency(abbr, name, symbol) VALUES('LAK', 'Lao Kip', '₭');
-INSERT INTO Currency(abbr, name, symbol) VALUES('LBP', 'Lebanese Pound', 'ل.ل');
-INSERT INTO Currency(abbr, name, symbol) VALUES('LRD', 'Liberian Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('LYD', 'Libyan Dinar', 'LD');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MGA', 'Malagasy Ariary', 'Ar');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MWK', 'Malawian Kwacha', 'MK');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MYR', 'Malaysian Ringgit', 'RM');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MVR', 'Maldivian Rufiyaa', 'Rufiyaa');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MRU', 'Mauritanian Ouguiya', 'UM');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MUR', 'Mauritanian Rupee', 'Rs');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MXN', 'Mexican Peso', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MNT', 'Mongolian Tughrik', '₮');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MAD', 'Moroccan Dirham', 'Dirham');
-INSERT INTO Currency(abbr, name, symbol) VALUES('MZN', 'Mozambican Metical', 'MT');
-INSERT INTO Currency(abbr, name, symbol) VALUES('NAD', 'Namibian Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('NPR', 'Nepalese Rupee', '₨');
-INSERT INTO Currency(abbr, name, symbol) VALUES('NZD', 'New Zealand Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('NGN', 'Nigerian Naira', '₦');
-INSERT INTO Currency(abbr, name, symbol) VALUES('NOK', 'Norwegian Krone', 'kr');
-INSERT INTO Currency(abbr, name, symbol) VALUES('XCD', 'East Caribbean Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('OMR', 'Omani Rial', '﷼');
-INSERT INTO Currency(abbr, name, symbol) VALUES('PKR', 'Pakistani Rupee', '₨');
-INSERT INTO Currency(abbr, name, symbol) VALUES('PAB', 'Panamanian Balboa', 'B/.');
-INSERT INTO Currency(abbr, name, symbol) VALUES('PGK', 'Papua New Guinean Kina', 'K');
-INSERT INTO Currency(abbr, name, symbol) VALUES('PYG', 'Paraguayan Guarani', 'Gs');
-INSERT INTO Currency(abbr, name, symbol) VALUES('PEN', 'Peruvian Sol', 'S/.');
-INSERT INTO Currency(abbr, name, symbol) VALUES('PLN', 'Polish Zloty', 'zł');
-INSERT INTO Currency(abbr, name, symbol) VALUES('QAR', 'Qatari Riyal', '﷼');
-INSERT INTO Currency(abbr, name, symbol) VALUES('RON', 'Romanian Leu', 'lei');
-INSERT INTO Currency(abbr, name, symbol) VALUES('RUB', 'Russian Ruble', '₽');
-INSERT INTO Currency(abbr, name, symbol) VALUES('RWF', 'Rwandan Franc', 'Franc');
-INSERT INTO Currency(abbr, name, symbol) VALUES('WST', 'Samoan Tala', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('STN', 'Sao Tomean Dobra', 'Db');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SAR', 'Saudi Arabian Riyal', '﷼');
-INSERT INTO Currency(abbr, name, symbol) VALUES('RSD', 'Serbian Dinar', 'РСД');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SCR', 'Seychellois Rupee', '₨');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SGD', 'Singapore Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SBD', 'Solomon Islander Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SOS', 'Somali Shilling', 'S');
-INSERT INTO Currency(abbr, name, symbol) VALUES('KRW', 'South Korean Won', '₩');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SSP', 'South Sudanese Pound', 'Pound');
-INSERT INTO Currency(abbr, name, symbol) VALUES('LKR', 'Sri Lankan Rupee', '₨');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SDG', 'Sudanese Pound', 'Pound');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SRD', 'Surinamese Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SEK', 'Swedish Krona', 'kr');
-INSERT INTO Currency(abbr, name, symbol) VALUES('CHF', 'Swiss Franc', 'CHF');
-INSERT INTO Currency(abbr, name, symbol) VALUES('SYP', 'Syrian Pound', '£');
-INSERT INTO Currency(abbr, name, symbol) VALUES('TWD', 'Taiwan New Dollar', 'NT$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('TJS', 'Tajikistani Somoni', 'Somoni');
-INSERT INTO Currency(abbr, name, symbol) VALUES('TZS', 'Tanzanian Shilling', 'Shilling');
-INSERT INTO Currency(abbr, name, symbol) VALUES('THB', 'Thai Baht', '฿');
-INSERT INTO Currency(abbr, name, symbol) VALUES('TOP', "Tongan Pa'anga", 'T$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('TTD', 'Trinidadian Dollar', 'TT$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('TND', 'Tunisian Dinar', 'Dinar');
-INSERT INTO Currency(abbr, name, symbol) VALUES('TMT', 'Turkmenistani Manat', 'Manat');
-INSERT INTO Currency(abbr, name, symbol) VALUES('TVD', 'Tuvaluan Dollar', '$');
-INSERT INTO Currency(abbr, name, symbol) VALUES('UGX', 'Ugandan Shilling', 'UGX');
-INSERT INTO Currency(abbr, name, symbol) VALUES('UAH', 'Ukrainian Hryvnia', '₴');
-INSERT INTO Currency(abbr, name, symbol) VALUES('UYU', 'Uruguayan Peso', '$U');
-INSERT INTO Currency(abbr, name, symbol) VALUES('UZS', 'Uzbekistani Som', 'лв');
-INSERT INTO Currency(abbr, name, symbol) VALUES('VUV', 'Ni-Vanuatu Vatu', 'VT');
-INSERT INTO Currency(abbr, name, symbol) VALUES('VES', 'Venezuelan Bolívar', 'Bs.');
-INSERT INTO Currency(abbr, name, symbol) VALUES('VND', 'Vietnamese Dong', '₫');
-INSERT INTO Currency(abbr, name, symbol) VALUES('YER', 'Yemeni Rial', '﷼');
-INSERT INTO Currency(abbr, name, symbol) VALUES('ZMW', 'Zambian Kwacha', 'ZK');
-INSERT INTO Currency(abbr, name, symbol) VALUES('ZWL', 'Zimbabwean Dollar', 'Z$');
+INSERT INTO Currency(abbr, name, symbol)
+VALUES
+    ('ARS', 'Argentine Peso', '$'),
+    ('AED', 'Emirati Dirham', 'د.إ'),
+    ('AFN', 'Afghan Afghani', '؋'),
+    ('ALL', 'Albanian Lek', 'Lek'),
+    ('DZD', 'Algerian Dinar', 'DA'),
+    ('USD', 'US Dollar', '$'),
+    ('AOA', 'Angolan Kwanza', 'Kz'),
+    ('AMD', 'Armenian Dram', '֏'),
+    ('AUD', 'Australian Dollar', '$'),
+    ('AZN', 'Azerbaijan Manat', '₼'),
+    ('BHD', 'Bahraini Dinar', 'BD'),
+    ('BDT', 'Bangladeshi Taka', 'Tk'),
+    ('BBD', 'Bajan Dollar', '$'),
+    ('BYN', 'Belarusian Ruble', 'p.'),
+    ('BZD', 'Belizean Dollar', 'BZ$'),
+    ('BTN', 'Bhutanese Ngultrum', 'Ngultrum'),
+    ('BOB', 'Bolivian Bolíviano', '$b'),
+    ('BAM', 'Bosnian Convertible Mark', 'KM'),
+    ('BWP', 'Botswana Pula', 'P'),
+    ('BRL', 'Brazilian Real', 'R$'),
+    ('GBP', 'British Pound', '£'),
+    ('BND', 'Bruneian Dollar', '$'),
+    ('BGN', 'Bulgarian Lev', 'лв'),
+    ('BIF', 'Burundian Franc', 'Franc'),
+    ('KHR', 'Cambodian Riel', '៛'),
+    ('CAD', 'Canadian Dollar', '$'),
+    ('XAF', 'Central African CFA Franc BEAC', 'XAF'),
+    ('CLP', 'Chilean Peso', '$'),
+    ('CNY', 'Chinese Yuan Renminbi', '¥'),
+    ('COP', 'Colombian Peso', '$'),
+    ('KMF', 'Comorian Franc', 'Franc'),
+    ('CRC', 'Costa Rican Colon', '₡'),
+    ('HRK', 'Croatian Kuna', 'kn'),
+    ('CUP', 'Cuban Peso', '₱'),
+    ('CZK', 'Czech Koruna', 'Kč'),
+    ('DKK', 'Danish Krone', 'kr.'),
+    ('CDF', 'Congolese Franc', 'Franc'),
+    ('DJF', 'Djiboutian Franc', 'Franc'),
+    ('DOP', 'Dominican Peso', 'RD$'),
+    ('EUR', 'Euro', '€'),
+    ('EGP', 'Egyptian Pound', '£'),
+    ('ERN', 'Eritrean Nakfa', 'Nkf'),
+    ('ETB', 'Ethiopian Birr', 'Br'),
+    ('FJD', 'Fijian Dollar', '$'),
+    ('PHP', 'Philippine Peso', '₱'),
+    ('AWG', 'Aruban or Dutch Guilder', 'ƒ'),
+    ('BMD', 'Bermudian Dollar', '$'),
+    ('CVE', 'Cape Verdean Escudo', '$'),
+    ('XOF', 'CFA Franc', 'Franc'),
+    ('SZL', 'Swazi Lilangeni', 'Lilangeni'),
+    ('XPF', 'CFP Franc', 'Franc'),
+    ('GGP', 'Guernsey Pound', '£'),
+    ('JEP', 'Jersey Pound', 'p'),
+    ('LSL', 'Basotho Loti', 'Loti'),
+    ('MOP', 'Macau Pataca', 'MOP$'),
+    ('MDL', 'Moldovan Leu', 'lei'),
+    ('MMK', 'Burmese Kyat', 'K'),
+    ('NIO', 'Nicaraguan Cordoba', 'C$'),
+    ('MKD', 'Macedonian Denar', 'ден'),
+    ('SHP', 'Saint Helenian Pound', '£'),
+    ('SLE', 'Sierra Leonean Leone', 'Le'),
+    ('ZAR', 'South African Rand', 'R'),
+    ('BSD', 'Bahamian Dollar', '$'),
+    ('KYD', 'Caymanian Dollar', '$'),
+    ('FKP', 'Falkland Island Pound', '£'),
+    ('DKK', 'Faroese Króna', 'kr'),
+    ('GMD', 'Gambian Dalasi', 'Dalasi'),
+    ('GIP', 'Gibraltar Pound', '£'),
+    ('IMP', 'Isle of Man Pound', '£'),
+    ('ANG', 'Dutch Guilder', 'ƒ'),
+    ('HKD', 'Hong Kong Dollar', 'HK$'),
+    ('TRY', 'Turkish Lira', '₺'),
+    ('GEL', 'Georgian Lari', 'Lari'),
+    ('GHS', 'Ghanaian Cedi', 'GH¢'),
+    ('GTQ', 'Guatemalan Quetzal', 'Q'),
+    ('GNF', 'Guinean Franc', 'Franc'),
+    ('GYD', 'Guyanese Dollar', '$'),
+    ('HTG', 'Haitian Gourde', 'G'),
+    ('HNL', 'Honduran Lempira', 'L'),
+    ('HUF', 'Hungarian Forint', 'Ft'),
+    ('ISK', 'Icelandic Krona', 'kr'),
+    ('XDR', 'IMF Special Drawing Rights', 'Special Drawing Rights'),
+    ('INR', 'Indian Rupee', '₹'),
+    ('IDR', 'Indonesian Rupiah', 'Rp'),
+    ('IRR', 'Iranian Rial', '﷼'),
+    ('IQD', 'Iraqi Dinar', 'د.ع'),
+    ('ILS', 'Israeli Shekel', '₪'),
+    ('JMD', 'Jamaican Dollar', 'J$'),
+    ('JPY', 'Japanese Yen', '¥'),
+    ('JOD', 'Jordanian Dinar', 'Dinar'),
+    ('KZT', 'Kazakhstani Tenge', '₸'),
+    ('KES', 'Kenyan Shilling', 'KSh'),
+    ('KID', 'Kiribati Dollar', '$'),
+    ('KWD', 'Kuwaiti Dinar', 'ك'),
+    ('KGS', 'Kyrgyzstani Som', 'лв'),
+    ('LAK', 'Lao Kip', '₭'),
+    ('LBP', 'Lebanese Pound', 'ل.ل'),
+    ('LRD', 'Liberian Dollar', '$'),
+    ('LYD', 'Libyan Dinar', 'LD'),
+    ('MGA', 'Malagasy Ariary', 'Ar'),
+    ('MKD', 'Macedonian Denar', 'ден'),
+    ('MWK', 'Malawian Kwacha', 'MK'),
+    ('MYR', 'Malaysian Ringgit', 'RM'),
+    ('MVR', 'Maldivian Rufiyaa', 'Rufiyaa'),
+    ('MRU', 'Mauritanian Ouguiya', 'UM'),
+    ('MUR', 'Mauritanian Rupee', 'Rs'),
+    ('MXN', 'Mexican Peso', '$'),
+    ('MNT', 'Mongolian Tughrik', '₮'),
+    ('MAD', 'Moroccan Dirham', 'Dirham'),
+    ('MZN', 'Mozambican Metical', 'MT'),
+    ('NAD', 'Namibian Dollar', '$'),
+    ('NPR', 'Nepalese Rupee', '₨'),
+    ('NZD', 'New Zealand Dollar', '$'),
+    ('NGN', 'Nigerian Naira', '₦'),
+    ('NOK', 'Norwegian Krone', 'kr'),
+    ('XCD', 'East Caribbean Dollar', '$'),
+    ('OMR', 'Omani Rial', '﷼'),
+    ('PKR', 'Pakistani Rupee', '₨'),
+    ('PAB', 'Panamanian Balboa', 'B/.'),
+    ('PGK', 'Papua New Guinean Kina', 'K'),
+    ('PYG', 'Paraguayan Guarani', 'Gs'),
+    ('PEN', 'Peruvian Sol', 'S/.'),
+    ('PLN', 'Polish Zloty', 'zł'),
+    ('QAR', 'Qatari Riyal', '﷼'),
+    ('RON', 'Romanian Leu', 'lei'),
+    ('RUB', 'Russian Ruble', '₽'),
+    ('RWF', 'Rwandan Franc', 'Franc'),
+    ('WST', 'Samoan Tala', '$'),
+    ('STN', 'Sao Tomean Dobra', 'Db'),
+    ('SAR', 'Saudi Arabian Riyal', '﷼'),
+    ('RSD', 'Serbian Dinar', 'РСД'),
+    ('SCR', 'Seychellois Rupee', '₨'),
+    ('SGD', 'Singapore Dollar', '$'),
+    ('SBD', 'Solomon Islander Dollar', '$'),
+    ('SOS', 'Somali Shilling', 'S'),
+    ('KRW', 'South Korean Won', '₩'),
+    ('SSP', 'South Sudanese Pound', 'Pound'),
+    ('LKR', 'Sri Lankan Rupee', '₨'),
+    ('SDG', 'Sudanese Pound', 'Pound'),
+    ('SRD', 'Surinamese Dollar', '$'),
+    ('SEK', 'Swedish Krona', 'kr'),
+    ('CHF', 'Swiss Franc', 'CHF'),
+    ('SYP', 'Syrian Pound', '£'),
+    ('TWD', 'Taiwan New Dollar', 'NT$'),
+    ('TJS', 'Tajikistani Somoni', 'Somoni'),
+    ('TZS', 'Tanzanian Shilling', 'Shilling'),
+    ('THB', 'Thai Baht', '฿'),
+    ('TOP', "Tongan Pa'anga", 'T$'),
+    ('TTD', 'Trinidadian Dollar', 'TT$'),
+    ('TND', 'Tunisian Dinar', 'Dinar'),
+    ('TMT', 'Turkmenistani Manat', 'Manat'),
+    ('TVD', 'Tuvaluan Dollar', '$'),
+    ('UGX', 'Ugandan Shilling', 'UGX'),
+    ('UAH', 'Ukrainian Hryvnia', '₴'),
+    ('UYU', 'Uruguayan Peso', '$U'),
+    ('UZS', 'Uzbekistani Som', 'лв'),
+    ('VUV', 'Ni-Vanuatu Vatu', 'VT'),
+    ('VES', 'Venezuelan Bolívar', 'Bs.'),
+    ('VND', 'Vietnamese Dong', '₫'),
+    ('YER', 'Yemeni Rial', '﷼'),
+    ('ZMW', 'Zambian Kwacha', 'ZK'),
+    ('ZWL', 'Zimbabwean Dollar', 'Z$');
+
+/* Flag inserts */
+
+INSERT INTO Flag(name, type, url)
+VALUES
+    ('argentina', 'svg', 'argentina.svg'),
+    ('afghanistan', 'svg', 'afghanistan.svg'),
+    ('albania', 'svg', 'albania.svg'),
+    ('algeria', 'svg', 'algeria.svg'),
+    ('angola', 'svg', 'angola.svg'),
+    ('armenia', 'svg', 'armenia.svg'),
+    ('aruba', 'svg', 'aruba.svg'),
+    ('australia', 'svg', 'australia.svg'),
+    ('azerbaijan', 'svg', 'azerbaijan.svg'),
+    ('bahrain', 'svg', 'bahrain.svg'),
+    ('bangladesh', 'svg', 'bangladesh.svg'),
+    ('barbados', 'svg', 'barbados.svg'),
+    ('belarus', 'svg', 'belarus.svg'),
+    ('belize', 'svg', 'belize.svg'),
+    ('benin', 'svg', 'benin.svg'),
+    ('bermuda', 'svg', 'bermuda.svg'),
+    ('bhutan', 'svg', 'bhutan.svg'),
+    ('bolivia', 'svg', 'bolivia.svg'),
+    ('bosnia_and_herzegovina', 'svg', 'bosnia_and_herzegovina.svg'),
+    ('botswana', 'svg', 'botswana.svg'),
+    ('brazil', 'svg', 'brazil.svg'),
+    ('brunei', 'svg', 'brunei.svg'),
+    ('bulgaria', 'svg', 'bulgaria.svg'),
+    ('burundi', 'svg', 'burundi.svg'),
+    ('cambodia', 'svg', 'cambodia.svg'),
+    ('canada', 'svg', 'canada.svg'),
+    ('cape_verde', 'svg', 'cape_verde.svg'),
+    ('chile', 'svg', 'chile.svg'),
+    ('coat_of_arms', 'svg', 'coat_of_arms.svg'),
+    ('colombia', 'svg', 'colombia.svg'),
+    ('comoros', 'svg', 'comoros.svg'),
+    ('costa_rica', 'svg', 'costa_rica.svg'),
+    ('croatia', 'svg', 'croatia.svg'),
+    ('cuba', 'svg', 'cuba.svg'),
+    ('denmark', 'svg', 'denmark.svg'),
+    ('djibouti', 'svg', 'djibouti.svg'),
+    ('egypt', 'svg', 'egypt.svg'),
+    ('el_salvador', 'svg', 'el_salvador.svg'),
+    ('england', 'svg', 'england.svg'),
+    ('eritrea', 'svg', 'eritrea.svg'),
+    ('eswatini', 'svg', 'eswatini.svg'),
+    ('ethiopia', 'svg', 'ethiopia.svg'),
+    ('europe', 'svg', 'europe.svg'),
+    ('fiji', 'svg', 'fiji.svg'),
+    ('french_polynesia', 'svg', 'french_polynesia.svg'),
+    ('georgia', 'svg', 'georgia.svg'),
+    ('ghana', 'svg', 'ghana.svg'),
+    ('gibraltar', 'svg', 'gibraltar.svg'),
+    ('grenada', 'svg', 'grenada.svg'),
+    ('guatemala', 'svg', 'guatemala.svg'),
+    ('guernsey', 'svg', 'guernsey.svg'),
+    ('guinea', 'svg', 'guinea.svg'),
+    ('guyana', 'svg', 'guyana.svg'),
+    ('haiti', 'svg', 'haiti.svg'),
+    ('honduras', 'svg', 'honduras.svg'),
+    ('hong_kong', 'svg', 'hong_kong.svg'),
+    ('hungary', 'svg', 'hungary.svg'),
+    ('iceland', 'svg', 'iceland.svg'),
+    ('india', 'svg', 'india.svg'),
+    ('indonesia_garuda_pancasila', 'svg', 'indonesia_garuda_pancasila.svg'),
+    ('international_monetary_fund_logo', 'svg', 'international_monetary_fund_logo.svg'),
+    ('iran', 'svg', 'iran.svg'),
+    ('iraq', 'svg', 'iraq.svg'),
+    ('israel_alternative', 'svg', 'israel_alternative.svg'),
+    ('jamaica', 'svg', 'jamaica.svg'),
+    ('jersey', 'svg', 'jersey.svg'),
+    ('jordan', 'svg', 'jordan.svg'),
+    ('kazakhstan', 'svg', 'kazakhstan.svg'),
+    ('kenya', 'svg', 'kenya.svg'),
+    ('kiribati', 'svg', 'kiribati.svg'),
+    ('kuwait', 'svg', 'kuwait.svg'),
+    ('kyrgyzstan', 'svg', 'kyrgyzstan.svg'),
+    ('laos', 'svg', 'laos.svg'),
+    ('lebanon', 'svg', 'lebanon.svg'),
+    ('lesotho', 'svg', 'lesotho.svg'),
+    ('liberia', 'svg', 'liberia.svg'),
+    ('libya', 'svg', 'libya.svg'),
+    ('macau', 'svg', 'macau.svg'),
+    ('madagascar', 'svg', 'madagascar.svg'),
+    ('malawi', 'svg', 'malawi.svg'),
+    ('malaysia', 'svg', 'malaysia.svg'),
+    ('maldives', 'svg', 'maldives.svg'),
+    ('mauritania', 'svg', 'mauritania.svg'),
+    ('mauritius', 'svg', 'mauritius.svg'),
+    ('mexico', 'svg', 'mexico.svg'),
+    ('moldova', 'svg', 'moldova.svg'),
+    ('mongolia', 'svg', 'mongolia.svg'),
+    ('morocco', 'svg', 'morocco.svg'),
+    ('mozambique', 'svg', 'mozambique.svg'),
+    ('myanmar', 'svg', 'myanmar.svg'),
+    ('namibia', 'svg', 'namibia.svg'),
+    ('nepal', 'svg', 'nepal.svg'),
+    ('new_zealand', 'svg', 'new_zealand.svg'),
+    ('nicaragua', 'svg', 'nicaragua.svg'),
+    ('nigeria', 'svg', 'nigeria.svg'),
+    ('north_macedonia', 'svg', 'north_macedonia.svg'),
+    ('norway', 'svg', 'norway.svg'),
+    ('oman', 'svg', 'oman.svg'),
+    ('pakistan', 'svg', 'pakistan.svg'),
+    ('panama', 'svg', 'panama.svg'),
+    ('paraguay', 'svg', 'paraguay.svg'),
+    ('per', 'svg', 'per.svg'),
+    ('polski', 'svg', 'polski.svg'),
+    ('qatar', 'svg', 'qatar.svg'),
+    ('romania', 'svg', 'romania.svg'),
+    ('rwanda', 'svg', 'rwanda.svg'),
+    ('saint_helena', 'svg', 'saint_helena.svg'),
+    ('samoa', 'svg', 'samoa.svg'),
+    ('saudi_arabia', 'svg', 'saudi_arabia.svg'),
+    ('serbia', 'svg', 'serbia.svg'),
+    ('seychelles', 'svg', 'seychelles.svg'),
+    ('sierra_leone', 'svg', 'sierra_leone.svg'),
+    ('singapore', 'svg', 'singapore.svg'),
+    ('somalia', 'svg', 'somalia.svg'),
+    ('south_africa_heraldic', 'svg', 'south_africa_heraldic.svg'),
+    ('south_korea', 'svg', 'south_korea.svg'),
+    ('south_sudan', 'svg', 'south_sudan.svg'),
+    ('so_tom_and_prncipe', 'svg', 'so_tom_and_prncipe.svg'),
+    ('sri_lanka', 'svg', 'sri_lanka.svg'),
+    ('sudan', 'svg', 'sudan.svg'),
+    ('suriname', 'svg', 'suriname.svg'),
+    ('sweden', 'svg', 'sweden.svg'),
+    ('switzerland', 'svg', 'switzerland.svg'),
+    ('syria', 'svg', 'syria.svg'),
+    ('tajikistan', 'svg', 'tajikistan.svg'),
+    ('tanzania', 'svg', 'tanzania.svg'),
+    ('thailand', 'svg', 'thailand.svg'),
+    ('the_bahamas', 'svg', 'the_bahamas.svg'),
+    ('the_cayman_islands', 'svg', 'the_cayman_islands.svg'),
+    ('the_central_african_republic', 'svg', 'the_central_african_republic.svg'),
+    ('the_czech_republic', 'svg', 'the_czech_republic.svg'),
+    ('the_democratic_republic_of_the_congo', 'svg', 'the_democratic_republic_of_the_congo.svg'),
+    ('the_dominican_republic', 'svg', 'the_dominican_republic.svg'),
+    ('the_falkland_islands', 'svg', 'the_falkland_islands.svg'),
+    ('the_faroe_islands', 'svg', 'the_faroe_islands.svg'),
+    ('the_gambia', 'svg', 'the_gambia.svg'),
+    ('the_isle_of_man', 'svg', 'the_isle_of_man.svg'),
+    ('the_netherlands_antilles', 'svg', 'the_netherlands_antilles.svg'),
+    ('the_peoples_republic_of_china', 'svg', 'the_peoples_republic_of_china.svg'),
+    ('the_philippines', 'svg', 'the_philippines.svg'),
+    ('the_presidency_of_turkey', 'svg', 'the_presidency_of_turkey.svg'),
+    ('the_russian_federation', 'svg', 'the_russian_federation.svg'),
+    ('the_solomon_islands', 'svg', 'the_solomon_islands.svg'),
+    ('the_united_arab_emirates', 'svg', 'the_united_arab_emirates.svg'),
+    ('the_united_states_obverse', 'svg', 'the_united_states_obverse.svg'),
+    ('tonga', 'svg', 'tonga.svg'),
+    ('trinidad_and_tobago', 'svg', 'trinidad_and_tobago.svg'),
+    ('tunisia', 'svg', 'tunisia.svg'),
+    ('turkmenistan', 'svg', 'turkmenistan.svg'),
+    ('tuvalu', 'svg', 'tuvalu.svg'),
+    ('uganda', 'svg', 'uganda.svg'),
+    ('ukraine', 'svg', 'ukraine.svg'),
+    ('uruguay', 'svg', 'uruguay.svg'),
+    ('uzbekistan', 'svg', 'uzbekistan.svg'),
+    ('vanuatu', 'svg', 'vanuatu.svg'),
+    ('venezuela', 'svg', 'venezuela.svg'),
+    ('vietnam', 'svg', 'vietnam.svg'),
+    ('yemen', 'svg', 'yemen.svg'),
+    ('zambia', 'svg', 'zambia.svg'),
+    ('zimbabwe', 'svg', 'zimbabwe.svg');
 
 
 
-/* Country inserts */
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Argentina',
-    'Argentine Republic',
-    'ARG',
-    '.at',
-    '',
-    '',
-    'En unión y libertad',
-    'Himno Nacional Argentino',
-    'Buenos Aires',
-    'Spanish',
-    46621847,
-    'AR',
-    'ARG',
-    '+54',
-    'UTC-3',
-    1,
-    1,
-    1,
-    1
-);
+/* Coat_Of_Arms inserts */
+INSERT INTO Coat_Of_Arms(name, type, url)
+VALUES
+    ('argentina', 'svg', 'argentina.svg'),
+    ('afghanistan', 'svg', 'afghanistan.svg'),
+    ('albania', 'svg', 'albania.svg'),
+    ('algeria', 'svg', 'algeria.svg'),
+    ('angola', 'svg', 'angola.svg'),
+    ('armenia', 'svg', 'armenia.svg'),
+    ('aruba', 'svg', 'aruba.svg'),
+    ('australia', 'svg', 'australia.svg'),
+    ('azerbaijan', 'svg', 'azerbaijan.svg'),
+    ('bahrain', 'svg', 'bahrain.svg'),
+    ('bangladesh', 'svg', 'bangladesh.svg'),
+    ('barbados', 'svg', 'barbados.svg'),
+    ('belarus', 'svg', 'belarus.svg'),
+    ('belize', 'svg', 'belize.svg'),
+    ('benin', 'svg', 'benin.svg'),
+    ('bermuda', 'svg', 'bermuda.svg'),
+    ('bhutan', 'svg', 'bhutan.svg'),
+    ('bolivia', 'svg', 'bolivia.svg'),
+    ('bosnia_and_herzegovina', 'svg', 'bosnia_and_herzegovina.svg'),
+    ('botswana', 'svg', 'botswana.svg'),
+    ('brazil', 'svg', 'brazil.svg'),
+    ('brunei', 'svg', 'brunei.svg'),
+    ('bulgaria', 'svg', 'bulgaria.svg'),
+    ('burundi', 'svg', 'burundi.svg'),
+    ('cambodia', 'svg', 'cambodia.svg'),
+    ('canada', 'svg', 'canada.svg'),
+    ('cape_verde', 'svg', 'cape_verde.svg'),
+    ('chile', 'svg', 'chile.svg'),
+    ('coat_of_arms', 'svg', 'coat_of_arms.svg'),
+    ('colombia', 'svg', 'colombia.svg'),
+    ('comoros', 'svg', 'comoros.svg'),
+    ('costa_rica', 'svg', 'costa_rica.svg'),
+    ('croatia', 'svg', 'croatia.svg'),
+    ('cuba', 'svg', 'cuba.svg'),
+    ('denmark', 'svg', 'denmark.svg'),
+    ('djibouti', 'svg', 'djibouti.svg'),
+    ('egypt', 'svg', 'egypt.svg'),
+    ('el_salvador', 'svg', 'el_salvador.svg'),
+    ('england', 'svg', 'england.svg'),
+    ('eritrea', 'svg', 'eritrea.svg'),
+    ('eswatini', 'svg', 'eswatini.svg'),
+    ('ethiopia', 'svg', 'ethiopia.svg'),
+    ('europe', 'svg', 'europe.svg'),
+    ('fiji', 'svg', 'fiji.svg'),
+    ('french_polynesia', 'svg', 'french_polynesia.svg'),
+    ('georgia', 'svg', 'georgia.svg'),
+    ('ghana', 'svg', 'ghana.svg'),
+    ('gibraltar', 'svg', 'gibraltar.svg'),
+    ('grenada', 'svg', 'grenada.svg'),
+    ('guatemala', 'svg', 'guatemala.svg'),
+    ('guernsey', 'svg', 'guernsey.svg'),
+    ('guinea', 'svg', 'guinea.svg'),
+    ('guyana', 'svg', 'guyana.svg'),
+    ('haiti', 'svg', 'haiti.svg'),
+    ('honduras', 'svg', 'honduras.svg'),
+    ('hong_kong', 'svg', 'hong_kong.svg'),
+    ('hungary', 'svg', 'hungary.svg'),
+    ('iceland', 'svg', 'iceland.svg'),
+    ('india', 'svg', 'india.svg'),
+    ('indonesia_garuda_pancasila', 'svg', 'indonesia_garuda_pancasila.svg'),
+    ('international_monetary_fund_logo', 'svg', 'international_monetary_fund_logo.svg'),
+    ('iran', 'svg', 'iran.svg'),
+    ('iraq', 'svg', 'iraq.svg'),
+    ('israel_alternative', 'svg', 'israel_alternative.svg'),
+    ('jamaica', 'svg', 'jamaica.svg'),
+    ('jersey', 'svg', 'jersey.svg'),
+    ('jordan', 'svg', 'jordan.svg'),
+    ('kazakhstan', 'svg', 'kazakhstan.svg'),
+    ('kenya', 'svg', 'kenya.svg'),
+    ('kiribati', 'svg', 'kiribati.svg'),
+    ('kuwait', 'svg', 'kuwait.svg'),
+    ('kyrgyzstan', 'svg', 'kyrgyzstan.svg'),
+    ('laos', 'svg', 'laos.svg'),
+    ('lebanon', 'svg', 'lebanon.svg'),
+    ('lesotho', 'svg', 'lesotho.svg'),
+    ('liberia', 'svg', 'liberia.svg'),
+    ('libya', 'svg', 'libya.svg'),
+    ('macau', 'svg', 'macau.svg'),
+    ('madagascar', 'svg', 'madagascar.svg'),
+    ('malawi', 'svg', 'malawi.svg'),
+    ('malaysia', 'svg', 'malaysia.svg'),
+    ('maldives', 'svg', 'maldives.svg'),
+    ('mauritania', 'svg', 'mauritania.svg'),
+    ('mauritius', 'svg', 'mauritius.svg'),
+    ('mexico', 'svg', 'mexico.svg'),
+    ('moldova', 'svg', 'moldova.svg'),
+    ('mongolia', 'svg', 'mongolia.svg'),
+    ('morocco', 'svg', 'morocco.svg'),
+    ('mozambique', 'svg', 'mozambique.svg'),
+    ('myanmar', 'svg', 'myanmar.svg'),
+    ('namibia', 'svg', 'namibia.svg'),
+    ('nepal', 'svg', 'nepal.svg'),
+    ('new_zealand', 'svg', 'new_zealand.svg'),
+    ('nicaragua', 'svg', 'nicaragua.svg'),
+    ('nigeria', 'svg', 'nigeria.svg'),
+    ('north_macedonia', 'svg', 'north_macedonia.svg'),
+    ('norway', 'svg', 'norway.svg'),
+    ('oman', 'svg', 'oman.svg'),
+    ('pakistan', 'svg', 'pakistan.svg'),
+    ('panama', 'svg', 'panama.svg'),
+    ('paraguay', 'svg', 'paraguay.svg'),
+    ('per', 'svg', 'per.svg'),
+    ('polski', 'svg', 'polski.svg'),
+    ('qatar', 'svg', 'qatar.svg'),
+    ('romania', 'svg', 'romania.svg'),
+    ('rwanda', 'svg', 'rwanda.svg'),
+    ('saint_helena', 'svg', 'saint_helena.svg'),
+    ('samoa', 'svg', 'samoa.svg'),
+    ('saudi_arabia', 'svg', 'saudi_arabia.svg'),
+    ('serbia', 'svg', 'serbia.svg'),
+    ('seychelles', 'svg', 'seychelles.svg'),
+    ('sierra_leone', 'svg', 'sierra_leone.svg'),
+    ('singapore', 'svg', 'singapore.svg'),
+    ('somalia', 'svg', 'somalia.svg'),
+    ('south_africa_heraldic', 'svg', 'south_africa_heraldic.svg'),
+    ('south_korea', 'svg', 'south_korea.svg'),
+    ('south_sudan', 'svg', 'south_sudan.svg'),
+    ('so_tom_and_prncipe', 'svg', 'so_tom_and_prncipe.svg'),
+    ('sri_lanka', 'svg', 'sri_lanka.svg'),
+    ('sudan', 'svg', 'sudan.svg'),
+    ('suriname', 'svg', 'suriname.svg'),
+    ('sweden', 'svg', 'sweden.svg'),
+    ('switzerland', 'svg', 'switzerland.svg'),
+    ('syria', 'svg', 'syria.svg'),
+    ('tajikistan', 'svg', 'tajikistan.svg'),
+    ('tanzania', 'svg', 'tanzania.svg'),
+    ('thailand', 'svg', 'thailand.svg'),
+    ('the_bahamas', 'svg', 'the_bahamas.svg'),
+    ('the_cayman_islands', 'svg', 'the_cayman_islands.svg'),
+    ('the_central_african_republic', 'svg', 'the_central_african_republic.svg'),
+    ('the_czech_republic', 'svg', 'the_czech_republic.svg'),
+    ('the_democratic_republic_of_the_congo', 'svg', 'the_democratic_republic_of_the_congo.svg'),
+    ('the_dominican_republic', 'svg', 'the_dominican_republic.svg'),
+    ('the_falkland_islands', 'svg', 'the_falkland_islands.svg'),
+    ('the_faroe_islands', 'svg', 'the_faroe_islands.svg'),
+    ('the_gambia', 'svg', 'the_gambia.svg'),
+    ('the_isle_of_man', 'svg', 'the_isle_of_man.svg'),
+    ('the_netherlands_antilles', 'svg', 'the_netherlands_antilles.svg'),
+    ('the_peoples_republic_of_china', 'svg', 'the_peoples_republic_of_china.svg'),
+    ('the_philippines', 'svg', 'the_philippines.svg'),
+    ('the_presidency_of_turkey', 'svg', 'the_presidency_of_turkey.svg'),
+    ('the_russian_federation', 'svg', 'the_russian_federation.svg'),
+    ('the_solomon_islands', 'svg', 'the_solomon_islands.svg'),
+    ('the_united_arab_emirates', 'svg', 'the_united_arab_emirates.svg'),
+    ('the_united_states_obverse', 'svg', 'the_united_states_obverse.svg'),
+    ('tonga', 'svg', 'tonga.svg'),
+    ('trinidad_and_tobago', 'svg', 'trinidad_and_tobago.svg'),
+    ('tunisia', 'svg', 'tunisia.svg'),
+    ('turkmenistan', 'svg', 'turkmenistan.svg'),
+    ('tuvalu', 'svg', 'tuvalu.svg'),
+    ('uganda', 'svg', 'uganda.svg'),
+    ('ukraine', 'svg', 'ukraine.svg'),
+    ('uruguay', 'svg', 'uruguay.svg'),
+    ('uzbekistan', 'svg', 'uzbekistan.svg'),
+    ('vanuatu', 'svg', 'vanuatu.svg'),
+    ('venezuela', 'svg', 'venezuela.svg'),
+    ('vietnam', 'svg', 'vietnam.svg'),
+    ('yemen', 'svg', 'yemen.svg'),
+    ('zambia', 'svg', 'zambia.svg'),
+    ('zimbabwe', 'svg', 'zimbabwe.svg');
 
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Emirates',
-    'The United Arab Emirates',
-    'UAE',
-    '.ae',
-    '',
-    '',
-    'God, Nation, President',
-    'Long Live My Country',
-    'Abu Dhabi',
-    'Arabic',
-    9516871,
-    'AE',
-    'ARE',
-    '+971',
-    'UTC+4',
-    ,
-    ,
-    ,
-    
-);
 
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Afghanistan',
-    'Islamic Emirate of Afghanistan',
-    'AFN',
-    '.af',
-    '',
-    '',
-    'There is no god but God; Muhammad is the messenger of God',
-    'This Is the Home of the Brave',
-    'Kabul',
-    'Pashto',
-    42239854,
-    'AF',
-    'AFG',
-    '+93',
-    'UTC+4:30',
-    ,
-    ,
-    ,
-    
-);
 
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Albania',
-    'Republic of Albania',
-    'ALB',
-    '.al',
-    '',
-    '',
-    'You Albania, give me honour, you give me the name Albanian',
-    'Hymn to the Flag',
-    'Tirana',
-    'Albanian',
-    2832439,
-    'AL',
-    'ALB',
-    '+355',
-    'UTC+1',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Armenia',
-    'Republic of Armenia',
-    'ARM',
-    '.am',
-    '',
-    '',
-    'One nation, one culture',
-    'Our Fatherland',
-    'Yerevan',
-    'Armenian',
-    2777970,
-    'AM',
-    'ARM',
-    '+374',
-    'UTC+4',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Netherlands Antilles',
-    'The Netherlands Antilles',
-    'ANT',
-    '.an',
-    '',
-    '',
-    'Unified in freedom',
-    'Anthem wothout a title',
-    'Willemstad',
-    'Dutch',
-    151066,
-    'AN',
-    'ANT',
-    '+599',
-    'UTC-4',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Angola',
-    'Republic of Angola',
-    'AO',
-    '.ao',
-    '',
-    '',
-    'Virtue is stronger when united',
-    'Onwards Angola',
-    'Luanda',
-    'Kimbundu',
-    36684202,
-    'AO',
-    'AGO',
-    '+244',
-    'UTC+1',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Autralia',
-    'Commonwealth of Australia',
-    'AUS',
-    '.au',
-    '',
-    '',
-    '-',
-    'Advance Australia Fair',
-    'Canberra',
-    'English',
-    26439111,
-    'AU',
-    'AUS',
-    '+61',
-    'UTC+11',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Aruba',
-    'Country of Aruba',
-    'ABW',
-    '.aw',
-    '',
-    '',
-    '-',
-    'Aruba Dushi Tera',
-    'Oranjestad',
-    'Papiamento',
-    106277,
-    'AW',
-    'ABW',
-    '+297',
-    'UTC-4',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Azerbaijan',
-    'Republic of Azerbaijan',
-    'AZE',
-    '.az',
-    '',
-    '',
-    '-',
-    'March of Azerbaijan',
-    'Baku',
-    'Azerbaijani',
-    10412651,
-    'AZ',
-    'AZE',
-    '+994',
-    'UTC+4',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Bosnia and Herzegovina',
-    'Bosnia and Herzegovina',
-    'BIH',
-    '.ba',
-    '',
-    '',
-    '-',
-    'National Anthem of Bosnia and Herzegovina',
-    'Sarajevo',
-    'Latin',
-    3210847,
-    'BA',
-    'BIH',
-    '+387',
-    'UTC+1',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Barbados',
-    'Barbados',
-    'BRB',
-    '.bb',
-    '',
-    '',
-    'Pride and Industry',
-    'In Plenty and In Time of Need',
-    'Bridgetown',
-    'English',
-    281995,
-    'BB',
-    'BRB',
-    '+1246',
-    'UTC-4',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Bangladesh',
-    "People's Republic of Bangladesh",
-    'BAN',
-    '.bd',
-    '',
-    '',
-    '-',
-    'My Golden Bengal',
-    'Dhaka',
-    'Bengali',
-    172954319,
-    'BD',
-    'BGD',
-    '+880',
-    'UTC+6',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Bulgaria',
-    'Republic of Bulgaria',
-    'BGR',
-    '.bg',
-    '',
-    '',
-    'Unity makes strength',
-    'Dear Motherland',
-    'Sofia',
-    'Bulgarian',
-    6687717,
-    'BG',
-    'BGR',
-    '+359',
-    'UTC+2',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Bahrain',
-    'Kingdom of Baahrain',
-    'BHR',
-    '.bh',
-    '',
-    '',
-    '-',
-    'Our Bahrain',
-    'Manama',
-    'Arabic',
-    1485509,
-    'BH',
-    'BHR',
-    '+973',
-    'UTC+3',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Burundi',
-    'Republic of Burundi',
-    'BDI',
-    '.bi',
-    '',
-    '',
-    'Union, Work, Progress',
-    'Our Burundi',
-    'Gitega',
-    'Kirundi',
-    13238559,
-    'BI',
-    'BDI',
-    '+257',
-    'UTC+2',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Bermuda',
-    'Bermuda',
-    'BMU',
-    '.bm',
-    '',
-    '',
-    'Whither the Fates carry (us)',
-    'God Save the King',
-    'Hamilton',
-    'English',
-    64019,
-    'BM',
-    'BMU',
-    '+1441',
-    'UTC-4',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Brunei',
-    'Brunei Darussalam',
-    'BRN',
-    '.bn',
-    '',
-    '',
-    "Always in service with God's guidance",
-    'God Bless the Sultan',
-    'Bandar Seri Begawan',
-    'Malay',
-    452523,
-    'BN',
-    'BRN',
-    '+673',
-    'UTC+8',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Bolivia',
-    'Plurinational State of Bolivia',
-    'BOL',
-    '.bo',
-    '',
-    '',
-    '-',
-    'National Anthem of Bolivia',
-    'Sucre',
-    'Spanish',
-    12440603,
-    'BO',
-    'BOL',
-    '+591',
-    'UTC-4',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Brazil',
-    'Federative Republic of Brazil',
-    'BRA',
-    '.br',
-    '',
-    '',
-    'Order and Progress',
-    'Brazilian National Anthem',
-    'Brasilia',
-    'Portuguese',
-    216422446,
-    'BR',
-    'BRA',
-    '+55',
-    'UTC+3',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Bahamas',
-    'Commonwealth of The Bahamas',
-    'BHS',
-    '.bs',
-    '',
-    '',
-    'Forward, Upward, Onward, Together',
-    'March On, Bahamaland',
-    'Nassau',
-    'English',
-    412623,
-    'BS',
-    'BHS',
-    '+1242',
-    'UTC-5',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Bhutan',
-    'Kingdom of Bhutan',
-    'BTN',
-    '.bt',
-    '',
-    '',
-    '-',
-    'The Thunder Dragon Kingdom',
-    'Thimphu',
-    'Dzongkha',
-    787424,
-    'BN',
-    'BTN',
-    '+975',
-    'UTC+6',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Botswana',
-    'Republic of Botswana',
-    'BWA',
-    '.bw',
-    '',
-    '',
-    'Let There Be Rain',
-    'Blessed Be This Noble Land',
-    'Gaborone',
-    'English',
-    2675352,
-    'BW',
-    'BWA',
-    '+267',
-    'UTC+2',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Belarus',
-    'Republic of Belarus',
-    'BLR',
-    '.by',
-    '',
-    '',
-    '-',
-    'State Anthem of the Republic of Belarus',
-    'Minsk',
-    'Belarusian',
-    9498238,
-    'BY',
-    'BLR',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Belize',
-    'Belize',
-    'BLZ',
-    '.bz',
-    '',
-    '',
-    'Under the shade I flourish',
-    'Land of the Free',
-    'Belmopan',
-    'English',
-    410825,
-    'BZ',
-    'BZL',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    'Canada',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
-INSERT INTO Country(name, official_name, abbr, internet_tld, coat, flag, motto, anthem, capital, official_language, population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone, id_currency, id_date_format, id_region, id_sub_region) VALUES(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ,
-    '',
-    '',
-    '+',
-    'UTC',
-    ,
-    ,
-    ,
-    
-);
-
+/* Countries insert */
+INSERT INTO Country(
+    name, official_name, abbr, internet_tld, motto, anthem, capital, official_language,
+    population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone,
+    id_coat_of_arms, id_flag, id_currency, id_date_format, id_region, id_sub_region
+) VALUES
+    ('Argentina', 'Argentine Republic', 'ARG', '.at', 'En unión y libertad', 'Himno Nacional Argentino', 'Buenos Aires', 'Spanish', 46621847, 'AR', 'ARG', '+54', 'UTC-3', 1, 1, 1, 1, 1, 1),
+    ('Emirates', 'The United Arab Emirates', 'UAE', '.ae', 'God, Nation, President', 'Long Live My Country', 'Abu Dhabi', 'Arabic', 9516871, 'AE', 'ARE', '+971', 'UTC+4', 144, 144, 2, 1, 2, 10),
+    ('Afghanistan', 'Islamic Emirate of Afghanistan', 'AFN', '.af', 'There is no god but God; Muhammad is the messenger of God', 'This Is the Home of the Brave', 'Kabul', 'Pashto', 42239854, 'AF', 'AFG', '+93', 'UTC+4:30', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Albania', 'Republic of Albania', 'ALB', '.al', 'You Albania, give me honour, you give me the name Albanian', 'Hymn to the Flag', 'Tirana', 'Albanian', 2832439, 'AL', 'ALB', '+355', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Armenia', 'Republic of Armenia', 'ARM', '.am', 'One nation, one culture', 'Our Fatherland', 'Yerevan', 'Armenian', 2998500, 'AM', 'ARM', '+374', 'UTC+4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Netherlands Antilles(2010)', 'The Netherlands Antilles', 'ANT', '.an', 'Unified in freedom', 'Anthem without a title', 'Willemstad', 'Dutch', 151066, 'AN', 'ANT', '+599', 'UTC-4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Angola', 'Republic of Angola', 'AO', '.ao', 'Virtue is stronger when united', 'Onwards Angola', 'Luanda', 'Kimbundu', 36684202, 'AO', 'AGO', '+244', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Australia', 'Commonwealth of Australia', 'AUS', '.au', '-', 'Advance Australia Fair', 'Canberra', 'English', 26439111, 'AU', 'AUS', '+61', 'UTC+11', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Aruba', 'Country of Aruba', 'ABW', '.aw', '-', 'Aruba Dushi Tera', 'Oranjestad', 'Papiamento', 106277, 'AW', 'ABW', '+297', 'UTC-4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Azerbaijan', 'Republic of Azerbaijan', 'AZE', '.az', '-', 'March of Azerbaijan', 'Baku', 'Azerbaijani', 10412651, 'AZ', 'AZE', '+994', 'UTC+4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Bosnia and Herzegovina', 'Bosnia and Herzegovina', 'BIH', '.ba', 'Mi idemo u budućnost, Zajedno!', 'National Anthem of Bosnia and Herzegovina', 'Sarajevo', 'Latin', 3210847, 'BA', 'BIH', '+387', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Barbados', 'Barbados', 'BRB', '.bb', 'Pride and Industry', 'In Plenty and In Time of Need', 'Bridgetown', 'English', 281995, 'BB', 'BRB', '+1246', 'UTC-4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Bangladesh', "People's Republic of Bangladesh", 'BAN', '.bd', 'Joy Bangla', 'My Golden Bengal', 'Dhaka', 'Bengali', 172954319, 'BD', 'BGD', '+880', 'UTC+6', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Bulgaria', 'Republic of Bulgaria', 'BGR', '.bg', 'Съединението прави силата', 'Unity makes strength', 'Sofia', 'Bulgarian', 6687717, 'BG', 'BGR', '+359', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Bahrain', 'Kingdom of Bahrain', 'BHR', '.bh', '-', 'Our Bahrain', 'Manama', 'Arabic', 1485509, 'BH', 'BHR', '+973', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Burundi', 'Republic of Burundi', 'BDI', '.bi', 'Unity, Work, Progress', 'Union, Work, Progress', 'Our Burundi', 'Gitega', 'Kirundi', 13238559, 'BI', 'BDI', '+257', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Bermuda', 'Bermuda', 'BMU', '.bm', 'Quo Fata Ferunt', 'Whither the Fates carry', 'God Save the King', 'Hamilton', 'English', 64019, 'BM', 'BMU', '+1441', 'UTC-4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Brunei', 'Brunei Darussalam', 'BRN', '.bn', 'Selalu dalam Bimbingan Allah', "Always in service with God's guidance", 'God Bless the Sultan', 'Bandar Seri Begawan', 'Malay', 452523, 'BN', 'BRN', '+673', 'UTC+8', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Bolivia', 'Plurinational State of Bolivia', 'BOL', '.bo', 'Libertad, Igualdad, Fraternidad', '-', 'National Anthem of Bolivia', 'Sucre', 'Spanish', 12440603, 'BO', 'BOL', '+591', 'UTC-4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Brazil', 'Federative Republic of Brazil', 'BRA', '.br', 'Ordem e Progresso', 'Order and Progress', 'Brazilian National Anthem', 'Brasilia', 'Portuguese', 216422446, 'BR', 'BRA', '+55', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Bahamas', 'Commonwealth of The Bahamas', 'BHS', '.bs', 'Forward, Upward, Onward Together', 'Forward, Upward, Onward, Together', 'March On, Bahamaland', 'Nassau', 'English', 412623, 'BS', 'BHS', '+1242', 'UTC-5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Bhutan', 'Kingdom of Bhutan', 'BT', '.bt', 'The Dragon Kingdom', 'Druk tsendhen', 'Thimphu', 'Dzongkha', 784114, 'BT', 'BTN', '+975', 'UTC+5:30', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Botswana', 'Republic of Botswana', 'BW', '.bw', 'Pula', 'Fatshe leno la rona', 'Gaborone', 'Setswana', 2410336, 'BW', 'BWA', '+267', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Belarus', 'Republic of Belarus', 'BY', '.by', 'We, the Belarusian people', 'My Belarusy', 'Minsk', 'Belarusian, Russian', 9463234, 'BY', 'BLR', '+375', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Belize', 'Belize', 'BZ', '.bz', 'Sub umbra floreo', 'Land of the Free', 'Belmopan', 'English', 430322, 'BZ', 'BLZ', '+501', 'UTC-6', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Canada', 'Dominion of Canada', 'CA', '.ca', 'A Mari Usque Ad Mare', 'O Canada', 'Ottawa', 'English and French', 0, 'CA', 'CAN', '+1', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL);
+    ('Democratic Republic of the Congo', 'République démocratique du Congo', 'DRC', '.cd', 'Justice – Paix – Travail', 'Debout Congolais', 'Kinshasa', 'French', 0, 'CD', 'COD', '+243', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Switzerland', 'Swiss Confederation', 'CH', '.ch', 'Unus pro omnibus, omnes pro uno', 'Swiss Psalm', 'Bern', 'German, French, Italian, Romansh', 0, 'CH', 'CHE', '+41', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Chile', 'Republic of Chile', 'CL', '.cl', 'Por la razón o la fuerza', 'Canción Nacional', 'Santiago', 'Spanish', 0, 'CL', 'CHL', '+56', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('China', "People's Republic of China", 'CN', '.cn', '起來! 不願做奴隸的人們!', '义勇军进行曲', 'Beijing', 'Mandarin', 0, 'CN', 'CHN', '+86', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Colombia', 'Republic of Colombia', 'CO', '.co', 'Libertad y Orden', 'Himno Nacional de la República de Colombia', 'Bogotá', 'Spanish', 0, 'CO', 'COL', '+57', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Cuba', 'Republic of Cuba', 'CU', '.cu', 'Patria o Muerte, Venceremos', 'La Bayamesa', 'Havana', 'Spanish', 0, 'CU', 'CUB', '+53', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Costa Rica', 'Republic of Costa Rica', 'CR', '.cr', 'Vivan siempre el trabajo y la paz', 'Himno Nacional de Costa Rica', 'San José', 'Spanish', 0, 'CR', 'CRI', '+506', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Cape Verde', 'Republic of Cabo Verde', 'CV', '.cv', 'Unidade, Trabalho, Progresso', 'Cântico da Liberdade', 'Praia', 'Portuguese', 0, 'CV', 'CPV', '+238', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Czech Republic', 'Czech Republic', 'CZ', '.cz', 'Pravda vítězí', 'Kde domov můj', 'Prague', 'Czech', 0, 'CZ', 'CZE', '+420', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Djibouti', 'Republic of Djibouti', 'DJ', '.dj', 'Unité, Égalité, Paix', 'We arise with strength! for we have raised our flag', 'Djibouti City', 'Arabic, French', NULL, 'DJ', 'DJI', '+253', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Denmark', 'Kingdom of Denmark', 'DK', '.dk', 'Guds hjælp, Folkets kærlighed, Danmarks styrke', 'Der er et yndigt land', 'Copenhagen', 'Danish', 0, 'DK', 'DNK', '+45', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Dominican Republic', 'Dominican Republic', 'DO', '.do', 'Dios, Patria, Libertad', 'Himno Nacional', 'Santo Domingo', 'Spanish', 0, 'DO', 'DOM', '+1-809, +1-829, +1-849', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Algeria', "People's Democratic Republic of Algeria", 'DZ', '.dz', 'بالشعب وللشعب وبالشعب المصري', 'Kassaman', 'Algiers', 'Arabic, Berber', NULL, 'DZ', 'DZA', '+213', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Egypt', 'Arab Republic of Egypt', 'EG', '.eg', 'Ankh, Ujat, Seneb', 'Eslami ya Misr', 'Cairo', 'Arabic', 0, 'EG', 'EGY', '+20', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Eritrea', 'State of Eritrea', 'ER', '.er', 'ሃገራ ከምሳዊ ለደናት ኣንሓኪ ከተባብራ ሓቅኛታ, ሓቆ ክኣለው ኣትርኢ ኣብ ኣርኣያና', 'ኤርትራው ሓቆ ወደገደላው ትትትሞላ', 'Asmara', 'Tigrinya', 3612706, 'ER', 'ERI', '+291', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Ethiopia', 'Federal Democratic Republic of Ethiopia', 'ET', '.et', 'ኢትዮጵያ ሆይ ደስ ይበልሽ', 'March Forward, Dear Mother Ethiopia', 'Addis Ababa', 'Amharic', 127110000, 'ET', 'ETH', '+251', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('European Union', '', '', '.eu', '', '', '', '', 0, '', '', 0, 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Fiji', 'Republic of Fiji', 'FJ', '.fj', 'Fiji, the Way the World Begins', 'God Bless Fiji', 'Suva', 'English, Fijian', 1013952, 'FJ', 'FJI', '+679', 'UTC+12', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Falkland Islands', ' Falkland Islands', 'FK', '.fk', 'Desire the right', 'God Save the Queen', 'Stanley', 'English', 3500, 'FK', 'FLK', '+500', 'UTC-4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Faroe Islands', 'Føroyar', 'FO', '.fo', '', 'Tú alfagra land mítt', 'Tórshavn', 'Faroese, Danish', 54987, 'FO', 'FRO', '+298', 'UTC+0', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('United Kingdom', 'United Kingdom of Great Britain and Northern Ireland', 'UK', '.uk', 'Dieu et mon droit', 'God Save the Queen', 'London', 'English', 67545757, 'GB', 'GBR', '+44', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Georgia', 'Georgia', 'GE', '.ge', 'ძალა ერთობაში', 'თავისუფლება', 'Tbilisi', 'Georgian', 3912083, 'GE', 'GEO', '+995', 'UTC+4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Guernsey', 'Bailiwick of Guernsey', 'GG', '.gg', 'Dieu est mon droit', 'God Save the Queen', 'St. Peter Port', 'English, French', 67523, 'GG', 'GGY', '+44', 'UTC+0', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Ghana', 'Republic of Ghana', 'GH', '.gh', 'Freedom and Justice', 'God Bless Our Homeland Ghana', 'Accra', 'English', 34032000, 'GH', 'GHA', '+233', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Gibraltar', 'Gibraltar', 'GI', '.gi', 'NULLIUS IN VERBA', 'God Save the Queen', 'Gibraltar', 'English', 34000, 'GI', 'GIB', '+350', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('The Gambia', 'Republic of The Gambia', 'GM', '.gm', 'Progress, Peace, Prosperity', 'For Gambia Our Homeland', 'Banjul', 'English', 2539384, 'GM', 'GMB', '+220', 'UTC+0', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Guinea', 'Republic of Guinea', 'GN', '.gn', 'Work, Justice, Solidarity', 'Liberté', 'Conakry', 'French', 13533533, 'GN', 'GIN', '+224', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Guatemala', 'Republic of Guatemala', 'GT', '.gt', 'Libre Crezca Fecundo', 'Guatemala Feliz', 'Guatemala City', 'Spanish', 18585000, 'GT', 'GTM', '+502', 'UTC-6', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Guyana', 'Co-operative Republic of Guyana', 'GY', '.gy', 'One People, One Nation, One Destiny', 'Dear Land of Guyana, of Rivers and Plains', 'Georgetown', 'English', 809200, 'GY', 'GUY', '+592', 'UTC-4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Hong Kong', "Hong Kong Special Administrative Region of the People's Republic of China", 'HK', '.hk', '', 'March of the Volunteers', 'Central', 'Chinese (Traditional), English', 7552500, 'HK', 'HKG', '+852', 'UTC+8', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Honduras', 'Republic of Honduras', 'HN', '.hn', 'Libre, Soberana e Independiente', 'Himno Nacional de Honduras', 'Tegucigalpa', 'Spanish', 10902000, 'HN', 'HND', '+504', 'UTC-6', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Croatia', 'Republic of Croatia', 'HR', '.hr', 'Za dom spremni', 'Lijepa naša domovino', 'Zagreb', 'Croatian', 4108800, 'HR', 'HRV', '+385', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Haiti', 'Republic of Haiti', 'HT', '.ht', "L'Union Fait la Force", 'La Dessalinienne', 'Port-au-Prince', 'French, Haitian Creole', 12648000, 'HT', 'HTI', '+509', 'UTC-5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Indonesia', 'Republic of Indonesia', 'ID', '.id', 'Bhinneka Tunggal Ika', 'Indonesia Raya', 'Jakarta', 'Indonesian', 283672915, 'ID', 'IDN', '+62', 'UTC+7', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Israel', 'State of Israel', 'IL', '.il', '', 'Hatikvah', 'Jerusalem', 'Hebrew, Arabic', 9582000, 'IL', 'ISR', '+972', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Isle of Man', 'Isle of Man', 'IM', '.im', 'Quocunque Jeceris Stabit', 'Arrane Ashoonagh dy Vannin', 'Douglas', 'English, Manx', 85424, 'IM', 'IMN', '+44', 'UTC+0', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('India', 'Republic of India', 'IN', '.in', 'Satyameva Jayate', 'Jana Gana Mana', 'New Delhi', 'Hindi, English', 1444215000, 'IN', 'IND', '+91', 'UTC+5:30', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Iraq', 'Republic of Iraq', 'IQ', '.iq', '', 'Mawtini', 'Baghdad', 'Arabic, Kurdish', 41147072, 'IQ', 'IRQ', '+964', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Iran', 'Islamic Republic of Iran', 'IR', '.ir', 'Independence, Freedom, Islamic Republic', 'Sorood-e Melli-e Jomhouri-e Eslami', 'Tehran', 'Persian', 89255483, 'IR', 'IRN', '+98', 'UTC+3:30', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Iceland', 'Republic of Iceland', 'IS', '.is', '', 'Lofsöngur', 'Reykjavik', 'Icelandic', 371530, 'IS', 'ISL', '+354', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Jersey', 'Bailiwick of Jersey', 'JE', '.je', '', 'God Save the Queen', 'Saint Helier', 'English, French', 100800, 'JE', 'JEY', '+44', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Jamaica', 'Jamaica', 'JM', '.jm', 'Out of Many, One People', 'Jamaica, Land We Love', 'Kingston', 'English', 2961161, 'JM', 'JAM', '+1876', 'UTC-5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Jordan', 'Hashemite Kingdom of Jordan', 'JO', '.jo', '', 'Al-Salam Al-Malaki Al-Urdoni', 'Amman', 'Arabic', 11040505, 'JO', 'JOR', '+962', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Japan', 'Japan', 'JP', '.jp', '', 'Kimigayo', 'Tokyo', 'Japanese', 125474293, 'JP', 'JPN', '+81', 'UTC+9', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Kenya', 'Republic of Kenya', 'KE', '.ke', 'Harambee', 'Ee Mungu Nguvu Yetu', 'Nairobi', 'English, Swahili', 58058156, 'KE', 'KEN', '+254', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Kyrgyzstan', 'Kyrgyz Republic', 'KG', '.kg', '', 'Kyrgyz Respublikasynyn Mamlekettik Gimni', 'Bishkek', 'Kyrgyz, Russian', 6746407, 'KG', 'KGZ', '+996', 'UTC+6', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Cambodia', 'Kingdom of Cambodia', 'KH', '.kh', '', 'Nokor Reach', 'Phnom Penh', 'Khmer', 17134623, 'KH', 'KHM', '+855', 'UTC+7', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Kiribati', 'Republic of Kiribati', 'KI', '.ki', 'Te mauri, te raoi, te tabomoa', 'Te Ira Kiribati', 'Tarawa Atoll', 'I-Kiribati, English', 123380, 'KI', 'KIR', '+686', 'UTC+12', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Comoros', 'Union of the Comoros', 'KM', '.km', 'Umoja, Ndugu, Amani', 'Udzima wa ya Masiwa', 'Moroni', 'Arabic, Comorian, French', 911392, 'KM', 'COM', '+269', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('South Korea', 'Republic of Korea', 'KR', '.kr', '', 'Aegukga', 'Seoul', 'Korean', 51848577, 'KR', 'KOR', '+82', 'UTC+9', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Kuwait', 'State of Kuwait', 'KW', '.kw', '', 'Allah Akbar', 'Kuwait City', 'Arabic', 4467757, 'KW', 'KWT', '+965', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Cayman Islands', 'Cayman Islands', 'KY', '.ky', '', 'God Save the Queen', 'George Town', 'English', 68076, 'KY', 'KYM', '+1345', 'UTC-5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Kazakhstan', 'Republic of Kazakhstan', 'KZ', '.kz', '', 'Menin Qazaqstanim', 'Nur Sultan', 'Kazakh, Russian', 19533388, 'KZ', 'KAZ', '+7', 'UTC+6', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Laos', "Lao People's Democratic Republic", 'LA', '.la', '', 'Xat Lao', 'Vientiane', 'Lao', 7544544, 'LA', 'LAO', '+856', 'UTC+7', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Lebanon', 'Lebanese Republic', 'LB', '.lb', '', 'Biladi, Biladi, Biladi', 'Beirut', 'Arabic', 6849391, 'LB', 'LBN', '+961', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Sri Lanka', 'Democratic Socialist Republic of Sri Lanka', 'LK', '.lk', '', 'Namo Namo Matha', 'Colombo, Sri Jayawardenapura Kotte', 'Sinhala, Tamil', 22059300, 'LK', 'LKA', '+94', 'UTC+5:30', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Liberia', 'Republic of Liberia', 'LR', '.lr', 'The Love of Liberty Brought Us Here', 'All Hail Liberia Hail', 'Monrovia', 'English', 5313373, 'LR', 'LBR', '+231', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Lesotho', 'Kingdom of Lesotho', 'LS', '.ls', '', 'Lesotho Fatse La Bontata Rona', 'Maseru', 'English, Sesotho', 2353404, 'LS', 'LSO', '+266', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Libya', 'State of Libya', 'LY', '.ly', '', 'Allahu Akbar', 'Tripoli', 'Arabic', 6936934, 'LY', 'LBY', '+218', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Morocco', 'Kingdom of Morocco', 'MA', '.ma', '', 'Ash-Sharif al-Alaoui', 'Rabat', 'Arabic', 37610000, 'MA', 'MAR', '+212', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Moldova', 'Republic of Moldova', 'MD', '.md', '', 'Limba Noastră', 'Chișinău', 'Romanian', 4056900, 'MD', 'MDA', '+373', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Madagascar', 'Republic of Madagascar', 'MG', '.mg', '', 'Ry Tanindrazana Malala O', 'Antananarivo', 'Malagasy, French', 29107500, 'MG', 'MDG', '+261', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('North Macedonia', 'Republic of North Macedonia', 'MK', '.mk', '', 'Denes nad Makedonija', 'Skopje', 'Macedonian', 2114550, 'MK', 'MKD', '+389', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Myanmar', 'Republic of the Union of Myanmar', 'MM', '.mm', '', 'Kaba Ma Kyei', 'Naypyidaw', 'Burmese', 54323833, 'MM', 'MMR', '+95', 'UTC+6:30', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Mongolia', 'Mongolia', 'MN', '.mn', '', 'Mongolyn Ündsen Ündestiin Temee Duulal', 'Ulaanbaatar', 'Mongolian', 3407300, 'MN', 'MNG', '+976', 'UTC+8', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Macau', "Macao Special Administrative Region of the People's Republic of China", 'MO', '.mo', '', '莲花盛开牡丹红', 'Macau', 'Chinese', 689600, 'MO', 'MAC', '+853', 'UTC+8', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Mauritania', 'Islamic Republic of Mauritania', 'MR', '.mr', '', 'Biladi', 'Nouakchott', 'Arabic', 4644034, 'MR', 'MRT', '+222', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Mauritius', 'Republic of Mauritius', 'MU', '.mu', '', 'Stella Clavisque Maris Indici', 'Port Louis', 'English', 1271769, 'MU', 'MUS', '+230', 'UTC+4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Maldives', 'Republic of Maldives', 'MV', '.mv', '', 'Qaumi Salaam', 'Malé', 'Dhivehi', 580541, 'MV', 'MDV', '+960', 'UTC+5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Malawi', 'Republic of Malawi', 'MW', '.mw', '', 'Mulungu akudalitsa Malawi', 'Lilongwe', 'English, Chichewa', 20163431, 'MW', 'MWI', '+265', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Mexico', 'United Mexican States', 'MX', '.mx', '', 'Himno Nacional Mexicano', 'Mexico City', 'Spanish', 133932315, 'MX', 'MEX', '+52', 'UTC-6 to UTC-8', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Malaysia', 'Federation of Malaysia', 'MY', '.my', '', 'Negaraku', 'Kuala Lumpur', 'Malay', 33800000, 'MY', 'MYS', '+60', 'UTC+8', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Mozambique', 'Republic of Mozambique', 'MZ', '.mz', '', 'Pátria Amada', 'Maputo', 'Portuguese', 36024000, 'MZ', 'MOZ', '+258', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Namibia', 'Republic of Namibia', 'NA', '.na', '', 'Namibia, Land of the Brave', 'Windhoek', 'English', 2644755, 'NA', 'NAM', '+264', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Nigeria', 'Federal Republic of Nigeria', 'NG', '.ng', '', 'Arise, O Compatriots', 'Abuja', 'English', 225778453, 'NG', 'NGA', '+234', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Nicaragua', 'Republic of Nicaragua', 'NI', '.ni', '', 'Salve a ti, Nicaragua', 'Managua', 'Spanish', 6850583, 'NI', 'NIC', '+505', 'UTC-6', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Norway', 'Kingdom of Norway', 'NO', '.no', '', 'Ja, vi elsker dette landet', 'Oslo', 'Norwegian', 5425270, 'NO', 'NOR', '+47', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Nepal', 'Federal Democratic Republic of Nepal', 'NP', '.np', '', 'Satyameva Jayate', 'Kathmandu', 'Nepali', 31551484, 'NP', 'NPL', '+977', 'UTC+5:45', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('New Zealand', 'New Zealand', 'NZ', '.nz', '', 'God Defend New Zealand', 'Wellington', 'English, Māori', 5234400, 'NZ', 'NZL', '+64', 'UTC+12', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Oman', 'Sultanate of Oman', 'OM', '.om', '', 'Nashid al-Salam al-Sultani', 'Muscat', 'Arabic', 5467192, 'OM', 'OMN', '+968', 'UTC+4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Panama', 'Republic of Panama', 'PA', '.pa', '', 'Himno Nacional de la República de Panamá', 'Panama City', 'Spanish', 4448209, 'PA', 'PAN', '+507', 'UTC-5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Peru', 'Republic of Peru', 'PE', '.pe', '', 'Somos libres, seámoslo siempre', 'Lima', 'Spanish, Quechua, Aymara', 33609960, 'PE', 'PER', '+51', 'UTC-5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Papua New Guinea', 'Independent State of Papua New Guinea', 'PG', '.pg', '', 'O God, Stand Beside Us', 'Port Moresby', 'English, Tok Pisin', 9061431, 'PG', 'PNG', '+675', 'UTC+10', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Philippines', 'Republic of the Philippines', 'PH', '.ph', '', 'Lupang Hinirang', 'Manila', 'Filipino, English', 114015954, 'PH', 'PHL', '+63', 'UTC+8', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Pakistan', 'Islamic Republic of Pakistan', 'PK', '.pk', '', 'Qaumi Tarana', 'Islamabad', 'Urdu, English', 239692917, 'PK', 'PAK', '+92', 'UTC+5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Poland', 'Republic of Poland', 'PL', '.pl', '', 'Mazurek Dąbrowskiego', 'Warsaw', 'Polish', 37998639, 'PL', 'POL', '+48', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Paraguay', 'Republic of Paraguay', 'PY', '.py', '', 'Paraguayos, República o muerte!', 'Asunción', 'Spanish, Guarani', 7307457, 'PY', 'PRY', '+595', 'UTC-4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Qatar', 'State of Qatar', 'QA', '.qa', '', 'As-Salam al-Amiri', 'Doha', 'Arabic', 3454234, 'QA', 'QAT', '+974', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Romania', 'Romania', 'RO', '.ro', '', 'Deșteaptă-te, române!', 'Bucharest', 'Romanian', 19364555, 'RO', 'ROU', '+40', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Serbia', 'Republic of Serbia', 'RS', '.rs', '', 'Bože pravde', 'Belgrade', 'Serbian', 6963764, 'RS', 'SRB', '+381', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Russia', 'Russian Federation', 'RU', '.ru', '', 'Государственный гимн Российской Федерации', 'Moscow', 'Russian', 146238206, 'RU', 'RUS', '+7', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Rwanda', 'Republic of Rwanda', 'RW', '.rw', '', 'Rwanda Nziza', 'Kigali', 'Kinyarwanda, French, English', 13740000, 'RW', 'RWA', '+250', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Saudi Arabia', 'Kingdom of Saudi Arabia', 'SA', '.sa', '', 'السعودية', 'Riyadh', 'Arabic', 36979471, 'SA', 'SAU', '+966', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Solomon Islands', 'Solomon Islands', 'SB', '.sb', '', 'God Save Our Solomon Islands', 'Honiara', 'English', 721348, 'SB', 'SLB', '+677', 'UTC+11', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Seychelles', 'Republic of Seychelles', 'SC', '.sc', '', 'Seychellois, mon pays, mon peuple', 'Victoria', 'English, French, Seychellois Creole', 98462, 'SC', 'SYC', '+248', 'UTC+4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Sudan', 'Republic of the Sudan', 'SD', '.sd', '', 'Biladi', 'Khartoum', 'Arabic', 45841243, 'SD', 'SDN', '+249', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Sweden', 'Kingdom of Sweden', 'SE', '.se', '', 'Du gamla, Du fria', 'Stockholm', 'Swedish', 10478115, 'SE', 'SWE', '+46', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Singapore', 'Republic of Singapore', 'SG', '.sg', '', 'Majulah Singapura', 'Singapore', 'English, Malay, Tamil, Chinese', 5889986, 'SG', 'SGP', '+65', 'UTC+8', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Saint Helena, Ascension and Tristan da Cunha', 'Saint Helena, Ascension and Tristan da Cunha', 'SH', '.sh', '', 'God Save the Queen', 'Jamestown', 'English', 4534, 'SH', 'SHN', '+290', 'UTC±0', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Sierra Leone', 'Republic of Sierra Leone', 'SL', '.sl', '', 'High We Exalt Thee, Realm of the Free', 'Freetown', 'English', 8545386, 'SL', 'SLE', '+232', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Somalia', 'Federal Republic of Somalia', 'SO', '.so', '', 'Soomaaliyaay toosoo', 'Mogadishu', 'Somali, Arabic', 16361093, 'SO', 'SOM', '+252', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Suriname', 'Republic of Suriname', 'SR', '.sr', '', 'God zij met ons Suriname', 'Paramaribo', 'Dutch', 586388, 'SR', 'SUR', '+597', 'UTC-3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('South Sudan', 'Republic of South Sudan', 'SS', '.ss', '', 'Juwe', 'Juba', 'English', 13082550, 'SS', 'SSD', '+211', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('São Tomé and Príncipe', 'Democratic Republic of São Tomé and Príncipe', 'ST', '.st', '', 'Independência total', 'São Tomé', 'Portuguese', 220400, 'ST', 'STP', '+239', 'UTC', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Syria', 'Syrian Arab Republic', 'SY', '.sy', '', 'Humat ad-Diyar', 'Damascus', 'Arabic', 17500658, 'SY', 'SYR', '+963', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Eswatini', 'Kingdom of Eswatini', 'SZ', '.sz', '', 'Nkulunkulu Mnikati', 'Mbabana', 'English, Swati', 1164101, 'SZ', 'SWZ', '+268', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Thailand', 'Kingdom of Thailand', 'TH', '.th', '', 'Phleng Chat', 'Bangkok', 'Thai', 70098733, 'TH', 'THA', '+66', 'UTC+7', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Tajikistan', 'Republic of Tajikistan', 'TJ', '.tj', '', 'Surudi Milli', 'Dushanbe', 'Tajik', 9811588, 'TJ', 'TJK', '+992', 'UTC+5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Turkmenistan', 'Turkmenistan', 'TM', '.tm', '', 'Garaşsyz, Bitarap, Türkmenistan', 'Ashgabat', 'Turkmen', 6217371, 'TM', 'TKM', '+993', 'UTC+5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Tunisia', 'Republic of Tunisia', 'TN', '.tn', '', 'Humat al-Hima', 'Tunis', 'Arabic', 12130000, 'TN', 'TUN', '+216', 'UTC+1', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Tonga', 'Kingdom of Tonga', 'TO', '.to', '', 'Ko e fasi ʻo e tuʻi ʻo e ʻOtu Tonga', 'Nukuʻalofa', 'Tongan, English', 105695, 'TO', 'TON', '+676', 'UTC+13', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Turkey', 'Republic of Turkey', 'TR', '.tr', '', 'İstiklal Marşı', 'Ankara', 'Turkish', 86031639, 'TR', 'TUR', '+90', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Trinidad and Tobago', 'Republic of Trinidad and Tobago', 'TT', '.tt', '', 'Together we aspire, together we achieve', 'Port of Spain', 'English', 1406467, 'TT', 'TTO', '+1868', 'UTC-4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Tuvalu', 'Tuvalu', 'TV', '.tv', '', 'Tuvalu mo te Atua', 'Vaiaku village', 'Tuvaluan, English', 11792, 'TV', 'TUV', '+688', 'UTC+12', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Taiwan', 'Republic of China (Taiwan)', 'TW', '.tw', '', 'National Anthem of the Republic of China', 'Taipei', 'Mandarin Chinese', 23503349, 'TW', 'TWN', '+886', 'UTC+8', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Tanzania', 'United Republic of Tanzania', 'TZ', '.tz', '', 'Mungu ibariki Afrika', 'Dar es Salaam; Dodoma', 'Swahili, English', 64387033, 'TZ', 'TZA', '+255', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Ukraine', 'Ukraine', 'UA', '.ua', '', 'Ще не вмерла України', 'Kyiv', 'Ukrainian', 44134695, 'UA', 'UKR', '+380', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Uganda', 'Republic of Uganda', 'UG', '.ug', '', 'Oh Uganda, Land of Beauty', 'Kampala', 'English, Swahili', 48435343, 'UG', 'UGA', '+256', 'UTC+3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('United States', 'United States of America', 'US', '.us', '', 'The Star-Spangled Banner', 'Washington, D.C.', 'English', 332403650, 'US', 'USA', '+1', 'UTC-5 to UTC-10', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Uruguay', 'Oriental Republic of Uruguay', 'UY', '.uy', '', 'Himno Nacional de Uruguay', 'Montevideo', 'Spanish', 3537380, 'UY', 'URY', '+598', 'UTC-3', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Uzbekistan', 'Republic of Uzbekistan', 'UZ', '.uz', '', "O'zbekiston milliy gimni", 'Tashkent', 'Uzbek', 35205283, 'UZ', 'UZB', '+998', 'UTC+5', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Venezuela', 'Bolivarian Republic of Venezuela', 'VE', '.ve', '', 'Gloria al Bravo Pueblo', 'Caracas', 'Spanish', 33199905, 'VE', 'VEN', '+58', 'UTC-4', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Vietnam', 'Socialist Republic of Vietnam', 'VN', '.vn', '', 'Tiến Quân Ca', 'Hanoi', 'Vietnamese', 99533972, 'VN', 'VNM', '+84', 'UTC+7', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Vanuatu', 'Republic of Vanuatu', 'VU', '.vu', '', 'We Are Proud to Stand Beside You', 'Port Vila', 'Bislama, English, French', 322957, 'VU', 'VUT', '+688', 'UTC+11', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Samoa', 'Independent State of Samoa', 'WS', '.ws', "Fa'avae le Atua Samoa", 'Apia', 'Samoan, English', 201498, 'WS', 'WSM', '+685', 'UTC+13', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Economic and Monetary Community of Central Africa', 'Economic and Monetary Community of Central Africa', 'CEMAC', '-', '-', '-', '-', '-', 0, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Organization of Eastern Caribbean States', 'Organization of Eastern Caribbean States', 'OECS', '-', '-', '-', '-', '-', 0, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('International Monetary Fund', 'International Monetary Fund', 'IMF', '.imf', '-', '-', '-', '-', 0, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('West African CFA franc', 'West African CFA franc', 'CFA', '-', '-', '-', '-', '-', 0, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, NULL),
+    ("Collectivités d'Outre-Mer", "Collectivités d'Outre-Mer", 'COM', '-', '-', '-', '-', '-', 0, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Yemen', 'Republic of Yemen', 'YE', '.ye', '-', '-', 'Sanaa', 'Arabic', 31615683, 'YE', 'YEM', '+967', '-', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('South Africa', 'Republic of South Africa', 'ZA', '.za', '-', "Nkosi Sikelel' iAfrika", 'Pretoria (administrative), Bloemfontein (judicial), Cape Town (legislative)', 'Afrikaans',  59475057, 'ZA', 'ZAF', '+27', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Zambia', 'Republic of Zambia', 'ZM', '.zm', '-', 'Stand and Sing of Zambia, Proud and Free', 'Lusaka', 'English', 18984400, 'ZM', 'ZMB', '+260', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL),
+    ('Zimbabwe', 'Republic of Zimbabwe', 'ZW', '.zw', '-', 'Simudza WeZimbabwe', 'Harare', 'English', 15042978, 'ZW', 'ZWE', '+263', 'UTC+2', NULL, NULL, NULL, NULL, NULL, NULL);
