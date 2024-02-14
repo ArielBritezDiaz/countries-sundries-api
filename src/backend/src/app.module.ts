@@ -1,10 +1,19 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { CountryModule } from './country/country.module';
+import { countriesController } from './country/country.controller';
+import * as cors from 'cors';
+import { MorganMiddleware } from './middleware/morgan.middleware';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [CountryModule]
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(
+        cors(),
+        MorganMiddleware
+      )
+      .forRoutes(countriesController)
+  }
+}

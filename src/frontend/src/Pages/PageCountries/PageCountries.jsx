@@ -12,7 +12,7 @@ import { TriangleArrow } from '@uiw/react-json-view/triangle-arrow';
 import { TriangleSolidArrow } from '@uiw/react-json-view/triangle-solid-arrow';
 
 //Styles JSONView
-import Arrow from '../../stylesJson/jsonViewStyles.jsx';
+import Arrow from '../../assets/stylesJson/jsonViewStyles.jsx';
 
 function PageCountries() {
   const [ countries, setCountries ] = useState(null)
@@ -23,7 +23,7 @@ function PageCountries() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`${PROTOCOL}://${HOST}:${PORT}/countries`, {
+      const response = await fetch(`${PROTOCOL}://${HOST}:${PORT}/api/v1/country/argentina`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
