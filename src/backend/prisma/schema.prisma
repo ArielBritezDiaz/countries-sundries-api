@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Region {
+  id_region Int @id @default(autoincrement())
+  name String @db.VarChar(30)
+  
+  sub_region_R Sub_Region[]
+  country_R Country[]
+}
+
+model Sub_Region {
+  id_sub_region Int @id @default(autoincrement())
+  name String @db.VarChar(50)
+  id_region Int
+  region_R Region @relation(fields: [id_region], references: [id_region])
+
+  country_R Country[]
+}
+
+model Date_Format {
+  id_date_format Int @id @default(autoincrement())
+  format String @db.VarChar(30)
+
+  country_R Country[]
+}
+
+model Currency {
+  id_currency Int @id @default(autoincrement())
+  abbr String @db.VarChar(20)
+  name String @db.VarChar(40)
+  symbol String @db.VarChar(30)
+
+  country_R Country[]
+}
+
+model Flag {
+  id_flag Int @id @default(autoincrement())
+  name String @db.VarChar(50)
+  type String @db.VarChar(10)
+  url String @db.VarChar(255)
+
+  country_R Country[]
+}
+
+model Coat_Of_Arms {
+  id_coat_of_arms Int @id @default(autoincrement())
+  name String @db.VarChar(50)
+  type String @db.VarChar(10)
+  url String @db.VarChar(255)
+  country_R Country[]
+}
+
+model Country {
+  id_country Int @id @default(autoincrement())
+  name String @db.VarChar(100)
+  official_name String @db.VarChar(100)
+  abbr String  @db.VarChar(5)
+  internet_tld String  @db.VarChar(20)
+  motto String? @db.VarChar(100)
+  anthem String? @db.VarChar(100)
+  capital String @db.VarChar(100)
+  official_language String @db.VarChar(50)
+  population Int
+  iso_3166_1_alpha_2 String? @db.VarChar(5)
+  iso_3166_1_alpha_3 String? @db.VarChar(5)
+  calling_code String? @db.VarChar(10)
+  timezone String? @db.VarChar(20)
+  id_coat_of_arms Int?
+  id_flag Int?
+  id_currency Int?
+  id_date_format Int?
+  id_region Int?
+  id_sub_region Int?
+
+  id_coat_of_arms_R Coat_Of_Arms? @relation(fields: [id_coat_of_arms], references: [id_coat_of_arms])
+  id_flag_R Flag? @relation(fields: [id_flag], references: [id_flag])
+  id_currency_R Currency? @relation(fields: [id_currency], references: [id_currency])
+  id_date_format_R Date_Format? @relation(fields: [id_date_format], references: [id_date_format])
+  id_region_R Region? @relation(fields: [id_region], references: [id_region])
+  id_sub_region_R Sub_Region? @relation(fields: [id_sub_region], references: [id_sub_region])
+}

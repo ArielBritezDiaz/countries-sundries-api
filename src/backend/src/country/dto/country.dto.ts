@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import { IsInt, IsString } from 'class-validator';
+import { IsDefined, IsInt, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 
 @Injectable()
 export class QueryControl {
+  @IsDefined()
   @IsString()
-  @Type(() => String)
   country: string;
 }
