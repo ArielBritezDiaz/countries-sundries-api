@@ -1,8 +1,8 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { CountryModule } from './country/country.module';
+import { CountryModule } from './modules/country/country.module';
 
 //Controllers
-import { countriesController } from './country/country.controller';
+import { countriesController } from './modules/country/country.controller';
 
 //Middlewares
 import * as cors from 'cors';

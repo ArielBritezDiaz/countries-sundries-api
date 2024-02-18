@@ -7,31 +7,31 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
 }
 
 model Region {
   id_region Int @id @default(autoincrement())
   name String @db.VarChar(30)
   
-  sub_region_R Sub_Region[]
-  country_R Country[]
+  sub_region Sub_Region[]
+  country Country[]
 }
 
 model Sub_Region {
   id_sub_region Int @id @default(autoincrement())
   name String @db.VarChar(50)
   id_region Int
-  region_R Region @relation(fields: [id_region], references: [id_region])
+  region Region @relation(fields: [id_region], references: [id_region])
 
-  country_R Country[]
+  country Country[]
 }
 
 model Date_Format {
   id_date_format Int @id @default(autoincrement())
   format String @db.VarChar(30)
 
-  country_R Country[]
+  country Country[]
 }
 
 model Currency {
@@ -40,7 +40,7 @@ model Currency {
   name String @db.VarChar(40)
   symbol String @db.VarChar(30)
 
-  country_R Country[]
+  country Country[]
 }
 
 model Flag {
@@ -49,7 +49,7 @@ model Flag {
   type String @db.VarChar(10)
   url String @db.VarChar(255)
 
-  country_R Country[]
+  country Country[]
 }
 
 model Coat_Of_Arms {
@@ -57,7 +57,8 @@ model Coat_Of_Arms {
   name String @db.VarChar(50)
   type String @db.VarChar(10)
   url String @db.VarChar(255)
-  country_R Country[]
+
+  country Country[]
 }
 
 model Country {
@@ -82,10 +83,10 @@ model Country {
   id_region Int?
   id_sub_region Int?
 
-  id_coat_of_arms_R Coat_Of_Arms? @relation(fields: [id_coat_of_arms], references: [id_coat_of_arms])
-  id_flag_R Flag? @relation(fields: [id_flag], references: [id_flag])
-  id_currency_R Currency? @relation(fields: [id_currency], references: [id_currency])
-  id_date_format_R Date_Format? @relation(fields: [id_date_format], references: [id_date_format])
-  id_region_R Region? @relation(fields: [id_region], references: [id_region])
-  id_sub_region_R Sub_Region? @relation(fields: [id_sub_region], references: [id_sub_region])
+  coat_of_arms Coat_Of_Arms? @relation(fields: [id_coat_of_arms], references: [id_coat_of_arms])
+  flag Flag? @relation(fields: [id_flag], references: [id_flag])
+  currency Currency? @relation(fields: [id_currency], references: [id_currency])
+  date_format Date_Format? @relation(fields: [id_date_format], references: [id_date_format])
+  region Region? @relation(fields: [id_region], references: [id_region])
+  sub_region Sub_Region? @relation(fields: [id_sub_region], references: [id_sub_region])
 }
