@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Country, Flag } from '@prisma/client';
+import { DatabaseConfig } from '../../interfaces/database.config.interface';
 import { PrismaService } from '../prisma/prisma.service';
-import { DatabaseConfig } from './interfaces/database.config.interface';
 
 import { FormattedCountry } from './interfaces/country.interface';
 
@@ -16,16 +16,16 @@ export class ClassCountry {
 export class CountryService {
   constructor(
     private prisma: PrismaService,
-    private ConfigService: ConfigService<{ database: DatabaseConfig }, true>
+    private configService: ConfigService<{ database: DatabaseConfig }, true>
   ) {}
 
   async getCountryByName(name: string): Promise<FormattedCountry[]> {
-    console.log(this.ConfigService.get<DatabaseConfig>('database'))
-    const { protocol, apiVersion, port, host } = this.ConfigService.get<DatabaseConfig>('database')
+    // console.log(this.configService.get<DatabaseConfig>('database'))
+    const { protocol, apiVersion, port, host } = this.configService.get<DatabaseConfig>('database')
     
     const response = await this.prisma.country.findMany({
       where: {
-        name
+        name: { equals: name }
       },
       select: {
         id_country: true,
@@ -81,7 +81,7 @@ export class CountryService {
       }
     });
     
-    console.log(response);
+    // console.log(response);
     const infoCountry = response.map(country  => {
       const { flag, coat_of_arms, currency, region, sub_region, ...rest } = country
       return {
@@ -123,7 +123,7 @@ export class FlagService {
   async getFlag(flagName: string): Promise<Flag[]> {
     const response = await this.prisma.flag.findFirst({
       where: {
-        name: flagName
+        name: { equals: flagName }
       },
       select: {
         id_flag: true,

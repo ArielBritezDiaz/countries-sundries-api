@@ -1,26 +1,41 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { CountryModule } from './modules/country/country.module';
-
+//Modules
+import { CountryModule } from './modules/info/country.module';
+import { ImageModule } from './modules/image/image.module';
 //Controllers
-import { countriesController } from './modules/country/country.controller';
-
+import { CountriesController } from './modules/info/country.controller';
+import { ImageController } from './modules/image/image.controller';
 //Middlewares
 import * as cors from 'cors';
 import { MorganMiddleware } from './middleware/morgan.middleware';
-
 //DB Config
 import { ConfigModule } from "@nestjs/config";
 import databaseConfiguration from './config/database.config';
+import { PrismaModule } from './modules/prisma/prisma.module';
+//Static serve
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { CurrencyController } from './modules/currency/currency.controller';
+import { CurrencyModule } from './modules/currency/currency.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.database.env',
+      envFilePath: '.env',
       isGlobal: true,
       cache: true,
       load: [databaseConfiguration]
     }),
-    CountryModule
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, 'assets'),
+      serveRoot: '/assets',
+      renderPath: undefined,
+      exclude: ['**/*.html']
+    }),
+    PrismaModule,
+    CountryModule,
+    ImageModule,
+    CurrencyModule
   ]
 })
 
@@ -31,6 +46,10 @@ export class AppModule implements NestModule {
         cors(),
         MorganMiddleware
       )
-      .forRoutes(countriesController)
+      .forRoutes(
+        CountriesController,
+        ImageController,
+        CurrencyController
+      )
   }
 }

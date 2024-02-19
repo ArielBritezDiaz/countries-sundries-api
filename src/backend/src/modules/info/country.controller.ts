@@ -1,23 +1,19 @@
 import { Controller, HttpCode, Res, Req, Get, Param, Query, Headers, HttpException, HttpStatus, ValidationPipe } from '@nestjs/common';
 import { Request, Response } from 'express';
 
-//Config import
-import { ConfigService } from '@nestjs/config';
-
 //Service import
 import { ClassCountry, CountryService, FlagService } from './country.service';
 //DTO import
-import { QueryControl } from './dto/country.dto';
-//Interface import
-import { DatabaseConfig } from './interfaces/database.config.interface';
-import { PrismaService } from '../prisma/prisma.service';
+import { ValueQueryControl } from '../../dto/queryControl.dto';
+import { ConfigService } from '@nestjs/config';
+import { DatabaseConfig } from '../../interfaces/database.config.interface';
 
-@Controller('api/v1/info')
-export class countriesController {
+// const { protocol, apiVersion, port, host } = ConfigService.get<DatabaseConfig>('database')
+
+@Controller(`api/${process.env.API_VERSION}/info`)
+export class CountriesController {
   constructor(
     private readonly ClassCountry: ClassCountry,
-    private readonly ConfigService: ConfigService<{ database: DatabaseConfig }, true>,
-    private readonly Prisma: PrismaService,
     private readonly CountryService: CountryService,
     private readonly FlagService: FlagService
   ) {}
@@ -29,11 +25,12 @@ export class countriesController {
     @Res() res: Response,
     @Headers('Countries_Sundries-API_Key') apiKeyHeader: string,
     @Param() params: any,
-    @Query() queryParams: QueryControl
+    @Query() queryParams: ValueQueryControl
   ){
     try {
       const apiKey = parseInt(apiKeyHeader, 10)
-      const countryQuery = queryParams.country ? queryParams.country.replace(/^\w/, (c) => c.toUpperCase()) : null;
+      const countryQuery = queryParams['country'] ? queryParams['country'].replace(/^\w/, (c) => c.toUpperCase()) : null;
+
       // console.log("country:", countryQuery)
       // console.log("params:", params)
       
@@ -52,7 +49,7 @@ export class countriesController {
       return res.send(country)
     } catch(error) {
       console.log(error)
-      return res.send({message: error.message})
+      return res.status(500).send({message: "Internal server error"})
     }
   }
   
@@ -63,25 +60,31 @@ export class countriesController {
     @Res() res: Response,
     @Headers('Countries_Sundries-API_Key') apiKeyHeader: string,
     @Param() params: any,
-    @Query() queryParams: QueryControl
+    @Query() queryParams: ValueQueryControl
   ){
-
-    const apiKey = parseInt(apiKeyHeader, 10)
-    const country = queryParams.country
-
-    //Validations
-    const otherParams = Object.keys(queryParams).filter(key => key !== 'country');
-    if (otherParams.length > 0) {
-      return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({message: 'Invalid parameters'})
+    try {
+      const apiKey = parseInt(apiKeyHeader, 10)
+      const countryFlagQuery = queryParams['flag']
+      const countryFlag = countryFlagQuery.toLowerCase().replaceAll(' ', '_')
+      // console.log(countryFlag)
+  
+      //Validations
+      const otherParams = Object.keys(queryParams).filter(key => key !== 'flag');
+      if (otherParams.length > 0) {
+        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({message: 'Invalid parameters'})
+      }
+  
+      if(apiKey !== 123) {
+        console.log(`Error: ${apiKey} (${typeof(apiKey)})`)
+        return res.status(HttpStatus.UNAUTHORIZED).send({message: `Api-Key is incorrect`})
+      }
+  
+      const flag = await this.FlagService.getFlag(countryFlag)
+      // console.log(flag)
+      return res.send(flag)
+    } catch(error) {
+      console.log(error)
+      return res.status(500).send({message: "Internal server error"})
     }
-
-    if(apiKey !== 123) {
-      console.log(`Error: ${apiKey} (${typeof(apiKey)})`)
-      return res.status(HttpStatus.UNAUTHORIZED).send({message: `Api-Key is incorrect`})
-    }
-
-    const flag = await this.FlagService.getFlag(country)
-    const test = 'test'
-    return res.send(flag)
   }
 }
