@@ -41,7 +41,7 @@ export class CurrenciesValueControlDTO {
 export class CurrencyValueControlDTO {
   @IsOptional()
   @IsInt()
-  id_currency?: number;
+  id?: number;
 
   @IsOptional()
   @IsString()
