@@ -60,12 +60,13 @@ export class CurrencyController {
           Object.keys(query).some(key => query[key] === '' || query[key] < 0) || 
           query.from < 0 || 
           query.take < 0 ||
-          (query.id !== undefined && isNaN(query.id)) || 
-          (query.id !== undefined && (query.id < 0 || query.id > 220)) || 
-          (query.name !== null && (query.name && (query.name.length < 3 || query.name.length > 40))) ||
+          (query.id !== undefined && isNaN(query.id)) ||
+          (query.id !== undefined && (query.id < 0 || query.id > 220)) ||
+          (query.name !== null && (query.name && (query.name.length < 7 || query.name.length > 40))) ||
           (query.abbr !== null && (query.abbr !== '' && query.abbr.length < 2 || query.abbr.length > 3 )) ||
           (query.symbol !== null && (query.symbol && (query.symbol.length < 1 || query.symbol.length > 30 ))) ||
-          (query.order_by !== null && (query.order_by !== '' && query.order_by !== 'id_currency' && query.order_by !== 'name' && query.order_by !== 'abbr' && query.order_by !== 'symbol')) ||
+          ((query.order_by !== null && query.order_direction === null) || (query.order_direction !== null && query.order_by === null)) ||
+          ((query.order_by !== null) && (query.order_by !== '' && query.order_by !== 'id_currency' && query.order_by !== 'name' && query.order_by !== 'abbr' && query.order_by !== 'symbol')) ||
           (query.order_direction !== null && (query.order_direction !== '' && query.order_direction !== 'asc' && query.order_direction !== 'desc'))
       ) {
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' });
@@ -96,19 +97,43 @@ export class CurrencyController {
   ){
     try {
       const apiKey = parseInt(apiKeyHeader, 10)
-      const query = queryParams['id_currency'] && typeof(queryParams['id_currency']) === 'string' ? { id_currency: parseInt(queryParams['id_currency'], 10)} : queryParams !== null ? queryParams : null;
+      console.log(queryParams)
+      // const query = queryParams['id'] && typeof(queryParams['id']) === 'string' ? { id: parseInt(queryParams['id'], 10)} : queryParams !== null ? queryParams : null;
+      // !/^\d+$/.test(queryParams.id.toString())
+      const id = queryParams['id'] && /^\d+$/.test(queryParams['id'].toString()) && !queryParams['id'].toString().includes("%") ? parseInt(queryParams['id'].toString(), 10) : !queryParams['id'] ? null : undefined;
+      const name = queryParams['name'] || null;
+      const abbr = queryParams['abbr'] || null;
+      const symbol = queryParams['symbol'] || null;
 
-      // console.log("query:", query)
+      const query: CurrencyValueControlDTO  = {
+        id,
+        name,
+        abbr,
+        symbol
+      }
+
+      console.log("query:", query)
 
       //Validations
-      const otherParams = Object.keys(queryParams).filter(key => key !== 'id_currency' && key !== 'name' && key !== 'abbr' && key !== 'symbol');
-      if (otherParams.length > 0) {
-        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({message: 'Invalid parameters'})
-      } else if(otherParams === undefined || query === null) {
-        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({message: 'Parameters must be provided'})
-      }
-      if (queryParams.id_currency && isNaN(queryParams.id_currency)) {
-        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'id_currency must be a number type' });
+      if (
+        query === null ||
+        Object.keys(query).length === 0 || 
+        !query.hasOwnProperty('id') || 
+        !query.hasOwnProperty('name') || 
+        !query.hasOwnProperty('abbr') || 
+        !query.hasOwnProperty('symbol')
+      ) {
+          console.log(`Error: ${query} (${typeof query})`);
+          return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Parameters must be provided' });
+      } else if (
+          Object.keys(query).some(key => query[key] === '' || query[key] < 0) ||
+          (query.id !== undefined && isNaN(query.id)) ||
+          (query.id !== undefined && (query.id < 1 || query.id > 220) || query.id === undefined) && query.id !== null ||
+          (query.name !== null && (!isNaN(parseFloat(query.name)) || query.name && (query.name.length < 3 || query.name.length > 40))) ||
+          (query.abbr !== null && (!isNaN(parseFloat(query.abbr)) || query.abbr !== '' && query.abbr.length < 2 || query.abbr.length > 3 )) ||
+          (query.symbol !== null && ((!isNaN(parseFloat(query.symbol)) || query.symbol.length < 1 || query.symbol.length > 30)))
+        ) {
+          return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' });
       }
       if(apiKey !== 123) {
         console.log(`Error: ${apiKey} (${typeof(apiKey)})`)

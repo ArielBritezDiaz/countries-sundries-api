@@ -5,7 +5,7 @@ import { DatabaseConfig } from '../../interfaces/database.config.interface';
 import { PrismaService } from '../prisma/prisma.service';
 
 //DTO import
-import { CurrenciesValueControlDTO } from './dto/currency.dto';
+import { CurrenciesValueControlDTO, CurrencyValueControlDTO } from './dto/currency.dto';
 
 @Injectable()
 export class CurrencyService {
@@ -39,8 +39,8 @@ export class CurrencyService {
     if (preferencesParams.order_direction !== null) { order_direction = preferencesParams.order_direction }
     
     // console.log("where", where);
-    console.log("order_by", order_by);
-    console.log("order_direction", order_direction);
+    // console.log("order_by", order_by);
+    // console.log("order_direction", order_direction);
 
     const response = await this.prisma.currency.findMany({
       ...skipFrom,
@@ -66,28 +66,31 @@ export class CurrencyService {
     return response;
   }
 
-  async getDetailsCurrency(query: any): Promise<Currency[]> {
-    let defineWhere = {}
+  async getDetailsCurrency(preferencesParams: CurrencyValueControlDTO): Promise<Currency[]> {
+    
+    let where = {
+      id_currency: { contains: 0},
+      name: { contains: '' },
+      abbr: { contains: '' },
+      symbol: { contains: '' }
+    };
 
     // console.log("query in getAllCurrencies", query)
 
-    if (query.id_currency !== undefined && query.id_currency !== null && !isNaN(parseInt(query.id_currency))) {
-      defineWhere = { id_currency: parseInt(query.id_currency) };
-    }
-    if (query.name !== undefined && query.name !== null) {
-      defineWhere = { name: { contains: query.name.toUpperCase() } };
-    }
-    if (query.abbr !== undefined && query.abbr !== null) {
-      defineWhere = { abbr: query.abbr.toUpperCase() };
-    }
-    if (query.symbol !== undefined && query.symbol !== null) {
-      defineWhere = { symbol: query.symbol };
-    }
+    if (preferencesParams.id !== 0 && preferencesParams.id !== null) { where.id_currency = { contains: preferencesParams.id } }
+    if (preferencesParams.name !== null) { where.name = { contains: preferencesParams.name.toUpperCase() } }
+    if (preferencesParams.abbr !== null) { where.abbr = { contains: preferencesParams.abbr.toUpperCase() } }
+    if (preferencesParams.symbol !== null) { where.symbol = { contains: preferencesParams.symbol } }
 
-    // console.log(defineWhere)
+    console.log(preferencesParams)
 
     const response = await this.prisma.currency.findFirst({
-      where: defineWhere,
+      where: {
+        ...(preferencesParams.id !== 0 && preferencesParams.id !== null && { id_currency: preferencesParams.id }),
+        ...(preferencesParams.name !== null && { name: { contains: preferencesParams.name.toUpperCase() } }),
+        ...(preferencesParams.abbr !== null && { abbr: { contains: preferencesParams.abbr.toUpperCase() } }),
+        ...(preferencesParams.symbol !== null && { symbol: { contains: preferencesParams.symbol } }),
+      },
       select: {
         id_currency: true,
         name: true,
