@@ -22,6 +22,7 @@ export class CountryService {
   async getCountryByName(name: string): Promise<FormattedCountry[]> {
     // console.log(this.configService.get<DatabaseConfig>('database'))
     const { protocol, apiVersion, port, host } = this.configService.get<DatabaseConfig>('database')
+    console.log(name)
     
     const response = await this.prisma.country.findMany({
       where: {
@@ -81,7 +82,7 @@ export class CountryService {
       }
     });
     
-    // console.log(response);
+    console.log(response);
     const infoCountry = response.map(country  => {
       const { flag, coat_of_arms, currency, region, sub_region, ...rest } = country
       return {

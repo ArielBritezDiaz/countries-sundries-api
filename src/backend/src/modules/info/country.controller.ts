@@ -29,7 +29,7 @@ export class CountriesController {
   ){
     try {
       const apiKey = parseInt(apiKeyHeader, 10)
-      const countryQuery = queryParams['country'] ? queryParams['country'].replace(/^\w/, (c) => c.toUpperCase()) : null;
+      const countryQuery = queryParams['country'] ? queryParams['country'].replace(/^\w/, (c: any) => c.toUpperCase()) : null;
 
       // console.log("country:", countryQuery)
       // console.log("params:", params)

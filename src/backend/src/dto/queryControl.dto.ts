@@ -8,33 +8,3 @@ export class ValueQueryControl {
   @IsString()
   value: string;
 }
-
-@Injectable()
-export class CurrenciesValueQueryControl {
-  @IsOptional()
-  @IsInt()
-  from?: number;
-
-  @IsOptional()
-  @IsInt()
-  take?: number;
-}
-
-@Injectable()
-export class CurrencyValueQueryControl {
-  @IsOptional()
-  @IsInt()
-  id_currency?: number;
-
-  @IsOptional()
-  @IsString()
-  name?: string;
-
-  @IsOptional()
-  @IsString()
-  abbr?: string;
-
-  @IsOptional()
-  @IsString()
-  symbol?: string;
-}
