@@ -2,7 +2,9 @@ import { Controller, HttpCode, Res, Req, Get, Param, Query, Headers, HttpExcepti
 import { Request, Response } from 'express';
 
 import { FlagService, CoatOfArmService } from './image.service';
-import { ValueQueryControl } from '../../dto/queryControl.dto';
+//DTO import
+import { ImageQueryControlDTO } from './dto/image.dto';
+import { apiKeyDTO } from 'src/interfaces/apiKey.interface';
 
 @Controller(`api/${process.env.API_VERSION}/image`)
 export class ImageController {
@@ -16,28 +18,54 @@ export class ImageController {
   async getFlag(
     @Req() req: Request,
     @Res() res: Response,
-    @Headers('Countries_Sundries-API_Key') apiKeyHeader: string,
+    @Headers('Countries_Sundries-API_Key') apiKeyHeader: apiKeyDTO['apiKey'],
     @Param() params: any,
-    @Query() queryParams: ValueQueryControl
+    @Query() queryParams: ImageQueryControlDTO
   ){
     try {
       const apiKey = parseInt(apiKeyHeader, 10)
-      const flagName = queryParams['flag']
+      const country = queryParams.country != null ? String(queryParams.country) : null;
       // console.log(queryParams)
-      // console.log(flagName)
+      // console.log(country)
+
+      const query: ImageQueryControlDTO = {
+        country
+      }
       
       //Validations
-      const otherParams = Object.keys(queryParams).filter(key => key !== 'flag');
-      if (otherParams.length > 0) {
-        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({message: 'Invalid parameters'})
+      if (
+        query === null ||
+        Object.keys(query).length === 0 || 
+        !query.hasOwnProperty('country')
+      ) {
+          console.log(`Error: ${query} (${typeof query})`);
+          return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Parameters must be provided' });
+      } else if (
+          Object.keys(query).some(key => query[key] === '' ||
+          query[key] < 0)||
+          (query.country !== null && (query.country && (query.country.length < 5 || query.country.length > 50)))
+      ) {
+          console.log(query)
+          return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' });
       }
-      // if(apiKey !== 123) {
-      //   console.log(`Error: ${apiKey} (${typeof(apiKey)})`)
-      //   return res.status(HttpStatus.UNAUTHORIZED).send({message: `Api-Key is incorrect`})
-      // }
+      if (apiKey === null || apiKey === undefined || isNaN(apiKey)) {
+        console.log(`Error: ${apiKey} (${typeof apiKey})`);
+        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Api-Key must be provided' });
+      }
+      if (apiKey !== 123) {
+        console.log(`Error: ${apiKey} (${typeof apiKey})`);
+        return res.status(HttpStatus.UNAUTHORIZED).send({ message: 'Api-Key is incorrect' });
+      }
 
-      const flag = await this.FlagService.getFlagByName(flagName)
-      return res.sendFile(flag, { root: 'assets/flag' })
+      const response = await this.FlagService.getFlagByName(query)
+      const flag = await response[0] && response[0].url !== null ? response[0].url : ''
+      // console.log("flag:", flag)
+      
+      if(flag !== '') {
+        return res.status(HttpStatus.OK).sendFile(flag, { root: 'assets/flag' })
+      } else {
+        return res.status(HttpStatus.NOT_FOUND).send({message: "Flag not found"})
+      }
     } catch(error) {
       console.log(error)
       return res.status(500).send({message: "Internal server error"})
@@ -51,7 +79,7 @@ export class ImageController {
     @Res() res: Response,
     @Headers('Countries_Sundries-API_Key') apiKeyHeader: string,
     @Param() params: any,
-    @Query() queryParams: ValueQueryControl
+    @Query() queryParams: ImageQueryControlDTO
   ){
     try {
       const apiKey = parseInt(apiKeyHeader, 10)
@@ -64,13 +92,17 @@ export class ImageController {
       if (otherParams.length > 0) {
         return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({message: 'Invalid parameters'})
       }
-      // if(apiKey !== 123) {
-      //   console.log(`Error: ${apiKey} (${typeof(apiKey)})`)
-      //   return res.status(HttpStatus.UNAUTHORIZED).send({message: `Api-Key is incorrect`})
-      // }
+      if (apiKey === null || apiKey === undefined || isNaN(apiKey)) {
+        console.log(`Error: ${apiKey} (${typeof apiKey})`);
+        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Api-Key must be provided' });
+      }
+      if (apiKey !== 123) {
+        console.log(`Error: ${apiKey} (${typeof apiKey})`);
+        return res.status(HttpStatus.UNAUTHORIZED).send({ message: 'Api-Key is incorrect' });
+      }
 
-      const coatOfArm = await this.CoatOfArmService.getCoatOfArmByName(coatOfArmName)
-      return res.sendFile(coatOfArm, { root: 'assets/coat_of_arms' })
+      // const coatOfArm = (await this.CoatOfArmService.getCoatOfArmByName(coatOfArmName))
+      // return res.sendFile(coatOfArm, { root: 'assets/coat_of_arms' })
     } catch(error) {
       console.log(error)
       return res.status(500).send({message: "Internal server error"})
