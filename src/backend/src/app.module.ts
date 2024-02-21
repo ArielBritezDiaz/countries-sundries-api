@@ -17,6 +17,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { CurrencyController } from './modules/currency/currency.controller';
 import { CurrencyModule } from './modules/currency/currency.module';
+import { RegionModule } from './modules/region/region.module';
+import { SubRegionModule } from './modules/sub_region/subRegion.module';
 
 @Module({
   imports: [
@@ -35,7 +37,9 @@ import { CurrencyModule } from './modules/currency/currency.module';
     PrismaModule,
     CountryModule,
     ImageModule,
-    CurrencyModule
+    CurrencyModule,
+    RegionModule,
+    SubRegionModule
   ]
 })
 
@@ -49,7 +53,9 @@ export class AppModule implements NestModule {
       .forRoutes(
         CountriesController,
         ImageController,
-        CurrencyController
+        CurrencyController,
+        RegionModule,
+        SubRegionModule
       )
   }
 }

@@ -72,6 +72,10 @@ export class CurrencyController {
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' });
       }
       
+      if (apiKey === null || apiKey === undefined || isNaN(apiKey)) {
+        console.log(`Error: ${apiKey} (${typeof apiKey})`);
+        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Api-Key must be provided' });
+      }
       if (apiKey !== 123) {
         console.log(`Error: ${apiKey} (${typeof apiKey})`);
         return res.status(HttpStatus.UNAUTHORIZED).send({ message: 'Api-Key is incorrect' });

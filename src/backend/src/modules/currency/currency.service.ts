@@ -6,6 +6,8 @@ import { PrismaService } from '../prisma/prisma.service';
 
 //DTO import
 import { CurrenciesValueControlDTO, CurrencyValueControlDTO } from './dto/currency.dto';
+//Interface import
+import { FormattedCurrency } from './interfaces/currency.interface';
 
 @Injectable()
 export class CurrencyService {
@@ -14,7 +16,7 @@ export class CurrencyService {
     private configService: ConfigService<{ database: DatabaseConfig }, true>
   ) {}
 
-  async getAllCurrencies(preferencesParams: CurrenciesValueControlDTO): Promise<Currency[]> {
+  async getAllCurrencies(preferencesParams: CurrenciesValueControlDTO): Promise<FormattedCurrency[]> {
     
     console.log("preferencesParams", preferencesParams)
 
@@ -66,7 +68,7 @@ export class CurrencyService {
     return response;
   }
 
-  async getDetailsCurrency(preferencesParams: CurrencyValueControlDTO): Promise<Currency[]> {
+  async getDetailsCurrency(preferencesParams: CurrencyValueControlDTO): Promise<FormattedCurrency[]> {
     
     let where = {
       id_currency: { contains: 0},
