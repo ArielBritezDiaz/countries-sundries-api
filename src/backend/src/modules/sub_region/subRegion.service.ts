@@ -55,7 +55,6 @@ export class SubRegionService {
       },
       orderBy: {
         ...(preferencesParams.order_by !== null && { [preferencesParams.order_by]: preferencesParams.order_direction })
-        
       }
     });
     // console.log("response", response)

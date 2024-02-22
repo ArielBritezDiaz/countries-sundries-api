@@ -16,21 +16,22 @@ export class FlagService {
     private readonly Prisma: PrismaService
   ) {}
 
-  async getFlagByName(preferenceFlag: ImageQueryControlDTO): Promise<FormmattedImage[]> {
-    // console.log(country)
-    let where = {}
-
-    if (preferenceFlag !== null) { where = { name: { equals: preferenceFlag.country } } }
-    // console.log(where)
+  async getFlag(preferenceFlag: ImageQueryControlDTO): Promise<FormmattedImage[]> {
+    console.log("preferenceFlag:", preferenceFlag)
 
     const response = await this.Prisma.flag.findFirst({
-      where,
+      where: {
+        ...(preferenceFlag.id !== 0 && preferenceFlag.id !== null && { id_flag: preferenceFlag.id }),
+        ...(preferenceFlag.name !== null && { name: { contains: preferenceFlag.name.replaceAll(' ', '_').toLocaleLowerCase() } })
+      },
       select: {
         url: true
       }
     })
-    console.log(response)
-    const flag = await response && response.url !== null ? [ response ] : []
+    // console.log("Response: ", response)
+
+    const flag = response && response !== null ? [ { url: `${response.url}` } ] : [ { url: null }]
+    // console.log("flag server:", flag)
     return flag;
   }
 }
@@ -41,15 +42,22 @@ export class CoatOfArmService {
     private readonly Prisma: PrismaService
   ) {}
 
-  // async getCoatOfArmByName(nameCoatOfArm: ImageQueryControlDTO): Promise<FormmattedImage[]> {
-  //   const response = await this.Prisma.coat_Of_Arms.findFirst({
-  //     where: {
-  //       name: { equals: nameCoatOfArm }
-  //     },
-  //     select: {
-  //       url: true
-  //     }
-  //   })
-  //   return { url: response.url };
-  // }
+  async getCoatOfArm(preferenceCoatOfArm: ImageQueryControlDTO): Promise<FormmattedImage[]> {
+    console.log("preferenceCoatOfArm:", preferenceCoatOfArm)
+
+    const response = await this.Prisma.flag.findFirst({
+      where: {
+        ...(preferenceCoatOfArm.id !== 0 && preferenceCoatOfArm.id !== null && { id_flag: preferenceCoatOfArm.id }),
+        ...(preferenceCoatOfArm.name !== null && { name: { contains: preferenceCoatOfArm.name.replaceAll(' ', '_').toLocaleLowerCase() } })
+      },
+      select: {
+        url: true
+      }
+    })
+    // console.log("Response: ", response)
+
+    const flag = response && response !== null ? [ { url: `${response.url}` } ] : [ { url: null }]
+    // console.log("flag server:", flag)
+    return flag;
+  }
 }
