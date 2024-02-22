@@ -437,7 +437,7 @@ VALUES
     ('south_africa_heraldic', 'svg', 'south_africa_heraldic.svg'),
     ('south_korea', 'svg', 'south_korea.svg'),
     ('south_sudan', 'svg', 'south_sudan.svg'),
-    ('so_tom_and_prncipe', 'svg', 'so_tom_and_prncipe.svg'),
+    ('sao_tome_and_prncipe', 'svg', 'sao_tome_and_prncipe.svg'),
     ('sri_lanka', 'svg', 'sri_lanka.svg'),
     ('sudan', 'svg', 'sudan.svg'),
     ('suriname', 'svg', 'suriname.svg'),
@@ -464,7 +464,6 @@ VALUES
     ('the_russian_federation', 'svg', 'the_russian_federation.svg'),
     ('the_solomon_islands', 'svg', 'the_solomon_islands.svg'),
     ('the_united_arab_emirates', 'svg', 'the_united_arab_emirates.svg'),
-    ('the_united_states_obverse', 'svg', 'the_united_states_obverse.svg'),
     ('tonga', 'svg', 'tonga.svg'),
     ('trinidad_and_tobago', 'svg', 'trinidad_and_tobago.svg'),
     ('tunisia', 'svg', 'tunisia.svg'),
@@ -661,7 +660,7 @@ INSERT INTO Country(
     population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone,
     id_coat_of_arms, id_flag, id_currency, id_date_format, id_region, id_sub_region
 ) VALUES
-    ('Argentina', 'Argentine Republic', 'ARG', '.at', 'En unión y libertad', 'Himno Nacional Argentino', 'Buenos Aires', 'Spanish', 46621847, 'AR', 'ARG', '+54', 'UTC-3', 1, 1, 1, 1, 1, 1),
+    ('Argentina', 'Argentine Republic', 'ARG', '.ar', 'En unión y libertad', 'Himno Nacional Argentino', 'Buenos Aires', 'Spanish', 46621847, 'AR', 'ARG', '+54', 'UTC-3', 1, 1, 1, 1, 1, 1),
     ('The United Arab Emirates', 'The United Arab Emirates', 'UAE', '.ae', 'Dios, Nación, Presidente', 'Long Live My Country', 'Abu Dhabi', 'Arabic', 9516871, 'AE', 'ARE', '+971', 'UTC+4', 144, 144, 2, 2, 1, 10),
     ('Afganistán', 'Islamic Emirate of Afghanistan', 'AFN', '.af', 'No hay otro Dios más que Alá; Mahoma es el mensajero de Alá', 'This Is the Home of the Brave', 'Kabul', 'Pashto', 42239854, 'AF', 'AFG', '+93', 'UTC+4:30', 2, 2, 3, 1, 2, 5),
     ('Albania', 'Republic of Albania', 'ALB', '.al', 'You Albania, give me honour, you give me the name Albanian', 'Hymn to the Flag', 'Tirana', 'Albanian', 2832439, 'AL', 'ALB', '+355', 'UTC+1', 3, 3, 4, 1, 4, 18),
@@ -688,9 +687,9 @@ INSERT INTO Country(
     ('Belize', 'Belize', 'BLZ', '.bz', 'Sub umbra floreo', 'Land of the Free', 'Belmopan', 'English', 430322, 'BZ', 'BLZ', '+501', 'UTC-6', 14, 14, 15, 1, 1, 3),
     ('Canada', 'Dominion of Canada', 'CAN', '.ca', 'A Mari Usque Ad Mare', 'O Canada', 'Ottawa', 'English and French', 0, 'CA', 'CAN', '+1', 'UTC', 26, 26, 26, 1, 1, 4),
     ('Democratic Republic of the Congo', 'République démocratique du Congo', 'COD', '.cd', 'Justice – Paix – Travail', 'Debout Congolais', 'Kinshasa', 'French', 0, 'CD', 'COD', '+243', 'UTC', 132, 132, 37, 1, 2, 13),
-    ('Switzerland', 'Swiss Confederation', 'CHE', '.ch', 'Unus pro omnibus, omnes pro uno', 'Swiss Psalm', 'Bern', 'German, French, Italian, Romansh', 0, 'CH', 'CHE', '+41', 'UTC', 123, 123, 142, 2, 4, 19),
+    ('Switzerland', 'Swiss Confederation', 'CHE', '.ch', 'Unus pro omnibus, omnes pro uno', 'Swiss Psalm', 'Bern', 'German', 0, 'CH', 'CHE', '+41', 'UTC', 123, 123, 142, 2, 4, 19),
     ('Chile', 'Republic of Chile', 'CHL', '.cl', 'Por la razón o la fuerza', 'Canción Nacional', 'Santiago', 'Spanish', 0, 'CL', 'CHL', '+56', 'UTC', 28, 28, 28, 3, 3, 1),
-    ('China', "People's Republic of China", 'CHN', '.cn', 'Serve the people', 'March of the Volunteers', 'Beijing', 'Mandarin', 0, 'CN', 'CHN', '+86', 'UTC', 139, 139, 29, 2, 2, 6),
+    ('China', "People's Republic of China", 'CHN', '.cn', 'Serve the people', 'March of the Volunteers', 'Beijing', 'Mandarin', 0, 'CN', 'CHN', '+86', 'UTC+8', 139, 139, 29, 2, 2, 6),
     ('Colombia', 'Republic of Colombia', 'COL', '.co', 'Libertad y Orden', 'Himno Nacional de la República de Colombia', 'Bogotá', 'Spanish', 0, 'CO', 'COL', '+57', 'UTC', 30, 30, 30, 3, 3, 1),
     ('Cuba', 'Republic of Cuba', 'CUB', '.cu', 'Patria o Muerte, Venceremos', 'La Bayamesa', 'Havana', 'Spanish', 0, 'CU', 'CUB', '+53', 'UTC', 34, 34, 34, 1, 1, 2),
     ('Costa Rica', 'Republic of Costa Rica', 'CRI', '.cr', 'Vivan siempre el trabajo y la paz', 'Himno Nacional de Costa Rica', 'San José', 'Spanish', 0, 'CR', 'CRI', '+506', 'UTC', 32, 32, 32, 1, 1, 3),
@@ -819,5 +818,5 @@ INSERT INTO Country(
     ("Collectivités d'Outre-Mer", "Collectivités d'Outre-Mer", 'COM', '-', '-', '-', '-', '-', 0, '-', '-', '-', '-', NULL, NULL, 51, NULL, NULL, NULL),
     ('Yemen', 'Republic of Yemen', 'YE', '.ye', '-', '-', 'Sanaa', 'Arabic', 31615683, 'YE', 'YEM', '+967', '-', 149, 149, 160, 1, 1, 10),
     ('South Africa', 'Republic of South Africa', 'ZA', '.za', '-', "Nkosi Sikelel' iAfrika", 'Pretoria (administrative), Bloemfontein (judicial), Cape Town (legislative)', 'Afrikaans',  59475057, 'ZA', 'ZAF', '+27', 'UTC+2', 140, 140, 62, 3, 3, 14),
-    ('Zambia', 'Republic of Zambia', 'ZM', '.zm', '-', 'Stand and Sing of Zambia, Proud and Free', 'Lusaka', 'English', 18984400, 'ZM', 'ZMB', '+260', 'UTC+2', 147, 147, 161, 3, 3, 14),
-    ('Zimbabwe', 'Republic of Zimbabwe', 'ZW', '.zw', '-', 'Simudza WeZimbabwe', 'Harare', 'English', 15042978, 'ZW', 'ZWE', '+263', 'UTC+2', 148, 148, 162, 3, 3, 14);
+    ('Zambia', 'Republic of Zambia', 'ZM', '.zm', '-', 'Stand and Sing of Zambia, Proud and Free', 'Lusaka', 'English', 18984400, 'ZM', 'ZMB', '+260', 'UTC+2', 147, 147, 160, 3, 3, 14),
+    ('Zimbabwe', 'Republic of Zimbabwe', 'ZW', '.zw', '-', 'Simudza WeZimbabwe', 'Harare', 'English', 15042978, 'ZW', 'ZWE', '+263', 'UTC+2', 148, 148, 161, 3, 3, 14);

@@ -3,7 +3,11 @@ import { IsDefined, IsInt, IsOptional, IsString } from 'class-validator';
 
 @Injectable()
 export class ImageQueryControlDTO {
-  @IsDefined()
+  @IsOptional()
   @IsString()
-  country: string;
+  id?: number;
+  
+  @IsOptional()
+  @IsString()
+  name?: string;
 }

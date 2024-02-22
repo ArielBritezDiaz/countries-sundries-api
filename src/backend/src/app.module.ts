@@ -1,9 +1,18 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 //Modules
-import { CountryModule } from './modules/info/country.module';
+import { CountryModule } from './modules/country/country.module';
+import { CurrencyModule } from './modules/currency/currency.module';
+import { RegionModule } from './modules/region/region.module';
+import { SubRegionModule } from './modules/sub_region/subRegion.module';
+import { FlagModule } from './modules/flag/flag.module';
 import { ImageModule } from './modules/image/image.module';
 //Controllers
-import { CountriesController } from './modules/info/country.controller';
+import { CountryController } from './modules/country/country.controller';
+import { FlagController } from './modules/flag/flag.controller';
+// import { CoatOfArmController } from '.modules/coat_of_arms/coat_of_arms.controller';
+import { CurrencyController } from './modules/currency/currency.controller';
+import { RegionController } from './modules/region/region.controller';
+import { SubRegionController } from './modules/sub_region/subRegion.controller';
 import { ImageController } from './modules/image/image.controller';
 //Middlewares
 import * as cors from 'cors';
@@ -15,10 +24,6 @@ import { PrismaModule } from './modules/prisma/prisma.module';
 //Static serve
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { CurrencyController } from './modules/currency/currency.controller';
-import { CurrencyModule } from './modules/currency/currency.module';
-import { RegionModule } from './modules/region/region.module';
-import { SubRegionModule } from './modules/sub_region/subRegion.module';
 
 @Module({
   imports: [
@@ -36,6 +41,7 @@ import { SubRegionModule } from './modules/sub_region/subRegion.module';
     }),
     PrismaModule,
     CountryModule,
+    FlagModule,
     ImageModule,
     CurrencyModule,
     RegionModule,
@@ -51,11 +57,12 @@ export class AppModule implements NestModule {
         MorganMiddleware
       )
       .forRoutes(
-        CountriesController,
-        ImageController,
+        CountryController,
+        FlagController,
         CurrencyController,
-        RegionModule,
-        SubRegionModule
+        RegionController,
+        SubRegionController,
+        ImageController
       )
   }
 }
