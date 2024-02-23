@@ -1,12 +1,14 @@
-import { Controller, HttpCode, Res, Req, Get, Param, Query, Headers, HttpException, HttpStatus, ValidationPipe } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UseGuards } from '@nestjs/common';
+import { Response } from 'express';
 //Service import
 import { CurrencyService } from './currency.service';
 //DTO import
 import { CurrenciesValueControlDTO, CurrencyValueControlDTO } from './dto/currency.dto';
-import { apiKeyDTO } from 'src/interfaces/apiKey.interface';
+//Guard import
+import { ApiKeyGuard } from '../../guard/api-key.guard'
 
 @Controller(`api/${process.env.API_VERSION}/currency`)
+@UseGuards(new ApiKeyGuard())
 export class CurrencyController {
   constructor(
     private readonly CurrencyService: CurrencyService
@@ -15,32 +17,22 @@ export class CurrencyController {
   @Get('all')
   @HttpCode(200)
   async getAllCurrencies(
-    @Req() req: Request,
     @Res() res: Response,
-    @Headers('Countries_Sundries-API_Key') apiKeyHeader: apiKeyDTO['apiKey'],
+    // @Headers(`${process.env.API_KEY_HEADER}`) apiKeyHeader: apiKeyDTO['apiKey'],
     @Query() queryParams: CurrenciesValueControlDTO
   ){
     try {
-      const apiKey = parseInt(apiKeyHeader, 10);
-      console.log(queryParams);
-      const from = queryParams.from != null ? Number(queryParams.from) : 0;
-      const take = queryParams.take != null ? Number(queryParams.take) : 0;
-      const id = queryParams.id != null && queryParams.id.toString() !== '0' ? Number(queryParams.id) : undefined;
-      const name = queryParams.name != null ? String(queryParams.name) : null;
-      const abbr = queryParams.abbr != null ? String(queryParams.abbr) : null;
-      const symbol = queryParams.symbol != null ? String(queryParams.symbol) : null;
-      const order_by = queryParams.order_by != null ? String(queryParams.order_by) : null;
-      const order_direction = queryParams.order_direction != null ? String(queryParams.order_direction) : null;
-
-      const query: { from: number, take: number, id: number, name: string, abbr: string, symbol: string, order_by: string, order_direction: string } = {
-        from,
-        take,
-        id,
-        name,
-        abbr,
-        symbol,
-        order_by,
-        order_direction
+      // console.log(queryParams);
+      
+      const query: CurrenciesValueControlDTO = {
+        from: queryParams.from != null ? Number(queryParams.from) : 0,
+        take: queryParams.take != null ? Number(queryParams.take) : 0,
+        id: queryParams.id != null && queryParams.id.toString() !== '0' ? Number(queryParams.id) : undefined,
+        name: queryParams.name != null ? String(queryParams.name) : null,
+        abbr: queryParams.abbr != null ? String(queryParams.abbr) : null,
+        symbol: queryParams.symbol != null ? String(queryParams.symbol) : null,
+        order_by: queryParams.order_by != null ? String(queryParams.order_by) : null,
+        order_direction: queryParams.order_direction != null ? String(queryParams.order_direction) : null
       };
 
       console.log("query:", query);
@@ -48,12 +40,8 @@ export class CurrencyController {
       //Validation
       if (
         query === null ||
-        Object.keys(query).length === 0 || 
-        !query.hasOwnProperty('from') || 
-        !query.hasOwnProperty('take') || 
-        !query.hasOwnProperty('name') || 
-        !query.hasOwnProperty('abbr') || 
-        !query.hasOwnProperty('symbol')
+        Object.keys(query).length === 0 ||
+        Object.keys(query).some(key => !query.hasOwnProperty(key))
       ) {
           console.log(`Error: ${query} (${typeof query})`);
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Parameters must be provided' });
@@ -72,15 +60,6 @@ export class CurrencyController {
       ) {
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' });
       }
-      
-      if (apiKey === null || apiKey === undefined || isNaN(apiKey)) {
-        console.log(`Error: ${apiKey} (${typeof apiKey})`);
-        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Api-Key must be provided' });
-      }
-      if (apiKey !== 123) {
-        console.log(`Error: ${apiKey} (${typeof apiKey})`);
-        return res.status(HttpStatus.UNAUTHORIZED).send({ message: 'Api-Key is incorrect' });
-      }
 
       const currencies = await this.CurrencyService.getAllCurrencies(query);
 
@@ -94,27 +73,20 @@ export class CurrencyController {
   @Get('details')
   @HttpCode(200)
   async getExchangeRate(
-    @Req() req: Request,
     @Res() res: Response,
-    @Headers('Countries_Sundries-API_Key') apiKeyHeader: string,
-    @Param() params: any,
+    // @Headers(`${process.env.API_KEY_HEADER}`) apiKeyHeader: apiKeyDTO['apiKey'],
     @Query() queryParams: CurrencyValueControlDTO
   ){
     try {
-      const apiKey = parseInt(apiKeyHeader, 10)
       console.log(queryParams)
       // const query = queryParams['id'] && typeof(queryParams['id']) === 'string' ? { id: parseInt(queryParams['id'], 10)} : queryParams !== null ? queryParams : null;
       // !/^\d+$/.test(queryParams.id.toString())
-      const id = queryParams['id'] && /^\d+$/.test(queryParams['id'].toString()) && !queryParams['id'].toString().includes("%") ? parseInt(queryParams['id'].toString(), 10) : !queryParams['id'] ? null : undefined;
-      const name = queryParams['name'] || null;
-      const abbr = queryParams['abbr'] || null;
-      const symbol = queryParams['symbol'] || null;
 
       const query: CurrencyValueControlDTO  = {
-        id,
-        name,
-        abbr,
-        symbol
+        id: queryParams['id'] && /^\d+$/.test(queryParams['id'].toString()) && !queryParams['id'].toString().includes("%") ? parseInt(queryParams['id'].toString(), 10) : !queryParams['id'] ? null : undefined,
+        name: queryParams['name'] || null,
+        abbr: queryParams['abbr'] || null,
+        symbol: queryParams['symbol'] || null
       }
 
       console.log("query:", query)
@@ -123,10 +95,7 @@ export class CurrencyController {
       if (
         query === null ||
         Object.keys(query).length === 0 || 
-        !query.hasOwnProperty('id') || 
-        !query.hasOwnProperty('name') || 
-        !query.hasOwnProperty('abbr') || 
-        !query.hasOwnProperty('symbol')
+        Object.keys(query).some(key => !query.hasOwnProperty(key))
       ) {
           console.log(`Error: ${query} (${typeof query})`);
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Parameters must be provided' });
@@ -140,11 +109,6 @@ export class CurrencyController {
         ) {
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' });
       }
-      if(apiKey !== 123) {
-        console.log(`Error: ${apiKey} (${typeof(apiKey)})`)
-        return res.status(HttpStatus.UNAUTHORIZED).send({message: `Api-Key is incorrect`})
-      }
-
       const currency = await this.CurrencyService.getDetailsCurrency(query)
 
       return res.send(currency)

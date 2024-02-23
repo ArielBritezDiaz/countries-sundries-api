@@ -1,16 +1,18 @@
-import { Controller, HttpCode, Res, Req, Get, Param, Query, Headers, HttpException, HttpStatus, ValidationPipe } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UseGuards } from '@nestjs/common';
+import { Response } from 'express';
 
 //Service import
 import { RegionService } from './region.service';
 //DTO import
 import { RegionsValueControlDTO } from './dto/region.dto';
-import { apiKeyDTO } from '../../interfaces/apiKey.interface';
+//Guard import
+import { ApiKeyGuard } from '../../guard/api-key.guard'
 //Interface import
 
 // const { protocol, apiVersion, port, host } = ConfigService.get<DatabaseConfig>('database')
 
 @Controller(`api/${process.env.API_VERSION}/region`)
+@UseGuards(new ApiKeyGuard())
 export class RegionController {
   constructor(
     private readonly RegionService: RegionService
@@ -19,12 +21,10 @@ export class RegionController {
   @Get('all')
   @HttpCode(200)
   async getAllRegions(
-    @Req() req: Request,
     @Res() res: Response,
-    @Headers('Countries_Sundries-API_Key') apiKeyHeader: apiKeyDTO['apiKey'],
+    // @Headers(`${process.env.API_KEY_HEADER}`) apiKeyHeader: apiKeyDTO['apiKey'],
     @Query() queryParams: RegionsValueControlDTO
     ){
-      const apiKey = parseInt(apiKeyHeader, 10)
       const from = queryParams.from != null ? Number(queryParams.from) : 0;
       const take = queryParams.take != null ? Number(queryParams.take) : 0;
       const id = queryParams.id != null && queryParams.id.toString() !== '0' ? Number(queryParams.id) : 0;
@@ -47,10 +47,7 @@ export class RegionController {
       if (
         query === null ||
         Object.keys(query).length === 0 || 
-        !query.hasOwnProperty('from') || 
-        !query.hasOwnProperty('take') ||
-        !query.hasOwnProperty('id') || 
-        !query.hasOwnProperty('name')
+        Object.keys(query).some(key => !query.hasOwnProperty(key))
       ) {
           console.log(`Error: ${query} (${typeof query})`);
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Parameters must be provided' });
@@ -67,15 +64,6 @@ export class RegionController {
       ) {
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' });
       }
-      if (apiKey === null || apiKey === undefined || isNaN(apiKey)) {
-        console.log(`Error: ${apiKey} (${typeof apiKey})`);
-        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Api-Key must be provided' });
-      }
-      if (apiKey !== 123) {
-        console.log(`Error: ${apiKey} (${typeof apiKey})`);
-        return res.status(HttpStatus.UNAUTHORIZED).send({ message: 'Api-Key is incorrect' });
-      }
-
       const response = await this.RegionService.getAllRegions(query);
       // console.log("response", response)
 

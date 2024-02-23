@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Country, Flag } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-import { ServeStaticModule } from '@nestjs/serve-static';
 
 //Interface import
 import { DatabaseConfig } from '../../interfaces/database.config.interface';
@@ -13,7 +11,8 @@ import { ImageQueryControlDTO } from './dto/image.dto';
 @Injectable()
 export class FlagService {
   constructor(
-    private readonly Prisma: PrismaService
+    private readonly Prisma: PrismaService,
+    private configService: ConfigService<{ database: DatabaseConfig }, true>
   ) {}
 
   async getFlag(preferenceFlag: ImageQueryControlDTO): Promise<FormmattedImage[]> {
@@ -39,7 +38,8 @@ export class FlagService {
 @Injectable()
 export class CoatOfArmService {
   constructor(
-    private readonly Prisma: PrismaService
+    private readonly Prisma: PrismaService,
+    private configService: ConfigService<{ database: DatabaseConfig }, true>
   ) {}
 
   async getCoatOfArm(preferenceCoatOfArm: ImageQueryControlDTO): Promise<FormmattedImage[]> {

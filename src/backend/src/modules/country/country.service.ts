@@ -17,15 +17,9 @@ export class CountryService {
   async getCountryAll(query: CountryValueControlDTO): Promise<FormattedCountry[]> {
     // console.log("query:", query)
 
-    let skipFrom = {}
-    let takeTake = {}
-
-    if(query.from !== 0) { skipFrom = { skip: query.from } }
-    if(query.take !== 0) { takeTake = { take: query.take } }
-
     const response = await this.prisma.country.findMany({
-      ...skipFrom,
-      ...takeTake,
+      ...(query.from !== 0 && { skip: query.from } ),
+      ...(query.take !== 0 && { take: query.take } ),
       where: {
         ...(query.id && { id_country: { equals: query.id} }),
         ...(query.name && { name: { equals: query.name} }),
@@ -146,6 +140,5 @@ export class CountryService {
     console.log("FormattedCountry:", formattedCountry)
 
     return formattedCountry !== null && formattedCountry.length > 0 ? formattedCountry : []
-    // return []
   }
 }

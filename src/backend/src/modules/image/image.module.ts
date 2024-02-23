@@ -3,9 +3,8 @@ import { ImageController } from "./image.controller";
 import { CoatOfArmService, FlagService } from "./image.service";
 
 @Module({
-    controllers: [ImageController],
-    providers: [FlagService, CoatOfArmService],
-    imports: []
+  controllers: [ImageController],
+  providers: [FlagService, CoatOfArmService],
 })
 
 export class ImageModule {}

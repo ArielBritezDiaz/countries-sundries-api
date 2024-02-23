@@ -1,13 +1,15 @@
-import { Controller, HttpCode, Res, Req, Get, Param, Query, Headers, HttpException, HttpStatus, ValidationPipe } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UseGuards } from '@nestjs/common';
+import { Response } from 'express';
 
 //Service import
 import { SubRegionService } from './subRegion.service';
 //DTO import
 import { SubRegionsValueControlDTO } from './dto/subRegion.dto';
-import { apiKeyDTO } from '../../interfaces/apiKey.interface';
+//Guard import
+import { ApiKeyGuard } from '../../guard/api-key.guard'
 
 @Controller(`api/${process.env.API_VERSION}/sub_region`)
+@UseGuards(new ApiKeyGuard())
 export class SubRegionController {
   constructor(
     private readonly SubRegionService: SubRegionService
@@ -16,13 +18,11 @@ export class SubRegionController {
   @Get('all')
   @HttpCode(200)
   async getAllSubRegions(
-    @Req() req: Request,
     @Res() res: Response,
-    @Headers('Countries_Sundries-API_Key') apiKeyHeader: apiKeyDTO['apiKey'],
+    // @Headers(`${process.env.API_KEY_HEADER}`) apiKeyHeader: apiKeyDTO['apiKey'],
     @Query() queryParams: SubRegionsValueControlDTO
   ) {
     try {
-      const apiKey = parseInt(apiKeyHeader, 10)
       const from = queryParams.from != null ? Number(queryParams.from) : 0;
       const take = queryParams.take != null ? Number(queryParams.take) : 0;
       const id = queryParams.id != null && queryParams.id.toString() !== '0' ? Number(queryParams.id) : 0;
@@ -48,13 +48,7 @@ export class SubRegionController {
       if (
         query === null ||
         Object.keys(query).length === 0 || 
-        !query.hasOwnProperty('from') || 
-        !query.hasOwnProperty('take') ||
-        !query.hasOwnProperty('id') || 
-        !query.hasOwnProperty('name') ||
-        !query.hasOwnProperty('id_region_fk') ||
-        !query.hasOwnProperty('order_by') ||
-        !query.hasOwnProperty('order_direction')
+        Object.keys(query).some(key => !query.hasOwnProperty(key))
       ) {
           console.log(`Error: ${query} (${typeof query})`);
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Parameters must be provided' });
@@ -74,16 +68,8 @@ export class SubRegionController {
           console.log(query)
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' });
       }
-      if (apiKey === null || apiKey === undefined || isNaN(apiKey)) {
-        console.log(`Error: ${apiKey} (${typeof apiKey})`);
-        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Api-Key must be provided' });
-      }
-      if (apiKey !== 123) {
-        console.log(`Error: ${apiKey} (${typeof apiKey})`);
-        return res.status(HttpStatus.UNAUTHORIZED).send({ message: 'Api-Key is incorrect' });
-      }
-  
       const response = await this.SubRegionService.getAllSubRegions(query);
+
       return res.status(HttpStatus.OK).send(response);
     } catch(error) {
       console.log(error)

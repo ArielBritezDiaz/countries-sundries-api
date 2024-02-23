@@ -1,12 +1,14 @@
-import { Controller, HttpCode, Res, Req, Get, Param, Query, Headers, HttpException, HttpStatus, ValidationPipe } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UseGuards } from '@nestjs/common';
+import { Response } from 'express';
 //Service import
 import { FlagService } from './flag.service';
 //DTO import
 import { FlagValueControlDTO } from './dto/flag.dto';
-import { apiKeyDTO } from 'src/interfaces/apiKey.interface';
+//Guard import
+import { ApiKeyGuard } from '../../guard/api-key.guard'
 
 @Controller(`api/${process.env.API_VERSION}/flag`)
+@UseGuards(new ApiKeyGuard())
 export class FlagController {
   constructor(
     private readonly FlagService: FlagService
@@ -15,31 +17,21 @@ export class FlagController {
   @Get('all')
   @HttpCode(200)
   async getFlagAll(
-    @Req() req: Request,
     @Res() res: Response,
-    @Headers('Countries_Sundries-API_Key') apiKeyHeader: apiKeyDTO['apiKey'],
-    @Param() params: any,
+    // @Headers(`${process.env.API_KEY_HEADER}`) apiKeyHeader: apiKeyDTO['apiKey'],
     @Query() queryParams: FlagValueControlDTO
   ){
     try {
-      const apiKey = parseInt(apiKeyHeader, 10)
-      const from = queryParams.from != null ? Number(queryParams.from) : 0;
-      const take = queryParams.take != null ? Number(queryParams.take) : 0;
-      const id = queryParams['id'] && /^\d+$/.test(queryParams['id'].toString()) && !queryParams['id'].toString().includes("%") ? parseInt(queryParams['id'].toString(), 10) : !queryParams['id'] ? null : undefined;
-      const name = queryParams.name != null ? String(queryParams.name) : null;
-      const type = queryParams.type != null ? String(queryParams.type) : null;
-      const order_by = queryParams.order_by != null ? String(queryParams.order_by) : null;
-      const order_direction = queryParams.order_direction != null ? String(queryParams.order_direction) : null;
       // console.log(queryParams)
   
       const query: FlagValueControlDTO = {
-        from,
-        take,
-        id,
-        name,
-        type,
-        order_by,
-        order_direction
+        from: queryParams.from != null ? Number(queryParams.from) : 0,
+        take: queryParams.take != null ? Number(queryParams.take) : 0,
+        id: queryParams['id'] && /^\d+$/.test(queryParams['id'].toString()) && !queryParams['id'].toString().includes("%") ? parseInt(queryParams['id'].toString(), 10) : !queryParams['id'] ? null : undefined,
+        name: queryParams.name != null ? String(queryParams.name) : null,
+        type: queryParams.type != null ? String(queryParams.type) : null,
+        order_by: queryParams.order_by != null ? String(queryParams.order_by) : null,
+        order_direction: queryParams.order_direction != null ? String(queryParams.order_direction) : null
       }
 
       console.log("query:", query)
@@ -65,15 +57,6 @@ export class FlagController {
       ) {
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' });
       }
-      if (apiKey === null || apiKey === undefined || isNaN(apiKey)) {
-        console.log(`Error: ${apiKey} (${typeof apiKey})`);
-        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Api-Key must be provided' });
-      }
-      if (apiKey !== 123) {
-        console.log(`Error: ${apiKey} (${typeof apiKey})`);
-        return res.status(HttpStatus.UNAUTHORIZED).send({ message: 'Api-Key is incorrect' });
-      }
-  
       const response = await this.FlagService.getFlagAll(query);
       // console.log("response:", response)
       return res.status(HttpStatus.OK).send(response)
@@ -86,23 +69,17 @@ export class FlagController {
   @Get('details')
   @HttpCode(200)
   async getFlagDetails(
-    @Req() req: Request,
     @Res() res: Response,
-    @Headers('Countries_Sundries-API_Key') apiKeyHeader: apiKeyDTO['apiKey'],
-    @Param() params: any,
+    // @Headers(`${process.env.API_KEY_HEADER}`) apiKeyHeader: apiKeyDTO['apiKey'],
     @Query() queryParams: FlagValueControlDTO
   ){
     try {
-      const apiKey = parseInt(apiKeyHeader, 10)
-      const id = queryParams['id'] && /^\d+$/.test(queryParams['id'].toString()) && !queryParams['id'].toString().includes("%") ? parseInt(queryParams['id'].toString(), 10) : !queryParams['id'] ? null : undefined;
-      const name = queryParams.name != null ? String(queryParams.name) : null;
-      const type = queryParams.type != null ? String(queryParams.type) : null;
       // console.log(queryParams)
   
       const query: FlagValueControlDTO = {
-        id,
-        name,
-        type
+        id: queryParams['id'] && /^\d+$/.test(queryParams['id'].toString()) && !queryParams['id'].toString().includes("%") ? parseInt(queryParams['id'].toString(), 10) : !queryParams['id'] ? null : undefined,
+        name: queryParams.name != null ? String(queryParams.name) : null,
+        type: queryParams.type != null ? String(queryParams.type) : null
       }
 
       console.log("query:", query)
@@ -110,10 +87,8 @@ export class FlagController {
       //Validation
       if (
         query === null ||
-        Object.keys(query).length === 0 || 
-        !query.hasOwnProperty('id') || 
-        !query.hasOwnProperty('name') ||
-        !query.hasOwnProperty('type')
+        Object.keys(query).length === 0 ||
+        Object.keys(query).some(key => !query.hasOwnProperty(key))
       ) {
           console.log(`Error: ${query} (${typeof query})`);
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Parameters must be provided' });
@@ -126,17 +101,9 @@ export class FlagController {
       ) {
           return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' });
       }
-      if (apiKey === null || apiKey === undefined || isNaN(apiKey)) {
-        console.log(`Error: ${apiKey} (${typeof apiKey})`);
-        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Api-Key must be provided' });
-      }
-      if (apiKey !== 123) {
-        console.log(`Error: ${apiKey} (${typeof apiKey})`);
-        return res.status(HttpStatus.UNAUTHORIZED).send({ message: 'Api-Key is incorrect' });
-      }
-  
       const response = await this.FlagService.getFlagDetails(query);
       // console.log("response:", response)
+
       return res.status(HttpStatus.OK).send(response)
     } catch(error) {
       console.log(error)

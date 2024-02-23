@@ -1,6 +1,5 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { Flag } from "@prisma/client";
 import { DatabaseConfig } from "../../interfaces/database.config.interface";
 import { PrismaService } from "../prisma/prisma.service";
 //DTO import
@@ -19,15 +18,9 @@ export class FlagService {
   async getFlagAll(query: FlagValueControlDTO): Promise<FormattedFlag[]> {
     // console.log(query)
     
-    let skipFrom = {}
-    let takeTake = {}
-
-    if(query.from !== 0) { skipFrom = { skip: query.from } }
-    if(query.take !== 0) { takeTake = { take: query.take } }
-
     const response = await this.prisma.flag.findMany({
-      ...skipFrom,
-      ...takeTake,
+      ...(query.from !== 0 && { skip: query.from } ),
+      ...(query.take !== 0 && { take: query.take } ),
       where: {
         ...(query.id && { id_flag: query.id }),
         ...(query.name && { name: query.name }),
