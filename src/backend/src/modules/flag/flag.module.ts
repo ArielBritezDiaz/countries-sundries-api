@@ -4,7 +4,6 @@ import { FlagService } from "./flag.service";
 
 @Module({
   controllers: [FlagController],
-  providers: [FlagService],
-  imports: []
+  providers: [FlagService]
 })
 export class FlagModule {}

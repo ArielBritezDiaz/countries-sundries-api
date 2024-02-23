@@ -4,8 +4,7 @@ import { SubRegionService } from "./subRegion.service";
 
 @Module({
   controllers: [SubRegionController],
-  providers: [SubRegionService],
-  imports: [],
+  providers: [SubRegionService]
 })
 
 export class SubRegionModule {}

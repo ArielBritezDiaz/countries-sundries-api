@@ -2,11 +2,16 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cors from 'cors';
 import * as express from 'express';
+//Guard import
+import { ApiKeyGuard } from './guard/api-key.guard';
 
 declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  //Guard
+  app.useGlobalGuards(new ApiKeyGuard());
+  //Middleware
   app.use(cors())
   app.use(express.urlencoded({ extended: true }));
   await app.listen(3000);

@@ -6,6 +6,8 @@ import { RegionModule } from './modules/region/region.module';
 import { SubRegionModule } from './modules/sub_region/subRegion.module';
 import { FlagModule } from './modules/flag/flag.module';
 import { ImageModule } from './modules/image/image.module';
+//Guard import
+import { ApiKeyGuard } from './guard/api-key.guard';
 //Controllers
 import { CountryController } from './modules/country/country.controller';
 import { FlagController } from './modules/flag/flag.controller';
@@ -24,6 +26,7 @@ import { PrismaModule } from './modules/prisma/prisma.module';
 //Static serve
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -46,6 +49,12 @@ import { join } from 'path';
     CurrencyModule,
     RegionModule,
     SubRegionModule
+  ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ApiKeyGuard,
+    }
   ]
 })
 
