@@ -36,7 +36,9 @@ export default defineConfig({
 				},
 				{
 					label: 'API Docs',
-					autogenerate: { directory: 'docs/api-docs' },
+					items: [
+						{ label: 'Country', link: '/docs/api-docs/country/' },
+					]
 				}
 			],
 		}),
