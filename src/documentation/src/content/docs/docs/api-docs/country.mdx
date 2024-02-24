@@ -1,0 +1,96 @@
+---
+title: 'Country endpoint'
+description: 'An explication for a countries endpoints'
+---
+
+import Country from '../../../../components/api-docs-components/country.astro';
+
+In this section we will show you the endpoints for 'country', his parameters, combinations and specific details
+
+## Endpoints response and parameters
+
+This endpoint will return the information of the countries with limit of 50 countries.
+
+:::note[Keep in mind...]
+  The fewer country records you bring in, the faster the server will respond 
+:::
+
+### `/country/all`
+
+The `/country/all` endpoint, if no limit is specified, will by default return 50 countries from the database.
+
+
+
+Response:
+```json
+[
+	{
+		"id_country": 1,
+		"name": "Argentina",
+		"official_name": "Argentine Republic",
+		"abbr": "ARG",
+		"internet_tld": ".ar",
+		"motto": "En unión y libertad",
+		"anthem": "Himno Nacional Argentino",
+		"capital": "Buenos Aires",
+		"official_language": "Spanish",
+		"population": 46621847,
+		"iso_3166_1_alpha_2": "AR",
+		"iso_3166_1_alpha_3": "ARG",
+		"calling_code": "+54",
+		"timezone": "UTC-3",
+		"coat_of_arms": {
+			"id_coat_of_arms": 1,
+			"name": "argentina",
+			"type": "svg",
+			"url": "http://localhost:3000/api/v1/image/coat-of-arm?name=argentina"
+		},
+		"flag": {
+			"id_flag": 1,
+			"name": "argentina",
+			"type": "svg",
+			"url": "http://localhost:3000/api/v1/image/flag?name=argentina"
+		},
+		"currency": {
+			"id_currency": 1,
+			"abbr": "ARS",
+			"name": "Argentine Peso",
+			"symbol": "$"
+		},
+		"region": {
+			"id_region": 1,
+			"name": "America"
+		},
+		"sub_region": {
+			"id_sub_region": 1,
+			"name": "South America"
+		}
+	}
+]
+```
+
+Header Parameters:
+
+
+Query Parameters:
+<table>
+  <th>Key</th>
+  <th>Value</th>
+	<th>Response</th>
+	<th>Type</th>
+	<th>Required</th>
+  <tr>
+    <td>
+      Test
+    </td>
+    <td>
+      Test
+    </td>
+	</tr>
+</table>
+
+<Country />
+
+```js
+console.log("Hola Mundo!")
+```
