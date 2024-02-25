@@ -34,6 +34,7 @@
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
+    "encoding": "^0.1.13",
     "express": "^4.18.2",
     "just-omit": "^2.2.0",
     "mysql2": "^3.9.1",
