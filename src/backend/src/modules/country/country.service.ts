@@ -16,6 +16,14 @@ export class CountryService {
   
   async getCountryAll(query: CountryValueControlDTO): Promise<FormattedCountry[]> {
     // console.log("query:", query)
+    let orderBy = {}
+    if(query.order_by !== null && query.order_direction !== null) {
+      orderBy = {[query.order_by]: query.order_direction}
+    } else if (query.order_by === null && query.order_direction !== null) {
+      orderBy = {id_country: query.order_direction}
+    } else if (query.order_by !== null && query.order_direction === null) {
+      orderBy = {[query.order_by]: 'asc'}
+    }
 
     const response = await this.prisma.country.findMany({
       ...(query.from !== 0 && { skip: query.from } ),
@@ -100,9 +108,7 @@ export class CountryService {
           }
         }
       },
-      orderBy: {
-        ...(query.order_by && { [query.order_by]: query.order_direction })
-      }
+      orderBy
     })
     // console.log("response:", response)
 

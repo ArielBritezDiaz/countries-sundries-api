@@ -25,10 +25,18 @@ body {
   font-family: 'lexend-500', Georgia;
 }
 
-span, p {
+span, p, thead {
   font-family: 'lexend-400', sans-serif;
 }
 
-table {
+table, tbody td {
   font-family: 'lexend-300', sans-serif;
+}
+
+thead {
+  background-color: #11393c;
+}
+
+tbody td {
+  background-color: #0d2c2e;
 }
