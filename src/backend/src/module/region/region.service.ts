@@ -1,41 +1,39 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { DatabaseConfig } from "../../interfaces/database.config.interface";
+import { DatabaseConfig } from "../../interface/database.config.interface";
 import { PrismaService } from "../prisma/prisma.service";
 //DTO import
-import { SubRegionsValueControlDTO } from "./dto/subRegion.dto";
+import { RegionsValueControlDTO } from "./dto/region.dto";
 //Interface import
-import { FormattedSubRegions } from "./interfaces/subRegion.interface";
+import { FormattedRegions } from "./interface/region.interface";
 
 @Injectable()
-export class SubRegionService {
+export class RegionService {
   constructor(
     private prisma: PrismaService,
     private configService: ConfigService<{ database: DatabaseConfig }, true>
-  ){}
+  ) {}
 
-  async getAllSubRegions(preferencesParams: SubRegionsValueControlDTO): Promise<FormattedSubRegions[]> {
+  async getAllRegions(preferencesParams: RegionsValueControlDTO): Promise<FormattedRegions[]> {
     console.log("preferencesParams", preferencesParams)
 
-    const response = await this.prisma.sub_Region.findMany({
+    const response = await this.prisma.region.findMany({
       ...(preferencesParams.from !== 0 && { skip: preferencesParams.from } ),
       ...(preferencesParams.take !== 0 && { take: preferencesParams.take } ),
       where: {
-        ...(preferencesParams.id !== 0 && { id_sub_region: preferencesParams.id }),
+        ...(preferencesParams.id !== 0 && { id_region: preferencesParams.id }),
         ...(preferencesParams.name !== null && { name: { contains: preferencesParams.name.toUpperCase() } }),
-        ...(preferencesParams.id_region_fk !== 0 && { id_region: preferencesParams.id_region_fk })
       },
       select: {
-        id_sub_region: true,
-        name: true,
-        id_region: true
+        id_region: true,
+        name: true
       },
       orderBy: {
         ...(preferencesParams.order_by !== null && { [preferencesParams.order_by]: preferencesParams.order_direction })
       }
     });
-    // console.log("response", response)
-    
+    console.log("response", response)
+
     return response !== null ? response : [];
   }
 }

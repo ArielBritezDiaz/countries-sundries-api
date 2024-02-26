@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { DatabaseConfig } from "../../interfaces/database.config.interface";
+import { DatabaseConfig } from "../../interface/database.config.interface";
 import { PrismaService } from "../prisma/prisma.service";
 //DTO import
 import { CountryValueControlDTO } from "./dto/country.dto";
@@ -17,12 +17,12 @@ export class CountryService {
   async getCountryAll(query: CountryValueControlDTO): Promise<FormattedCountry[]> {
     // console.log("query:", query)
     let orderBy = {}
-    if(query.order_by !== null && query.order_direction !== null) {
+    if(query.order_by && query.order_direction) {
       orderBy = {[query.order_by]: query.order_direction}
-    } else if (query.order_by === null && query.order_direction !== null) {
-      orderBy = {id_country: query.order_direction}
-    } else if (query.order_by !== null && query.order_direction === null) {
+    } else if (query.order_by && !query.order_direction) {
       orderBy = {[query.order_by]: 'asc'}
+    } else if (!query.order_by && query.order_direction) {
+      orderBy = {id_country: query.order_direction}
     }
 
     const response = await this.prisma.country.findMany({
@@ -143,7 +143,7 @@ export class CountryService {
         } : null
       }
     })
-    console.log("FormattedCountry:", formattedCountry)
+    // console.log("FormattedCountry:", formattedCountry)
 
     return formattedCountry !== null && formattedCountry.length > 0 ? formattedCountry : []
   }

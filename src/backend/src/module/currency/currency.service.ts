@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { DatabaseConfig } from '../../interfaces/database.config.interface';
+import { DatabaseConfig } from '../../interface/database.config.interface';
 import { PrismaService } from '../prisma/prisma.service';
 
 //DTO import
