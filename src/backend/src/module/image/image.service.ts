@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../prisma/prisma.service';
 
 //Interface import
-import { DatabaseConfig } from '../../interfaces/database.config.interface';
+import { DatabaseConfig } from '../../interface/database.config.interface';
 import { FormmattedImage } from './interface/image.interface';
 //DTO import
 import { ImageQueryControlDTO } from './dto/image.dto';
