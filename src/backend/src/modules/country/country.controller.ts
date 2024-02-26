@@ -22,7 +22,7 @@ export class CountryController {
     @Query() queryParams: CountryValueControlDTO
   ){
     try {
-        // console.log(queryParams)
+        console.log(queryParams)
     
         const query: CountryValueControlDTO = {
           from: queryParams.from != null ? Number(queryParams.from) : 0,
@@ -98,10 +98,7 @@ export class CountryController {
             (query.id_region_fk !== null && (query.id_region_fk < 1 || query.id_region_fk > 6)) ||
             (query.region_name !== null && (query.region_name && (query.region_name.length < 4 || query.region_name.length > 30))) ||
             (query.id_sub_region_fk !== null && (query.id_sub_region_fk < 1 || query.id_sub_region_fk > 37)) ||
-            (query.sub_region_name !== null && (query.sub_region_name && (query.sub_region_name.length < 7 || query.sub_region_name.length > 50))) ||
-            ((query.order_by !== null && query.order_direction === null) || (query.order_direction !== null && query.order_by === null)) ||
-            ((query.order_by !== null) && (query.order_by !== '' && query.order_by !== 'id_sub_region' && query.order_by !== 'name' && query.order_by !== 'id_region')) ||
-            (query.order_direction !== null && (query.order_direction !== '' && query.order_direction !== 'asc' && query.order_direction !== 'desc'))
+            (query.sub_region_name !== null && (query.sub_region_name && (query.sub_region_name.length < 7 || query.sub_region_name.length > 50)))
         ) {
             return res.status(HttpStatus.UNPROCESSABLE_ENTITY).send({ message: 'Invalid parameters' })
         }

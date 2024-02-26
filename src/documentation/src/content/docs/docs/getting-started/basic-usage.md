@@ -1,5 +1,5 @@
 ---
-title: 'Getting Started'
+title: 'Basic Usage'
 ---
 
 <!-- const allCountries = async () => {

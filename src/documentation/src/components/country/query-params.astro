@@ -1,0 +1,203 @@
+---
+title: 'Query Params'
+---
+
+Query Parameters:
+<table>
+	<thead>
+		<tr class="title-table">
+			<td>Parameter</td>
+			<td>Type</td>
+			<td>Explication</td>
+			<td>Required</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>from</td>
+			<td>Integer</td>
+			<td>Allows you to indicate how many total records will be skipped from the available total</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>take</td>
+			<td>Integer</td>
+			<td>Select the number of records to obtain starting with one more than declared</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>id</td>
+			<td>Integer</td>
+			<td>Allows filtering records by id</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>String</td>
+			<td>Allows you to filter records by name</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>official_name</td>
+			<td>String</td>
+			<td>Allows you to filter records by official name</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>abbr</td>
+			<td>String</td>
+			<td>Allows you to filter records by abbreviation</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>internet_tld</td>
+			<td>String</td>
+			<td>Allows you to filter records by internet tld</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>motto</td>
+			<td>String</td>
+			<td>Allows you to filter records by motto</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>anthem</td>
+			<td>String</td>
+			<td>Allows filtering records by anthem</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>capital</td>
+			<td>String</td>
+			<td>Allows filtering records by capital</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>official_language</td>
+			<td>String</td>
+			<td>Allows filtering records by official language</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>population</td>
+			<td>Integer</td>
+			<td>Allows filtering records by total population</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>iso_3166_1_alpha_2</td>
+			<td>String</td>
+			<td>Allows filtering records by iso3166 1 alpha 2 code</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>iso_3166_1_alpha_3</td>
+			<td>String</td>
+			<td>Allows filtering records by iso3166 1 alpha 3 code</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>calling_code</td>
+			<td>String</td>
+			<td>Allows filtering records by calling code</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>timezone</td>
+			<td>String</td>
+			<td>Allows filtering records by timezone</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>id_coat_of_arms_fk</td>
+			<td>Integer</td>
+			<td>Allows you to filter records by the id of the coat of arms related to the [Coat of Arms](http://localhost:4321/docs/api-docs/coat-of-arms/) table. Returns the id, name, type and url of the image</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>coat_of_arms_name</td>
+			<td>String</td>
+			<td>Allows you to filter records by the name of the related coat of arms</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>coat_of_arms_type</td>
+			<td>String</td>
+			<td>Allows you to filter records by the related coat of arms image type</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>id_flag_fk</td>
+			<td>Integer</td>
+			<td>Allows you to filter records by the flag id related to the [Flag](http://localhost:4321/docs/api-docs/flag) table. Returns the id, name, type, and URL of the image</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>flag_name</td>
+			<td>String</td>
+			<td>Allows you to filter records by the flag name of the related country</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>flag_type</td>
+			<td>String</td>
+			<td>Allows you to filter records by the related flag image type</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>id_currency_fk</td>
+			<td>Integer</td>
+			<td>Allows you to filter records by the currency id related to the [Currency](http://localhost:4321/docs/api-docs/currency) table. Returns the id, abbreviation, name and symbol of the currency</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>currency_name</td>
+			<td>String</td>
+			<td>Allows you to filter records by the currency name of the related country</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>currency_abbr</td>
+			<td>String</td>
+			<td>Allows you to filter records by the currency abbreviation of the related country</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>id_region_fk</td>
+			<td>Integer</td>
+			<td>Allows you to filter records by the region id related to the [Region](http://localhost:4321/docs/api-docs/region) table. Returns the id and name of the region</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>region_name</td>
+			<td>String</td>
+			<td>Allows you to filter records by the region name of the related country</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>id_sub_region_fk</td>
+			<td>Integer</td>
+			<td>Allows you to filter records by the region id related to the [Sub Region](http://localhost:4321/docs/api-docs/sub-region) table. Returns the id and name of the sub region</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>sub_region_name</td>
+			<td>String</td>
+			<td>Allows you to filter records by the region name of the related country</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>order_by</td>
+			<td>String</td>
+			<td>Allows you to choose the order of the data taking the specified field as a reference. If `order_direction` is not specified, 'asc' will be set by default.</td>
+			<td>❌</td>
+		</tr>
+		<tr>
+			<td>order_direction</td>
+			<td>String</td>
+			<td>Allows you to choose the order of the data. In Integers it orders from smallest to largest and vice versa, in Strings it orders from A-Z and vice versa</td>
+			<td>❌</td>
+		</tr>
+	</tbody>
+</table>

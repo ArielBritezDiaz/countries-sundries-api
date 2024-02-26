@@ -1,0 +1,27 @@
+---
+import { Code } from '@astrojs/starlight/components'
+
+const PROTOCOL = import.meta.env.PROTOCOL
+const HOST = import.meta.env.DB_HOST
+const PORT = import.meta.env.PORT
+
+const API_VERSION = import.meta.env.API_VERSION
+
+const response = await fetch(`${PROTOCOL}://${HOST}:${PORT}/api/${API_VERSION}/country/all?take=1`, {
+  method: 'GET',
+  headers: {
+    'x-countries_sundries_api-key': '007'
+  },
+  
+})
+const textData = await response.text()
+const jsonData = JSON.parse(textData)
+const prettyJson = JSON.stringify(jsonData, null, 2) // 2 espacios de indentación para una mejor legibilidad
+
+const data = prettyJson
+export {data as responseData }
+---
+<div class="py-6">
+  Response:
+  <Code lang="json" code={data} title="GET" />
+</div>
