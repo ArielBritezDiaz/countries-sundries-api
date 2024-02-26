@@ -1,7 +1,6 @@
 <!-- [![Countries Sundries API](https://github.com/ArielBritezDiaz.png)](https://countriessundriesapi.com) -->
 
 [![LinkedIn](./public/resources/readme/icons/linkedin-common.svg)](https://www.linkedin.com/in/ariel-britez-diaz-technical/)
-[![Portfolio](https://img.shields.io/coveralls/github/afuh/rick-and-morty-api/master.svg?style=flat-square)](https://arielbritezdiaz.github.io/ariel-diaz-portfolio.github.io/)
 
 # Countries Sundries API
 ## Overview
