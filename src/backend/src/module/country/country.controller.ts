@@ -1,19 +1,14 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common'
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe } from '@nestjs/common'
 import { Response } from 'express'
-//Guard import
-import { ApiKeyGuard } from '../../guard/api-key.guard'
 //Service import
 import { CountryService } from './country.service'
 //DTO import
 import { CountryValueControlDTO } from './dto/country.dto'
 //Validation import
-import { ZodValidationPipe } from './pipe/country.validation.pipe';
+import { ZodValidationPipe } from '../../pipe/query-params.pipe';
 import { countrySchema } from './schema/country.schema';
-import { CountryDTO } from './schema/country.schema';
-import { FormattedCountry } from './interface/country.interface'
 
 @Controller(`api/${process.env.API_VERSION}/country`)
-@UseGuards(new ApiKeyGuard())
 export class CountryController {
   constructor(
     private readonly CountryService: CountryService
@@ -21,7 +16,6 @@ export class CountryController {
 
   @Get('all')
   @UsePipes(new ZodValidationPipe(countrySchema))
-  @UsePipes(new ValidationPipe({transform: true}))
   @HttpCode(200)
   async getCountryAll(
     @Res() res: Response,

@@ -1,4 +1,4 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, UseGuards } from '@nestjs/common';
 //module
 import { CountryModule } from './module/country/country.module';
 import { CurrencyModule } from './module/currency/currency.module';
@@ -28,6 +28,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { APP_GUARD } from '@nestjs/core';
 
+@UseGuards(new ApiKeyGuard())
 @Module({
   imports: [
     ConfigModule.forRoot({
