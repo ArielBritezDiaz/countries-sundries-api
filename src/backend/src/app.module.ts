@@ -27,11 +27,14 @@ import { PrismaModule } from './module/prisma/prisma.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { APP_GUARD } from '@nestjs/core';
+//Enum import
+import { ENVVariables } from 'enum/env-variables.enum';
 
 @UseGuards(new ApiKeyGuard())
 @Module({
   imports: [
     ConfigModule.forRoot({
+      validationSchema: ENVVariables,
       envFilePath: '.env',
       isGlobal: true,
       cache: true,
