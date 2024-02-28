@@ -18,12 +18,12 @@ export class SubRegionService {
     console.log("preferencesParams", preferencesParams)
 
     const response = await this.prisma.sub_Region.findMany({
-      ...(preferencesParams.from !== 0 && { skip: preferencesParams.from } ),
-      ...(preferencesParams.take !== 0 && { take: preferencesParams.take } ),
+      ...(preferencesParams.from && { skip: preferencesParams.from } ),
+      ...(preferencesParams.take && { take: preferencesParams.take } ),
       where: {
-        ...(preferencesParams.id !== 0 && { id_sub_region: preferencesParams.id }),
-        ...(preferencesParams.name !== null && { name: { contains: preferencesParams.name.toUpperCase() } }),
-        ...(preferencesParams.id_region_fk !== 0 && { id_region: preferencesParams.id_region_fk })
+        ...(preferencesParams.id && { id_sub_region: preferencesParams.id }),
+        ...(preferencesParams.name && { name: { contains: preferencesParams.name.toUpperCase() } }),
+        ...(preferencesParams.id_region_fk && { id_region: preferencesParams.id_region_fk })
       },
       select: {
         id_sub_region: true,
@@ -31,7 +31,7 @@ export class SubRegionService {
         id_region: true
       },
       orderBy: {
-        ...(preferencesParams.order_by !== null && { [preferencesParams.order_by]: preferencesParams.order_direction })
+        ...(preferencesParams.order_by && { [preferencesParams.order_by]: preferencesParams.order_direction })
       }
     });
     // console.log("response", response)

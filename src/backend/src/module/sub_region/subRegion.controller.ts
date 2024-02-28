@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UseGuards, UsePipes, ValidationPipe, HttpException, InternalServerErrorException } from '@nestjs/common';
 import { Response } from 'express';
 //Schema import
 import { subRegionSchema } from './schema/sub_region.schema';
@@ -34,7 +34,7 @@ export class SubRegionController {
       return res.status(HttpStatus.OK).send(response);
     } catch(error) {
       console.log(error)
-      return res.status(500).send({message: "Internal server error"})
+      throw new InternalServerErrorException()
     }
   }
 }

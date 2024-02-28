@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const imageSchema = z
+export const imageFlagSchema = z
   .object({
     from: z.number().gte(1).lte(160),
     take: z.number().gte(1).lte(160),
@@ -11,4 +11,4 @@ export const imageSchema = z
     order_direction: z.string().min(3).max(4)
   }).partial()
 
-export type ImageDTO = z.infer<typeof imageSchema>;
+export type ImageDTO = z.infer<typeof imageFlagSchema>;

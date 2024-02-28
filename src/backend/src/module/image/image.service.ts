@@ -20,8 +20,8 @@ export class FlagService {
 
     const response = await this.Prisma.flag.findFirst({
       where: {
-        ...(preferenceFlag.id !== 0 && preferenceFlag.id !== null && { id_flag: preferenceFlag.id }),
-        ...(preferenceFlag.name !== null && { name: { contains: preferenceFlag.name.replaceAll(' ', '_').toLocaleLowerCase() } })
+        ...(preferenceFlag.id && { id_flag: preferenceFlag.id }),
+        ...(preferenceFlag.name && { name: { contains: preferenceFlag.name.replaceAll(' ', '_').toLocaleLowerCase() } })
       },
       select: {
         url: true
@@ -47,8 +47,8 @@ export class CoatOfArmService {
 
     const response = await this.Prisma.flag.findFirst({
       where: {
-        ...(preferenceCoatOfArm.id !== 0 && preferenceCoatOfArm.id !== null && { id_flag: preferenceCoatOfArm.id }),
-        ...(preferenceCoatOfArm.name !== null && { name: { contains: preferenceCoatOfArm.name.replaceAll(' ', '_').toLocaleLowerCase() } })
+        ...(preferenceCoatOfArm.id && { id_flag: preferenceCoatOfArm.id }),
+        ...(preferenceCoatOfArm.name && { name: { contains: preferenceCoatOfArm.name.replaceAll(' ', '_').toLocaleLowerCase() } })
       },
       select: {
         url: true

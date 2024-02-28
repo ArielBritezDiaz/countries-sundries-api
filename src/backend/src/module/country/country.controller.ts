@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe } from '@nestjs/common'
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, HttpException, InternalServerErrorException } from '@nestjs/common'
 import { Response } from 'express'
 //Service import
 import { CountryService } from './country.service'
@@ -33,7 +33,7 @@ export class CountryController {
       return res.status(HttpStatus.OK).send(response)
     } catch(error) {
       console.log(error)
-      return res.status(500).send({message: "Internal server error"})
+      throw new InternalServerErrorException()
     }
   }
 }
