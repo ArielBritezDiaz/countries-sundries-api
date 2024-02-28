@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, HttpException, InternalServerErrorException } from '@nestjs/common'
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, HttpException, InternalServerErrorException, Version } from '@nestjs/common'
 import { Response } from 'express'
 //Service import
 import { CountryService } from './country.service'
@@ -8,13 +8,14 @@ import { CountryValueControlDTO } from './dto/country.dto'
 import { ZodValidationPipe } from '../../pipe/query-params.pipe';
 import { countrySchema } from './schema/country.schema';
 
-@Controller(`api/${process.env.API_VERSION}/country`)
+@Controller('country')
 export class CountryController {
   constructor(
     private readonly CountryService: CountryService
   ) {}
 
   @Get('all')
+  @Version('v1')
   @UsePipes(new ZodValidationPipe(countrySchema))
   @HttpCode(200)
   async getCountryAll(
