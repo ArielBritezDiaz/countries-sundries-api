@@ -1,7 +1,8 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, HttpException, InternalServerErrorException } from '@nestjs/common';
 import { Response } from 'express';
 //Schema import
-import { currencySchema } from './schema/currency.schema';
+import { currencyAllSchema } from './schema/currency-all.schema';
+import { currencyDetailsSchema } from './schema/currency-details.schema';
 //Service import
 import { CurrencyService } from './currency.service';
 //DTO import
@@ -16,7 +17,7 @@ export class CurrencyController {
   ) {}
 
   @Get('all')
-  @UsePipes(new ZodValidationPipe(currencySchema))
+  @UsePipes(new ZodValidationPipe(currencyAllSchema))
   @HttpCode(200)
   async getAllCurrencies(
     @Res() res: Response,
@@ -31,11 +32,12 @@ export class CurrencyController {
       return res.send(currencies)
     } catch(error) {
       console.log(error)
-      return res.status(500).send({message: "Internal server error"})
+      throw new InternalServerErrorException()
     }
   }
 
   @Get('details')
+  @UsePipes(new ZodValidationPipe(currencyDetailsSchema))
   @HttpCode(200)
   async getExchangeRate(
     @Res() res: Response,
@@ -50,7 +52,7 @@ export class CurrencyController {
       return res.send(currency)
     } catch(error) {
       console.log(error)
-      return res.status(500).send({message: "Internal server error"})
+      throw new InternalServerErrorException()
     }
   }
 }

@@ -7,8 +7,6 @@ import { ApiKeyGuard } from './guard/api-key.guard';
 //Pipe import
 import { ValidationPipe } from '@nestjs/common';
 
-declare const module: any;
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   //Guard
@@ -21,12 +19,6 @@ async function bootstrap() {
   //Middleware
   app.use(cors())
   app.use(express.urlencoded({ extended: true }));
-  await app.listen(3000);
-
-  if (module.hot) {
-    module.hot.accept();
-    module.hot.dispose(() => app.close());
-  }
-  
+  await app.listen(3000);  
 }
 bootstrap();

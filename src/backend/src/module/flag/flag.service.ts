@@ -19,8 +19,8 @@ export class FlagService {
     // console.log(query)
     
     const response = await this.prisma.flag.findMany({
-      ...(query.from !== 0 && { skip: query.from } ),
-      ...(query.take !== 0 && { take: query.take } ),
+      ...(query.from && { skip: query.from } ),
+      ...(query.take && { take: query.take } ),
       where: {
         ...(query.id && { id_flag: query.id }),
         ...(query.name && { name: query.name }),

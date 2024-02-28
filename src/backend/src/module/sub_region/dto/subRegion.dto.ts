@@ -1,19 +1,22 @@
 import { Injectable } from "@nestjs/common";
 import { IsDefined, IsInt, IsOptional, IsString } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 
 @Injectable()
 export class SubRegionsValueControlDTO {
   @IsOptional()
+  @Transform(({ value }) => Number(value))
   @IsInt()
   from?: number;
 
   @IsOptional()
+  @Transform(({ value }) => Number(value))
   @IsInt()
   take?: number;
 
   @IsOptional()
-  @IsString()
+  @Transform(({ value }) => Number(value))
+  @IsInt()
   id?: number;
 
   @IsOptional()
@@ -21,7 +24,8 @@ export class SubRegionsValueControlDTO {
   name?: string;
 
   @IsOptional()
-  @IsString()
+  @Transform(({ value }) => Number(value))
+  @IsInt()
   id_region_fk?: number;
 
   @IsOptional()

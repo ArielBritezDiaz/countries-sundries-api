@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const currencySchema = z
+export const currencyDetailsSchema = z
   .object({
     from: z.number().gte(1).lte(160),
     take: z.number().gte(1).lte(160),
@@ -12,4 +12,4 @@ export const currencySchema = z
     order_direction: z.string().min(3).max(4)
   }).partial()
 
-export type CurrencyDTO = z.infer<typeof currencySchema>;
+export type CurrencyDTO = z.infer<typeof currencyDetailsSchema>;
