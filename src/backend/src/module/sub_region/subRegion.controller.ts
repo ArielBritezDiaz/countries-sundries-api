@@ -9,7 +9,7 @@ import { SubRegionsValueControlDTO } from './dto/subRegion.dto';
 //Guard import
 import { ApiKeyGuard } from '../../guard/api-key.guard';
 //Pipe import
-import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
+import { ZodValidationPipe } from '../../pipe/query-params.pipe';
 
 @Controller(`api/${process.env.API_VERSION}/sub_region`)
 @UseGuards(new ApiKeyGuard())
@@ -20,7 +20,6 @@ export class SubRegionController {
 
   @Get('all')
   @UsePipes(new ZodValidationPipe(subRegionSchema))
-  @HttpCode(200)
   async getAllSubRegions(
     @Res() res: Response,
     // @Headers(`${process.env.API_KEY_HEADER}`) apiKeyHeader: apiKeyDTO['apiKey'],

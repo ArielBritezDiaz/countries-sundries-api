@@ -15,7 +15,7 @@ export class SubRegionService {
   ){}
 
   async getAllSubRegions(preferencesParams: SubRegionsValueControlDTO): Promise<FormattedSubRegions[]> {
-    console.log("preferencesParams", preferencesParams)
+    // console.log("preferencesParams in service", preferencesParams)
 
     const response = await this.prisma.sub_Region.findMany({
       ...(preferencesParams.from && { skip: preferencesParams.from } ),
@@ -34,7 +34,7 @@ export class SubRegionService {
         ...(preferencesParams.order_by && { [preferencesParams.order_by]: preferencesParams.order_direction })
       }
     });
-    // console.log("response", response)
+    // console.log("response in service", response)
     
     return response !== null ? response : [];
   }
