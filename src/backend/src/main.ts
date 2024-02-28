@@ -5,13 +5,18 @@ import * as express from 'express';
 //Guard import
 import { ApiKeyGuard } from './guard/api-key.guard';
 //Pipe import
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  //Guard
+  app.setGlobalPrefix('api')
+  // app.enableVersioning({
+  //   type: VersioningType.URI,
+  //   defaultVersion: ['1']
+  // })
+  //Guard use
   app.useGlobalGuards(new ApiKeyGuard());
-  //Pipe
+  //Pipe use
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
     transformOptions: { enableImplicitConversion: true }

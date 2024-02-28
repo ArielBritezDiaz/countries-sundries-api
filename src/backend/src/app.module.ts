@@ -28,13 +28,13 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { APP_GUARD } from '@nestjs/core';
 //Enum import
-import { ENVVariables } from 'enum/env-variables.enum';
+import { ENVVariablesSchema } from './enum/env-variables.enum';
 
 @UseGuards(new ApiKeyGuard())
 @Module({
   imports: [
     ConfigModule.forRoot({
-      validationSchema: ENVVariables,
+      validationSchema: ENVVariablesSchema,
       envFilePath: '.env',
       isGlobal: true,
       cache: true,
