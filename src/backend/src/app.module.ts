@@ -48,11 +48,11 @@ import { ENVVariablesSchema } from './enum/env-variables.enum';
     }),
     PrismaModule,
     CountryModule,
-    FlagModule,
-    ImageModule,
-    CurrencyModule,
-    RegionModule,
-    SubRegionModule
+    // FlagModule,
+    // ImageModule,
+    // CurrencyModule,
+    // RegionModule,
+    // SubRegionModule
   ],
   providers: [
     {
@@ -71,11 +71,11 @@ export class AppModule implements NestModule {
       )
       .forRoutes(
         CountryController,
-        FlagController,
-        CurrencyController,
-        RegionController,
-        SubRegionController,
-        ImageController
+        // FlagController,
+        // CurrencyController,
+        // RegionController,
+        // SubRegionController,
+        // ImageController
       )
   }
 }
