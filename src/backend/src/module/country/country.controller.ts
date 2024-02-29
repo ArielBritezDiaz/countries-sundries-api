@@ -15,7 +15,6 @@ export class CountryController {
   ) {}
 
   @Get('all')
-  @Version('v1')
   @UsePipes(new ZodValidationPipe(countrySchema))
   @HttpCode(200)
   async getCountryAll(
