@@ -15,6 +15,7 @@ export class CountryController {
   ) {}
 
   @Get('all')
+  @Version(['1']) // here set the version of this method of this controller accept, in this case, this method accept version 1. With the array, is possible implement more than one version in the same method.
   @UsePipes(new ZodValidationPipe(countrySchema))
   @HttpCode(200)
   async getCountryAll(

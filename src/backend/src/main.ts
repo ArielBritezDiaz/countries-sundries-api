@@ -5,37 +5,17 @@ import * as express from 'express';
 //Guard import
 import { ApiKeyGuard } from './guard/api-key.guard';
 //Pipe import
-import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { HttpException, HttpStatus, ValidationPipe, VersioningType } from '@nestjs/common';
 //Fastify platfom for versioning API
 import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { FastifyRequest } from 'fastify';
 
-//Extractor for the API versioning
-const DEFAULT_VERSION = '1';
-const MAX_VERSION = 1;
-
-const extractor = (req: FastifyRequest): string | string[] => {
-  const requestedVersion = req.headers['x-api-version'];
-  console.log('Requested version:', requestedVersion);
-  const versionCount = Number(requestedVersion) || 1; // Si 'requestedVersion' no es un número válido, se usa 1 por defecto
-  
-  // Verificar si la versión solicitada está dentro del rango permitido
-  if (versionCount > MAX_VERSION || versionCount < 1) {
-    // Si la versión no está dentro del rango permitido, devolver un arreglo vacío o cualquier otro valor que desees
-    return [];
-  }
-  
-  // Generar un arreglo con las versiones desde 'N' hasta '1'
-  return Array.from({ length: versionCount }, (_, i) => `${versionCount - i}`).reverse();
-};
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, new FastifyAdapter());
-  app.setGlobalPrefix('api')
+  app.setGlobalPrefix('api') // global prefix for 'countriessundriesapi.com/api'
   app.enableVersioning({
-    type: VersioningType.CUSTOM,
-    extractor,
-    // defaultVersion: DEFAULT_VERSION
+    type: VersioningType.URI, // default prefix is 'v', and this complements with the @Version decorator in the controllers methods, for now is set to version '1'.
+    defaultVersion: '1'
   })
   //Guard use
   app.useGlobalGuards(new ApiKeyGuard());
