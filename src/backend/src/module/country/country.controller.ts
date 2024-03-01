@@ -1,17 +1,14 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common'
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, HttpException, InternalServerErrorException, Version } from '@nestjs/common'
 import { Response } from 'express'
-//Guard import
-import { ApiKeyGuard } from '../../guard/api-key.guard'
 //Service import
 import { CountryService } from './country.service'
 //DTO import
 import { CountryValueControlDTO } from './dto/country.dto'
 //Validation import
-import { ZodValidationPipe } from './pipe/country.validation.pipe';
+import { ZodValidationPipe } from '../../pipe/query-params.pipe';
 import { countrySchema } from './schema/country.schema';
 
-@Controller(`api/${process.env.API_VERSION}/country`)
-@UseGuards(new ApiKeyGuard())
+@Controller('country')
 export class CountryController {
   constructor(
     private readonly CountryService: CountryService
@@ -19,7 +16,6 @@ export class CountryController {
 
   @Get('all')
   @UsePipes(new ZodValidationPipe(countrySchema))
-  @UsePipes(new ValidationPipe({transform: true}))
   @HttpCode(200)
   async getCountryAll(
     @Res() res: Response,
@@ -37,7 +33,7 @@ export class CountryController {
       return res.status(HttpStatus.OK).send(response)
     } catch(error) {
       console.log(error)
-      return res.status(500).send({message: "Internal server error"})
+      throw new InternalServerErrorException()
     }
   }
 }

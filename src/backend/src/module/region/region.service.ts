@@ -18,18 +18,18 @@ export class RegionService {
     console.log("preferencesParams", preferencesParams)
 
     const response = await this.prisma.region.findMany({
-      ...(preferencesParams.from !== 0 && { skip: preferencesParams.from } ),
-      ...(preferencesParams.take !== 0 && { take: preferencesParams.take } ),
+      ...(preferencesParams.from && { skip: preferencesParams.from } ),
+      ...(preferencesParams.take && { take: preferencesParams.take } ),
       where: {
-        ...(preferencesParams.id !== 0 && { id_region: preferencesParams.id }),
-        ...(preferencesParams.name !== null && { name: { contains: preferencesParams.name.toUpperCase() } }),
+        ...(preferencesParams.id && { id_region: preferencesParams.id }),
+        ...(preferencesParams.name && { name: { contains: preferencesParams.name.toUpperCase() } }),
       },
       select: {
         id_region: true,
         name: true
       },
       orderBy: {
-        ...(preferencesParams.order_by !== null && { [preferencesParams.order_by]: preferencesParams.order_direction })
+        ...(preferencesParams.order_by && { [preferencesParams.order_by]: preferencesParams.order_direction })
       }
     });
     console.log("response", response)

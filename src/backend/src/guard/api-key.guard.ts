@@ -9,6 +9,7 @@ export class ApiKeyGuard implements CanActivate {
     const httpContext = context.switchToHttp();
     const request = httpContext.getRequest();
     const apiKey = request.headers[process.env.API_KEY_HEADER];
+    // console.log(request.headers)
     
     if(apiKey !== process.env.API_KEY_TEMPORAL) {
       // console.log("request:", request.headers)
