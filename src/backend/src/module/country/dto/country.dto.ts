@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Type, Transform } from "class-transformer";
-import { IsNumber, IsInt, IsOptional, IsString, IsNumberString } from 'class-validator';
+import { IsNumber, IsInt, IsOptional, IsString } from 'class-validator';
 
 @Injectable()
 export class CountryValueControlDTO {
