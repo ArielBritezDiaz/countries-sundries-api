@@ -9,6 +9,7 @@ import { ZodValidationPipe } from '../../pipe/query-params.pipe';
 import { countrySchema } from './schema/country.schema';
 //Caching import
 import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
+import { caching } from 'cache-manager';
 
 @Controller('country')
 export class CountryController {
@@ -41,14 +42,14 @@ export class CountryController {
 
       const response = await this.CountryService.getCountryAll(query)
       // Save data from countries in cache
-      if(response.length > 0) {
+      if(response !== cacheExists) {
+        console.log("response.length:", response.length)
         await this.cacheManager.set('data-countries', response)
-        console.log('Data from countries saved in cache')
+        console.log('Data from countries saved in cache:', cacheExists)
       }
 
       // console.log("response:", response)
-      
-      console.log("cache not exists:", cacheExists)
+
       return res.status(HttpStatus.OK).send(response)
     } catch(error) {
       console.log(error)
