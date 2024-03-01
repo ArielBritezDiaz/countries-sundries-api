@@ -1,18 +1,21 @@
 import { Injectable } from "@nestjs/common";
 import { IsDefined, IsInt, IsOptional, IsString } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 
 @Injectable()
 export class CurrenciesValueControlDTO {
   @IsOptional()
+  @Transform(({ value }) => Number(value))
   @IsInt()
   from?: number;
 
   @IsOptional()
+  @Transform(({ value }) => Number(value))
   @IsInt()
   take?: number;
 
   @IsOptional()
+  @Transform(({ value }) => Number(value))
   @IsInt()
   id?: number;
 
@@ -40,6 +43,7 @@ export class CurrenciesValueControlDTO {
 @Injectable()
 export class CurrencyValueControlDTO {
   @IsOptional()
+  @Transform(({ value }) => Number(value))
   @IsInt()
   id?: number;
 

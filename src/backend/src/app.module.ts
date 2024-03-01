@@ -1,4 +1,4 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, UseGuards } from '@nestjs/common';
 //module
 import { CountryModule } from './module/country/country.module';
 import { CurrencyModule } from './module/currency/currency.module';
@@ -27,10 +27,14 @@ import { PrismaModule } from './module/prisma/prisma.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { APP_GUARD } from '@nestjs/core';
+//Enum import
+import { ENVVariablesSchema } from './enum/env-variables.enum';
 
+@UseGuards(new ApiKeyGuard())
 @Module({
   imports: [
     ConfigModule.forRoot({
+      validationSchema: ENVVariablesSchema,
       envFilePath: '.env',
       isGlobal: true,
       cache: true,
@@ -44,11 +48,11 @@ import { APP_GUARD } from '@nestjs/core';
     }),
     PrismaModule,
     CountryModule,
-    FlagModule,
-    ImageModule,
-    CurrencyModule,
-    RegionModule,
-    SubRegionModule
+    // FlagModule,
+    // ImageModule,
+    // CurrencyModule,
+    // RegionModule,
+    // SubRegionModule
   ],
   providers: [
     {
@@ -67,11 +71,11 @@ export class AppModule implements NestModule {
       )
       .forRoutes(
         CountryController,
-        FlagController,
-        CurrencyController,
-        RegionController,
-        SubRegionController,
-        ImageController
+        // FlagController,
+        // CurrencyController,
+        // RegionController,
+        // SubRegionController,
+        // ImageController
       )
   }
 }
