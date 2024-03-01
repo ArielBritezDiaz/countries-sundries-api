@@ -9,8 +9,6 @@ import { CountryValueControlDTO } from './dto/country.dto'
 //Validation import
 import { ZodValidationPipe } from './pipe/country.validation.pipe';
 import { countrySchema } from './schema/country.schema';
-import { CountryDTO } from './schema/country.schema';
-import { FormattedCountry } from './interface/country.interface'
 
 @Controller(`api/${process.env.API_VERSION}/country`)
 @UseGuards(new ApiKeyGuard())
