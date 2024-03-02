@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { DatabaseConfig } from "../../interface/database.config.interface";
 import { PrismaService } from "../prisma/prisma.service";
@@ -6,15 +6,26 @@ import { PrismaService } from "../prisma/prisma.service";
 import { CountryValueControlDTO } from "./dto/country.dto";
 //Interface import
 import { FormattedCountry } from "./interface/country.interface";
+//Caching import
+import { Cache } from 'cache-manager';
+import { CACHE_MANAGER } from "@nestjs/cache-manager";
 
 @Injectable()
 export class CountryService {
   constructor(
     private prisma: PrismaService,
-    private configService: ConfigService<{ database: DatabaseConfig }, true>
+    private configService: ConfigService<{ database: DatabaseConfig }, true>,
+    // @Inject(CACHE_MANAGER) private cacheManager: Cache
   ) {}
   
   async getCountryAll(query: CountryValueControlDTO): Promise<FormattedCountry[]> {
+    // const cachedCountry = await this.cacheManager.get('country')
+    // if(cachedCountry) {
+    //   console.log("cachedCountry exists!!!!")
+    //   console.log('From Cache')
+    //   return [ cachedCountry ]
+    // }
+
     // console.log("query:", query)
     let orderBy = {}
     if(query.order_by && query.order_direction) {
@@ -143,7 +154,12 @@ export class CountryService {
         } : null
       }
     })
-    // console.log("FormattedCountry:", formattedCountry)
+
+    // await this.cacheManager.set('country', formattedCountry[0])
+    
+    console.log('From DB')
+    // console.log("cachedCountry:", cachedCountry)
+    // console.log("FormattedCountry:", JSON.stringify(formattedCountry))
 
     return formattedCountry !== null && formattedCountry.length > 0 ? formattedCountry : []
   }
