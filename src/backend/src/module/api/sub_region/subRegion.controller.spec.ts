@@ -4,7 +4,7 @@ import { SubRegionService } from './subRegion.service';
 import { SubRegionsValueControlDTO } from './dto/subRegion.dto';
 import { Response } from 'express';
 import { HttpStatus } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
 
 describe('SubRegionController', () => {

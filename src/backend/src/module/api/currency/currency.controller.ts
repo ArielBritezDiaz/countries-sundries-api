@@ -19,7 +19,6 @@ export class CurrencyController {
   @Get('all')
   @Version(['1']) // here set the version of this method of this controller accept, in this case, this method accept version 1. With the array, is possible implement more than one version in the same method.
   @UsePipes(new ZodValidationPipe(currencyAllSchema))
-  @HttpCode(200)
   async getAllCurrencies(
     @Res() res: Response,
     // @Headers(`${process.env.API_KEY_HEADER}`) apiKeyHeader: apiKeyDTO['apiKey'],
@@ -40,7 +39,6 @@ export class CurrencyController {
   @Get('details')
   @Version(['1']) // here set the version of this method of this controller accept, in this case, this method accept version 1. With the array, is possible implement more than one version in the same method.
   @UsePipes(new ZodValidationPipe(currencyDetailsSchema))
-  @HttpCode(200)
   async getExchangeRate(
     @Res() res: Response,
     // @Headers(`${process.env.API_KEY_HEADER}`) apiKeyHeader: apiKeyDTO['apiKey'],

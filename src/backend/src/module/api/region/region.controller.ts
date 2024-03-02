@@ -6,13 +6,10 @@ import { regionSchema } from './schema/region.schema';
 import { RegionService } from './region.service';
 //DTO import
 import { RegionsValueControlDTO } from './dto/region.dto';
-//Guard import
-import { ApiKeyGuard } from '../../guard/api-key.guard';
 //Pipe import
 import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
 
 @Controller(`api/${process.env.API_VERSION}/region`)
-@UseGuards(new ApiKeyGuard())
 export class RegionController {
   constructor(
     private readonly RegionService: RegionService
