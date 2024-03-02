@@ -7,12 +7,10 @@ import { imageCoatOfArmSchema } from './schema/coat-of-arm-image.schema';
 import { FlagService, CoatOfArmService } from './image.service';
 //DTO import
 import { ImageQueryControlDTO } from './dto/image.dto';
-//Guard import
-import { ApiKeyGuard } from '../../guard/api-key.guard';
 //Pipe import
 import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
 
-@Controller(`api/${process.env.API_VERSION}/image`)
+@Controller(`image`)
 export class ImageController {
     constructor(
       private readonly FlagService: FlagService,

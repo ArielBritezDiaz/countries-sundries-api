@@ -1,5 +1,6 @@
 import { Module, NestModule, MiddlewareConsumer, UseGuards } from '@nestjs/common';
-//module
+//Module import
+import { UserModule } from './module/user/user.module';
 import { CountryModule } from './module/api/country/country.module';
 import { CurrencyModule } from './module/api/currency/currency.module';
 import { RegionModule } from './module/api/region/region.module';
@@ -8,7 +9,8 @@ import { FlagModule } from './module/api/flag/flag.module';
 import { ImageModule } from './module/api/image/image.module';
 //Guard import
 import { ApiKeyGuard } from './guard/api-key.guard';
-//Controllers
+//Controller import
+import { UserController } from './module/user/user.controller';
 import { CountryController } from './module/api/country/country.controller';
 import { FlagController } from './module/api/flag/flag.controller';
 // import { CoatOfArmController } from '.module/api-endpoints/coat_of_arms/coat_of_arms.controller';
@@ -47,6 +49,7 @@ import { ENVVariablesSchema } from './enum/env-variables.enum';
       exclude: ['**/*.html']
     }),
     PrismaModule,
+    UserModule,
     CountryModule,
     FlagModule,
     ImageModule,
@@ -70,6 +73,7 @@ export class AppModule implements NestModule {
         MorganMiddleware
       )
       .forRoutes(
+        UserController,
         CountryController,
         FlagController,
         CurrencyController,

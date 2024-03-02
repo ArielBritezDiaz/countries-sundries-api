@@ -9,7 +9,7 @@ import { RegionsValueControlDTO } from './dto/region.dto';
 //Pipe import
 import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
 
-@Controller(`api/${process.env.API_VERSION}/region`)
+@Controller(`region`)
 export class RegionController {
   constructor(
     private readonly RegionService: RegionService
