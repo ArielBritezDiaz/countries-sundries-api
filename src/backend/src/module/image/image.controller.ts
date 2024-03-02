@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UseGuards, UsePipes, ValidationPipe, HttpException, InternalServerErrorException } from '@nestjs/common';
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version } from '@nestjs/common';
 import { Response } from 'express';
 //Schema import
 import { imageFlagSchema } from './schema/flag-image.schema';
@@ -20,6 +20,7 @@ export class ImageController {
     ) {}
 
   @Get('flag')
+  @Version(['1']) // here set the version of this method of this controller accept, in this case, this method accept version 1. With the array, is possible implement more than one version in the same method.
   @UsePipes(new ZodValidationPipe(imageFlagSchema))
   @HttpCode(200)
   async getFlag(
@@ -47,8 +48,8 @@ export class ImageController {
   }
 
   @Get('coat-of-arm')
+  @Version(['1']) // here set the version of this method of this controller accept, in this case, this method accept version 1. With the array, is possible implement more than one version in the same method.
   @UsePipes(new ZodValidationPipe(imageCoatOfArmSchema))
-  @HttpCode(200)
   async getCoatOfArms(
     @Res() res: Response,
     @Query(new ValidationPipe({transform: true})) queryParams: ImageQueryControlDTO

@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, HttpException, InternalServerErrorException, Version, Inject, UseInterceptors } from '@nestjs/common'
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version } from '@nestjs/common'
 import { Response } from 'express'
 //Service import
 import { CountryService } from './country.service'
@@ -7,7 +7,6 @@ import { CountryValueControlDTO } from './dto/country.dto'
 //Validation import
 import { ZodValidationPipe } from '../../pipe/query-params.pipe';
 import { countrySchema } from './schema/country.schema';
-// import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 
 @Controller('country')
 export class CountryController {

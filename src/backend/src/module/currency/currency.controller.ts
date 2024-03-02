@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, HttpException, InternalServerErrorException } from '@nestjs/common';
+import { Controller, HttpCode, Res, Get, Query, UsePipes, ValidationPipe, InternalServerErrorException, Version } from '@nestjs/common';
 import { Response } from 'express';
 //Schema import
 import { currencyAllSchema } from './schema/currency-all.schema';
@@ -6,7 +6,7 @@ import { currencyDetailsSchema } from './schema/currency-details.schema';
 //Service import
 import { CurrencyService } from './currency.service';
 //DTO import
-import { CurrenciesValueControlDTO, CurrencyValueControlDTO } from './dto/currency.dto';
+import { CurrenciesValueControlDTO } from './dto/currency.dto';
 //Pipe import
 import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
 
@@ -17,6 +17,7 @@ export class CurrencyController {
   ) {}
 
   @Get('all')
+  @Version(['1']) // here set the version of this method of this controller accept, in this case, this method accept version 1. With the array, is possible implement more than one version in the same method.
   @UsePipes(new ZodValidationPipe(currencyAllSchema))
   @HttpCode(200)
   async getAllCurrencies(
@@ -37,6 +38,7 @@ export class CurrencyController {
   }
 
   @Get('details')
+  @Version(['1']) // here set the version of this method of this controller accept, in this case, this method accept version 1. With the array, is possible implement more than one version in the same method.
   @UsePipes(new ZodValidationPipe(currencyDetailsSchema))
   @HttpCode(200)
   async getExchangeRate(
