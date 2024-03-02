@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UseGuards, UsePipes, ValidationPipe, HttpException, InternalServerErrorException } from '@nestjs/common';
+import { Controller, Res, Get, Query, HttpStatus, UseGuards, UsePipes, ValidationPipe, HttpException, InternalServerErrorException, Version } from '@nestjs/common';
 import { Response } from 'express';
 //Schema import
 import { subRegionSchema } from './schema/sub_region.schema';
@@ -19,6 +19,7 @@ export class SubRegionController {
   ) {}
 
   @Get('all')
+  @Version(['1']) // here set the version of this method of this controller accept, in this case, this method accept version 1. With the array, is possible implement more than one version in the same method.
   @UsePipes(new ZodValidationPipe(subRegionSchema))
   async getAllSubRegions(
     @Res() res: Response,
