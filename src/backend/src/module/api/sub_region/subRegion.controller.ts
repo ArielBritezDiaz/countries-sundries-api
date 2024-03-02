@@ -9,7 +9,7 @@ import { SubRegionsValueControlDTO } from './dto/subRegion.dto';
 //Pipe import
 import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
 
-@Controller(`api/${process.env.API_VERSION}/sub_region`)
+@Controller(`sub_region`)
 export class SubRegionController {
   constructor(
     private readonly SubRegionService: SubRegionService

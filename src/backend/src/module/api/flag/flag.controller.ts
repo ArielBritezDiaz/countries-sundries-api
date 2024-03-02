@@ -9,7 +9,7 @@ import { FlagValueControlDTO } from './dto/flag.dto';
 //Pipe import
 import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
 
-@Controller(`api/${process.env.API_VERSION}/flag`)
+@Controller(`flag`)
 export class FlagController {
   constructor(
     private readonly FlagService: FlagService

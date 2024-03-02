@@ -6,11 +6,17 @@ import * as express from 'express';
 import { ApiKeyGuard } from './guard/api-key.guard';
 import { ApiVersionGuard } from './guard/api-version.guard';
 //Pipe import
-import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { RequestMethod, ValidationPipe, VersioningType } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.setGlobalPrefix('api') // global prefix for 'countriessundriesapi.com/api'
+
+  // global prefix for 'countriessundriesapi.com/api'
+  app.setGlobalPrefix('api', {
+    exclude: [
+      { path: '/user/create', method: RequestMethod.POST }
+    ]
+  })
   app.enableVersioning({
     type: VersioningType.URI, // default prefix is 'v', and this complements with the @Version decorator in the controllers methods, for now is set to version '1'.
     defaultVersion: '1' // default version of the API
@@ -26,6 +32,7 @@ async function bootstrap() {
   //Middleware
   app.use(cors())
   app.use(express.urlencoded({ extended: true }));
+  
   await app.listen(3000);  
 }
 bootstrap();

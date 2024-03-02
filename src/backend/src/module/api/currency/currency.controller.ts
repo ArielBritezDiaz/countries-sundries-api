@@ -10,7 +10,7 @@ import { CurrenciesValueControlDTO } from './dto/currency.dto';
 //Pipe import
 import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
 
-@Controller(`api/${process.env.API_VERSION}/currency`)
+@Controller(`currency`)
 export class CurrencyController {
   constructor(
     private readonly CurrencyService: CurrencyService
