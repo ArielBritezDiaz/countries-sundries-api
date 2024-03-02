@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { DatabaseConfig } from '../../interface/database.config.interface';
-import { PrismaService } from '../prisma/prisma.service';
+import { DatabaseConfig } from '../../../interface/database.config.interface';
+import { PrismaService } from '../../prisma/prisma.service';
 
 //DTO import
 import { CurrenciesValueControlDTO, CurrencyValueControlDTO } from './dto/currency.dto';

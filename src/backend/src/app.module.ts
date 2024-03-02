@@ -1,21 +1,21 @@
 import { Module, NestModule, MiddlewareConsumer, UseGuards } from '@nestjs/common';
 //module
-import { CountryModule } from './module/country/country.module';
-import { CurrencyModule } from './module/currency/currency.module';
-import { RegionModule } from './module/region/region.module';
-import { SubRegionModule } from './module/sub_region/subRegion.module';
-import { FlagModule } from './module/flag/flag.module';
-import { ImageModule } from './module/image/image.module';
+import { CountryModule } from './module/api/country/country.module';
+import { CurrencyModule } from './module/api/currency/currency.module';
+import { RegionModule } from './module/api/region/region.module';
+import { SubRegionModule } from './module/api/sub_region/subRegion.module';
+import { FlagModule } from './module/api/flag/flag.module';
+import { ImageModule } from './module/api/image/image.module';
 //Guard import
 import { ApiKeyGuard } from './guard/api-key.guard';
 //Controllers
-import { CountryController } from './module/country/country.controller';
-import { FlagController } from './module/flag/flag.controller';
-// import { CoatOfArmController } from '.module/coat_of_arms/coat_of_arms.controller';
-import { CurrencyController } from './module/currency/currency.controller';
-import { RegionController } from './module/region/region.controller';
-import { SubRegionController } from './module/sub_region/subRegion.controller';
-import { ImageController } from './module/image/image.controller';
+import { CountryController } from './module/api/country/country.controller';
+import { FlagController } from './module/api/flag/flag.controller';
+// import { CoatOfArmController } from '.module/api-endpoints/coat_of_arms/coat_of_arms.controller';
+import { CurrencyController } from './module/api/currency/currency.controller';
+import { RegionController } from './module/api/region/region.controller';
+import { SubRegionController } from './module/api/sub_region/subRegion.controller';
+import { ImageController } from './module/api/image/image.controller';
 //Middlewares
 import * as cors from 'cors';
 import { MorganMiddleware } from './middleware/morgan.middleware';
@@ -48,11 +48,11 @@ import { ENVVariablesSchema } from './enum/env-variables.enum';
     }),
     PrismaModule,
     CountryModule,
-    // FlagModule,
-    // ImageModule,
-    // CurrencyModule,
-    // RegionModule,
-    // SubRegionModule
+    FlagModule,
+    ImageModule,
+    CurrencyModule,
+    RegionModule,
+    SubRegionModule
   ],
   providers: [
     {
@@ -71,11 +71,11 @@ export class AppModule implements NestModule {
       )
       .forRoutes(
         CountryController,
-        // FlagController,
-        // CurrencyController,
-        // RegionController,
-        // SubRegionController,
-        // ImageController
+        FlagController,
+        CurrencyController,
+        RegionController,
+        SubRegionController,
+        ImageController
       )
   }
 }
