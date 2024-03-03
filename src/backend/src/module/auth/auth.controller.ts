@@ -27,10 +27,4 @@ export class AuthController {
       throw new UnauthorizedException('Invalid credentials');
     }
   }
-
-  @UseGuards(AuthGuard)
-  @Get('test')
-  test() {
-    return 'Hello World'
-  }
 }
