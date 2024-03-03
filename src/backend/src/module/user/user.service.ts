@@ -4,10 +4,11 @@ import { DatabaseConfig } from "../../interface/database.config.interface";
 import { PrismaService } from "../prisma/prisma.service";
 //DTO import
 import { SignUpUserDTO } from "./dto/user.dto";
+import { SignInUser } from "./interface/user.interface";
 //Hashing import
 import * as bcrypt from 'bcrypt';
-import { SignInUser } from "./interface/user.interface";
 
+//CRUD Operations
 @Injectable()
 export class UserService {
   constructor(
@@ -16,7 +17,7 @@ export class UserService {
   ) {}
 
 
-  async signUpUser(body: SignUpUserDTO): Promise<any> {
+  async signUpUser(body: SignUpUserDTO): Promise<boolean> {
     const passw = body.password
     const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS, 10)
 
@@ -61,12 +62,6 @@ export class UserService {
 
     if(!user) throw new UnauthorizedException('User does not exist')
     
-    const bcryotResult = await bcrypt.compare(body.password, user.password)
-
-    if(!bcryotResult) throw new UnauthorizedException('Password is incorrect')
-
-    console.log("user:", user)
-
     return user
   }
 }

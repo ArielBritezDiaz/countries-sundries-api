@@ -8,7 +8,10 @@ import { RegionService } from './region.service';
 import { RegionsValueControlDTO } from './dto/region.dto';
 //Pipe import
 import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
+//Guard import
+import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
 
+@UseGuards(AuthGuard)
 @Controller(`region`)
 export class RegionController {
   constructor(

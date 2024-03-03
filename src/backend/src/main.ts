@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import * as cors from 'cors';
 import * as express from 'express';
 //Guard import
-import { ApiKeyGuard } from './guard/api-key.guard';
+// import { ApiKeyGuard } from './guard/api-key.guard';
 import { ApiVersionGuard } from './guard/api-version.guard';
 //Pipe import
 import { RequestMethod, ValidationPipe, VersioningType } from '@nestjs/common';
@@ -17,6 +17,8 @@ async function bootstrap() {
       { path: '/user/create', method: RequestMethod.POST },
       { path: '/user/sign-in', method: RequestMethod.POST },
       { path: '/user/sign-up', method: RequestMethod.POST },
+      { path: '/auth/sign-in', method: RequestMethod.POST },
+      { path: '/auth/sign-up', method: RequestMethod.POST },
     ]
   })
   app.enableVersioning({
@@ -25,7 +27,6 @@ async function bootstrap() {
   })
   //Guard use
   app.useGlobalGuards(new ApiVersionGuard()); // after of the apiKeyGuard, validate the version of the API, if the version is not supported, the guard throw an UnauthorizedException, and if the version is supported, the guard return true and the request continue to the next middleware
-  app.useGlobalGuards(new ApiKeyGuard());
   //Pipe use
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
