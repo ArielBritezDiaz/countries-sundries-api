@@ -1,11 +1,12 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { Injectable, InternalServerErrorException, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { DatabaseConfig } from "../../interface/database.config.interface";
 import { PrismaService } from "../prisma/prisma.service";
 //DTO import
-import { UserDTO } from "./dto/user.dto";
+import { SignUpUserDTO } from "./dto/user.dto";
 //Hashing import
 import * as bcrypt from 'bcrypt';
+import { SignInUser } from "./interface/user.interface";
 
 @Injectable()
 export class UserService {
@@ -15,7 +16,7 @@ export class UserService {
   ) {}
 
 
-  async createUser(body: UserDTO): Promise<any> {
+  async signUpUser(body: SignUpUserDTO): Promise<any> {
     const passw = body.password
     const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS, 10)
 
@@ -24,11 +25,9 @@ export class UserService {
         email: body.email
       }
     })
-    // console.log("existsUser:", existsUser)
+    console.log("existsUser:", existsUser)
 
-    if(existsUser) {
-      return await false
-    }
+    if(existsUser) throw new UnauthorizedException('User already exists')
 
     return new Promise<boolean>((resolve, reject) => {
       bcrypt.hash(passw, saltRounds, async (err: string, hash: string) => {
@@ -51,5 +50,23 @@ export class UserService {
         }
       });
     });
+  }
+
+  async signInUser(body: SignInUser): Promise<any> {
+    const user = await this.prismaService.user.findUnique({
+      where: {
+        email: body.email
+      }
+    })
+
+    if(!user) throw new UnauthorizedException('User does not exist')
+    
+    const bcryotResult = await bcrypt.compare(body.password, user.password)
+
+    if(!bcryotResult) throw new UnauthorizedException('Password is incorrect')
+
+    console.log("user:", user)
+
+    return user
   }
 }
