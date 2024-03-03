@@ -14,7 +14,9 @@ async function bootstrap() {
   // global prefix for 'countriessundriesapi.com/api'
   app.setGlobalPrefix('api', {
     exclude: [
-      { path: '/user/create', method: RequestMethod.POST }
+      { path: '/user/create', method: RequestMethod.POST },
+      { path: '/user/sign-in', method: RequestMethod.POST },
+      { path: '/user/sign-up', method: RequestMethod.POST },
     ]
   })
   app.enableVersioning({

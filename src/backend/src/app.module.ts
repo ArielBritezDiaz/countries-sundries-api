@@ -31,6 +31,8 @@ import { join } from 'path';
 import { APP_GUARD } from '@nestjs/core';
 //Enum import
 import { ENVVariablesSchema } from './enum/env-variables.enum';
+import { AuthController } from './module/auth/auth.controller';
+import { AuthModule } from './module/auth/auth.module';
 
 @UseGuards(new ApiKeyGuard())
 @Module({
@@ -50,6 +52,7 @@ import { ENVVariablesSchema } from './enum/env-variables.enum';
     }),
     PrismaModule,
     UserModule,
+    AuthModule,
     CountryModule,
     FlagModule,
     ImageModule,
@@ -74,6 +77,7 @@ export class AppModule implements NestModule {
       )
       .forRoutes(
         UserController,
+        AuthController,
         CountryController,
         FlagController,
         CurrencyController,
