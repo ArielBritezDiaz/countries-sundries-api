@@ -1,4 +1,4 @@
-import { Controller, Res, Get, Query, HttpStatus, ValidationPipe, UsePipes, InternalServerErrorException, Version } from '@nestjs/common';
+import { Controller, Res, Get, Query, HttpStatus, ValidationPipe, UsePipes, InternalServerErrorException, Version, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 //Schema import
 import { flagSchema } from './schema/flag.schema';
@@ -8,7 +8,10 @@ import { FlagService } from './flag.service';
 import { FlagValueControlDTO } from './dto/flag.dto';
 //Pipe import
 import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
+//Guard import
+import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
 
+@UseGuards(AuthGuard)
 @Controller(`flag`)
 export class FlagController {
   constructor(

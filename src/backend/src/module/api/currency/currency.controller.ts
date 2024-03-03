@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Res, Get, Query, UsePipes, ValidationPipe, InternalServerErrorException, Version } from '@nestjs/common';
+import { Controller, HttpCode, Res, Get, Query, UsePipes, ValidationPipe, InternalServerErrorException, Version, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 //Schema import
 import { currencyAllSchema } from './schema/currency-all.schema';
@@ -9,7 +9,10 @@ import { CurrencyService } from './currency.service';
 import { CurrenciesValueControlDTO } from './dto/currency.dto';
 //Pipe import
 import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
+//Guard import
+import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
 
+@UseGuards(AuthGuard)
 @Controller(`currency`)
 export class CurrencyController {
   constructor(

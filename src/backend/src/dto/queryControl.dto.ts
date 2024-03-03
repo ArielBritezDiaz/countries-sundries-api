@@ -1,6 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { IsDefined, IsInt, IsOptional, IsString } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsDefined, IsString } from 'class-validator';
 
 @Injectable()
 export class ValueQueryControl {

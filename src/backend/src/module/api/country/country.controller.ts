@@ -1,4 +1,4 @@
-import { Controller, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version } from '@nestjs/common'
+import { Controller, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version, UseGuards } from '@nestjs/common'
 import { Response } from 'express';
 //Service import
 import { CountryService } from './country.service';
@@ -6,8 +6,12 @@ import { CountryService } from './country.service';
 import { CountryValueControlDTO } from './dto/country.dto';
 //Validation import
 import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
+//Schema import
 import { countrySchema } from './schema/country.schema';
+//Guard import
+import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
 
+@UseGuards(AuthGuard)
 @Controller('country')
 export class CountryController {
   constructor(

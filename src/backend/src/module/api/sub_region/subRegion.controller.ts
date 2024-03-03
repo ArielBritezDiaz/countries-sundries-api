@@ -8,7 +8,10 @@ import { SubRegionService } from './subRegion.service';
 import { SubRegionsValueControlDTO } from './dto/subRegion.dto';
 //Pipe import
 import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
+//Guard import
+import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
 
+@UseGuards(AuthGuard)
 @Controller(`sub_region`)
 export class SubRegionController {
   constructor(

@@ -7,8 +7,6 @@ import { RegionModule } from './module/api/region/region.module';
 import { SubRegionModule } from './module/api/sub_region/subRegion.module';
 import { FlagModule } from './module/api/flag/flag.module';
 import { ImageModule } from './module/api/image/image.module';
-//Guard import
-import { ApiKeyGuard } from './guard/api-key.guard';
 //Controller import
 import { UserController } from './module/user/user.controller';
 import { CountryController } from './module/api/country/country.controller';
@@ -28,13 +26,11 @@ import { PrismaModule } from './module/prisma/prisma.module';
 //Static serve
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { APP_GUARD } from '@nestjs/core';
 //Enum import
 import { ENVVariablesSchema } from './enum/env-variables.enum';
-import { AuthController } from './module/auth/auth.controller';
 import { AuthModule } from './module/auth/auth.module';
+import { AuthController } from './module/auth/auth.controller';
 
-@UseGuards(new ApiKeyGuard())
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -59,12 +55,6 @@ import { AuthModule } from './module/auth/auth.module';
     CurrencyModule,
     RegionModule,
     SubRegionModule
-  ],
-  providers: [
-    {
-      provide: APP_GUARD,
-      useClass: ApiKeyGuard,
-    }
   ]
 })
 

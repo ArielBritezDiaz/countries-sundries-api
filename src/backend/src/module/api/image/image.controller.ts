@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version } from '@nestjs/common';
+import { Controller, HttpCode, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 //Schema import
 import { imageFlagSchema } from './schema/flag-image.schema';
@@ -9,7 +9,10 @@ import { FlagService, CoatOfArmService } from './image.service';
 import { ImageQueryControlDTO } from './dto/image.dto';
 //Pipe import
 import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
+//Guard import
+import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
 
+@UseGuards(AuthGuard)
 @Controller(`image`)
 export class ImageController {
     constructor(
