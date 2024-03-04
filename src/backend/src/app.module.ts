@@ -29,6 +29,8 @@ import { join } from 'path';
 import { ENVVariablesSchema } from './enum/env-variables.enum';
 import { AuthModule } from './module/auth/auth.module';
 import { AuthController } from './module/auth/auth.controller';
+//Throttler import
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
@@ -54,7 +56,7 @@ import { AuthController } from './module/auth/auth.controller';
     CurrencyModule,
     RegionModule,
     SubRegionModule
-  ]
+  ],
 })
 
 export class AppModule implements NestModule {

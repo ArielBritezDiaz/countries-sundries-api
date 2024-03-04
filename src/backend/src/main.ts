@@ -1,15 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as cors from 'cors';
-import * as express from 'express';
-//Guard import
-// import { ApiKeyGuard } from './guard/api-key.guard';
-import { ApiVersionGuard } from './guard/api-version.guard';
 //Pipe import
 import { RequestMethod, ValidationPipe, VersioningType } from '@nestjs/common';
+//Guard import
+import { ApiVersionGuard } from './guard/api-version.guard';
+
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create(AppModule);
 
   // global prefix for 'countriessundriesapi.com/api'
   app.setGlobalPrefix('api', {
@@ -18,7 +16,7 @@ async function bootstrap() {
       { path: '/user/sign-in', method: RequestMethod.POST },
       { path: '/user/sign-up', method: RequestMethod.POST },
       { path: '/auth/sign-in', method: RequestMethod.POST },
-      { path: '/auth/sign-up', method: RequestMethod.POST },
+      { path: '/auth/profile', method: RequestMethod.GET },
     ]
   })
   app.enableVersioning({
@@ -41,7 +39,6 @@ async function bootstrap() {
     ],
     methods: ['GET', 'POST']
   })
-  app.use(express.urlencoded({ extended: true }));
   
   await app.listen(3000);  
 }
