@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 //Pipe import
-import { RequestMethod, ValidationPipe, VersioningType } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 //Guard import
 import { ApiVersionGuard } from './guard/api-version.guard';
 
@@ -11,13 +11,7 @@ async function bootstrap() {
 
   // global prefix for 'countriessundriesapi.com/api'
   app.setGlobalPrefix('api', {
-    exclude: [
-      { path: '/user/create', method: RequestMethod.POST },
-      { path: '/user/sign-in', method: RequestMethod.POST },
-      { path: '/user/sign-up', method: RequestMethod.POST },
-      { path: '/auth/sign-in', method: RequestMethod.POST },
-      { path: '/auth/profile', method: RequestMethod.GET },
-    ]
+    exclude: ['/user/create', '/user/sign-in', '/user/sign-up', '/auth/sign-in', '/auth/profile']
   })
   app.enableVersioning({
     type: VersioningType.URI, // default prefix is 'v', and this complements with the @Version decorator in the controllers methods, for now is set to version '1'.
