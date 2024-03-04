@@ -7,10 +7,37 @@ import { SignInUserDTO } from '../user/dto/user.dto';
 import { ZodValidationPipe } from 'src/pipe/body-params.pipe';
 import { signInUserSchema } from '../user/schema/user.schema';
 import { AuthGuard } from './guard/auth-token-api.guard';
+import { GoogleAuthGuard } from './guard/google-strategy.guard';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
+  @Get('google/login')
+  @UseGuards(GoogleAuthGuard)
+  async googleLogIn(
+    @Res() res: Response
+  ) { 
+    try {
+      // const response = await this.authService.googleLogIn();
+      // return res.status(HttpStatus.OK).send(response);
+      return { message: 'Google Log In'}
+    } catch(error) {
+      console.error(error);
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ message: 'Internal Server Error' });
+    }
+  }
+
+  @Get('google/redirect')
+  @UseGuards(GoogleAuthGuard)
+  async googleRedirect() {
+    try {
+      return { message: 'Google Redirect' }
+    } catch(error) {
+      console.error(error);
+      throw new InternalServerErrorException('Internal Server Error');
+    }
+  }
 
   @Post('sign-in')
   @UsePipes(new ZodValidationPipe(signInUserSchema))

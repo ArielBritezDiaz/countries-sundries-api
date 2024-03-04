@@ -17,6 +17,10 @@ export class AuthService {
     private UserService: UserService,
     private jwtService: JwtService,
   ) {}
+  
+  async googleLogIn() {
+    
+  }
 
   async authSignUpUser(body: SignInUser): Promise<AuthDTO> {
 
