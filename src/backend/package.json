@@ -30,6 +30,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/platform-fastify": "^10.3.3",
     "@nestjs/serve-static": "^4.0.1",
+    "@nestjs/throttler": "^5.1.2",
     "@prisma/client": "^5.9.1",
     "@types/bun": "^1.0.8",
     "@types/cache-manager": "^4.0.6",
