@@ -30,6 +30,7 @@ export class AuthController {
 
   @Get('profile')
   @UseGuards(AuthGuard)
+  @Version(['1'])
   async profile(
     @Res() res: Response,
     @Request() req
