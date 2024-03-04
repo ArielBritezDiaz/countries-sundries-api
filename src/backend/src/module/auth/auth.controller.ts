@@ -1,4 +1,4 @@
-import { Controller, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version, Param, Body, Post, UnauthorizedException, UseGuards } from '@nestjs/common'
+import { Controller, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version, Param, Body, Post, UnauthorizedException, UseGuards, Request } from '@nestjs/common'
 import { Response } from 'express';
 //Service import
 import { AuthService } from './auth.service';
@@ -25,6 +25,31 @@ export class AuthController {
       if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })
       console.log(error);
       throw new UnauthorizedException('Invalid credentials');
+    }
+  }
+
+  @Get('profile')
+  @UseGuards(AuthGuard)
+  async profile(
+    @Res() res: Response,
+    @Request() req
+  ) {
+    try {
+      const { id_user, email } = req.user;
+
+      const reqData = {
+        id_user,
+        email
+      }
+      console.log("id_user:", id_user)
+      console.log("email:", email)
+      const user = await this.authService.profileUser(reqData);
+      // console.log("req:", req)
+      return res.status(HttpStatus.OK).send(user);
+    } catch(error) {
+      if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })
+      console.error(error);
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ message: 'Internal Server Error' });
     }
   }
 }
