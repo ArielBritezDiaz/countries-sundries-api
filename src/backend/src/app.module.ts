@@ -17,7 +17,6 @@ import { RegionController } from './module/api/region/region.controller';
 import { SubRegionController } from './module/api/sub_region/subRegion.controller';
 import { ImageController } from './module/api/image/image.controller';
 //Middlewares
-import * as cors from 'cors';
 import { MorganMiddleware } from './middleware/morgan.middleware';
 //DB Config
 import { ConfigModule } from "@nestjs/config";
@@ -62,7 +61,6 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(
-        cors(),
         MorganMiddleware
       )
       .forRoutes(

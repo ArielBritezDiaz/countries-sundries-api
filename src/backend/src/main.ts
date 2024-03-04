@@ -9,7 +9,7 @@ import { ApiVersionGuard } from './guard/api-version.guard';
 import { RequestMethod, ValidationPipe, VersioningType } from '@nestjs/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
 
   // global prefix for 'countriessundriesapi.com/api'
   app.setGlobalPrefix('api', {
@@ -33,7 +33,14 @@ async function bootstrap() {
     transformOptions: { enableImplicitConversion: true }
   }));
   //Middleware
-  app.use(cors())
+  app.enableCors({
+    allowedHeaders: [
+      'Content-Type',
+      'x-countries_sundries_api-key',
+      'x-api-version',
+    ],
+    methods: ['GET', 'POST']
+  })
   app.use(express.urlencoded({ extended: true }));
   
   await app.listen(3000);  
