@@ -1,4 +1,4 @@
-import { Controller, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version, Param, Body, Post, UnauthorizedException, UseGuards, Request } from '@nestjs/common'
+import { Controller, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version, Param, Body, Post, UnauthorizedException, UseGuards, Request, Req } from '@nestjs/common'
 import { Response } from 'express';
 //Service import
 import { AuthService } from './auth.service';
@@ -39,6 +39,24 @@ export class AuthController {
     }
   }
 
+  @Get('status')
+  async status(
+    @Res() res: Response,
+    @Req() req: Request //& { user: any }
+  ) {
+    try {
+      if(req['user'] !== undefined) {
+        console.log("req.user:", req['user'].id_user)
+        return res.send({ message: 'Status' })
+      } else {
+        return res.status(HttpStatus.UNAUTHORIZED).send({ message: 'Unauthorized' })
+      }
+    } catch(error) {
+      console.error(error);
+      throw new InternalServerErrorException('Internal Server Error');
+    }
+  }
+ 
   @Post('sign-in')
   @UsePipes(new ZodValidationPipe(signInUserSchema))
   async signIn(

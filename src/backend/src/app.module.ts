@@ -31,6 +31,7 @@ import { AuthModule } from './module/auth/auth.module';
 import { AuthController } from './module/auth/auth.controller';
 //Throttler import
 import { ThrottlerModule } from '@nestjs/throttler';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
@@ -46,6 +47,9 @@ import { ThrottlerModule } from '@nestjs/throttler';
       serveRoot: '/assets',
       renderPath: undefined,
       exclude: ['**/*.html']
+    }),
+    PassportModule.register({
+      session: true
     }),
     PrismaModule,
     UserModule,

@@ -2,12 +2,13 @@ import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { SignInUser } from "./interface/auth.interface";
 //DTO import
-import { AuthDTO } from "./dto/auth.dto";
+import { AuthDTO, UserDetails } from "./dto/auth.dto";
 //Hashing import
 import * as bcrypt from 'bcrypt';
 //JWT import
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from "../prisma/prisma.service";
+import { GoogleStrategy } from "./utils/google-strategy.utils";
 
 //Authenticator Operations
 @Injectable()
@@ -18,8 +19,39 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
   
-  async googleLogIn() {
+  async validateUser(details: UserDetails) {
+    console.log("AuthService", AuthService)
+    console.log("details:", details)
+
+    const user = await this.prismaService.user.findUnique({
+      where: {
+        email: details.email
+      }
+    })
     
+    console.log("user:", user)
+    if(user) return user
+
+    console.log('User not found')
+    const newUser = this.prismaService.user.create({
+      data: {
+        name: details.name,
+        email: details.email,
+        password: null
+      }
+    })
+
+    return newUser
+  }
+
+  async findUser(id_user: number) {
+    console.log("id_user:", id_user)
+    const user = await this.prismaService.user.findUnique({
+      where: {
+        id_user
+      }
+    })
+    return user
   }
 
   async authSignUpUser(body: SignInUser): Promise<AuthDTO> {

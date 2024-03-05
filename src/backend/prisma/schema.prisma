@@ -12,9 +12,9 @@ datasource db {
 
 model User {
   id_user Int @id @default(autoincrement())
-  username String @db.VarChar(30)
+  name String @db.VarChar(30)
   email String @unique @db.VarChar(110)
-  password String @db.VarChar(255)
+  password String? @db.VarChar(255)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
