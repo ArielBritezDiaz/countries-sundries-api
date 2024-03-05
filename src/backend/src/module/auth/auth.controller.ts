@@ -1,4 +1,4 @@
-import { Controller, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version, Param, Body, Post, UnauthorizedException, UseGuards, Request, Req } from '@nestjs/common'
+import { Controller, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version, Param, Body, Post, UnauthorizedException, UseGuards, Request, Req, Session } from '@nestjs/common'
 import { Response } from 'express';
 //Service import
 import { AuthService } from './auth.service';
@@ -13,6 +13,7 @@ import { GoogleAuthGuard } from './guard/google-strategy.guard';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  //Register with Google Account OAuth2.0
   @Get('google/login')
   @UseGuards(GoogleAuthGuard)
   async googleLogIn(
@@ -30,42 +31,35 @@ export class AuthController {
 
   @Get('google/redirect')
   @UseGuards(GoogleAuthGuard)
-  async googleRedirect() {
+  async googleRedirect(
+    @Res() res: Response,
+    @Req() req: Request
+  ) {
     try {
-      return { message: 'Google Redirect' }
+      // console.log("req in googleRedirect:", req['user'].id_user)
+      return res.redirect(`http://localhost:3000/v1/auth/profile`)
     } catch(error) {
       console.error(error);
       throw new InternalServerErrorException('Internal Server Error');
     }
   }
 
-  @Get('status')
-  async status(
-    @Res() res: Response,
-    @Req() req: Request //& { user: any }
-  ) {
-    try {
-      if(req['user'] !== undefined) {
-        console.log("req.user:", req['user'].id_user)
-        return res.send({ message: 'Status' })
-      } else {
-        return res.status(HttpStatus.UNAUTHORIZED).send({ message: 'Unauthorized' })
-      }
-    } catch(error) {
-      console.error(error);
-      throw new InternalServerErrorException('Internal Server Error');
-    }
-  }
- 
+  //Register with Email and Password
   @Post('sign-in')
+  @Version(['1'])
   @UsePipes(new ZodValidationPipe(signInUserSchema))
   async signIn(
     @Res() res: Response,
-    @Body() body: SignInUserDTO
+    @Body() body: SignInUserDTO,
+    @Session() session: Record<string, any>
   ) {
     try {
-      const response = await this.authService.authSignUpUser(body);
-      return res.status(HttpStatus.OK).send(response);
+      const response = await this.authService.authSignInUser(body)
+      console.log("id_user from login:", response)
+      session.id_user = response['user'].id_user
+      session.access_token = response.access_token
+
+      return res.status(HttpStatus.OK).redirect('/v1/auth/profile')
     } catch(error) {
       if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })
       console.log(error);
@@ -73,25 +67,59 @@ export class AuthController {
     }
   }
 
+  @Get('redirect-profile')
+  @Version(['1'])
+  async redirectProfile(
+    @Res() res: Response,
+    @Request() req: Request,
+    @Session() session: Record<string, any>
+  ) {
+    try {
+      console.log(req['session'])
+      const user = req['session'].new_user
+      const response = await this.authService.getToken(user)
+      session.id_user = response['user'].id_user
+      session.access_token = response.access_token
+
+      console.log("response in redirectProfile:", response)
+      return res.status(HttpStatus.OK).redirect('/v1/auth/profile')
+    } catch(error) {
+      if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })
+      console.error(error);
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ message: 'Internal Server Error' });
+    }
+  }
+
   @Get('profile')
-  @UseGuards(AuthGuard)
   @Version(['1'])
   async profile(
     @Res() res: Response,
-    @Request() req
+    @Request() req: Request
   ) {
     try {
-      const { id_user, email } = req.user;
+      console.log(req['session'])
+      let data = {}
 
-      const reqData = {
-        id_user,
-        email
+      if (req['user']?.id_user !== undefined && req['user']?.access_token !== undefined) {
+        console.log("req[user]:", req['user'].id_user)
+        data = {
+          id_user: req['user'].id_user,
+          access_token: req['user'].access_token
+        }
+      } else if (req['session'].id_user !== undefined && req['session'].access_token !== undefined) {
+        console.log("req[session]:", req['session'])
+        data = {
+          id_user: req['session'].id_user,
+          access_token: req['session'].access_token
+        }
+      } else {
+        throw new UnauthorizedException('User not found');
       }
-      console.log("id_user:", id_user)
-      console.log("email:", email)
-      const user = await this.authService.profileUser(reqData);
-      // console.log("req:", req)
-      return res.status(HttpStatus.OK).send(user);
+
+      
+      const user_rofile = await this.authService.profileUser(data)
+      console.log("user_rofile:", user_rofile)
+      return res.send(user_rofile)
     } catch(error) {
       if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })
       console.error(error);
