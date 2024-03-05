@@ -1,4 +1,4 @@
-import { Controller, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version, UseGuards } from '@nestjs/common'
+import { Controller, Res, Get, Query, HttpStatus, UsePipes, ValidationPipe, InternalServerErrorException, Version, UseGuards, Req } from '@nestjs/common'
 import { Response } from 'express';
 //Service import
 import { CountryService } from './country.service';
@@ -23,12 +23,12 @@ export class CountryController {
   @UsePipes(new ZodValidationPipe(countrySchema))
   async getCountryAll(
     @Res() res: Response,
+    @Req() req: Request,
     // @Headers(`${process.env.API_KEY_HEADER}`) apiKeyHeader: apiKeyDTO['apiKey'],
     @Query(new ValidationPipe({transform: true})) queryParams: CountryValueControlDTO
   ){
     try {
-      // console.log("queryParams:", queryParams)
-
+      console.log("queryParams:", queryParams)
       const query: CountryValueControlDTO = { ...queryParams };
       // console.log("query in controller:", query)
 

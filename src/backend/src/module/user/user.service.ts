@@ -7,6 +7,7 @@ import { SignUpUserDTO } from "./dto/user.dto";
 import { SignInUser } from "./interface/user.interface";
 //Hashing import
 import * as bcrypt from 'bcrypt';
+import { JwtService } from "@nestjs/jwt";
 
 //CRUD Operations
 @Injectable()
@@ -14,10 +15,11 @@ export class UserService {
   constructor(
     private readonly prismaService: PrismaService,
     private configService: ConfigService<{ database: DatabaseConfig }, true>,
+    private readonly jwtService: JwtService,
   ) {}
 
 
-  async signUpUser(body: SignUpUserDTO): Promise<boolean> {
+  async signUpUser(body: SignUpUserDTO): Promise<number> {
     const passw = body.password
     const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS, 10)
 
@@ -30,26 +32,33 @@ export class UserService {
 
     if(existsUser) throw new UnauthorizedException('User already exists')
 
-    return new Promise<boolean>((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
       bcrypt.hash(passw, saltRounds, async (err: string, hash: string) => {
         if (err) {
-          reject(new InternalServerErrorException());
+          reject(new InternalServerErrorException('Error hashing password'));
+          return
         }
   
         body.password = hash;
         console.log("body:", body);
+        try {
+          const user = await this.prismaService.user.create({
+            data: {
+              ...body,
+            }
+          });
+          console.log("response:", user);
   
-        const response = await this.prismaService.user.create({
-          data: {
-            ...body,
+          if (user) {
+            resolve(user);
+          } else {
+            reject(new InternalServerErrorException());
           }
-        });
-        
-        console.log("response:", response);
-        if (response) {
-          resolve(true);
+        } catch(error) {
+          console.error(error)
+          reject(new InternalServerErrorException());
         }
-      });
+      });        
     });
   }
 

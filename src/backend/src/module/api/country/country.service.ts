@@ -15,7 +15,7 @@ export class CountryService {
   ) {}
   
   async getCountryAll(query: CountryValueControlDTO): Promise<FormattedCountry[]> {
-    // console.log("query:", query)
+    console.log("query:", query)
 
     let orderBy = {}
     if(query.order_by && query.order_direction) {

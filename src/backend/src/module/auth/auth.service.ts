@@ -30,7 +30,9 @@ export class AuthService {
     })
     
     console.log("user:", user)
-    if(user) return user
+    if(user) {
+      return user
+    }
 
     console.log('User not found')
     const newUser = this.prismaService.user.create({
@@ -45,7 +47,7 @@ export class AuthService {
   }
 
   async findUser(id_user: number) {
-    console.log("id_user:", id_user)
+    console.log("id_user findUser:", id_user)
     const user = await this.prismaService.user.findUnique({
       where: {
         id_user
@@ -54,33 +56,79 @@ export class AuthService {
     return user
   }
 
-  async authSignUpUser(body: SignInUser): Promise<AuthDTO> {
+  async getToken(user: any) {
+    // console.log("user:", user)
+    const id_user = user.id_user
+    const payload = { id_user }
+    console.log("payload:", payload)
+
+    const access_token = await this.jwtService.signAsync(payload)
+
+    const response = {
+      user,
+      access_token
+    }
+
+    return response
+  }
+
+  async authSignInUser(body: SignInUser): Promise<AuthDTO> {
 
     const user = await this.UserService.signInUser(body)
-
     const bcryotResult = await bcrypt.compare(body.password, user.password)
 
     if(!bcryotResult) throw new UnauthorizedException('Password is incorrect')
 
-    const payload = {
-      sub: user.id_user,
-      email: user.email
+    const payload = { id_user: user.id_user }
+    const access_token = await this.jwtService.signAsync(payload)
+
+    const response = {
+      user,
+      access_token
     }
 
     console.log("user:", user)
-    return {
-      access_token : await this.jwtService.signAsync(payload)
+    return response
+  }
+
+  async verifyToken(token: string): Promise<boolean> {
+    try {
+      const payload = await this.jwtService.verifyAsync(token)
+      console.log("payload:", payload)
+      return true
+    } catch(error) {
+      console.error(error)
+      return false
     }
   }
 
-  async profileUser(reqDara: any) {
-    const profile = await this.prismaService.user.findMany({
+  async profileUser(data: any) {
+    console.log("profile service:", data)
+    const id_user = data.id_user
+    const access_token = data.access_token
+
+    const isTokenValid = await this.verifyToken(access_token);
+    const status = isTokenValid ? 'Active' : 'Deprecated'
+    
+    const user = await this.prismaService.user.findUnique({
       where: {
-        id_user: reqDara.id_user,
-        email: reqDara.email
+        id_user
+      },
+      select: {
+        name: true,
+        email: true,
+        created_at: true
       }
     })
-    console.log("profile:", profile)
+
+    const profile = {
+      user,
+      token: {
+        access_token,
+        status
+      }
+    }
+
     return profile
   }
 }
