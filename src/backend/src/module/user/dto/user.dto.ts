@@ -6,7 +6,7 @@ import { IsString } from 'class-validator';
 export class SignUpUserDTO {
   @IsString()
   @Type(() => String)
-  username: string;
+  name: string;
 
   @IsString()
   @Type(() => String)

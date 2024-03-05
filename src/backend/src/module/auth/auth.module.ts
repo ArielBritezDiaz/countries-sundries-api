@@ -8,6 +8,7 @@ import { JwtModule } from "@nestjs/jwt";
 //JWT Constants import
 import { jwtConstants } from "./constants/auth.constants";
 import { GoogleStrategy } from "./utils/google-strategy.utils";
+import { SessionSerializer } from "./utils/serializer.auth";
 
 @Module({
   imports: [
@@ -18,7 +19,10 @@ import { GoogleStrategy } from "./utils/google-strategy.utils";
       signOptions: { expiresIn: '180s' }
     })
   ],
-  providers: [AuthService, UserService, JwtModule, GoogleStrategy],
+  providers: [AuthService, UserService, GoogleStrategy, SessionSerializer, {
+    provide: 'AUTH_SERVICE',
+    useClass: AuthService
+  }],
   controllers: [AuthController],
 })
 

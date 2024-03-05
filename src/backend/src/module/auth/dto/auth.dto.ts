@@ -9,3 +9,8 @@ export class validateGoogleStrategyDTO {
   refresh_token: string;
   profile: Profile;
 }
+
+export class UserDetails {
+  name: string;
+  email: string;
+}
