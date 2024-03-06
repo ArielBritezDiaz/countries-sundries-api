@@ -16,7 +16,7 @@ async function bootstrap() {
 
   // global prefix for 'countriessundriesapi.com/api'
   app.setGlobalPrefix('api', {
-    exclude: ['/user/create', '/user/sign-in', '/user/sign-up', '/auth/sign-in', '/auth/profile']
+    exclude: ['/user/create', '/user/sign-in', '/user/sign-up', '/auth/google/login', '/auth/sign-in', '/auth/profile']
   })
   app.enableVersioning({
     type: VersioningType.URI, // default prefix is 'v', and this complements with the @Version decorator in the controllers methods, for now is set to version '1'.
