@@ -33,10 +33,19 @@ export class AuthController {
   @UseGuards(GoogleAuthGuard)
   async googleRedirect(
     @Res() res: Response,
-    @Req() req: Request
+    @Req() req: Request,
+    @Session() session: Record<string, any>
   ) {
     try {
-      // console.log("req in googleRedirect:", req['user'].id_user)
+      console.log("req in googleRedirect--------------------------------------------------")
+      console.log(req['user'])
+
+      const user = req['user']
+      const response = await this.authService.getToken(user)
+      session.id_user = response['user'].id_user
+      session.access_token = response.access_token
+      console.log("response in googleRedirect:", response)
+
       return res.redirect(`http://localhost:3000/v1/auth/profile`)
     } catch(error) {
       console.error(error);
@@ -54,11 +63,13 @@ export class AuthController {
     @Session() session: Record<string, any>
   ) {
     try {
+      console.log("login in sign-in--------------------------------------------------")
       const response = await this.authService.authSignInUser(body)
       console.log("id_user from login:", response)
       session.id_user = response['user'].id_user
       session.access_token = response.access_token
 
+      
       return res.status(HttpStatus.OK).redirect('/v1/auth/profile')
     } catch(error) {
       if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })
@@ -75,6 +86,7 @@ export class AuthController {
     @Session() session: Record<string, any>
   ) {
     try {
+      console.log("redirect-profile---------------------------------------------------")
       console.log(req['session'])
       const user = req['session'].new_user
       const response = await this.authService.getToken(user)
@@ -97,6 +109,7 @@ export class AuthController {
     @Request() req: Request
   ) {
     try {
+      console.log("profile-------------------------------------------")
       console.log(req['session'])
       let data = {}
 
@@ -112,6 +125,16 @@ export class AuthController {
           id_user: req['session'].id_user,
           access_token: req['session'].access_token
         }
+      } else if(req['session'].passport?.user !== undefined) {
+        console.log("if req[session].passport-------------------------------")
+        console.log(req['session'].passport)
+
+        data = {
+          id_user: req['session'].passport.user.id_user,
+          access_token: req['session'].passport.user.access_token
+        }
+        console.log("data in passport session-------------------------------")
+        console.log(data)
       } else {
         throw new UnauthorizedException('User not found');
       }

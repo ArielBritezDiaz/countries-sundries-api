@@ -48,12 +48,23 @@ export class AuthService {
 
   async findUser(id_user: number) {
     console.log("id_user findUser:", id_user)
+    const payload = { id_user }
+    console.log("payload:", payload)
+
+    const access_token = await this.jwtService.signAsync(payload)
+
     const user = await this.prismaService.user.findUnique({
       where: {
         id_user
       }
     })
-    return user
+
+    const profile = {
+      user,
+      access_token
+    }
+
+    return profile
   }
 
   async getToken(user: any) {
