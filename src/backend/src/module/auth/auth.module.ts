@@ -13,13 +13,15 @@ import { SessionSerializer } from "./utils/serializer.auth";
 @Module({
   imports: [
     UserModule,
+    //JWT Config
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '10s' },
+      signOptions: { expiresIn: '180s' }, // this is 180 seconds, the config por one year is "6M"
     }),
   ],
   providers: [AuthService, UserService, GoogleStrategy, SessionSerializer, {
+    //AuthService Provider
     provide: 'AUTH_SERVICE',
     useClass: AuthService
   }],
