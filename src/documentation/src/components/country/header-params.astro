@@ -2,26 +2,36 @@
 title: 'Header Params'
 ---
 
-<div>
-Header Parameters:
-<blockquote>
-    <p>Authorization: Bearer token</p>
-    <p>Content-Type: application/json</p>
-    <p>Accept: application/json</p>
-    <p>Accept-Language: en</p>
-    <p>Accept-Encoding: gzip, deflate, br</p>
-    <p>Connection: keep-alive</p>
-    <p>Host: api.example.com</p>
-    <p>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36</p>
-    <p>Referer: https://example.com</p>
-    <p>Origin: https://example.com</p>
-    <p>Cache-Control: no-cache</p>
-    <p>Pragma: no-cache</p>
-    <p>Expires: 0</p>
-    <p>Sec-Fetch-Dest: empty</p>
-    <p>Sec-Fetch-Mode: cors</p>
-    <p>Sec-Fetch-Site: same-site</p>
-    <p>Sec-Fetch-User: ?1</p>
-    <p>Upgrade-Insecure-Requests:
-</blockquote>
-</div>
+<table>
+    <thead>
+        <tr>
+            <th>Name Parameter</th>
+            <th>Data Type</th>
+            <th>Optional / Required</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>x-countries_sundries_api-key</td>
+            <td>String</td>
+            <td>Required</td>
+            <td>It will be specified with the prefix 'Bearer', followed by the JWT obtained from user authentication</td>
+        </tr>
+        <tr>
+            <td>x-api-version</td>
+            <td>String</td>
+            <td>Required</td>
+            <td>Specifies the current version of the API</td>
+        </tr>
+        <tr>
+            <td>Content-Type</td>
+            <td>String</td>
+            <td>Optional</td>
+            <td>Will return the requested information in JSON format</td>
+        </tr>
+        <tr>
+            
+        </tr>
+    </tbody>
+</table>

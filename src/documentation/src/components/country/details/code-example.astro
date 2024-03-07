@@ -1,12 +1,12 @@
 ---
 import { Code } from '@astrojs/starlight/components';
-export const url = `http://localhost:3000/api/v1/country/all`
+export const url = `http://localhost:3000/api/v1/country/all?name=argentina`
 export const code = `
 const fetchApiExample = async () => {
   const response = await fetch(${url}, {
     method: 'GET',
     headers: {
-      'x-countries_sundries_api-key': 'Bearer x-xxx-xxxx-x',
+      'x-countries_sundries_api-key': 'x-xxx-xxxx-x',
       'x-api-version': '1',
       'Content-Type': 'application/json'
     }
@@ -20,9 +20,8 @@ fetchApiExample()
 
 export const title = 'Fetch API example'
 
-export const highlights = ['http://localhost:3000/api/v1/country/all']
+export const highlights = ['http://localhost:3000/api/v1/country/all?name=argentina']
 ---
 
-<div id="country-all" >
-  <Code frame="code" code={code} lang="js" title={title} mark={highlights} />
-</div>
+<Code frame="code" code={code} lang="js" title={title} mark={highlights} />
+
