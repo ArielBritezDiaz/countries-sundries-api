@@ -2,9 +2,11 @@
 title: Flag Endpoint
 ---
 
-import Code from '../../../../components/flag/code-example.astro';
-import Response from '../../../../components/flag/response.astro';
+import CodeResponseFlagAll from '../../../../components/flag/all/all-code-example.flag.astro';
+import CodeExampleFlagAll from '../../../../components/flag/all/all-response.flag.astro';
 
+import CodeExampleFlagDetails from '../../../../components/flag/details/details-code-example.flag.astro';
+import CodeResponseFlagDetails from '../../../../components/flag/details/details-response.flag.astro';
 
 In this section we will show you the **`flag`** endpoints, its parameters, combinations and specific details.\
 At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of coats of arms of 164 countries, including different international organizations.
@@ -27,12 +29,12 @@ We will save the result in a constant and return it, this result will be saved i
   The fewer flag records you bring in, the faster the server will respond 
 :::
 
-<Code />
+<CodeResponseFlagAll />
 
 ### Response
 >The result of the request will be a JSON object with the information flag of the countries.
 
-<Response />
+<CodeExampleFlagAll />
 
 ### Header Parameters
 :::note[Remember!]
@@ -67,3 +69,26 @@ Allows you to filter records by type, for now only the image of type [SVG](https
 curl -X GET 'http://countries-sundries-api.com/flag/all?type=svg'
 ```
 
+## `flag/details`
+This endpoint will allow you to obtain all the previous information but returning a single register, this will allow a much faster response if you need a single country and not many.\
+All Query Parameters (Except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for `details`.\
+If no Query Parameter is specified, the first register will be returned.
+
+### Example Request
+>We will make an example of a possible API request that could be given in case you want to bring the flag image of a specific country.\
+
+<CodeExampleFlagDetails />
+
+### Response
+
+<CodeResponseFlagDetails />
+
+### Header Parameters
+:::note[Remember!]
+See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
+:::
+
+### Query Parameters
+:::note[They're up!]
+All Query Parameters (Except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for `details`!
+:::
