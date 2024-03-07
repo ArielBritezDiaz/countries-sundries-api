@@ -45,7 +45,8 @@ export default defineConfig({
           label: 'Supported Data',
           link: '/docs/getting-started/supported-data'
         }]
-      }, {
+      },
+      {
         label: 'API Docs',
         items: [{
           label: 'Country',
@@ -66,7 +67,16 @@ export default defineConfig({
           label: 'Sub Region',
           link: '/docs/api-docs/sub-region/'
         }]
-      }]
+      },
+      {
+        label: 'API Reference',
+        items: [{
+          label: 'Global Parameters',
+          link: '/docs/api-reference/global-parameters/'
+        }]
+      },
+      { label: 'Changelog', link: '/docs/changelog/changelog/' }
+    ]
     }), tailwind({
       applyBaseStyles: false
     }), expressiveCode(expressiveCodeConfig)

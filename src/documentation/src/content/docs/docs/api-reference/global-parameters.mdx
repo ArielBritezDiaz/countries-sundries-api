@@ -1,0 +1,35 @@
+---
+title: 'Global Parameters'
+---
+
+### Header Parameters
+>`x-api-version` _Required String_\
+It will be specified with the version of the API to be used.\
+If the requested version supports the endpoint entered, the following verification will proceed successfully; otherwise a [<span style="color: #f0a802;">401 Unauthorized</span>](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) status code will be returned with the message <span style="color: #f0a802;">'API version incorrect'</span>.
+The versions have been established for both URI Versioning and Header Versioning, therefore, the same version of the API must be specified for both the URL and the Header Parameter
+
+```js
+'x-api-version': '1'
+```
+
+At the moment the current version is **1**, therefore, all current endpoints are supported. In future updates this may not be the case and specific endpoints will only continue to be shown in the most current versions, all this will be reported in [Changelog](/docs/changelog/changelog)
+
+
+
+>`x-countries_sundries_api-key` _Required String_\
+The authentication set is [JWT](https://jwt.io/), it will be specified with the prefix 'Bearer', followed by the JSON Web Token
+
+```js
+'x-countries_sundries_api-x': 'Bearer x-xxxx-xxxx-x'
+```
+If a still valid JWT is entered, the verification will be successful, this will respond with the requested endpoint information; otherwise a response with the status code [<span style="color: #f0a802;">'401 Unauthorized'</span>](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) will be returned.
+
+
+
+>`Content-Type` _Optional String_\
+Is used to specify the format of the request body.\
+Is an optional parameter, if not specified, the default value will be 'application/json'
+
+```js
+'Content-Type': 'application/json'
+```
