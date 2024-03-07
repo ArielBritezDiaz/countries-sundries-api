@@ -52,8 +52,8 @@ export default defineConfig({
           label: 'Country',
           link: '/docs/api-docs/country/'
         }, {
-          label: 'Coat of Arms',
-          link: '/docs/api-docs/coat-of-arms/'
+          label: 'Coat of Arm',
+          link: '/docs/api-docs/coat-of-arm/'
         }, {
           label: 'Flag',
           link: '/docs/api-docs/flag'
@@ -71,8 +71,11 @@ export default defineConfig({
       {
         label: 'API Reference',
         items: [{
-          label: 'Global Parameters',
-          link: '/docs/api-reference/global-parameters/'
+          label: 'Global Header Parameters',
+          link: '/docs/api-reference/global-header-parameters/'
+        }, {
+          label: 'Global Query Parameters',
+          link: '/docs/api-reference/global-query-parameters/'
         }]
       },
       { label: 'Changelog', link: '/docs/changelog/changelog/' }

@@ -17,7 +17,7 @@ import { SessionSerializer } from "./utils/serializer.auth";
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '180s' }, // this is 180 seconds, the config por one year is "6M"
+      signOptions: { expiresIn: '10m' }, // this is 180 seconds, the config por one year is "6M"
     }),
   ],
   providers: [AuthService, UserService, GoogleStrategy, SessionSerializer, {

@@ -2,4 +2,5 @@
 title: 'Overview'
 ---
 
-![Countries Sundries Image](../../../../assets/logo-image/countries-sundries-logo-image.svg)
+![Countries Sundries Image](../../../../assets/logo-image/V3.svg)
+

@@ -20,7 +20,7 @@ export class FlagService {
     
     const response = await this.prisma.flag.findMany({
       ...(query.from && { skip: query.from } ),
-      ...(query.take && { take: query.take } ),
+      ...(query.take && query.take <= 30 ? { take: query.take } : { take: 30 } ),
       where: {
         ...(query.id && { id_flag: query.id }),
         ...(query.name && { name: query.name }),
@@ -35,9 +35,19 @@ export class FlagService {
         ...(query.order_by && { [query.order_by]: query.order_direction })
       }
     })
-    console.log("response:", response)
+    // console.log("response:", response)
 
-    return response !== null && response.length > 0 ? response : []
+    const FormattedFlag = await response.map(flag => {
+      return {
+        id_flag: flag.id_flag,
+        name: flag.name,
+        type: flag.type,
+        url: `${process.env.PROTOCOL}://${process.env.DB_HOST}:${process.env.PORT}/api/${process.env.API_VERSION}/image/flag?name=${flag.name}`
+      }
+    })
+    console.log("FormattedFlag:", FormattedFlag)
+
+    return FormattedFlag !== null && FormattedFlag.length > 0 ? FormattedFlag : []
   }
 
   async getFlagDetails(query: FlagValueControlDTO): Promise<FormattedFlag[]> {
@@ -56,8 +66,16 @@ export class FlagService {
       }
     })
 
-    console.log("response:", response)
+    // console.log("response:", response)
 
-    return response !== null ? [response] : []
+    const FormattedFlag = {
+        id_flag: response.id_flag,
+        name: response.name,
+        type: response.type,
+        url: `${process.env.PROTOCOL}://${process.env.DB_HOST}:${process.env.PORT}/api/${process.env.API_VERSION}/image/flag?name=${response.name}`
+    }
+    console.log("FormattedFlag:", FormattedFlag)
+
+    return FormattedFlag !== null && [FormattedFlag].length > 0 ? [FormattedFlag] : []
   }
 }
