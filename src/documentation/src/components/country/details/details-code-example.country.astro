@@ -1,0 +1,27 @@
+---
+import { Code as ExampleCodeCountryDetails } from '@astrojs/starlight/components';
+export const url = `http://localhost:3000/api/v1/country/details`
+export const code = `
+const fetchApiExample = async () => {
+  const response = await fetch(${url}, {
+    method: 'GET',
+    headers: {
+      'x-countries_sundries_api-key': 'x-xxx-xxxx-x',
+      'x-api-version': '1',
+      'Content-Type': 'application/json'
+    }
+  });
+  const data = await response.json();
+  return data;
+};
+
+fetchApiExample();
+`
+
+export const title = 'Fetch API example'
+
+export const highlights = [url]
+---
+
+<ExampleCodeCountryDetails frame="code" code={code} lang="js" title={title} mark={highlights} />
+

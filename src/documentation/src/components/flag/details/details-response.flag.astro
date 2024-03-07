@@ -1,5 +1,5 @@
 ---
-import { Code } from '@astrojs/starlight/components'
+import { Code as CodeResponseFlagDetails } from '@astrojs/starlight/components'
 
 const data = `[
   {
@@ -7,12 +7,9 @@ const data = `[
     "name": "argentina",
     "type": "svg",
     "url": "http://localhost:3000/api/v1/image/flag?name=argentina"
-  },
-  {
-    ...
   }
 ];`
 export {data as responseData }
 ---
 
-<Code lang="json" code={data} title="GET 200 OK" />
+<CodeResponseFlagDetails lang="json" code={data} title="GET 200 OK" />

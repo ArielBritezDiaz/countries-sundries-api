@@ -1,6 +1,6 @@
 ---
-import { Code } from '@astrojs/starlight/components';
-export const url = `http://localhost:3000/api/v1/flag/all`
+import { Code as CodeExampleFlagDetails } from '@astrojs/starlight/components';
+export const url = `http://localhost:3000/api/v1/flag/details`
 export const code = `
 const fetchApiExample = async () => {
   const response = await fetch(${url}, {
@@ -11,18 +11,18 @@ const fetchApiExample = async () => {
       'Content-Type': 'application/json'
     }
   });
-  const data = await response.json()
-  return data
-}
+  const data = await response.json();
+  return data;
+};
 
-fetchApiExample()
+fetchApiExample();
 `
 
 export const title = 'Fetch API example'
 
-export const highlights = ['http://localhost:3000/api/v1/flag/all']
+export const highlights = [url]
 ---
 
 <div id="flag-all" >
-  <Code frame="code" code={code} lang="js" title={title} mark={highlights} />
+  <CodeExampleFlagDetails frame="code" code={code} lang="js" title={title} mark={highlights} />
 </div>

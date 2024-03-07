@@ -3,8 +3,11 @@ title: 'Country endpoint'
 description: 'An explication for a countries endpoints'
 ---
 
-import Code from '../../../../components/country/code-example.astro';
-import Response from '../../../../components/country/response.astro';
+import ExampleCodeCountryAll from '../../../../components/country/all/all-code-example.country.astro';
+import CodeResponseCountryAll from '../../../../components/country/all/all-response.country.astro';
+
+import ExampleCodeCountryDetails from '../../../../components/country/details/details-code-example.country.astro';
+import CodeResponseCountryDetails from '../../../../components/country/details/details-response.country.astro';
 
 In this section we will show you the **`country`** endpoint, its parameters, combinations and specific details.\
 At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of 160 countries, including different international organizations.
@@ -26,12 +29,12 @@ We will save the result in a constant and return it, this result will be saved i
   The fewer country records you bring in, the faster the server will respond 
 :::
 
-<Code />
+<ExampleCodeCountryAll />
 
 ### Response
 >The result of the request will be a JSON object with the information of the countries.
 
-<Response />
+<CodeResponseCountryAll />
 
 ### Header Parameters
 :::note[Remember!]
@@ -233,3 +236,28 @@ Allows you to filter records by sub region name
 ```bash
 curl -X GET 'http://countries-sundries-api.com/country/all?sub_region_name=South%20America'
 ```
+
+## `country/details`
+This endpoint will allow you to obtain all the previous information but returning a single register, this will allow a much faster response if you need a single country and not many.\
+All Query Parameters (Except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for `details`.\
+If no Query Parameter is specified, the first register will be returned.
+
+### Example Request
+>We will make an example of a possible API request that could be given in case you want to bring the details of a specific country.
+
+<ExampleCodeCountryDetails />
+
+### Response
+>The result of the request will be a JSON object with the information of the country.
+
+<CodeResponseCountryDetails />
+
+### Header Parameters
+:::note[Remember!]
+See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
+:::
+
+### Query Parameters
+:::note[They're up!]
+All Query Parameters (Except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for `details`!
+:::
