@@ -12,7 +12,7 @@ import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
 import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
 
 @UseGuards(AuthGuard)
-@Controller(`sub_region`)
+@Controller(`sub-region`)
 export class SubRegionController {
   constructor(
     private readonly SubRegionService: SubRegionService

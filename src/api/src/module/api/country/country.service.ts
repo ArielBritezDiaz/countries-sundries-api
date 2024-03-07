@@ -28,7 +28,7 @@ export class CountryService {
 
     const response = await this.prisma.country.findMany({
       ...(query.from !== 0 && { skip: query.from } ),
-      ...(query.take !== 0 && { take: query.take } ),
+      ...(query.take && query.take <= 30 ? { take: query.take } : { take: 30 } ),
       where: {
         ...(query.id && { id_country: { equals: query.id} }),
         ...(query.name && { name: { equals: query.name} }),

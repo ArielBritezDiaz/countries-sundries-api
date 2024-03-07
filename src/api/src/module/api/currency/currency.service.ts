@@ -21,7 +21,7 @@ export class CurrencyService {
 
     const response = await this.prisma.currency.findMany({
       ...(preferencesParams.from && { skip: preferencesParams.from } ),
-      ...(preferencesParams.take && { take: preferencesParams.take } ),
+      ...(preferencesParams.take && preferencesParams.take <= 30 ? { take: preferencesParams.take } : { take: 30 } ),
       where: {
         ...(preferencesParams.id && { id_currency: preferencesParams.id }),
         ...(preferencesParams.name && { name: { contains: preferencesParams.name.toUpperCase() } }),

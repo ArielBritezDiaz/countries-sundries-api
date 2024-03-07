@@ -3,18 +3,15 @@ title: 'Country endpoint'
 description: 'An explication for a countries endpoints'
 ---
 
-import HeaderParams from '../../../../components/country/header-params.astro';
 import Code from '../../../../components/country/code-example.astro';
 import Response from '../../../../components/country/response.astro';
-import QueryParams from '../../../../components/country/query-params.astro';
 
- {/* import Code from '../../../../components/country/details/code-example.astro'; */}
+In this section we will show you the **`country`** endpoint, its parameters, combinations and specific details.\
+At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of 160 countries, including different international organizations.
 
-In this section we will show you the endpoint for 'country', his parameters, combinations and specific details
+## Endpoint response and parameters
 
-## Endpoints response and parameters
-
-This endpoint will return the information of the countries with limit of 50 countries.
+This endpoint will return the information of the countries with limit of 30 countries.
 
 ## `/country/all`
 The `/country/all` endpoint, if no limit is specified, will by default return 50 countries from the database.
@@ -36,14 +33,203 @@ We will save the result in a constant and return it, this result will be saved i
 
 <Response />
 
-:::note[Header Parameters]
-For global API parameters, see [Global Parameters](/docs/api-reference/global-parameters)
+### Header Parameters
+:::note[Remember!]
+See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
 :::
 
 ### Query Parameters
-{/* <QueryParams /> */}
->`from` _Optional String_\
-s
+In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.\
 
+#### `id`
+> _Optional Integer_\
+Allows you to filter records by id
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?id=1'
+```
 
-## `/country/details`
+#### `name`
+> _Optional String_\
+Allows you to filter records by name
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?name=Argentina'
+```
+
+#### `official_name`
+> _Optional String_\
+Allows you to filter records by official name
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?official_name=Republic%20of%20Argentina'
+```
+
+#### `abbr`
+> _Optional String_\
+Allows you to filter records by abbreviation
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?abbr=ARG'
+```
+
+#### `internet_tld`
+> _Optional String_\
+Allows you to filter records by internet tld
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?internet_tld=.ar'
+```
+
+#### `motto`
+> _Optional String_\
+Allows you to filter records by motto
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?motto=En%20unión%20y%20libertad'
+```
+
+#### `anthem`
+> _Optional String_\
+Allows you to filter records by anthem
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?anthem=Himno%20Nacional%20Argentino'
+```
+
+#### `capital`
+> _Optional String_\
+Allows you to filter records by capital
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?capital=Buenos%20Aires'
+```
+
+:::note[In case you haven't arrived yet!]
+See the [Global Query Parameters](/docs/api-reference/global-query-parameters) section to discover the Query Parameters that are globally accepted for endpoints ending in `/all`!
+:::
+
+#### `official_language`
+> _Optional String_\
+Allows you to filter records by official language
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?official_language=Spanish'
+```
+
+#### `iso_3166_1_alpha_2`
+> _Optional String_\
+Allows you to filter records by ISO 3166-1 alpha-2
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?iso_3166_1_alpha_2=AR'
+```
+
+#### `iso_3166_1_alpha_3`
+> _Optional String_\
+Allows you to filter records by ISO 3166-1 alpha-3
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?iso_3166_1_alpha_3=ARG'
+```
+
+#### `calling_code`
+> _Optional String_\
+Allows you to filter records by calling code
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?calling_code=+54'
+```
+
+#### `timezone`
+> _Optional String_\
+Allows you to filter records by timezone
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?timezone=UTC-3'
+```
+
+#### `id_coat_of_arms_fk`
+> _Optional Integer_\
+Allows you to filter records by id coat of arms foreign key
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?id_coat_of_arms_fk=1'
+```
+
+#### `coat_of_arms_name`
+> _Optional String_\
+Allows you to filter records by coat of arms name
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?coat_of_arms_name=Escudo%20de%20la%20Rep%C3%BAblica%20Argentina'
+```
+
+#### `coat_of_arms_type`
+> _Optional String_\
+Allows you to filter records by coat of arms type
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?coat_of_arms_type=svg'
+```
+
+#### `id_flag_fk`
+> _Optional Integer_\
+Allows you to filter records by id flag foreign key
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?id_flag_fk=1'
+```
+
+#### `flag_name`
+> _Optional String_\
+Allows you to filter records by flag name
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?flag_name=Argentina'
+```
+
+#### `flag_type`
+> _Optional String_\
+Allows you to filter records by flag type image
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?flag_type=svg'
+```
+
+#### `id_currency_fk`
+> _Optional Integer_\
+Allows you to filter records by id currency foreign key
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?id_currency_fk=1'
+```
+
+#### `currency_name`
+> _Optional String_\
+Allows you to filter records by currency name
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?currency_name=Argentine%20Peso'
+```
+
+#### `currency_abbr`
+> _Optional String_\
+Allows you to filter records by currency abbreviation
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?currency_abbr=ARS'
+```
+
+#### `currency_name`
+> _Optional String_\
+Allows you to filter records by currency name
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?currency_name=Argentine%20Peso'
+```
+
+#### `id_region_fk`
+> _Optional Integer_\
+Allows you to filter records by id region foreign key
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?id_region_fk=1'
+```
+
+#### `region_name`
+> _Optional String_\
+Allows you to filter records by region name
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?region_name=America'
+```
+
+#### `id_sub_region_fk`
+> _Optional Integer_\
+Allows you to filter records by id sub region foreign key
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?id_sub_region_fk=1'
+```
+
+#### `sub_region_name`
+> _Optional String_\
+Allows you to filter records by sub region name
+```bash
+curl -X GET 'http://countries-sundries-api.com/country/all?sub_region_name=South%20America'
+```
