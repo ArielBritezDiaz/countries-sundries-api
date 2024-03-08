@@ -43,9 +43,9 @@ export class CountryService {
         ...(query.iso_3166_1_alpha_3 && { iso_3166_1_alpha_3: { equals: query.iso_3166_1_alpha_3} }),
         ...(query.calling_code && { calling_code: { equals: query.calling_code} }),
         ...(query.timezone && { timezone: { equals: query.timezone} }),
-        ...(query.id_coat_of_arms_fk && { id_coat_of_arms: { equals: query.id_coat_of_arms_fk} }),
-        ...(query.coat_of_arms_name && { coat_of_arms: { name: { equals: query.coat_of_arms_name } } }),
-        ...(query.coat_of_arms_type && { coat_of_arms: { type: { contains: query.coat_of_arms_type } } }),
+        ...(query.id_coat_of_arm_fk && { id_coat_of_arm: { equals: query.id_coat_of_arm_fk} }),
+        ...(query.coat_of_arm_name && { coat_of_arm: { name: { equals: query.coat_of_arm_name } } }),
+        ...(query.coat_of_arm_type && { coat_of_arm: { type: { contains: query.coat_of_arm_type } } }),
         ...(query.id_flag_fk && { id_flag: { equals: query.id_flag_fk } }),
         ...(query.flag_name && { flag: { name: { equals: query.flag_name } } }),
         ...(query.flag_type && { flag: { type: { contains: query.flag_type } } }),
@@ -72,9 +72,9 @@ export class CountryService {
         iso_3166_1_alpha_3: true,
         calling_code: true,
         timezone: true,
-        coat_of_arms: {
+        coat_of_arm: {
           select: {
-            id_coat_of_arms: true,
+            id_coat_of_arm: true,
             name: true,
             type: true,
             url: true
@@ -122,11 +122,11 @@ export class CountryService {
           type: country.flag.type,
           url: `${process.env.PROTOCOL}://${process.env.DB_HOST}:${process.env.PORT}/api/${process.env.API_VERSION}/image/flag?name=${country.flag.name}`
         } : null,
-        coat_of_arms: country.coat_of_arms ? {
-          id_coat_of_arms: country.coat_of_arms.id_coat_of_arms,
-          name: country.coat_of_arms.name,
-          type: country.coat_of_arms.type,
-          url: `${process.env.PROTOCOL}://${process.env.DB_HOST}:${process.env.PORT}/api/${process.env.API_VERSION}/image/coat-of-arm?name=${country.coat_of_arms.name}`
+        coat_of_arm: country.coat_of_arm ? {
+          id_coat_of_arm: country.coat_of_arm.id_coat_of_arm,
+          name: country.coat_of_arm.name,
+          type: country.coat_of_arm.type,
+          url: `${process.env.PROTOCOL}://${process.env.DB_HOST}:${process.env.PORT}/api/${process.env.API_VERSION}/image/coat-of-arm?name=${country.coat_of_arm.name}`
         } : null,
         currency: country.currency ? {
           id_currency: country.currency.id_currency,

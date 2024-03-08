@@ -82,17 +82,17 @@ export class CountryValueControlDTO {
   @IsOptional()
   @Transform(({ value }) => Number(value))
   @IsInt()
-  id_coat_of_arms_fk: number;
+  id_coat_of_arm_fk: number;
 
   @IsOptional()
   @IsString()
   @Type(() => String)
-  coat_of_arms_name: string;
+  coat_of_arm_name: string;
 
   @IsOptional()
   @IsString()
   @Type(() => String)
-  coat_of_arms_type: string;
+  coat_of_arm_type: string;
 
   @IsOptional()
   @IsNumber()
