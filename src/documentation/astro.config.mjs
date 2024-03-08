@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: '',
-      customCss: ['./src/styles/global.css', './src/styles/country-components.css'],
+      customCss: ['./src/styles/global.css'],
       social: {
         linkedin: 'https://www.linkedin.com/in/ariel-britez-diaz-technical/',
         github: 'https://github.com/ArielBritezDiaz'
@@ -24,20 +24,11 @@ export default defineConfig({
           label: 'Overview',
           link: '/docs/introduction/overview/'
         }, {
-          label: 'Get API-Key access',
-          link: '/docs/introduction/get-api-key/'
-        }, {
-          label: '¿Why Countries Sundries?',
-          link: '/docs/introduction/why-countries-sundries/'
-        }, {
-          label: 'Concepts and diagrams',
-          link: '/docs/introduction/concept/'
-        }]
-      }, {
-        label: 'Getting Started',
-        items: [{
           label: 'Getting Started',
           link: '/docs/getting-started/getting-started'
+        }, {
+          label: 'Get API-Key access',
+          link: '/docs/introduction/get-api-key/'
         }, {
           label: 'Supported Data',
           link: '/docs/getting-started/supported-data'
@@ -76,6 +67,16 @@ export default defineConfig({
         }, {
           label: 'Global Query Parameters',
           link: '/docs/api-reference/global-query-parameters/'
+        }]
+      },
+      {
+        label: 'Project',
+        items: [{
+          label: 'How did it come about?',
+          link: '/docs/project/history/'
+        }, {
+          label: 'Technologies',
+          link: '/docs/project/technologies/'
         }]
       },
       { label: 'Changelog', link: '/docs/changelog/changelog/' }
