@@ -33,8 +33,8 @@ CREATE TABLE Flag(
     url VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Coat_Of_Arms(
-    id_coat_of_arms INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Coat_Of_Arm(
+    id_coat_of_arm INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     type VARCHAR(10) NOT NULL,
     url VARCHAR(255) NOT NULL
@@ -55,13 +55,13 @@ CREATE TABLE Country(
     iso_3166_1_alpha_3 VARCHAR(5) NOT NULL,
     calling_code VARCHAR(7) NOT NULL,
     timezone VARCHAR(20) NOT NULL,
-    id_coat_of_arms INT NULL,
+    id_coat_of_arm INT NULL,
     id_flag INT NULL,
     id_currency INT NULL,
     id_date_format INT NULL,
     id_region INT NULL,
     id_sub_region INT NULL,
-    FOREIGN KEY(id_coat_of_arms) REFERENCES Coat_Of_Arms(id_coat_of_arms),
+    FOREIGN KEY(id_coat_of_arm) REFERENCES Coat_Of_Arm(id_coat_of_arm),
     FOREIGN KEY(id_flag) REFERENCES Flag(id_flag),
     FOREIGN KEY(id_currency) REFERENCES Currency(id_currency),
     FOREIGN KEY(id_date_format) REFERENCES Date_Format(id_date_format),
@@ -485,7 +485,7 @@ VALUES
 
 
 /* Coat_Of_Arms inserts */
-INSERT INTO Coat_Of_Arms(name, type, url)
+INSERT INTO Coat_Of_Arm(name, type, url)
 VALUES
     ('argentina', 'svg', 'argentina.svg'),
     ('afghanistan', 'svg', 'afghanistan.svg'),
@@ -658,7 +658,7 @@ VALUES
 INSERT INTO Country(
     name, official_name, abbr, internet_tld, motto, anthem, capital, official_language,
     population, iso_3166_1_alpha_2, iso_3166_1_alpha_3, calling_code, timezone,
-    id_coat_of_arms, id_flag, id_currency, id_date_format, id_region, id_sub_region
+    id_coat_of_arm, id_flag, id_currency, id_date_format, id_region, id_sub_region
 ) VALUES
     ('Argentina', 'Argentine Republic', 'ARG', '.ar', 'En unión y libertad', 'Himno Nacional Argentino', 'Buenos Aires', 'Spanish', 46621847, 'AR', 'ARG', '+54', 'UTC-3', 1, 1, 1, 1, 1, 1),
     ('The United Arab Emirates', 'The United Arab Emirates', 'UAE', '.ae', 'Dios, Nación, Presidente', 'Long Live My Country', 'Abu Dhabi', 'Arabic', 9516871, 'AE', 'ARE', '+971', 'UTC+4', 144, 144, 2, 2, 1, 10),

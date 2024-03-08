@@ -13,8 +13,8 @@ export interface FormattedCountry {
   iso_3166_1_alpha_3?: string;
   calling_code?: string;
   timezone?: string;
-  coat_of_arms?: {
-    id_coat_of_arms?: number;
+  coat_of_arm?: {
+    id_coat_of_arm?: number;
     name?: string;
     type?: string;
     url?: string;

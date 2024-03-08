@@ -32,6 +32,8 @@ import { AuthController } from './module/auth/auth.controller';
 //Throttler import
 import { ThrottlerModule } from '@nestjs/throttler';
 import { PassportModule } from '@nestjs/passport';
+import { CoatOfArmModule } from './module/api/coat-of-arm/coat-of-arm.module';
+import { CoatOfArmController } from './module/api/coat-of-arm/coat-of-arm.controller';
 
 @Module({
   imports: [
@@ -56,6 +58,7 @@ import { PassportModule } from '@nestjs/passport';
     AuthModule,
     CountryModule,
     FlagModule,
+    CoatOfArmModule,
     ImageModule,
     CurrencyModule,
     RegionModule,
@@ -74,10 +77,11 @@ export class AppModule implements NestModule {
         AuthController,
         CountryController,
         FlagController,
+        CoatOfArmController,
+        ImageController,
         CurrencyController,
         RegionController,
-        SubRegionController,
-        ImageController
+        SubRegionController
       )
   }
 }
