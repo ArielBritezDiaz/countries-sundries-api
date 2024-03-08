@@ -1,0 +1,75 @@
+---
+title: 'Getting Started'
+---
+
+import CodeExampleGettingStartedAll from '../../../../components/getting-started/getting-started-fetch/code-exmaple.getting-started.astro'
+import ResponseGettingStartedAll from '../../../../components/getting-started/getting-started-fetch/response.getting-started.astro'
+
+This section will briefly detail some of the endpoints that [Countries Sundries]() generally allows.
+
+At Countries Sundries we have three types of endpoints available:
++ `all`: Returns the records of the requested resource with a maximum of 30 elements!
++ `details`: Returns a single record of the requested resource, with the aim of obtaining an even faster response!
++ `image`: Returns the flag or coat of arm of countries and international organizations!
+
+These are the initial endpoints that Countries Sundries offers you!
+
+In order to make any request, first of all remember that you need access!
+To do this, first visit the [Get Access API Key](/docs/introduction/get-api-key) section.
+
+Also, remember to have your Global Header Parameters updated so you can make requests successfully once you have your API key.\
+To see if you have them updated, [click here](/docs/api-reference/global-header-parameters)!
+
+## Contents with `all` endpoints available
+
+Initially we have `/all`, in many of the endpont formats it is available to request all the available information, this endpoint allows different parameters that are mostly repeated between the different information contents.\
+In all endpoints ending in `all` the [Global Query Parameters]() are present and available for use.
+The [Global Query Parameters](), in summary, serve to specify a limited number of records that we will want to bring, to filter by different fields or specify the order of the records.
+
+>The resources with the `details` endpoint enabled are:
+>+ Country (to see more, [click here](/docs/api-docs/country))
+>+ Coat Of Arm (to see more, [click here](/docs/api-docs/coat-of-arm))
+>+ Flag (to see more, [click here](/docs/api-docs/flag))
+>+ Currency (to see more, [click here](/docs/api-docs/currency))
+>+ Region (to see more, [click here](/docs/api-docs/region))
+>+ Subregion (to see more, [click here](/docs/api-docs/sub-region))
+
+## Contents with `details` endpoints available
+
+The `details` endpoint is available in many of the endpont formats, it is available to request a single record of the requested resource, with the aim of obtaining an even faster response!\
+In addition to 'all' we have the availability of the `details` endpoint, in which the advantage lies in obtaining a single resource, with this there is a clear improvement in terms of response time with the information.\
+Also, the only difference in terms of setting up the fetch is that you must replace `all` with `details` and you will obtain the information of the requested country or organization, in addition to the fact that the response will be faster.
+
+>The resources with the `details` endpoint enabled are:
+>+ Country (to see more, [click here](/docs/api-docs/country))
+>+ Coat Of Arm (to see more, [click here](/docs/api-docs/coat-of-arm))
+>+ Flag (to see more, [click here](/docs/api-docs/flag))
+>+ Currency (to see more, [click here](/docs/api-docs/currency))
+
+:::note[Remember!]
+To make any request, first of all remember that you need access!
+To do this, first visit the [Get Access API Key](/docs/introduction/get-api-key) section.
+
+Also, remember to have your Global Header Parameters updated so you can make requests successfully once you have your API key.\
+To see if you have them updated, [click here](/docs/api-reference/global-header-parameters)!
+:::
+
+## Basic Usage
+>As a presentation, we will make an example of a possible API request that could occur in case you want to bring all possible countries.\
+In this example, we are creating an asynchronous arrow function that will search for the URL [**Country Sundries**](http://countries-sundries-api.com/) with the endpoint `country/all`.\
+We will use an arrow function that will bring in the **Countries Sundries** URL with the endpoint `country/all`, using the **'GET'** method and with the headers set, which will be `x-countries_sundries_api -key` , `x-api-version`, and we will include an optional header that will be `Content-Type` to bring the data in JSON format.\
+We will save the result in a constant and return it, this result will be saved in a constant called _'fetchApiExample'_ and then we will call it.
+
+### Example Request
+<CodeExampleGettingStartedAll />
+
+### Header Parameters
+:::note[Remember!]
+See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
+:::
+
+### Response
+The response from the server (except for the `image` endpoint) will be given in an array of objects. This will allow for clearer and simplified organization of information.
+For this example we will show a part of the endpoint's full response (to see the full response, [click here](/docs/api-docs/country)!)
+
+<ResponseGettingStartedAll />

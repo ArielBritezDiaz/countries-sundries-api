@@ -1,3 +1,0 @@
----
-title: 'Concept and diagrams'
----

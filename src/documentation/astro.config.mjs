@@ -39,9 +39,6 @@ export default defineConfig({
           label: 'Getting Started',
           link: '/docs/getting-started/getting-started'
         }, {
-          label: 'Basic Usage',
-          link: '/docs/getting-started/basic-usage/'
-        }, {
           label: 'Supported Data',
           link: '/docs/getting-started/supported-data'
         }]

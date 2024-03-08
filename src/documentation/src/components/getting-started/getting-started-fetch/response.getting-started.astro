@@ -1,0 +1,33 @@
+---
+import { Code as CodeResponseGettingStartedAll } from '@astrojs/starlight/components'
+
+const data = `[
+  {
+    "id_country": 1,
+    "name": "Argentina",
+    "official_name": "Argentine Republic",
+    "abbr": "ARG",
+    "internet_tld": ".ar",
+    "motto": "En unión y libertad",
+    "anthem": "Himno Nacional Argentino",
+    "capital": "Buenos Aires",
+    "official_language": "Spanish",
+    "population": 46621847,
+    "iso_3166_1_alpha_2": "AR",
+    "iso_3166_1_alpha_3": "ARG",
+    "calling_code": "+54",
+    "timezone": "UTC-3",
+    "coat_of_arms": { ... },
+    "flag": { ... },
+    "currency": { ... },
+    "region": { ... },
+    "sub_region": { ... }
+  },
+  {
+    ...
+  }
+];`
+export {data as responseData }
+---
+
+<CodeResponseGettingStartedAll lang="json" code={data} title="GET 200 OK" />
