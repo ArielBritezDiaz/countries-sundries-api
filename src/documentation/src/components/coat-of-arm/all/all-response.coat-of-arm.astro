@@ -1,0 +1,18 @@
+---
+import { Code as CodeResponseCoatOfArmAll } from '@astrojs/starlight/components'
+
+const data = `[
+  {
+    "id_coat_of_arm": 1,
+    "name": "argentina",
+    "type": "svg",
+    "url": "http://localhost:3000/api/v1/image/coat-of-arm?name=argentina"
+  },
+  {
+    ...
+  }
+];`
+export {data as responseData }
+---
+
+<CodeResponseCoatOfArmAll lang="json" code={data} title="GET 200 OK" />

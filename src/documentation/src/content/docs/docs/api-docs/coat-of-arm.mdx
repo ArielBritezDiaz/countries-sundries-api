@@ -1,30 +1,96 @@
 ---
-title: Coat of Arm Endpoint
+title: 'Coat of Arm endpoint'
 ---
+
+import CodeExampleCoatOfArmAll from '../../../../components/coat-of-arm/all/all-code-example.coat-of-arm.astro';
+import CodeResponseCoatOfArmAll from '../../../../components/coat-of-arm/all/all-response.coat-of-arm.astro';
+
+import CodeExampleCoatOfArmDetails from '../../../../components/coat-of-arm/details/details-code-example.coat-of-arm.astro';
+import CodeResponseCoatOfArmDetails from '../../../../components/coat-of-arm/details/details-response.coat-of-arm.astro';
 
 In this section we will show you the **`coat-of-arm`** endpoint, its parameters, combinations and specific details.\
 At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of coats of arms of 164 countries, including different international organizations.
 
-## Endpoint response and parameters
-
-The endpoint `coat-of-arm` will return the information of the countries with limit of 50 countries.
-
-{/* 
-In this section we will show you the **`image`** endpoint, its parameters, combinations and specific details.\
-At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of 160 images of countries and different international organizations.
 
 ## Endpoint response and parameters
 
-This final point will allow you to request both the flag and the country's coat of arm.\
-By default, this endpoint will return only one image, either requesting an `image/flag` or `image/coat-of-arm`.
+The endpoint `coat-of-arm` will return the information of the countries with limit of 30 countries.
 
-## `image/flag`
-This endpoint will return the flag of the country requested.
+
+## `coat-of-arm/all`
+The `coat-of-arm/all` endpoint, if no limit is specified, will by default return 30 coat of arm of countries from the database.
 
 ### Example Request
 
+>We will make an example of a possible API request that could be given in case you want to bring all possible coat of arms images.\
+In this example, we are creating an asynchronous arrow function that will search for the [**Country Sundries**](http://countries-sundries-api.com/) URL with the endpoint `coat-of-arm/all`.\
+We will use an arrow function that will fetch the URL of **Countries Sundries** with the endpoint `coat-of-arm/all`, using the **'GET'** method and with the headers established, which will be `x-countries_sundries_api-key`, `x-api -version`, and we will include an optional header that will be `Content-Type` to bring the data in JSON format.\
+We will save the result in a constant and return it, this result will be saved in a constant called **'fetchApiExample'** and then call it.
+
+:::note[Keep in mind...]
+  The fewer coat of arm registers you bring in, the faster the server will respond 
+:::
+
+<CodeExampleCoatOfArmAll />
+
 ### Response
+>The result of the request will be a JSON object with the information coat of arm of the countries.
+
+<CodeResponseCoatOfArmAll />
 
 ### Header Parameters
+:::note[Remember!]
+See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
+:::
 
-### Query Parameters */}
+### Query Parameters
+In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
+
+#### `id`
+> _Optional Integer_\
+Allows you to filter registers by id
+```bash
+curl -X GET 'http://countries-sundries-api.com/coat-of-arm/all?id=1' -H 'x-countries_sundries_api-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
+```
+
+#### `name`
+> _Optional String_\
+Allows you to filter registers by name
+```bash
+curl -X GET 'http://countries-sundries-api.com/coat-of-arm/all?name=Argentina' -H 'x-countries_sundries_api-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
+```
+
+:::note[In case you haven't arrived yet!]
+See the [Global Query Parameters](/docs/api-reference/global-query-parameters) section to discover the Query Parameters that are globally accepted for endpoints ending in `/all`!
+:::
+
+#### `type`
+>_Optional String_\
+Allows you to filter registers by type, for now only the image of type [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) is available
+```bash
+curl -X GET 'http://countries-sundries-api.com/coat-of-arm/all?type=svg' -H 'x-countries_sundries_api-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
+```
+
+## `coat-of-arm/details`
+This endpoint will allow you to obtain all the previous information but returning a single register, this will allow a much faster response if you need a single country and not many.\
+All Query Parameters (Except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for `details`.\
+If no Query Parameter is specified, the first register will be returned.
+
+### Example Request
+>We will make an example of a possible API request that could be given in case you want to bring the coat of arm image of a specific country.\
+
+<CodeExampleCoatOfArmDetails />
+
+### Response
+
+<CodeResponseCoatOfArmDetails />
+
+### Header Parameters
+:::note[Remember!]
+See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
+:::
+
+### Query Parameters
+:::note[They're up!]
+All Query Parameters (Except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for `details`!
+:::

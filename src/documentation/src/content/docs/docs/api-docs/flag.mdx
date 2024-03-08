@@ -1,15 +1,16 @@
 ---
-title: Flag Endpoint
+title: 'Flag endpoint'
 ---
 
-import CodeExampleFlagAll from '../../../../components/flag/all/all-response.flag.astro';
-import CodeResponseFlagAll from '../../../../components/flag/all/all-code-example.flag.astro';
+import CodeResponseFlagAll from '../../../../components/flag/all/all-response.flag.astro';
+import CodeExampleFlagAll from '../../../../components/flag/all/all-code-example.flag.astro';
 
 import CodeExampleFlagDetails from '../../../../components/flag/details/details-code-example.flag.astro';
 import CodeResponseFlagDetails from '../../../../components/flag/details/details-response.flag.astro';
 
 In this section we will show you the **`flag`** endpoints, its parameters, combinations and specific details.\
 At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of coats of arms of 164 countries, including different international organizations.
+Since it is so similar to the `coat-of-arm` endpoint, there will be almost no change with respect to that section.
 
 ## Endpoint response and parameters
 
@@ -26,15 +27,15 @@ We will use an arrow function that will fetch the URL of **Countries Sundries** 
 We will save the result in a constant and return it, this result will be saved in a constant called **'fetchApiExample'** and then call it.
 
 :::note[Keep in mind...]
-  The fewer flag records you bring in, the faster the server will respond 
+  The fewer flag registers you bring in, the faster the server will respond 
 :::
 
-<CodeResponseFlagAll />
+<CodeExampleFlagAll />
 
 ### Response
 >The result of the request will be a JSON object with the information flag of the countries.
 
-<CodeExampleFlagAll />
+<CodeResponseFlagAll />
 
 ### Header Parameters
 :::note[Remember!]
@@ -46,16 +47,16 @@ In the Query Parameters sections we will use the [CURL](https://curl.se/) comman
 
 #### `id`
 > _Optional Integer_\
-Allows you to filter records by id
+Allows you to filter registers by id
 ```bash
-curl -X GET 'http://countries-sundries-api.com/flag/all?id=1'
+curl -X GET 'http://countries-sundries-api.com/flag/all?id=1' -H 'x-countries_sundries_api-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
 ```
 
 #### `name`
 > _Optional String_\
-Allows you to filter records by name
+Allows you to filter registers by name
 ```bash
-curl -X GET 'http://countries-sundries-api.com/flag/all?name=argentina'
+curl -X GET 'http://countries-sundries-api.com/flag/all?name=argentina' -H 'x-countries_sundries_api-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
 ```
 
 :::note[In case you haven't arrived yet!]
@@ -64,9 +65,9 @@ See the [Global Query Parameters](/docs/api-reference/global-query-parameters) s
 
 #### `type`
 >_Optional String_\
-Allows you to filter records by type, for now only the image of type [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) is available
+Allows you to filter registers by type, for now only the image of type [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) is available
 ```bash
-curl -X GET 'http://countries-sundries-api.com/flag/all?type=svg'
+curl -X GET 'http://countries-sundries-api.com/flag/all?type=svg' -H 'x-countries_sundries_api-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
 ```
 
 ## `flag/details`
