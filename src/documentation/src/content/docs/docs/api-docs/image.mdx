@@ -1,5 +1,5 @@
 ---
-title: 'Image endpoint'
+title: 'Image endpoints'
 ---
 
 import ExampleCodeImageFlag from '../../../../components/image/flag/flag-code-example.image.astro';
@@ -20,10 +20,8 @@ By default, this endpoint will return only one image, either requesting an `imag
 This endpoint will return the flag of the country requested.
 
 ### Example Request
->We will make an example of a possible API request that could occur if we wanted to bring a flag of a country.\
-In this example, we are creating an asynchronous arrow function that will search for the [**Country Sundries**](http://countries-sundries-api.com/) URL with the endpoint `image/flag`.\
-We will use an arrow function that will fetch the URL of **Countries Sundries** with the endpoint `image/flag`, using the **'GET'** method and with the headers established, which will be `x-countries_sundries_api-key`, `x-api-version`.\
-We will save the result in a constant and return it, this result will be saved in a constant called **'fetchApiExample'** and then call it.
+
+<ExampleCodeImageFlag />
 
 ### Response
 ![Argentine Flag](../../../../../public/docs/api-docs/image/flag/argentina.svg)
@@ -56,9 +54,8 @@ curl -X GET "http://countries-sundries-api.com/image/flag?name=argentina" -H "x-
 This endpoint will return the coat of arm of the country requested.
 
 ### Example Request
->We will make an example of a possible API request that could occur if we wanted to bring a coat of arm of a country.\
-In this example, we are creating an asynchronous arrow function that will search for the [**Country Sundries**](http://countries-sundries-api.com/) URL with the endpoint `image/coat-of-arm`.\
-We will use an arrow function that will fetch the URL of **Countries Sundries** with the endpoint `image/coat-of-arm`, using the **'GET'** method and with the headers established, which will be `x-countries_sundries_api-key`, `x-api-version`.\
+
+<ExampleCodeImageCoatOfArm />
 
 ### Response
 <div style="display: flex; justify-content: center; align-items: center;">

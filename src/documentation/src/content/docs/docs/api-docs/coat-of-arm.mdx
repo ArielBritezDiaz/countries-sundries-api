@@ -1,5 +1,5 @@
 ---
-title: 'Coat of Arm endpoint'
+title: 'Coat of Arm endpoints'
 ---
 
 import CodeExampleCoatOfArmAll from '../../../../components/coat-of-arm/all/all-code-example.coat-of-arm.astro';
@@ -22,16 +22,11 @@ The `coat-of-arm/all` endpoint, if no limit is specified, will by default return
 
 ### Example Request
 
->We will make an example of a possible API request that could be given in case you want to bring all possible coat of arms images.\
-In this example, we are creating an asynchronous arrow function that will search for the [**Country Sundries**](http://countries-sundries-api.com/) URL with the endpoint `coat-of-arm/all`.\
-We will use an arrow function that will fetch the URL of **Countries Sundries** with the endpoint `coat-of-arm/all`, using the **'GET'** method and with the headers established, which will be `x-countries_sundries_api-key`, `x-api -version`, and we will include an optional header that will be `Content-Type` to bring the data in JSON format.\
-We will save the result in a constant and return it, this result will be saved in a constant called **'fetchApiExample'** and then call it.
+<CodeExampleCoatOfArmAll />
 
 :::note[Keep in mind...]
   The fewer coat of arm registers you bring in, the faster the server will respond 
 :::
-
-<CodeExampleCoatOfArmAll />
 
 ### Response
 >The result of the request will be a JSON object with the information coat of arm of the countries.
