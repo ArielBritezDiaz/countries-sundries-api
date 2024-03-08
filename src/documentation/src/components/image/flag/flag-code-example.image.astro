@@ -1,0 +1,27 @@
+---
+import { Code as ExampleCodeImageFlag } from '@astrojs/starlight/components';
+export const url = `http://localhost:3000/api/v1/image/flag`
+export const code = `
+const fetchApiExample = async () => {
+  const response = await fetch(${url}, {
+    method: 'GET',
+    headers: {
+      'x-countries_sundries_api-key': 'Bearer x-xxx-xxxx-x',
+      'x-api-version': '1'
+    }
+  });
+  const data = await response.json();
+  return data;
+};
+
+fetchApiExample();
+`
+
+export const title = 'Fetch API example'
+
+export const highlights = [url]
+---
+
+<div id="flag-all" >
+  <ExampleCodeImageFlag frame="code" code={code} lang="js" title={title} mark={highlights} />
+</div>
