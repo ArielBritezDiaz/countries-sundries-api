@@ -66,6 +66,9 @@ export default defineConfig({
         }, {
           label: 'Sub Region',
           link: '/docs/api-docs/sub-region/'
+        }, {
+          label: 'Image',
+          link: '/docs/api-docs/image/'
         }]
       },
       {

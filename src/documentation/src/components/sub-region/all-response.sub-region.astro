@@ -1,5 +1,5 @@
 ---
-import { Code as CodeResponseRegionAll } from '@astrojs/starlight/components'
+import { Code as CodeResponseSubRegionAll } from '@astrojs/starlight/components'
 
 const data = `[
   {
@@ -31,4 +31,4 @@ const data = `[
 export {data as responseData }
 ---
 
-<CodeResponseRegionAll lang="json" code={data} title="GET 200 OK" />
+<CodeResponseSubRegionAll lang="json" code={data} title="GET 200 OK" />
