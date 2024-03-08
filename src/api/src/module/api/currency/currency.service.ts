@@ -19,13 +19,22 @@ export class CurrencyService {
     
     console.log("preferencesParams", preferencesParams)
 
+    let orderBy = {}
+    if(preferencesParams.order_by && preferencesParams.order_direction) {
+      orderBy = {[preferencesParams.order_by]: preferencesParams.order_direction}
+    } else if (preferencesParams.order_by && !preferencesParams.order_direction) {
+      orderBy = {[preferencesParams.order_by]: 'asc'}
+    } else if (!preferencesParams.order_by && preferencesParams.order_direction) {
+      orderBy = {id_currency: preferencesParams.order_direction}
+    }
+
     const response = await this.prisma.currency.findMany({
       ...(preferencesParams.from && { skip: preferencesParams.from } ),
       ...(preferencesParams.take && preferencesParams.take <= 30 ? { take: preferencesParams.take } : { take: 30 } ),
       where: {
-        ...(preferencesParams.id && { id_currency: preferencesParams.id }),
-        ...(preferencesParams.name && { name: { contains: preferencesParams.name.toUpperCase() } }),
-        ...(preferencesParams.abbr && { abbr: { contains: preferencesParams.abbr.toUpperCase() } }),
+        ...(preferencesParams.id && { id_currency: { equals: preferencesParams.id} }),
+        ...(preferencesParams.name && { name: { equals: preferencesParams.name } }),
+        ...(preferencesParams.abbr && { abbr: { contains: preferencesParams.abbr } }),
         ...(preferencesParams.symbol && { symbol: { contains: preferencesParams.symbol } }),
       },
       select: {
@@ -34,9 +43,7 @@ export class CurrencyService {
         abbr: true,
         symbol: true
       },
-      orderBy: {
-        ...(preferencesParams.order_by && { [preferencesParams.order_by]: preferencesParams.order_direction })
-      }
+      orderBy
     });
     // console.log("response", response)
 

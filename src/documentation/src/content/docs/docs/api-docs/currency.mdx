@@ -2,8 +2,93 @@
 title: Currency
 ---
 
-import CodeExampleCurrencyAll from '../../../../components/currency/all/all-response.currency.astro';
-import CodeResponseCurrencyAll from '../../../../components/currency/all/all-code-example.currency.astro';
+import CodeExampleCurrencyAll from '../../../../components/currency/all/all-code-example.currency.astro';
+import CodeResponseCurrencyAll from '../../../../components/currency/all/all-response.currency.astro';
 
 import CodeExampleCurrencyDetails from '../../../../components/currency/details/details-code-example.currency.astro';
 import CodeResponseCurrencyDetails from '../../../../components/currency/details/details-response.currency.astro';
+
+In this section we will show you the **`Currency`** endpoints, its parameters, combinations and specific details.\
+At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of 161 currencies, these include those of all available countries.
+
+## Endpoint response and parameters
+
+This endpoint will return the information of the currencies with limit of 30 registers.
+
+## `currency/all`
+The `currency/all` endpoint, if no limit is specified, will by default return 30 currencies from the database.
+
+### Example Request
+>We will make an example of a possible API request that could be given in case you want to bring all possible countries.\
+In this example, we are creating an asynchronous arrow function that will search for the [**Country Sundries**](http://countries-sundries-api.com/) URL with the endpoint `currency/all`.\
+We will use an arrow function that will fetch the URL of **Countries Sundries** with the endpoint `currency/all`, using the **'GET'** method and with the headers established, which will be `x-countries_sundries_api-key`, `x-api -version`, and we will include an optional header that will be `Content-Type` to bring the data in JSON format.\
+We will save the result in a constant and return it, this result will be saved in a constant called **'fetchApiExample'** and then call it.
+
+:::note[Keep in mind...]
+  The fewer currencies registers you bring in, the faster the server will respond.
+:::
+
+<CodeExampleCurrencyAll />
+
+### Response
+>The result of the request will be a JSON object with the information of the countries.
+
+<CodeResponseCurrencyAll />
+
+### Header Parameters
+:::note[Remember!]
+See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
+:::
+
+### Query Parameters
+In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
+
+#### `id`
+>_Optional Integer_\
+Allows you to filter registers by id
+```bash
+curl -X GET "http://countries-sundries-api.com/currency/all?id=1" -H "x-countries_sundries_api-key: YOUR_API_KEY" -H "x-api-version: 1" -H "Content-Type: application/json"
+```
+
+#### `name`
+>_Optional String_\
+Allows you to filter registers by name
+```bash
+curl -X GET "http://countries-sundries-api.com/currency/all?name=Argentine%20Peso" -H "x-countries_sundries_api-key: YOUR_API_KEY" -H "x-api-version: 1" -H "Content-Type: application/json"
+```
+
+:::note[In case you haven't arrived yet!]
+See the [Global Query Parameters](/docs/api-reference/global-query-parameters) section to discover the Query Parameters that are globally accepted for endpoints ending in `/all`!
+:::
+
+#### `abbr`
+>_Optional String_\
+Allows you to filter registers by abbreviation
+```bash
+curl -X GET "http://countries-sundries-api.com/currency/all?abbr=ARS" -H "x-countries_sundries_api-key: YOUR_API_KEY" -H "x-api-version: 1" -H "Content-Type: application/json"
+```
+
+## `currency/details`
+This endpoint will allow you to obtain all the previous information but returning a single record, giving a much faster response if you only need one currency.\
+All query parameters (except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for "details".\
+If no query parameter is specified, the first record will be returned.
+
+### Example Request
+>We will make an example of a possible API request that could be given in case you want to bring the details of a specific currency.
+
+<CodeExampleCurrencyDetails />
+
+### Response
+>The result of the request will be a JSON object with the information of the currency.
+
+<CodeResponseCurrencyDetails />
+
+### Header Parameters
+:::note[Remember!]
+See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
+:::
+
+### Query Parameters
+:::note[They're up!]
+All Query Parameters (Except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for `details`!
+:::

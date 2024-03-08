@@ -1,0 +1,15 @@
+---
+import { Code as CodeResponseCurrencyDetails } from '@astrojs/starlight/components'
+
+const data = `[
+  {
+    "id_currency": 1,
+    "name": "Argentine Peso",
+    "abbr": "ARS",
+    "symbol": "$"
+  }
+];`
+export {data as responseData }
+---
+
+<CodeResponseCurrencyDetails lang="json" code={data} title="GET 200 OK" />
