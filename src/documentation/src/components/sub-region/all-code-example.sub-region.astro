@@ -1,6 +1,6 @@
 ---
-import { Code as CodeExampleRegionAll } from '@astrojs/starlight/components';
-export const url = `http://localhost:3000/api/v1/region/all`
+import { Code as CodeExampleSubRegionAll } from '@astrojs/starlight/components';
+export const url = `http://localhost:3000/api/v1/sub-region/all`
 export const code = `
 const fetchApiExample = async () => {
   const response = await fetch(${url}, {
@@ -24,5 +24,5 @@ export const highlights = [url]
 ---
 
 <div id="flag-all" >
-  <CodeExampleRegionAll frame="code" code={code} lang="js" title={title} mark={highlights} />
+  <CodeExampleSubRegionAll frame="code" code={code} lang="js" title={title} mark={highlights} />
 </div>
