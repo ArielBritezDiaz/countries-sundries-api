@@ -1,0 +1,16 @@
+---
+import Image from 'astro/components/Image.astro';
+
+import Starlight from '../../../assets/project/technologies/starlight.webp';
+import Tailwind from '../../../assets/project/technologies/tailwind.svg';
+---
+
+
+<a class="flex items-center text-xl no-underline p-4 my-2 rounded-lg hover:bg-neutral-50/5 hover:scale-105 transition-all delay-70 cursor-pointer" href="https://starlight.astro.build/" target="_blank">
+  <span class="text-white">Starlight</span>
+  <Image class="pl-2 w-10 h-10" src={Starlight} alt="Starlight" />
+</div>
+<a class="flex items-center text-xl no-underline p-4 my-2 rounded-lg hover:bg-neutral-50/5 hover:scale-105 transition-all delay-70 cursor-pointer" href="https://tailwindcss.com/" target="_blank">
+  <span class="text-white">Tailwind</span>
+  <Image class="pl-2 w-10 h-auto" src={Tailwind} alt="Tailwind" />
+</a>
