@@ -3,17 +3,17 @@
 /* for local font */
 @font-face {
   font-family: 'lexend-500';
-  src: url('../assets/fonts/lexend/lexend-latin-500-normal.ttf');
+  src: url('./assets/fonts/lexend/lexend-latin-500-normal.ttf');
 }
 
 @font-face {
   font-family: 'lexend-400';
-  src: url('../assets/fonts/lexend/lexend-latin-400-normal.ttf');
+  src: url('./assets/fonts/lexend/lexend-latin-400-normal.ttf');
 }
 
 @font-face {
   font-family: 'lexend-300';
-  src: url('../assets/fonts/lexend/lexend-latin-300-normal.ttf');
+  src: url('./assets/fonts/lexend/lexend-latin-300-normal.ttf');
 }
 
 /* The integration's default injected base.css file */
@@ -31,12 +31,4 @@ span, p, thead {
 
 table, tbody td {
   font-family: 'lexend-300', sans-serif;
-}
-
-thead {
-  background-color: #11393c;
-}
-
-tbody td {
-  background-color: #0d2c2e;
 }
