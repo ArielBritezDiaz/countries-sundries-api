@@ -14,7 +14,7 @@ export default defineConfig({
       // components: {
       //   SocialIcons: './src/components/api-endpoints/region/astro-slots.astro',
       // },
-      customCss: ['./src/styles/global.css'],
+      customCss: ['./src/tailwind.css'],
       social: {
         linkedin: 'https://www.linkedin.com/in/ariel-britez-diaz-technical/',
         github: 'https://github.com/ArielBritezDiaz'
