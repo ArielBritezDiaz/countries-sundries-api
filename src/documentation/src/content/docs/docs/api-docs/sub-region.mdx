@@ -5,6 +5,9 @@ title: 'Sub Region endpoint'
 import CodeExampleSubRegionAll from '../../../../components/api-endpoints/sub-region/all-code-example.sub-region.astro';
 import CodeResponseSubRegionAll from '../../../../components/api-endpoints/sub-region/all-response.sub-region.astro';
 
+import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
+import GlobalQueryNote from '../../../../components/aside/note/global-query-params.astro';
+
 In this section we will show you the **`sub-region`** endpoint, its parameters, combinations and specific details.
 
 ## Endpoint response and parameters
@@ -24,9 +27,7 @@ The `region/all` endpoint, if no limit is specified, will default to returning a
 <CodeResponseSubRegionAll />
 
 ### Header Parameters
-:::note[Remember!]
-See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
-:::
+<GlobalHeaderNote />
 
 ### Query Parameters
 In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.\
@@ -45,9 +46,7 @@ Allows you to filter records by name
 curl -X GET 'http://countries-sundries-api.com/region/all?name=America'
 ```
 
-:::note[In case you haven't arrived yet!]
-See the [Global Query Parameters](/docs/api-reference/global-query-parameters) section to discover the Query Parameters that are globally accepted for endpoints ending in `/all`!
-:::
+<GlobalQueryNote />
 
 #### `id_region_fk`
 > _Optional Integer_\

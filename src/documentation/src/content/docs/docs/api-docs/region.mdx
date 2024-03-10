@@ -2,8 +2,12 @@
 title: 'Region endpoint'
 ---
 
-import CodeExampleRegionAll from '../../../../components/api-endpoints/region/all-code-example.region.astro';
 import CodeResponseRegionAll from '../../../../components/api-endpoints/region/all-response.region.astro';
+
+import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
+import GlobalQueryNote from '../../../../components/aside/note/global-query-params.astro';
+
+import TabsLanguages from '../../../../components/api-endpoints/region/all-code-example.region.astro';
 
 In this section we will show you the **`region`** endpoint, its parameters, combinations and specific details.\
 As you can imagine, the information of this endpoint is six registers, which is why this section will be brief 😅
@@ -17,7 +21,7 @@ The `region/all` endpoint, if no limit is specified, will by default return the 
 
 ### Example Request
 
-<CodeExampleRegionAll />
+<TabsLanguages endpoint="region/all" />
 
 ### Response
 >The result of the request will be a JSON object with the information of the six regions of the world.
@@ -25,12 +29,10 @@ The `region/all` endpoint, if no limit is specified, will by default return the 
 <CodeResponseRegionAll />
 
 ### Header Parameters
-:::note[Remember!]
-See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
-:::
+<GlobalHeaderNote />
 
 ### Query Parameters
-In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.\
+In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
 
 #### `id`
 > _Optional Integer_\
@@ -46,6 +48,4 @@ Allows you to filter records by name
 curl -X GET 'http://countries-sundries-api.com/region/all?name=America'
 ```
 
-:::note[In case you haven't arrived yet!]
-See the [Global Query Parameters](/docs/api-reference/global-query-parameters) section to discover the Query Parameters that are globally accepted for endpoints ending in `/all`!
-:::
+<GlobalQueryNote />

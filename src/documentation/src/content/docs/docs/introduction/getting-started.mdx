@@ -5,6 +5,9 @@ title: 'Getting Started'
 import CodeExampleGettingStartedAll from '../../../../components/getting-started/getting-started-fetch/code-exmaple.getting-started.astro'
 import ResponseGettingStartedAll from '../../../../components/getting-started/getting-started-fetch/response.getting-started.astro'
 
+import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
+import GlobalQueryNote from '../../../../components/aside/note/global-query-params.astro';
+
 This section will briefly detail some of the endpoints that [Countries Sundries]() generally allows.
 
 At Countries Sundries we have three types of endpoints available:
@@ -64,9 +67,7 @@ We will save the result in a constant and return it, this result will be saved i
 <CodeExampleGettingStartedAll />
 
 ### Header Parameters
-:::note[Remember!]
-See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
-:::
+<GlobalHeaderNote />
 
 ### Response
 The response from the server (except for the `image` endpoint) will be given in an array of objects. This will allow for clearer and simplified organization of information.

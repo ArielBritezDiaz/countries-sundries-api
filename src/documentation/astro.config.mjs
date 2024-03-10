@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwind from "@astrojs/tailwind";
+import Icons from 'unplugin-icons/vite';
+import icon from "astro-icon";
 
 import expressiveCode from "astro-expressive-code";
 import expressiveCodeConfig from "./ec.config";
@@ -10,6 +12,9 @@ export default defineConfig({
   integrations: [
     starlight({
       title: '',
+      // components: {
+      //   SocialIcons: './src/components/api-endpoints/region/astro-slots.astro',
+      // },
       customCss: ['./src/styles/global.css'],
       social: {
         linkedin: 'https://www.linkedin.com/in/ariel-britez-diaz-technical/',
@@ -25,13 +30,13 @@ export default defineConfig({
           link: '/docs/introduction/overview/'
         }, {
           label: 'Getting Started',
-          link: '/docs/getting-started/getting-started'
+          link: '/docs/introduction/getting-started/'
         }, {
           label: 'Get API-Key access',
           link: '/docs/introduction/get-api-key/'
         }, {
           label: 'Supported Data',
-          link: '/docs/getting-started/supported-data'
+          link: '/docs/introduction/supported-data/'
         }]
       },
       {
@@ -44,7 +49,7 @@ export default defineConfig({
           link: '/docs/api-docs/coat-of-arm/'
         }, {
           label: 'Flag',
-          link: '/docs/api-docs/flag'
+          link: '/docs/api-docs/flag/'
         }, {
           label: 'Currency',
           link: '/docs/api-docs/currency/'
@@ -83,6 +88,7 @@ export default defineConfig({
     ]
     }), tailwind({
       applyBaseStyles: false
-    }), expressiveCode(expressiveCodeConfig)
+    }), expressiveCode(expressiveCodeConfig),
+    icon()
   ]
 });

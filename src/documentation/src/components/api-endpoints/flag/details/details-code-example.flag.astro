@@ -1,28 +1,232 @@
 ---
-import { Code as CodeExampleFlagDetails } from '@astrojs/starlight/components';
-export const url = `http://localhost:3000/api/v1/flag/details`
-export const code = `
-const fetchApiExample = async () => {
-  const response = await fetch(${url}, {
+import Shout from '../../astro-slots.astro';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Code } from '@astrojs/starlight/components';
+
+const url = `http://localhost:3000/api/v1/flag/details`
+const headerKey = `'x-countries_sundries_api-key'`
+const headerVersion = `'x-api-version'`
+const headerContentType = `'Content-Type'`
+
+const codeData = [
+  {
+    lang: 'js',
+    code: `
+const fetchApiExample = () => {
+  return fetch(${url}, {
     method: 'GET',
     headers: {
-      'x-countries_sundries_api-key': 'Bearer x-xxx-xxxx-x',
-      'x-api-version': '1',
-      'Content-Type': 'application/json'
+      ${headerKey}: 'Bearer x-xxx-xxxx-x',
+      ${headerVersion}: '1',
+      ${headerContentType}: 'application/json'
     }
-  });
-  const data = await response.json();
-  return data;
+  })
+  .then(response => response.json());
 };
-
-fetchApiExample();
+fetchApiExample()
+  .then(data => console.log(data))
+  .catch(error => console.error('Error fetching data:', error));
+    `
+  },
+  {
+    lang: 'php',
+    code: `
+$response = file_get_contents(${url}, false, stream_context_create([
+  'http' => [
+    'method' => 'GET',
+    'header' => '${headerKey}: Bearer x-xxx-xxxx-x' .
+                '${headerVersion}: 1' .
+                '${headerContentType}: application/json'
+  ]
+]));
+echo $response;
+    `
+  }, {
+    lang: 'js',
+    code: `
+const response = await fetch(${url}, {
+  method: "GET",
+  headers: {
+    ${headerKey}: 'Bearer x-xxx-xxxx-x',
+    ${headerVersion}: '1'
+  }
+});
+const data = await response.json();
+    `
+  }, {
+    lang: 'python',
+    code: `
+import requests
+response = requests.get(${url},headers={
+  ${headerKey}: 'Bearer x-xxx-xxxx-x',
+  ${headerVersion}: '1',
+  ${headerContentType}: 'application/json'
+})
+print(response.json())
+    `
+  }, {
+    lang: 'go',
+    code: `
+    package main
+import (
+  "fmt"
+  "io/ioutil"
+  "net/http"
+)
+func main() {
+  url := ${url}
+  req, _ := http.NewRequest("GET", url, nil)
+  req.Header.Add(${headerKey}, "Bearer x-xxx-xxxx-x")
+  req.Header.Add(${headerVersion}, "1")
+  req.Header.Add(${headerContentType}, "application/json")
+  resp, _ := http.DefaultClient.Do(req)
+  defer resp.Body.Close()
+  body, _ := ioutil.ReadAll(resp.Body)
+  fmt.Println(string(body))
+}
+    `
+  }, {
+    lang: 'dart',
+    code: `
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+void main() async {
+  var response = await http.get(Uri.parse(${url}), headers: {
+    ${headerKey}: 'Bearer x-xxx-xxxx-x',
+    ${headerVersion}: '1',
+    ${headerContentType}: 'application/json'
+  });
+  print(jsonDecode(response.body));
+}
+    `
+  }, {
+    lang: 'ruby',
+    code: `
+require 'net/http'
+require 'json'
+url = URI(${url})
+http = Net::HTTP.new(url.host, url.port)
+request = Net::HTTP::Get.new(url)
+request[${headerKey}] = 'Bearer x-xxx-xxxx-x'
+request[${headerVersion}] = '1'
+request[${headerContentType}] = 'application/json'
+response = http.request(request)
+puts JSON.parse(response.read_body)
+    `
+  }, {
+    lang: 'js',
+    code: `
+const https = require('https');
+https.get(${url}, { headers: {
+  ${headerKey}: 'Bearer x-xxx-xxxx-x',
+  ${headerVersion}: '1',
+  ${headerContentType}: 'application/json'
+} }, (response) => {
+  let data = '';
+  response.on('data', (chunk) => {
+    data += chunk;
+  });
+  response.on('end', () => {
+    console.log(JSON.parse(data));
+  });
+});
 `
+  }, {
+    lang: 'java',
+    code: `
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+public class Main {
+  public static void main(String[] args) {
+    try {
+      URL url = new URL(${url});
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty(${headerKey}, "Bearer x-xxx-xxxx-x");
+        conn.setRequestProperty(${headerVersion}, "1");
+        conn.setRequestProperty(${headerContentType}, "application/json");
+        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String output;
+        while ((output = br.readLine()) != null) {
+          response.append(output);
+        }
+        System.out.println(response.toString());
+        conn.disconnect();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+    `
+  }, {
+    lang: 'curl',
+    code: `
+curl -X GET ${url} \
+-H ${headerKey} \
+-H ${headerVersion} \
+-H ${headerContentType}
+    `
+  }, {
+    lang: 'js',
+    code: `
+import { send } from 'https://deno.land/x/http/mod.ts';
+const response = await send(new Request(${url}, {
+  method: 'GET',
+  headers: {
+    ${headerKey}: 'Bearer x-xxx-xxxx-x',
+    ${headerVersion}: '1',
+    ${headerContentType}: 'application/json'
+  }
+}));
+const data = await response.json();
+console.log(data);
+    `
+  }, {
+    lang: 'swift',
+    code: `
+import Foundation
+var request = URLRequest(url: URL(string: ${url})!)
+request.httpMethod = "GET"
+request.setValue("Bearer x-xxx-xxxx-x", forHTTPHeaderField: ${headerKey})
+request.setValue("1", forHTTPHeaderField: ${headerVersion})
+request.setValue("application/json", forHTTPHeaderField: ${headerContentType})
+let task = URLSession.shared.dataTask(with: request) { data, response, error in
+  guard let data = data, error == nil else {
+    print(error?.localizedDescription ?? "No data")
+    return
+  }
+  if let httpResponse = response as? HTTPURLResponse {
+    print(httpResponse.statusCode)
+  }
+  let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+  if let responseJSON = responseJSON as? [String: Any] {
+    print(responseJSON)
+  }
+}
+task.resume()
+    `
+  }
+];
 
-export const title = 'Fetch API example'
+const title = 'Fetch API example'
 
-export const highlights = [url]
+const highlights = [url, headerKey, headerVersion, headerContentType]
+
+const labelTab = ['JavaScript', 'PHP', 'Bun', 'Python', 'Go', 'Dart', 'Ruby', 'NodeJs', 'Java', 'cURL', 'Deno', 'Swift']
 ---
 
-<div id="flag-all" >
-  <CodeExampleFlagDetails frame="code" code={code} lang="js" title={title} mark={highlights} />
-</div>
+<Tabs>
+  {labelTab.map((label, index) => (
+    //  key={label}
+    <TabItem label={label}>
+      <Shout message={label} key={label}>
+        {() => (
+          <Code frame="code" code={codeData[index].code} lang={codeData[index].lang} title={title} mark={highlights} />
+        )}
+      </Shout>
+    </TabItem>
+  ))}
+</Tabs>

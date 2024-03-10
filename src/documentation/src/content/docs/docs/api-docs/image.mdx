@@ -6,6 +6,9 @@ import ExampleCodeImageFlag from '../../../../components/api-endpoints/image/fla
 
 import ExampleCodeImageCoatOfArm from '../../../../components/api-endpoints/image/coat-of-arm/coat-of-arm-code-example.image.astro';
 
+import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
+import GlobalQueryNote from '../../../../components/aside/note/global-query-params.astro';
+
 In this section we will show you the **`image`** endpoint, its parameters, combinations and specific details.\
 At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of 164 images of countries and different international organizations.
 
@@ -27,9 +30,7 @@ This endpoint will return the flag of the country requested.
 ![Argentine Flag](../../../../../public/docs/api-docs/image/flag/argentina.svg)
 
 ### Header Parameters
-:::note[Remember!]
-See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
-:::
+<GlobalHeaderNote />
 
 ### Query Parameters
 In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
@@ -63,9 +64,7 @@ This endpoint will return the coat of arm of the country requested.
 </div>
 
 ### Header Parameters
-:::note[Remember!]
-See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
-:::
+<GlobalHeaderNote />
 
 ### Query Parameters
 In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.

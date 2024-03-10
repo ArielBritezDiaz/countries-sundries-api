@@ -9,6 +9,10 @@ import CodeResponseCountryAll from '../../../../components/api-endpoints/country
 import ExampleCodeCountryDetails from '../../../../components/api-endpoints/country/details/details-code-example.country.astro';
 import CodeResponseCountryDetails from '../../../../components/api-endpoints/country/details/details-response.country.astro';
 
+import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
+import GlobalQueryNote from '../../../../components/aside/note/global-query-params.astro';
+import DetailsQueryNote from '../../../../components/aside/note/details-query-params.astro';
+
 In this section we will show you the **`country`** endpoint, its parameters, combinations and specific details.\
 At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of 160 countries and different international organizations.
 
@@ -33,9 +37,7 @@ The `country/all` endpoint, if no limit is specified, will by default return 30 
 <CodeResponseCountryAll />
 
 ### Header Parameters
-:::note[Remember!]
-See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
-:::
+<GlobalHeaderNote />
 
 ### Query Parameters
 In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
@@ -96,9 +98,7 @@ Allows you to filter registers by capital
 curl -X GET 'http://countries-sundries-api.com/country/all?capital=Buenos%20Aires'
 ```
 
-:::note[In case you haven't arrived yet!]
-See the [Global Query Parameters](/docs/api-reference/global-query-parameters) section to discover the Query Parameters that are globally accepted for endpoints ending in `/all`!
-:::
+<GlobalQueryNote />
 
 #### `official_language`
 > _Optional String_\
@@ -249,11 +249,7 @@ If no Query Parameter is specified, the first register will be returned.
 <CodeResponseCountryDetails />
 
 ### Header Parameters
-:::note[Remember!]
-See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
-:::
+<GlobalHeaderNote />
 
 ### Query Parameters
-:::note[They're up!]
-All Query Parameters (Except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for `details`!
-:::
+<DetailsQueryNote />
