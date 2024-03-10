@@ -49,14 +49,19 @@ echo $response;
   }, {
     lang: 'js',
     code: `
-const response = await fetch(${url}, {
+const req = new Request({
+  url: ${url},
   method: "GET",
   headers: {
     ${headerKey}: 'Bearer x-xxx-xxxx-x',
-    ${headerVersion}: '1'
-  }
+    ${headerVersion}: '1',
+    ${headerContentType}: 'application/json'
+  },
 });
-const data = await response.json();
+fetch(req)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error fetching data:', error));
     `
   }, {
     lang: 'python',

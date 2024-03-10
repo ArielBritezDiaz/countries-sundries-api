@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwind from "@astrojs/tailwind";
-import Icons from 'unplugin-icons/vite';
 import icon from "astro-icon";
 
 import expressiveCode from "astro-expressive-code";
@@ -23,6 +22,17 @@ export default defineConfig({
       logo: {
         src: './src/assets/logo.svg'
       },
+      favicon: './src/assets/logo.svg',
+      head: [
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'icon',
+            href: './src/assets/logo.svg',
+            sizes: '32x32'
+          }
+        }
+      ],
       sidebar: [{
         label: 'Introduction',
         items: [{
@@ -85,10 +95,18 @@ export default defineConfig({
         }]
       },
       { label: 'Changelog', link: '/docs/changelog/changelog/' }
-    ]
+      ],
+      locales: {
+        root: {
+          label: 'English',
+          lang: 'en-US'
+        }
+      },
+      pagefind: true
     }), tailwind({
       applyBaseStyles: false
-    }), expressiveCode(expressiveCodeConfig),
+    }),
+    expressiveCode(expressiveCodeConfig),
     icon()
   ]
 });
