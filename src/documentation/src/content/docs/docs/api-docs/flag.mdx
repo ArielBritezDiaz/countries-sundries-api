@@ -8,6 +8,10 @@ import CodeExampleFlagAll from '../../../../components/api-endpoints/flag/all/al
 import CodeExampleFlagDetails from '../../../../components/api-endpoints/flag/details/details-code-example.flag.astro';
 import CodeResponseFlagDetails from '../../../../components/api-endpoints/flag/details/details-response.flag.astro';
 
+import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
+import GlobalQueryNote from '../../../../components/aside/note/global-query-params.astro';
+import DetailsQueryNote from '../../../../components/aside/note/details-query-params.astro';
+
 In this section we will show you the **`flag`** endpoints, its parameters, combinations and specific details.\
 At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of coats of arms of 164 countries, including different international organizations.
 Since it is so similar to the `coat-of-arm` endpoint, there will be almost no change with respect to that section.
@@ -33,9 +37,7 @@ The `flag/all` endpoint, if no limit is specified, will by default return 30 fla
 <CodeResponseFlagAll />
 
 ### Header Parameters
-:::note[Remember!]
-See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
-:::
+<GlobalHeaderNote />
 
 ### Query Parameters
 In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
@@ -54,9 +56,7 @@ Allows you to filter registers by name
 curl -X GET 'http://countries-sundries-api.com/flag/all?name=argentina' -H 'x-countries_sundries_api-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
 ```
 
-:::note[In case you haven't arrived yet!]
-See the [Global Query Parameters](/docs/api-reference/global-query-parameters) section to discover the Query Parameters that are globally accepted for endpoints ending in `/all`!
-:::
+<GlobalQueryNote />
 
 #### `type`
 >_Optional String_\
@@ -80,11 +80,7 @@ If no Query Parameter is specified, the first register will be returned.
 <CodeResponseFlagDetails />
 
 ### Header Parameters
-:::note[Remember!]
-See the [Global Header Parameters](/docs/api-reference/global-header-parameters) section so you can make these requests correctly and with the necessary permissions.
-:::
+<GlobalHeaderNote />
 
 ### Query Parameters
-:::note[They're up!]
-All Query Parameters (Except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for `details`!
-:::
+<DetailsQueryNote />

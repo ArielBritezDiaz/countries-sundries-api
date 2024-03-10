@@ -1,0 +1,6 @@
+---
+const message = Astro.props.message;
+---
+{ Astro.slots.has('default') &&
+  <Fragment set:html={Astro.slots.render('default', [message])} />
+}

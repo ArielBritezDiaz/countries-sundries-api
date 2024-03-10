@@ -1,5 +1,6 @@
 import starlightPlugin from '@astrojs/starlight-tailwind';
 import colors from 'tailwindcss/colors';
+const { addDynamicIconSelectors } = require('@iconify/tailwind');
 
 const accent = { 200: '#00c5b4', 950: '#0f0c0c' };
 const gray = { 100: '#f3f7f9', 200: '#e7eff2', 300: '#bac4c8', 400: '#7b8f96', 700: '#757676', 800: '#11393c', 900: '#0c1b1b' };
@@ -25,7 +26,10 @@ export default {
       }
 		},
 	},
-	plugins: [starlightPlugin()],
+	plugins: [
+    starlightPlugin(),
+    addDynamicIconSelectors(),
+  ],
 }
 
 import starlightPlugin from '@astrojs/starlight-tailwind';
