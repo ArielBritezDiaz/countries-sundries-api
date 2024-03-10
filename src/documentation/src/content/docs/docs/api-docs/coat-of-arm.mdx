@@ -2,10 +2,9 @@
 title: 'Coat of Arm endpoints'
 ---
 
-import CodeExampleCoatOfArmAll from '../../../../components/api-endpoints/coat-of-arm/all/all-code-example.coat-of-arm.astro';
+import CodeExample from '../../../../components/api-endpoints/code-example.astro';
 import CodeResponseCoatOfArmAll from '../../../../components/api-endpoints/coat-of-arm/all/all-response.coat-of-arm.astro';
 
-import CodeExampleCoatOfArmDetails from '../../../../components/api-endpoints/coat-of-arm/details/details-code-example.coat-of-arm.astro';
 import CodeResponseCoatOfArmDetails from '../../../../components/api-endpoints/coat-of-arm/details/details-response.coat-of-arm.astro';
 
 import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
@@ -26,7 +25,7 @@ The `coat-of-arm/all` endpoint, if no limit is specified, will by default return
 
 ### Example Request
 
-<CodeExampleCoatOfArmAll />
+<CodeExample endpoint="coat-of-arm/all" />
 
 :::note[Keep in mind...]
   The fewer coat of arm registers you bring in, the faster the server will respond 
@@ -74,7 +73,7 @@ If no Query Parameter is specified, the first register will be returned.
 ### Example Request
 >We will make an example of a possible API request that could be given in case you want to bring the coat of arm image of a specific country.\
 
-<CodeExampleCoatOfArmDetails />
+<CodeExample endpoint="coat-of-arm/details" />
 
 ### Response
 

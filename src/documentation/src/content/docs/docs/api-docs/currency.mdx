@@ -2,10 +2,9 @@
 title: 'Currency endpoints'
 ---
 
-import CodeExampleCurrencyAll from '../../../../components/api-endpoints/currency/all/all-code-example.currency.astro';
-import CodeResponseCurrencyAll from '../../../../components/api-endpoints/currency/all/all-response.currency.astro';
+import CodeExample from '../../../../components/api-endpoints/code-example.astro';
 
-import CodeExampleCurrencyDetails from '../../../../components/api-endpoints/currency/details/details-code-example.currency.astro';
+import CodeResponseCurrencyAll from '../../../../components/api-endpoints/currency/all/all-response.currency.astro';
 import CodeResponseCurrencyDetails from '../../../../components/api-endpoints/currency/details/details-response.currency.astro';
 
 import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
@@ -24,7 +23,7 @@ The `currency/all` endpoint, if no limit is specified, will by default return 30
 
 ### Example Request
 
-<CodeExampleCurrencyAll />
+<CodeExample endpoint="currency/all" />
 
 :::note[Keep in mind...]
   The fewer currencies registers you bring in, the faster the server will respond.
@@ -72,7 +71,7 @@ If no query parameter is specified, the first record will be returned.
 ### Example Request
 >We will make an example of a possible API request that could be given in case you want to bring the details of a specific currency.
 
-<CodeExampleCurrencyDetails />
+<CodeExample endpoint="currency/details" />
 
 ### Response
 >The result of the request will be a JSON object with the information of the currency.
