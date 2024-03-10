@@ -1,9 +1,14 @@
 ---
-import Shout from '../../astro-slots.astro';
+import Shout from './astro-slots.astro';
 import { Tabs, TabItem } from '@astrojs/starlight/components';
-import { Code } from '@astrojs/starlight/components';
+import { Code as CodeExampleRegionAll } from '@astrojs/starlight/components';
 
-const url = `http://localhost:3000/api/v1/coat-of-arm/all`
+import type { Props } from 'astro';
+const props = Astro.props;
+console.log("props", props.endpoint);
+const endpoint = props.endpoint;
+
+const url = `http://localhost:3000/api/v1/${endpoint}`
 const headerKey = `'x-countries_sundries_api-key'`
 const headerVersion = `'x-api-version'`
 const headerContentType = `'Content-Type'`
@@ -162,7 +167,7 @@ public class Main {
 }
     `
   }, {
-    lang: 'curl',
+    lang: 'bash',
     code: `
 curl -X GET ${url} \
 -H ${headerKey} \
@@ -224,7 +229,7 @@ const labelTab = ['JavaScript', 'PHP', 'Bun', 'Python', 'Go', 'Dart', 'Ruby', 'N
     <TabItem label={label}>
       <Shout message={label} key={label}>
         {() => (
-          <Code frame="code" code={codeData[index].code} lang={codeData[index].lang} title={title} mark={highlights} />
+          <CodeExampleRegionAll frame="code" code={codeData[index].code} lang={codeData[index].lang} title={title} mark={highlights} />
         )}
       </Shout>
     </TabItem>

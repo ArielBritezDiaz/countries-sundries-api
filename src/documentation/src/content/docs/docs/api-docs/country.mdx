@@ -3,10 +3,9 @@ title: 'Country endpoints'
 description: 'An explication for a countries endpoints'
 ---
 
-import ExampleCodeCountryAll from '../../../../components/api-endpoints/country/all/all-code-example.country.astro';
-import CodeResponseCountryAll from '../../../../components/api-endpoints/country/all/all-response.country.astro';
+import CodeExample from '../../../../components/api-endpoints/code-example.astro';
 
-import ExampleCodeCountryDetails from '../../../../components/api-endpoints/country/details/details-code-example.country.astro';
+import CodeResponseCountryAll from '../../../../components/api-endpoints/country/all/all-response.country.astro';
 import CodeResponseCountryDetails from '../../../../components/api-endpoints/country/details/details-response.country.astro';
 
 import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
@@ -25,7 +24,7 @@ The `country/all` endpoint, if no limit is specified, will by default return 30 
 
 ### Example Request
 
-<ExampleCodeCountryAll />
+<CodeExample endpoint="country/all" />
 
 :::note[Keep in mind...]
   The fewer countries registers you bring in, the faster the server will respond.
@@ -241,7 +240,7 @@ If no Query Parameter is specified, the first register will be returned.
 ### Example Request
 >We will make an example of a possible API request that could be given in case you want to bring the details of a specific country.
 
-<ExampleCodeCountryDetails />
+<CodeExample endpoint="country/details" />
 
 ### Response
 >The result of the request will be a JSON object with the information of the country.
