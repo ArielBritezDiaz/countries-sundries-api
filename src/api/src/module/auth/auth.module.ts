@@ -9,15 +9,17 @@ import { JwtModule } from "@nestjs/jwt";
 import { jwtConstants } from "./constants/auth.constants";
 import { GoogleStrategy } from "./utils/google-strategy.utils";
 import { SessionSerializer } from "./utils/serializer.auth";
+import { PassportModule } from "@nestjs/passport";
 
 @Module({
   imports: [
     UserModule,
+    PassportModule.register({ session: true }),
     //JWT Config
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '10m' }, // this is 180 seconds, the config por one year is "6M"
+      signOptions: { expiresIn: '10m' }, // this is 10 minute, the config por one year is "6M"
     }),
   ],
   providers: [AuthService, UserService, GoogleStrategy, SessionSerializer, {

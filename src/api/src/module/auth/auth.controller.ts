@@ -23,6 +23,8 @@ export class AuthController {
       console.log("llega")
       // const response = await this.authService.googleLogIn();
       // return res.status(HttpStatus.OK).send(response);
+      console.log("!-----------------------------------------------------------------------------------------!")
+      console.log("googleLogIn", res)
       return { message: 'Google Log In'}
     } catch(error) {
       console.error(error);
@@ -46,8 +48,28 @@ export class AuthController {
       session.id_user = response['user'].id_user
       session.access_token = response.access_token
       console.log("response in googleRedirect:", response)
+      console.log("session in googleRedirect:", session)
 
-      return res.redirect(`http://localhost:3000/v1/auth/profile`)
+      const cookieOptions = {
+        httpOnly: false,
+        secure: true, // Asegúrate de que tu aplicación esté detrás de HTTPS
+        // sameSite: 'strict' as const, // O 'lax' según tus necesidades de seguridad
+        maxAge: 360000, // Duración de la cookie en segundos
+        path: '/profile' // Ruta de la cookie
+      };
+  
+      // Establecer la cookie con el token de acceso
+      res.cookie('id_user', response['user'].id_user, cookieOptions);
+      res.cookie('access_token', response.access_token, cookieOptions);
+
+      // const data = {
+      //   id_user: response['user'].id_user,
+      //   access_token: response.access_token
+      // }
+      // const responseToAstro = await this.authService.profileUser(data)
+      // return res.redirect(`/v1/auth/profile`)
+      return res.redirect(`http://localhost:4321/profile/`)
+      // res.status(HttpStatus.OK).json(req['user']);
     } catch(error) {
       console.error(error);
       throw new InternalServerErrorException('Internal Server Error');
@@ -106,13 +128,16 @@ export class AuthController {
   }
 
   @Get('profile')
-  @Version(['1'])
+  
+  // @Version(['1'])
   async profile(
     @Res() res: Response,
     @Request() req: Request
   ) {
     try {
       console.log("profile-------------------------------------------")
+      // console.log(req)
+      console.log("nuevas")
       console.log(req['session'])
       let data = {}
 
@@ -145,7 +170,8 @@ export class AuthController {
       
       const user_rofile = await this.authService.profileUser(data)
       console.log("user_rofile:", user_rofile)
-      return res.send(user_rofile)
+      // return res.redirect('http://localhost:4321/profile/')
+      return res.status(HttpStatus.OK).json(user_rofile)
     } catch(error) {
       if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })
       console.error(error);

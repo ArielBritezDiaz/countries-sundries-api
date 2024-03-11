@@ -45,7 +45,7 @@ async function bootstrap() {
   }));
   //Middleware
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:4321', 'https://accounts.google.com'],
+    origin: ['http://localhost:3000', 'http://localhost:4321', 'http://localhost:4321/profile', 'https://accounts.google.com'],
     allowedHeaders: [
       'Content-Type',
       'x-countries_sundries_api-key',
