@@ -20,6 +20,10 @@ export class UserService {
 
 
   async signUpUser(body: SignUpUserDTO): Promise<number> {
+    
+    console.log("user.service-----------------------------------------------")
+    console.log("body in signUpUser:", body)
+
     const passw = body.password
     const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS, 10)
 
