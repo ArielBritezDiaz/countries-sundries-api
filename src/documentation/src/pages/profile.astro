@@ -1,0 +1,51 @@
+---
+
+export const prerender = false
+
+  import { onMount } from "svelte";
+
+  let profileData;
+  console.log("epa")
+  console.log(Astro.cookies)
+  console.log(Astro.request)
+  console.log("Astro.response--------------------")
+  console.log(Astro.response)
+  console.log("Astro.request.headers--------------------")
+  console.log(Astro.request.headers)
+  console.log("Astro.request.cookie--------------------")
+  const cookieHeader = Astro.request.headers.get('cookie');
+  console.log(cookieHeader);
+
+if (Astro.cookies.has("id_user")) {
+  console.log("Tiene la cookie")
+  const cookie = Astro.cookies.get("id_user")
+  console.log(cookie)
+}
+  onMount(async () => {
+    const response = await fetch('http://localhost:3000/v1/auth/profile/');
+    profileData = await response.json();
+    console.log("----------------------")
+    console.log(profileData)
+  });
+---
+
+<!-- Contenedor para mostrar el perfil del usuario -->
+<div id="profile-container">
+  <h1>Perfil del Usuario</h1>
+  {
+    cookieHeader && cookieHeader.length > 0 && (
+      <div>
+        <p>Cookie: {cookieHeader}</p>
+      </div>
+    )
+  }
+  {profileData && (
+    <div>
+      <p>Nombre: {profileData}</p>
+    </div>
+  )}
+</div>
+
+<script>
+  console.log("document.cookie:", document.cookie)
+</script>

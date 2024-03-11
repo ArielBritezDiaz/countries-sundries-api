@@ -18,6 +18,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(access_token: string, refresh_token: string, profile: any){
+    console.log("!---------------------------------------------------------!")
     console.log("access_token:", access_token)
     console.log("refresh_token:", refresh_token)
     console.log("profile:", profile)
@@ -26,6 +27,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy) {
       name: profile.displayName
     })
 
+    console.log("!---------------------------------------------------------!")
     console.log('Validate')
     console.log('user:', user)
     return user || null;

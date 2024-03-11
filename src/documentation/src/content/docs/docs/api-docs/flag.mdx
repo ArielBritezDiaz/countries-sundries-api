@@ -2,10 +2,9 @@
 title: 'Flag endpoints'
 ---
 
-import CodeResponseFlagAll from '../../../../components/api-endpoints/flag/all/all-response.flag.astro';
-import CodeExampleFlagAll from '../../../../components/api-endpoints/flag/all/all-code-example.flag.astro';
+import CodeExample from '../../../../components/api-endpoints/code-example.astro';
 
-import CodeExampleFlagDetails from '../../../../components/api-endpoints/flag/details/details-code-example.flag.astro';
+import CodeResponseFlagAll from '../../../../components/api-endpoints/flag/all/all-response.flag.astro';
 import CodeResponseFlagDetails from '../../../../components/api-endpoints/flag/details/details-response.flag.astro';
 
 import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
@@ -25,7 +24,7 @@ The `flag/all` endpoint, if no limit is specified, will by default return 30 fla
 
 ### Example Request
 
-<CodeExampleFlagAll />
+<CodeExample endpoint="flag/all" />
 
 :::note[Keep in mind...]
   The fewer flag registers you bring in, the faster the server will respond 
@@ -73,7 +72,7 @@ If no Query Parameter is specified, the first register will be returned.
 ### Example Request
 >We will make an example of a possible API request that could be given in case you want to bring the flag image of a specific country.\
 
-<CodeExampleFlagDetails />
+<CodeExample endpoint="flag/details" />
 
 ### Response
 

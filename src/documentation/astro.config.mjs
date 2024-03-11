@@ -5,9 +5,10 @@ import icon from "astro-icon";
 import expressiveCode from "astro-expressive-code";
 import expressiveCodeConfig from "./ec.config";
 import react from "@astrojs/react";
-
 import vercel from "@astrojs/vercel/serverless";
 import netlify from '@astrojs/netlify';
+
+import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
@@ -106,6 +107,10 @@ export default defineConfig({
     pagefind: true
   }), tailwind({
     applyBaseStyles: false
-  }), expressiveCode(expressiveCodeConfig), icon(), react()],
-  output: "hybrid",
+  }), expressiveCode(expressiveCodeConfig), icon(), react(), svelte()],
+  routes: [{
+    src: '/profile',
+    component: './pages/profile.astro'
+  }],
+  output: "server"
 });

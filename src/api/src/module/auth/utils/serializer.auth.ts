@@ -11,7 +11,7 @@ export class SessionSerializer extends PassportSerializer {
     super()
   }
 
-  serializeUser(user: UserDetails, done: Function) {
+  serializeUser(user: any, done: Function) {
     console.log('SerializeUser-------------------------------------------------->')
     console.log('user:', user)
     done(null, user)
@@ -22,7 +22,7 @@ export class SessionSerializer extends PassportSerializer {
     console.log('payload:', payload)
     const user = await this.authService.findUser(payload.id_user)
     console.log('user:', user)
-    
-    return user ? done(null, user) : done(null, null)
+    done(null, payload)
+    // return user ? done(null, user) : done(null, null)
   }
 }
