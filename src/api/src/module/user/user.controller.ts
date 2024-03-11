@@ -21,9 +21,13 @@ export class UserController {
     @Session() session: Record<string, any>
   ) {
     try {
+      console.log("user.controller-----------------------------------------------")
+      console.log("body in signUp:", body)
       const response = await this.userService.signUpUser(body);
       // console.log("response in CONTROLLER:", response)
+      console.log("response in CONTROLLER:", response)
       session.new_user = response
+      console.log("session in CONTROLLER:", session)
       if(response) {
         return res.status(HttpStatus.CREATED).redirect('http://localhost:3000/api/v1/auth/redirect-profile');
       } else {

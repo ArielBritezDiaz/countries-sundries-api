@@ -20,6 +20,7 @@ export class AuthController {
     @Res() res: Response
   ) { 
     try {
+      console.log("llega")
       // const response = await this.authService.googleLogIn();
       // return res.status(HttpStatus.OK).send(response);
       return { message: 'Google Log In'}
@@ -83,12 +84,14 @@ export class AuthController {
   async redirectProfile(
     @Res() res: Response,
     @Request() req: Request,
+    @Query('new_user') new_user: string,
     @Session() session: Record<string, any>
   ) {
     try {
       console.log("redirect-profile---------------------------------------------------")
       console.log(req['session'])
       const user = req['session'].new_user
+      console.log("user in redirectProfile:", user)
       const response = await this.authService.getToken(user)
       session.id_user = response['user'].id_user
       session.access_token = response.access_token
