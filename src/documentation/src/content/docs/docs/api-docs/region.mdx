@@ -8,6 +8,8 @@ import CodeResponseRegionAll from '../../../../components/api-endpoints/region/a
 import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
 import GlobalQueryNote from '../../../../components/aside/note/global-query-params.astro';
 
+import QueryParamsExplanation from '../../../../components/repetitive-texts/query-params-explanation.astro';
+
 In this section we will show you the **`region`** endpoint, its parameters, combinations and specific details.\
 As you can imagine, the information of this endpoint is six registers, which is why this section will be brief 😅
 
@@ -31,7 +33,7 @@ The `region/all` endpoint, if no limit is specified, will by default return the 
 <GlobalHeaderNote />
 
 ### Query Parameters
-In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
+<QueryParamsExplanation />
 
 #### `id`
 > _Optional Integer_\

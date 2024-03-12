@@ -39,4 +39,24 @@ export class UserController {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ message: 'Internal Server Error' });
     }
   }
+
+  @Get('profile')
+  @Version(['1'])
+  async profile(
+    @Res() res: Response,
+    @Query() query: Record<string, any>,
+  ) {
+    try {
+      console.log("user/profile---------------------------------------------------")
+      console.log(parseInt(query.id_user))
+      const response = await this.userService.getUser(parseInt(query.id_user))
+      // console.log(response)
+      return res.send(response)
+    } catch(error) {
+      if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })
+      console.error(error);
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ message: 'Internal Server Error' });
+    }
+  }
+
 }

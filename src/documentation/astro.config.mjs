@@ -94,9 +94,6 @@ export default defineConfig({
     }, {
       label: 'Changelog',
       link: '/docs/changelog/changelog/'
-    }, {
-      label: 'Get your API Key',
-      link: '/pages/acces-key/'
     }],
     locales: {
       root: {

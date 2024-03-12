@@ -9,8 +9,10 @@ import ExampleCodeImageCoatOfArm from '../../../../components/api-endpoints/imag
 import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
 import GlobalQueryNote from '../../../../components/aside/note/global-query-params.astro';
 
+import QueryParamsExplanation from '../../../../components/repetitive-texts/query-params-explanation.astro';
+
 In this section we will show you the **`image`** endpoint, its parameters, combinations and specific details.\
-At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of 164 images of countries and different international organizations.
+At the moment, <a href="/" class="no-underline">Countries Sundries</a> covers a total of 164 images of countries and different international organizations.
 
 ## Endpoint response and parameters
 
@@ -33,7 +35,7 @@ This endpoint will return the flag of the country requested.
 <GlobalHeaderNote />
 
 ### Query Parameters
-In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
+<QueryParamsExplanation />
 
 #### `id_flag`
 >_Optional Integer_\
@@ -67,7 +69,7 @@ This endpoint will return the coat of arm of the country requested.
 <GlobalHeaderNote />
 
 ### Query Parameters
-In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
+<QueryParamsExplanation />
 
 #### `id_flag`
 >_Optional Integer_\

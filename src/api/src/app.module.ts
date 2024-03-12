@@ -34,6 +34,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { PassportModule } from '@nestjs/passport';
 import { CoatOfArmModule } from './module/api/coat-of-arm/coat-of-arm.module';
 import { CoatOfArmController } from './module/api/coat-of-arm/coat-of-arm.controller';
+import { UTF8Middleware } from './middleware/utf-8.middleware';
 
 @Module({
   imports: [
@@ -70,7 +71,8 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(
-        MorganMiddleware
+        MorganMiddleware,
+        UTF8Middleware
       )
       .forRoutes(
         UserController,
