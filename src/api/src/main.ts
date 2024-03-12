@@ -37,7 +37,7 @@ async function bootstrap() {
   app.use(passport.initialize())
   app.use(passport.session())
   //Guard use
-  // app.useGlobalGuards(new ApiVersionGuard()); // after of the apiKeyGuard, validate the version of the API, if the version is not supported, the guard throw an UnauthorizedException, and if the version is supported, the guard return true and the request continue to the next middleware
+  app.useGlobalGuards(new ApiVersionGuard()); // after of the apiKeyGuard, validate the version of the API, if the version is not supported, the guard throw an UnauthorizedException, and if the version is supported, the guard return true and the request continue to the next middleware
   //Pipe use
   app.useGlobalPipes(new ValidationPipe({
     transform: true,

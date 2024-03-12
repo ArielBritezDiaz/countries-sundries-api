@@ -11,8 +11,10 @@ import GlobalHeaderNote from '../../../../components/aside/note/global-header-pa
 import GlobalQueryNote from '../../../../components/aside/note/global-query-params.astro';
 import DetailsQueryNote from '../../../../components/aside/note/details-query-params.astro';
 
+import QueryParamsExplanation from '../../../../components/repetitive-texts/query-params-explanation.astro';
+
 In this section we will show you the **`Currency`** endpoints, its parameters, combinations and specific details.\
-At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of 161 currencies, these include those of all available countries.
+At the moment, <a href="/" class="no-underline">Countries Sundries</a> covers a total of 161 currencies, these include those of all available countries.
 
 ## Endpoint response and parameters
 
@@ -38,7 +40,7 @@ The `currency/all` endpoint, if no limit is specified, will by default return 30
 <GlobalHeaderNote />
 
 ### Query Parameters
-In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
+<QueryParamsExplanation />
 
 #### `id`
 >_Optional Integer_\
@@ -65,7 +67,7 @@ curl -X GET "http://countries-sundries-api.com/currency/all?abbr=ARS" -H "x-coun
 
 ## `currency/details`
 This endpoint will allow you to obtain all the previous information but returning a single record, giving a much faster response if you only need one currency.\
-All query parameters (except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for "details".\
+All query parameters (except <a href="/docs/api-reference/global-query-parameters/" class="no-underline">Global Query Parameters</a>) are enabled for "details".\
 If no query parameter is specified, the first record will be returned.
 
 ### Example Request

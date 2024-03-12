@@ -9,6 +9,8 @@ import { SignInUser } from "./interface/user.interface";
 import * as bcrypt from 'bcrypt';
 import { JwtService } from "@nestjs/jwt";
 
+import * as moment from 'moment';
+
 //CRUD Operations
 @Injectable()
 export class UserService {
@@ -74,6 +76,31 @@ export class UserService {
     })
 
     if(!user) throw new UnauthorizedException('User does not exist')
+    
+    return user
+  }
+
+  async getUser(id_user: number): Promise<any> {
+    const userExists = await this.prismaService.user.findUnique({
+      where: {
+        id_user: id_user
+      },
+      select: {
+        name: true,
+        email: true,
+        created_at: true
+      }
+    })
+
+    console.log("userExists in getUser:", userExists)
+
+    const user = {
+      name: userExists.name,
+      email: userExists.email,
+      created_at: moment(userExists.created_at).format('YYYY-MM-DD HH:mm')
+    }
+
+    if(!userExists) throw new UnauthorizedException('User does not exist')
     
     return user
   }

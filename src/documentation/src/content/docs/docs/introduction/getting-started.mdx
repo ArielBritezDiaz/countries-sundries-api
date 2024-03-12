@@ -2,7 +2,7 @@
 title: 'Getting Started'
 ---
 
-import CodeExampleGettingStartedAll from '../../../../components/getting-started/getting-started-fetch/code-exmaple.getting-started.astro'
+import CodeExample from '../../../../components/api-endpoints/code-example.astro';
 import ResponseGettingStartedAll from '../../../../components/getting-started/getting-started-fetch/response.getting-started.astro'
 
 import GlobalHeaderNote from '../../../../components/aside/note/global-header-params.astro';
@@ -18,24 +18,24 @@ At Countries Sundries we have three types of endpoints available:
 These are the initial endpoints that Countries Sundries offers you!
 
 In order to make any request, first of all remember that you need access!
-To do this, first visit the [Get Access API Key](/docs/introduction/get-api-key) section.
+To do this, first visit the <a href="/docs/introduction/get-api-key/" class="no-underline">Get Access API Key</a> section.
 
 Also, remember to have your Global Header Parameters updated so you can make requests successfully once you have your API key.\
-To see if you have them updated, [click here](/docs/api-reference/global-header-parameters)!
+To see if you have them updated, <a href='/docs/api-reference/global-header-parameters/' class="no-underline">Click here!</a>
 
 ## Contents with `all` endpoints available
 
 Initially we have `/all`, in many of the endpont formats it is available to request all the available information, this endpoint allows different parameters that are mostly repeated between the different information contents.\
-In all endpoints ending in `all` the [Global Query Parameters]() are present and available for use.
-The [Global Query Parameters](), in summary, serve to specify a limited number of records that we will want to bring, to filter by different fields or specify the order of the records.
+In all endpoints ending in `all` the <a href="/docs/api-reference/global-query-parameters/" class="no-underline">Global Query Parameters</a> are present and available for use.
+The <a href="/docs/api-reference/global-query-parameters/" class="no-underline">Global Query Parameters</a>, in summary, serve to specify a limited number of records that we will want to bring, to filter by different fields or specify the order of the records.
 
 >The resources with the `details` endpoint enabled are:
->+ Country (to see more, [click here](/docs/api-docs/country))
->+ Coat Of Arm (to see more, [click here](/docs/api-docs/coat-of-arm))
->+ Flag (to see more, [click here](/docs/api-docs/flag))
->+ Currency (to see more, [click here](/docs/api-docs/currency))
->+ Region (to see more, [click here](/docs/api-docs/region))
->+ Subregion (to see more, [click here](/docs/api-docs/sub-region))
+>+ Country (to see more, <a href="/docs/api-docs/country/" class="no-underline">click here!</a>)
+>+ Coat Of Arm (to see more, <a href="/docs/api-docs/coat-of-arm/" class="no-underline">click here!</a>)
+>+ Flag (to see more, <a href="/docs/api-docs/flag/" class="no-underline">click here!</a>)
+>+ Currency (to see more, <a href="/docs/api-docs/currency/" class="no-underline">click here!</a>)
+>+ Region (to see more, <a href="/docs/api-docs/region/" class="no-underline">click here!</a>)
+>+ Subregion (to see more, <a href="/docs/api-docs/sub-region/" class="no-underline">click here!</a>)
 
 ## Contents with `details` endpoints available
 
@@ -44,33 +44,33 @@ In addition to 'all' we have the availability of the `details` endpoint, in whic
 Also, the only difference in terms of setting up the fetch is that you must replace `all` with `details` and you will obtain the information of the requested country or organization, in addition to the fact that the response will be faster.
 
 >The resources with the `details` endpoint enabled are:
->+ Country (to see more, [click here](/docs/api-docs/country))
->+ Coat Of Arm (to see more, [click here](/docs/api-docs/coat-of-arm))
->+ Flag (to see more, [click here](/docs/api-docs/flag))
->+ Currency (to see more, [click here](/docs/api-docs/currency))
+>+ Country (to see more, <a href="/docs/api-docs/country/" class="no-underline">click here!</a>)
+>+ Coat Of Arm (to see more, <a href="/docs/api-docs/coat-of-arm/" class="no-underline">click here!</a>)
+>+ Flag (to see more, <a href="/docs/api-docs/flag/" class="no-underline">click here!</a>)
+>+ Currency (to see more, <a href="/docs/api-docs/currency/" class="no-underline">click here!</a>)
 
 :::note[Remember!]
 To make any request, first of all remember that you need access!
-To do this, first visit the [Get Access API Key](/docs/introduction/get-api-key) section.
+To do this, first visit the <a href="/docs/introduction/get-api-key/" target="_blank">Get Access API Key</a> section.
 
 Also, remember to have your Global Header Parameters updated so you can make requests successfully once you have your API key.\
-To see if you have them updated, [click here](/docs/api-reference/global-header-parameters)!
+To see if you have them updated, <a href="/docs/api-reference/global-header-parameters/" target="_blank">click here!</a>
 :::
 
 ## Basic Usage
 >As a presentation, we will make an example of a possible API request that could occur in case you want to bring all possible countries.\
-In this example, we are creating an asynchronous arrow function that will search for the URL [**Country Sundries**](http://countries-sundries-api.com/) with the endpoint `country/all`.\
+In this example, we are creating an asynchronous arrow function that will search for the URL <a href="/" class="no-underline">Country Sundries</a> with the endpoint `country/all`.\
 We will use an arrow function that will bring in the **Countries Sundries** URL with the endpoint `country/all`, using the **'GET'** method and with the headers set, which will be `x-countries_sundries_api -key` , `x-api-version`, and we will include an optional header that will be `Content-Type` to bring the data in JSON format.\
 We will save the result in a constant and return it, this result will be saved in a constant called _'fetchApiExample'_ and then we will call it.
 
 ### Example Request
-<CodeExampleGettingStartedAll />
+<CodeExample endpoint="country/all" />
 
 ### Header Parameters
 <GlobalHeaderNote />
 
 ### Response
 The response from the server (except for the `image` endpoint) will be given in an array of objects. This will allow for clearer and simplified organization of information.
-For this example we will show a part of the endpoint's full response (to see the full response, [click here](/docs/api-docs/country)!)
+For this example we will show a part of the endpoint's full response (to see the full response, <a href="/docs/api-docs/country/" class="no-underline">click here!</a>
 
 <ResponseGettingStartedAll />

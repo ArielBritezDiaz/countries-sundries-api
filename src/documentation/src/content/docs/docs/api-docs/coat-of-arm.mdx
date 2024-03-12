@@ -11,9 +11,10 @@ import GlobalHeaderNote from '../../../../components/aside/note/global-header-pa
 import GlobalQueryNote from '../../../../components/aside/note/global-query-params.astro';
 import DetailsQueryNote from '../../../../components/aside/note/details-query-params.astro';
 
-In this section we will show you the **`coat-of-arm`** endpoint, its parameters, combinations and specific details.\
-At the moment, [Countries Sundries](http://countries-sundries-api.com/) covers a total of coats of arms of 164 countries, including different international organizations.
+import QueryParamsExplanation from '../../../../components/repetitive-texts/query-params-explanation.astro';
 
+In this section we will show you the **`coat-of-arm`** endpoint, its parameters, combinations and specific details.\
+At the moment, <a href="/" class="no-underline">Countries Sundries</a> covers a total of coats of arms of 164 countries, including different international organizations.
 
 ## Endpoint response and parameters
 
@@ -40,7 +41,7 @@ The `coat-of-arm/all` endpoint, if no limit is specified, will by default return
 <GlobalHeaderNote />
 
 ### Query Parameters
-In the Query Parameters sections we will use the [CURL](https://curl.se/) command to show how to use parameters in the request. These query parameter tests will also be possible in [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) or other API testing tools, for example.
+<QueryParamsExplanation />
 
 #### `id`
 > _Optional Integer_\
@@ -67,7 +68,7 @@ curl -X GET 'http://countries-sundries-api.com/coat-of-arm/all?type=svg' -H 'x-c
 
 ## `coat-of-arm/details`
 This endpoint will allow you to obtain all the previous information but returning a single register, this will allow a much faster response if you need a single country and not many.\
-All Query Parameters (Except [Global Query Parameters](/docs/api-reference/global-query-parameters)) are enabled for `details`.\
+All Query Parameters (except <a href="/docs/api-reference/global-query-parameters/" class="no-underline">Global Query Parameters</a>) are enabled for `details`.\
 If no Query Parameter is specified, the first register will be returned.
 
 ### Example Request
