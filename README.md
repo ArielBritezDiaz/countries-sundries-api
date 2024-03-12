@@ -3,7 +3,38 @@
 [![LinkedIn](./public/resources/readme/icons/linkedin-common.svg)](https://www.linkedin.com/in/ariel-britez-diaz-technical/)
 [![Portfolio](./public/resources/readme/icons/www.svg)](https://arielbritezdiaz.github.io/portfolio/)
 
+[![Countries Sundries Logo](./public/resources/readme/logo/V3.svg)](http://countriessundries.com/)
+
 # Countries Sundries API
+
+<div style="display: flex; justify-content: space-between;">
+  <div>
+    <a href="https://nestjs.com/" style="padding: 0 .4em; text-decoration: none;">
+      <img src="./public/resources/readme/icons/technologies/nestjs.svg" alt="NestJs">
+    </a>
+    <a href="https://www.mysql.com/" style="padding: 0 .4em; text-decoration: none;">
+      <img src="./public/resources/readme/icons/technologies/mysql.svg" alt="MySQL">
+    </a>
+    <a href="https://bun.sh/" style="padding: 0 .4em; text-decoration: none;">
+      <img src="./public/resources/readme/icons/technologies/bun.svg" alt="Bun">
+    </a>
+    <a href="https://www.prisma.io/" style="padding: 0 .4em; text-decoration: none;">
+      <img src="./public/resources/readme/icons/technologies/prisma.svg" alt="Prisma">
+    </a>
+  </div>
+  <div>
+    <a href="https://starlight.astro.build/" style="padding: 0 .4em; text-decoration: none;">
+      <img src="./public/resources/readme/icons/technologies/starlight%20(copia%202).webp" alt="Starlight">
+    </a>
+    <a href="https://starlight.astro.build/" style="padding: 0 .4em; text-decoration: none;">
+      <img src="./public/resources/readme/icons/technologies/astro.svg" alt="Astro">
+    </a>
+    <a href="https://tailwindcss.com/" style="padding: 0 .4em; text-decoration: none;">
+      <img src="./public/resources/readme/icons/technologies/tailwind.svg" alt="Tailwind">
+    </a>
+  </div>
+</div>
+
 ## Overview
 Countries Sundries is an API that offers you information about countries and international organizations, including their flags, their sub-regions, and even their currency. In this section you will find a basic guide to use and the most relevant information for its use.
 <!-- [Countries Sundries API](https://countrtiessundriesapi.com) -->
@@ -30,19 +61,6 @@ fetchApiExample()
   .then(data => console.log(data))
   .catch(error => console.error(error));
 ```
-
-## Technologies
-[![NestJs](./public/resources/readme/icons/technologies/nestjs.svg)](https://nestjs.com/)
-[![MySQL](./public/resources/readme/icons/technologies/mysql.svg)](https://www.mysql.com/)
-[![Bun](./public/resources/readme/icons/technologies/bun.svg)](https://bun.sh/)
-[![Prisma](./public/resources/readme/icons/technologies/prisma.svg)](https://www.prisma.io/)
-[![TypeScript](./public/resources/readme/icons/technologies/typescript.svg)](https://www.typescriptlang.org/)
-
-[![Starlight](./public/resources/readme/icons/technologies/starlight%20(copia%202).webp)](https://starlight.astro.build/)
-[![Astro](./public/resources/readme/icons/technologies/astro.svg)](https://starlight.astro.build/)
-[![Tailwind](./public/resources/readme/icons/technologies/tailwind.svg)](https://tailwindcss.com/)
-
-[![]()]()
 
 ## Support
 
