@@ -47,14 +47,14 @@ The `flag/all` endpoint, if no limit is specified, will by default return 30 fla
 > _Optional Integer_\
 Allows you to filter registers by id
 ```bash
-curl -X GET 'http://countries-sundries-api.com/flag/all?id=1' -H 'x-countries_sundries_api-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
+curl -X GET 'http://countries-sundries-api.com/flag/all?id=1' -H 'x-countries_sundries-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
 ```
 
 #### `name`
 > _Optional String_\
 Allows you to filter registers by name
 ```bash
-curl -X GET 'http://countries-sundries-api.com/flag/all?name=argentina' -H 'x-countries_sundries_api-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
+curl -X GET 'http://countries-sundries-api.com/flag/all?name=argentina' -H 'x-countries_sundries-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
 ```
 
 <GlobalQueryNote />
@@ -63,7 +63,7 @@ curl -X GET 'http://countries-sundries-api.com/flag/all?name=argentina' -H 'x-co
 >_Optional String_\
 Allows you to filter registers by type, for now only the image of type [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) is available
 ```bash
-curl -X GET 'http://countries-sundries-api.com/flag/all?type=svg' -H 'x-countries_sundries_api-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
+curl -X GET 'http://countries-sundries-api.com/flag/all?type=svg' -H 'x-countries_sundries-key: YOUR_API_KEY' -H 'x-api-version: 1' -H 'Content-Type: application/json'
 ```
 
 ## `flag/details`

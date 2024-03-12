@@ -23,12 +23,12 @@ The versions have been established for both URI Versioning and Header Versioning
 At the moment the current version is **1**, therefore, all current endpoints are supported. In future updates this may not be the case and specific endpoints will only continue to be shown in the most current versions, all this will be reported in [Changelog](/docs/changelog/changelog)
 
 
-### `x-countries_sundries_api-key`
+### `x-countries_sundries-key`
 >_Required String_\
 The authentication set is <a href="https://jwt.io/" target="_blank" class="no-underline">JWT</a>, it will be specified with the prefix 'Bearer', followed by the JSON Web Token
 
 ```js
-'x-countries_sundries_api-x': 'Bearer x-xxxx-xxxx-x'
+'x-countries_sundries-key': 'Bearer x-xxxx-xxxx-x'
 ```
 If a still valid JWT is entered, the verification will be successful, this will respond with the requested endpoint information; otherwise a response with the status code <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401" target="_blank" class="no-underline"><span class="text-[#f0a802] hover:text-[#f8c554]">401 Unauthorized</span></a> will be returned.
 

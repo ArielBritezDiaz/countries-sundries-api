@@ -21,6 +21,40 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --sl-color-bg-nav: #23344b;
+  --sl-color-bg-inline-code: #111118;
+  --sl-color-bg-sidebar: #23344b;
+  --sl-color-bg: #162332;
+  --sl-color-text-invert: #fff;
+  --sl-color-text-accent: #fff;
+}
+
+#link {
+  color: #3c81bd;
+}
+
+#link:hover {
+  color: #60b4fd;
+}
+
+.content-panel:where(.astro-7nkwcw3z) + .content-panel:where(.astro-7nkwcw3z) {
+  border-top: 1px #868686 solid;
+}
+
+.right-sidebar:where(.astro-67yu43on) {
+  border-inline-start: 1px #868686 solid;
+}
+
+:where(.astro-3ii7xxms)[aria-current="page"], :where(.astro-3ii7xxms)[aria-current="page"]:hover, :where(.astro-3ii7xxms)[aria-current="page"]:focus {
+  background-color: #162736;
+}
+
+.tablist-wrapper:where(.astro-esqgolmp) {
+  overflow: scroll;
+  padding-bottom: 10px;
+}
+
 body {
   font-family: 'lexend-500', Georgia;
 }

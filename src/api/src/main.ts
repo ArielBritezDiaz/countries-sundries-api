@@ -4,10 +4,6 @@ import { AppModule } from './app.module';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 //Guard import
 import { ApiVersionGuard } from './guard/api-version.guard';
-//Fastify session import
-import secureSession from '@fastify/secure-session';
-//Fastify import
-// import { NestFastifyApplication, FastifyAdapter } from '@nestjs/platform-fastify';
 import * as session from 'express-session';
 import * as passport from 'passport';
 
@@ -48,7 +44,7 @@ async function bootstrap() {
     origin: ['http://localhost:3000', 'http://localhost:4321', 'http://localhost:4321/profile', 'https://accounts.google.com'],
     allowedHeaders: [
       'Content-Type',
-      'x-countries_sundries_api-key',
+      'x-countries_sundries-key',
       'x-api-version',
     ],
     methods: ['GET', 'POST'],

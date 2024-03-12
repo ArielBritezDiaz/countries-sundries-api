@@ -68,7 +68,7 @@ export class AuthController {
       // }
       // const responseToAstro = await this.authService.profileUser(data)
       // return res.redirect(`/v1/auth/profile`)
-      return res.redirect(`http://localhost:4321/profile/`)
+      return res.redirect(`http://localhost:4322/profile/`)
       // res.status(HttpStatus.OK).json(req['user']);
     } catch(error) {
       console.error(error);
