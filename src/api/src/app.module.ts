@@ -30,7 +30,6 @@ import { ENVVariablesSchema } from './enum/env-variables.enum';
 import { AuthModule } from './module/auth/auth.module';
 import { AuthController } from './module/auth/auth.controller';
 //Throttler import
-import { ThrottlerModule } from '@nestjs/throttler';
 import { PassportModule } from '@nestjs/passport';
 import { CoatOfArmModule } from './module/api/coat-of-arm/coat-of-arm.module';
 import { CoatOfArmController } from './module/api/coat-of-arm/coat-of-arm.controller';

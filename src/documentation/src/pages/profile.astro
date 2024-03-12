@@ -43,18 +43,12 @@ if (Astro.cookies.has("id_user")) {
   data = await fetchData()
   console.log("data:", data)
 }
-
-// onMount(async () => {
-//   const response = await fetch('http://localhost:3000/v1/auth/profile/');
-//   profileData = await response.json();
-//   console.log("----------------------")
-//   console.log(profileData)
-// });
 ---
+
 <head>
   <meta charset="UTF-8" />
 </head>
-<body class="bg-[#0c1b1b] m-0 w-full h-full">
+<body class="bg-[#0C1B1B] m-0 w-screen h-dvh font-lexend">
   <header class="flex justify-between items-center m-0 border-b border-black bg-[#11393c] text-white py-[10px] px-6">
       <a href="/" target="_blank">
         <Picture src={Flag} alt="test" class="w-10 h-10" >
@@ -75,25 +69,37 @@ if (Astro.cookies.has("id_user")) {
         </div>
       </div>
   </header>
-  <main class="bg-green-500 p-5">
-    <h1 class="text-white">Perfil del Usuario</h1>
-    {
-      data && access_token ? (
-        <div class="flex flex-col">
-          <span>{data.name}</span>
-          <span>{data.email}</span>
-          <span>{data.created_at}</span>
-          <div class="copy-text flex items-center my-2">
-            <input type="text" class="text text-base bg-[#11393c] text-[#00c5b4] w-[75%] p-3 rounded transition-all delay-60 hover:bg-[#112b2c] hover:cursor-default" value={access_token} readonly />
-            <button class="bg-[#11393c] text-[#00c5b4] mx-1 p-3 rounded transition-all delay-60 hover:bg-[#55e9dc] hover:text-[#206d73] hover:cursor-pointer" ><span class="icon-[solar--copy-bold-duotone] w-5 h-5 "></span></button>
+  <main class="w-11/12 h-5/6 mx-6 py-5 rounded">
+    <div class="flex flex-col w-full h-full bg-slate-50 rounded py-2 px-7 m-0">
+      <h1 class="text-5xl text-[#11393c] opacity-90 my-5">Perfil del Usuario</h1>
+      {
+        data && access_token ? (
+          <div class="my-2">
+            <p class="text-base text-neutral-500 opacity-70 underline sm:text-4xl">Name</p>
+            <p class="text-base text-[#11393c] sm:text-3xl">{data.name}</p>
           </div>
-        </div>
+          <div>
+            <p class="text-neutral-500 opacity-70 underline sm:text-4xl">Email</p>
+            <p class="text-base text-[#11393c] sm:text-3xl">{data.email}</p>
+          </div>
+          <div>
+            <p class="text-neutral-500 opacity-70 underline sm:text-4xl">Created At</p>
+            <p class="text-base text-[#11393c] sm:text-3xl">{data.created_at}</p>
+          </div>
+          <div>
+            <p class="text-base text-neutral-500 opacity-70 underline sm:text-4xl">Token</p>
+            <div class="copy-text flex items-center my-2 sm:flex-col sm:justify-items-start">
+              <input type="text" class="text w-full text-base bg-[#11393c] rounded text-[#00c5b4] p-3 transition-all delay-60 hover:bg-[#112b2c] hover:cursor-default sm:text-4xl" value={access_token} readonly />
+              <button class="bg-[#11393c] text-[#00c5b4] mx-1 p-3 rounded transition-all delay-60 hover:bg-[#00c5b4] hover:text-[#11393c] hover:cursor-pointer sm:text-4xl" ><span class="icon-[solar--copy-bold-duotone] w-5 h-5 "></span></button>
+            </div>
+          </div>
       ) : (
         <div>
           <span>No profile data. For auto login, <a href="http://localhost:3000/v1/auth/google/login">click here <span class="icon-[flat-color-icons--google] text-xl p-0 m-0"></span></a></span>
         </div>
       )
     }
+    </div>
   </main>
 </body>
 

@@ -13,6 +13,8 @@ export class AuthGuard implements CanActivate {
     const req = context.switchToHttp().getRequest()
     const token = this.extractTokenFromHeader(req)
 
+    console.log(req)
+
     if(!token) {
       // console.log(req['user'])
       console.log(req['Symbol(kHeaders'])
