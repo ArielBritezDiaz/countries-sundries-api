@@ -1,40 +1,32 @@
-<!-- [![Countries Sundries API](https://github.com/ArielBritezDiaz.png)](https://countriessundriesapi.com) -->
-
-[![LinkedIn](./public/resources/readme/icons/linkedin-common.svg)](https://www.linkedin.com/in/ariel-britez-diaz-technical/)
-[![Portfolio](./public/resources/readme/icons/www.svg)](https://arielbritezdiaz.github.io/portfolio/)
-
 [![Countries Sundries Logo](./public/resources/logotype/countries_sundries.svg)](http://countriessundries.com/)
 
 <p align="center">
   <a href="https://www.linkedin.com/in/ariel-britez-diaz-technical/">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+    <img src="https://badgen.net/badge/LinkedIn/Ariel Diaz?color=blue" alt="LinkedIn/Ariel Diaz" />
   </a>
   <a href="mailto:arielbritezdiaz@email.com">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
+    <img src="https://badgen.net/badge/Gmail/arielbritezdiaz@gmail.com?color=blue" alt="Gmail/arielbritezdiaz@gmail.com" />
+  </a>
+  <a href="https://arielbritezdiaz.github.io/portfolio/">
+    <img src="https://badgen.net/badge/Portfolio/Ariel Diaz?color=blue" alt="" />
+  </a>
+  <a href="https://github.com/ArielBritezDiaz">
+    <img src="https://badgen.net/badge/GitHub/Ariel Diaz?color=blue" alt="" />
+  </a>
+  <a href="https://www.paypal.com/paypalme/ArielBritezDiaz">
+    <img src="https://badgen.net/badge/Support Me/PayPal?color=red" alt="PayPal: https://www.paypal.com/paypalme/ArielBritezDiaz" />
+  </a>
+  <a href="">
+    <img src="https://badgen.net/badge/Technologies/Click here?color=purple" alt="Technologies" />
   </a>
   <a href="https://opensource.org/licenses/BSD-2-Clause">
-    <img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License" />
+    <img src="https://badgen.net/badge/License/BSD 2-Clause?color=green" alt="License/BSD 2-Clause" />
   </a>
   <a href="">
-    <img src="https://img.shields.io/website-up-down-green-red/http/monip.org.svg" alt="" />
-  </a>
-  <a href="">
-    <img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg" alt="" />
-  </a>
-  <a href="">
-    <img src="https://img.shields.io/github/commits-since/ArielBritezDiaz/countries-sundries-api/1.svg" alt="" />
-  </a>
-  <a href="">
-    <img src="https://img.shields.io/github/realese/ArielBritezDiaz/countries-sundries-api.svg" alt="" />
+    <img src="https://badgen.net/badge/Date Created/2024-03-15?color=grey" alt="" />
   </a>
   <a href="">
     <img src="https://img.shields.io/github/followers/ArielBritezDiaz.svg?style=social&label=Follow&maxAge=2592000" alt="" />
-  </a>
-  <a href="">
-    <img src="https://badgen.net/badge/github/license/ArielBritezDiaz/micromatch" alt="" />
-  </a>
-  <a href="">
-    <img src="" alt="" />
   </a>
 </p>
 
@@ -44,7 +36,6 @@ An API that offers you information about countries and international organizatio
 
 ## Overview
  In this section you will find a basic guide to use and the most relevant information for its use.
-<!-- [Countries Sundries API](https://countrtiessundriesapi.com) -->
 
 ## Getting Started
 Check out [Documentation]() for the specifications and get your API key to access the information.
@@ -70,7 +61,7 @@ fetchApiExample()
 ```
 
 ## Support
-If you would like to support me, you can do so in any of these ways, including cooperating so that both Countries Sundries API and other projects can grow and provide a better service.\
+If you want to support me and make it possible for both Countries Sundries API and other projects to grow and provide a better service, you can do it through [PayPal](https://www.paypal.com/paypalme/ArielBritezDiaz)[![PayPal](./public/resources/icons/paypal.svg)](https://www.paypal.com/paypalme/ArielBritezDiaz) !\
 Thank you so much!
 
 ## Licence
