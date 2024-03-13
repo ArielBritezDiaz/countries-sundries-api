@@ -3,13 +3,13 @@ import 'kleur/colors';
 /* empty css                          */
 import { $ as $$Picture } from './generic_CB3G66m3.mjs';
 
-const Flag = new Proxy({"src":"/_astro/logo.BFHzUuZY.svg","width":64,"height":64,"format":"svg"}, {
+const Flag = new Proxy({"src":"/_astro/flag.-OZt9HJP.svg","width":210,"height":212,"format":"svg"}, {
 						get(target, name, receiver) {
 							if (name === 'clone') {
 								return structuredClone(target);
 							}
 							if (name === 'fsPath') {
-								return "/home/arieldiaz/Desktop/dev/code/personal/countriesSundriesApi/src/documentation/src/assets/logo.svg";
+								return "/home/arieldiaz/Desktop/dev/code/personal/countriesSundriesApi/src/documentation/src/assets/logo/flag.svg";
 							}
 							
 							return target[name];
