@@ -14,7 +14,7 @@ import DetailsQueryNote from '../../../../components/aside/note/details-query-pa
 import QueryParamsExplanation from '../../../../components/repetitive-texts/query-params-explanation.astro';
 
 In this section we will show you the **`Currency`** endpoints, its parameters, combinations and specific details.\
-At the moment, <a href="/" class="no-underline">Countries Sundries</a> covers a total of 161 currencies, these include those of all available countries.
+At the moment, <a href="/" id="link" class="no-underline">Countries Sundries</a> covers a total of 161 currencies, these include those of all available countries.
 
 ## Endpoint response and parameters
 
@@ -67,7 +67,7 @@ curl -X GET "http://countries-sundries-api.com/currency/all?abbr=ARS" -H "x-coun
 
 ## `currency/details`
 This endpoint will allow you to obtain all the previous information but returning a single record, giving a much faster response if you only need one currency.\
-All query parameters (except <a href="/docs/api-reference/global-query-parameters/" class="no-underline">Global Query Parameters</a>) are enabled for "details".\
+All query parameters (except <a href="/docs/api-reference/global-query-parameters/" id="link" class="no-underline">Global Query Parameters</a>) are enabled for "details".\
 If no query parameter is specified, the first record will be returned.
 
 ### Example Request
