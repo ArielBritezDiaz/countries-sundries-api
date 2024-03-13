@@ -39,4 +39,4 @@ fetchApiExample()
 ## Support
 
 ## Licence
-To view the license under which Countries Sundries is licensed, [Click here!](https://github.com/ArielBritezDiaz/countriesSundriesApi?tab=MIT-1-ov-file)
+To view the license under which Countries Sundries is licensed, [Click here!](./LICENSE.md)
