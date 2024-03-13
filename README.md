@@ -3,7 +3,7 @@
 [![LinkedIn](./public/resources/readme/icons/linkedin-common.svg)](https://www.linkedin.com/in/ariel-britez-diaz-technical/)
 [![Portfolio](./public/resources/readme/icons/www.svg)](https://arielbritezdiaz.github.io/portfolio/)
 
-[![Countries Sundries Logo](./public/resources/readme/logo/V3.svg)](http://countriessundries.com/)
+[![Countries Sundries Logo](./public/resources/readme/logo/V6.svg)](http://countriessundries.com/)
 
 <p align="center">
 An API that offers you information about countries and international organizations, including their flags, their sub-regions, and even their currency.
@@ -39,3 +39,4 @@ fetchApiExample()
 ## Support
 
 ## Licence
+To view the license under which Countries Sundries is licensed, [Click here!](https://github.com/ArielBritezDiaz/countriesSundriesApi?tab=MIT-1-ov-file)
