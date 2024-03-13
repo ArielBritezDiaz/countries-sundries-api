@@ -68,7 +68,7 @@ export class AuthController {
       // }
       // const responseToAstro = await this.authService.profileUser(data)
       // return res.redirect(`/v1/auth/profile`)
-      return res.redirect(`http://localhost:4322/profile/`)
+      return res.redirect(process.env.HOST_DOCS)
       // res.status(HttpStatus.OK).json(req['user']);
     } catch(error) {
       console.error(error);
@@ -170,7 +170,6 @@ export class AuthController {
       
       const user_rofile = await this.authService.profileUser(data)
       console.log("user_rofile:", user_rofile)
-      // return res.redirect('http://localhost:4321/profile/')
       return res.status(HttpStatus.OK).json(user_rofile)
     } catch(error) {
       if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })

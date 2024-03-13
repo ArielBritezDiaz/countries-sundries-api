@@ -8,7 +8,14 @@ At the moment, the way to register in Countries Sundries is through login with G
 ## Registration
 After registering you will be given your key to access the API information, this must be placed in the header <a href="/docs/api-reference/global-header-parameters" target="_blank" class="no-underline" >'x-countries_sundries-key'</a>, with the value of the word 'Bearer' and followed by your key. 
 
-<span class="flex items-center my-5">
-  If you would like to continue with the auto sign-in:
-  <a href="http://localhost:3000/v1/auth/google/login" target="_blank" id="link" class="flex items-center no-underline">Click here! <span class="icon-[flat-color-icons--google] ml-1 text-xl"></span></a>
-</span>
+<div class="flex flex-col align-center text-base gap-2">
+  <span>If you would like to continue with the auto sign-in:</span>
+  <div class="w-52">
+    <a href="http://localhost:3000/v1/auth/google/login" target="_blank" class="flex gap-x-2 no-underline">
+      <span id="link" class="text-base text-white">Click here!</span>
+      <div class="flex align-items-center justify-center text-2xl bg-white w-7 h-7 rounded-full">
+          <span class="icon-[flat-color-icons--google] m-auto"></span>
+      </div>
+    </a>
+  </div>
+</div>
