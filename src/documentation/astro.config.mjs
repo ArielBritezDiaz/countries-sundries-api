@@ -3,27 +3,23 @@ import starlight from '@astrojs/starlight';
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import expressiveCode from "astro-expressive-code";
-import expressiveCodeConfig from "./ec.config";
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
-import netlify from '@astrojs/netlify';
 
 import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [starlight({
-    title: '',
-    // components: {
-    //   SocialIcons: './src/components/api-endpoints/region/astro-slots.astro',
-    // },
+    title: 'Countries Sundries API',
     customCss: ['./src/tailwind.css'],
     social: {
       linkedin: 'https://www.linkedin.com/in/ariel-britez-diaz-technical/',
       github: 'https://github.com/ArielBritezDiaz'
     },
     logo: {
-      src: './src/assets/logo.svg'
+      src: './src/assets/logo/flag.svg',
+      replacesTitle: true
     },
     favicon: './src/assets/logo.svg',
     head: [{
@@ -104,10 +100,18 @@ export default defineConfig({
     pagefind: true
   }), tailwind({
     applyBaseStyles: false
-  }), expressiveCode(expressiveCodeConfig), icon(), react(), svelte()],
+  }), expressiveCode({
+    themes: [
+      'tokyo-night'
+    ],
+    styleOverrides: {
+      borderColor: '#24283b',
+    }
+  }), icon(), react(), svelte()],
   routes: [{
     src: '/profile',
     component: './pages/profile.astro'
   }],
-  output: "server"
+  output: "hybrid",
+  adapter: vercel()
 });
