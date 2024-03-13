@@ -1,0 +1,745 @@
+<!DOCTYPE html><html lang="en-US" dir="ltr" data-has-toc data-has-sidebar data-theme="dark" class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Supported Data | </title><link rel="canonical"/><link rel="icon" href="./src/assets/logo.svg" sizes="32x32"/><link rel="shortcut icon" href="/./src/assets/logo.svg" type="image/svg+xml"/><meta name="generator" content="Astro v4.5.1"/><meta name="generator" content="Starlight v0.19.1"/><meta property="og:title" content="Supported Data"/><meta property="og:type" content="article"/><meta property="og:url"/><meta property="og:locale" content="en-US"/><meta property="og:description"/><meta property="og:site_name" content=""/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Supported Data"/><meta name="twitter:description"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg> <svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg> <svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> </template><link rel="stylesheet" href="/_astro/index.SFRERTne.css" />
+<style>svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}
+</style>
+<link rel="stylesheet" href="/_astro/index.CUMaIQr2.css" /><script type="module" src="/_astro/hoisted.bf4k8FkQ.js"></script>
+<script type="module" src="/_astro/page.CZ0TFQCk.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Skip to content</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header sl-flex astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt="" src="/_astro/logo.BFHzUuZY.svg" width="64" height="64">  <span class="astro-m46x6ez3">  </span> </a>  </div> <div class="sl-flex astro-kmkmnagf"> <site-search data-translations="{&#34;placeholder&#34;:&#34;Search&#34;}" class="astro-v37mnknz"> <button data-open-modal disabled class="astro-v37mnknz">  <svg aria-label="Search" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg>  <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Search</span> <svg aria-label="(Press / to Search)" class="sl-hidden md:sl-block astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5Zm3 15a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10Z"/><path d="M15.293 6.707a1 1 0 1 1 1.414 1.414l-8.485 8.486a1 1 0 0 1-1.414-1.415l8.485-8.485Z"/></svg>  </button> <dialog style="padding:0" aria-label="Search" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Cancel </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>    </div> <div class="sl-hidden md:sl-flex right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf"> <a href="https://www.linkedin.com/in/ariel-britez-diaz-technical/" rel="me" class="sl-flex astro-wy4te6ga"><span class="sr-only astro-wy4te6ga">LinkedIn</span><svg aria-hidden="true" class="astro-wy4te6ga astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M20.47 2H3.53a1.45 1.45 0 0 0-1.47 1.43v17.14A1.45 1.45 0 0 0 3.53 22h16.94a1.45 1.45 0 0 0 1.47-1.43V3.43A1.45 1.45 0 0 0 20.47 2ZM8.09 18.74h-3v-9h3v9ZM6.59 8.48a1.56 1.56 0 0 1 0-3.12 1.57 1.57 0 1 1 0 3.12Zm12.32 10.26h-3v-4.83c0-1.21-.43-2-1.52-2A1.65 1.65 0 0 0 12.85 13a2 2 0 0 0-.1.73v5h-3v-9h3V11a3 3 0 0 1 2.71-1.5c2 0 3.45 1.29 3.45 4.06v5.18Z"/></svg> </a><a href="https://github.com/ArielBritezDiaz" rel="me" class="sl-flex astro-wy4te6ga"><span class="sr-only astro-wy4te6ga">GitHub</span><svg aria-hidden="true" class="astro-wy4te6ga astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg> </a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected="true" class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>   </div> </div> </header> <nav class="sidebar astro-vrdttmbt" aria-label="Main"> <starlight-menu-button class="astro-jif73yzw"> <button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg>  </button> </starlight-menu-button>    <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Introduction</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/introduction/overview/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Overview</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/introduction/getting-started/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Getting Started</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/introduction/get-api-key/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Get API-Key access</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/introduction/supported-data/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Supported Data</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">API Docs</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/api-docs/country/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Country</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/api-docs/coat-of-arm/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Coat of Arm</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/api-docs/flag/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Flag</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/api-docs/currency/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Currency</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/api-docs/region/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Region</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/api-docs/sub-region/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Sub Region</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/api-docs/image/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Image</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">API Reference</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/api-reference/global-header-parameters/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Global Header Parameters</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/api-reference/global-query-parameters/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Global Query Parameters</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Project</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/project/history/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">How did it come about?</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/project/technologies/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Technologies</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <a href="/docs/changelog/changelog/" class="large astro-3ii7xxms"> <span class="astro-3ii7xxms">Changelog</span>  </a> </li> </ul>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="sl-flex social-icons astro-wu23bvmt"> <a href="https://www.linkedin.com/in/ariel-britez-diaz-technical/" rel="me" class="sl-flex astro-wy4te6ga"><span class="sr-only astro-wy4te6ga">LinkedIn</span><svg aria-hidden="true" class="astro-wy4te6ga astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M20.47 2H3.53a1.45 1.45 0 0 0-1.47 1.43v17.14A1.45 1.45 0 0 0 3.53 22h16.94a1.45 1.45 0 0 0 1.47-1.43V3.43A1.45 1.45 0 0 0 20.47 2ZM8.09 18.74h-3v-9h3v9ZM6.59 8.48a1.56 1.56 0 0 1 0-3.12 1.57 1.57 0 1 1 0 3.12Zm12.32 10.26h-3v-4.83c0-1.21-.43-2-1.52-2A1.65 1.65 0 0 0 12.85 13a2 2 0 0 0-.1.73v5h-3v-9h3V11a3 3 0 0 1 2.71-1.5c2 0 3.45 1.29 3.45 4.06v5.18Z"/></svg> </a><a href="https://github.com/ArielBritezDiaz" rel="me" class="sl-flex astro-wy4te6ga"><span class="sr-only astro-wy4te6ga">GitHub</span><svg aria-hidden="true" class="astro-wy4te6ga astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg> </a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected="true" class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><div class="toggle sl-flex astro-doynk5tl">On this page<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </div><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#what-information-does-countries-sundries-provide" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">What information does Countries Sundries provide?</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#country" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Country</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#coat-of-arm" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Coat Of Arm</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#flag" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Flag</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#currency" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Currency</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#region" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Region</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sub-region" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Sub Region</span> </a>  </li> </ul>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#what-information-does-countries-sundries-provide" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">What information does Countries Sundries provide?</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#country" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Country</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#coat-of-arm" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Coat Of Arm</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#flag" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Flag</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#currency" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Currency</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#region" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Region</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sub-region" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Sub Region</span> </a>  </li> </ul>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body lang="en-US" dir="ltr" class="astro-bguv2lll">    <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">Supported Data</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content"> <h2 id="what-information-does-countries-sundries-provide">What information does Countries Sundries provide?</h2>
+<p>Initially and for the first version of Countries Sundries, the countries and organizations that are available are:</p>
+<h3 id="country"><a href="/docs/api-docs/country">Country</a></h3>
+<ul>
+<li>Afganistán</li>
+<li>Albania</li>
+<li>Algeria</li>
+<li>Angola</li>
+<li>Argentina</li>
+<li>Armenia</li>
+<li>Aruba</li>
+<li>Australia</li>
+<li>Azerbaijan</li>
+<li>Bahamas</li>
+<li>Bahrain</li>
+<li>Bangladesh</li>
+<li>Barbados</li>
+<li>Belarus</li>
+<li>Belize</li>
+<li>Bermuda</li>
+<li>Bhutan</li>
+<li>Bolivia</li>
+<li>Bosnia and Herzegovina</li>
+<li>Botswana</li>
+<li>Brazil</li>
+<li>Brunei</li>
+<li>Bulgaria</li>
+<li>Burundi</li>
+<li>Cambodia</li>
+<li>Canada</li>
+<li>Cape Verde</li>
+<li>Cayman Islands</li>
+<li>Chile</li>
+<li>China</li>
+<li>Collectivités d’Outre-Mer</li>
+<li>Colombia</li>
+<li>Comoros</li>
+<li>Costa Rica</li>
+<li>Croatia</li>
+<li>Cuba</li>
+<li>Czech Republic</li>
+<li>Democratic Republic of the Congo</li>
+<li>Denmark</li>
+<li>Djibouti</li>
+<li>Dominican Republic</li>
+<li>Economic and Monetary Community of Central Africa</li>
+<li>Egypt</li>
+<li>Eritrea</li>
+<li>Eswatini</li>
+<li>Ethiopia</li>
+<li>European Union</li>
+<li>Falkland Islands</li>
+<li>Faroe Islands</li>
+<li>Fiji</li>
+<li>Georgia</li>
+<li>Ghana</li>
+<li>Gibraltar</li>
+<li>Guatemala</li>
+<li>Guernsey</li>
+<li>Guinea</li>
+<li>Guyana</li>
+<li>Haiti</li>
+<li>Honduras</li>
+<li>Hong Kong</li>
+<li>Iceland</li>
+<li>India</li>
+<li>Indonesia</li>
+<li>International Monetary Fund</li>
+<li>Iran</li>
+<li>Iraq</li>
+<li>Isle of Man</li>
+<li>Israel</li>
+<li>Jamaica</li>
+<li>Japan</li>
+<li>Jersey</li>
+<li>Jordan</li>
+<li>Kazakhstan</li>
+<li>Kenya</li>
+<li>Kiribati</li>
+<li>Kuwait</li>
+<li>Kyrgyzstan</li>
+<li>Laos</li>
+<li>Lebanon</li>
+<li>Lesotho</li>
+<li>Liberia</li>
+<li>Libya</li>
+<li>Macau</li>
+<li>Madagascar</li>
+<li>Malawi</li>
+<li>Malaysia</li>
+<li>Maldives</li>
+<li>Mauritania</li>
+<li>Mauritius</li>
+<li>Mexico</li>
+<li>Moldova</li>
+<li>Mongolia</li>
+<li>Morocco</li>
+<li>Mozambique</li>
+<li>Myanmar</li>
+<li>Namibia</li>
+<li>Nepal</li>
+<li>New Zealand</li>
+<li>Nicaragua</li>
+<li>Nigeria</li>
+<li>North Macedonia</li>
+<li>Norway</li>
+<li>Oman</li>
+<li>Organization of Eastern Caribbean States</li>
+<li>Pakistan</li>
+<li>Panama</li>
+<li>Papua New Guinea</li>
+<li>Paraguay</li>
+<li>Peru</li>
+<li>Philippines</li>
+<li>Poland</li>
+<li>Qatar</li>
+<li>Romania</li>
+<li>Russia</li>
+<li>Rwanda</li>
+<li>Saint Helena, Ascension and Tristan da Cunha</li>
+<li>Samoa</li>
+<li>São Tomé and Príncipe</li>
+<li>Saudi Arabia</li>
+<li>Serbia</li>
+<li>Seychelles</li>
+<li>Sierra Leone</li>
+<li>Singapore</li>
+<li>Solomon Islands</li>
+<li>Somalia</li>
+<li>South Africa</li>
+<li>South Korea</li>
+<li>South Sudan</li>
+<li>Sri Lanka</li>
+<li>Sudan</li>
+<li>Suriname</li>
+<li>Sweden</li>
+<li>Switzerland</li>
+<li>Syria</li>
+<li>Taiwan</li>
+<li>Tajikistan</li>
+<li>Tanzania</li>
+<li>Thailand</li>
+<li>The Gambia</li>
+<li>The Netherlands Antilles</li>
+<li>The United Arab Emirates</li>
+<li>Tonga</li>
+<li>Trinidad and Tobago</li>
+<li>Tunisia</li>
+<li>Turkey</li>
+<li>Turkmenistan</li>
+<li>Tuvalu</li>
+<li>Uganda</li>
+<li>Ukraine</li>
+<li>United Kingdom</li>
+<li>United States</li>
+<li>Uruguay</li>
+<li>Uzbekistan</li>
+<li>Vanuatu</li>
+<li>Venezuela</li>
+<li>Vietnam</li>
+<li>West African CFA franc</li>
+<li>Yemen</li>
+<li>Zambia</li>
+<li>Zimbabwe</li>
+</ul>
+<h3 id="coat-of-arm"><a href="/docs/api-docs/coat-of-arm">Coat Of Arm</a></h3>
+<ul>
+<li>afghanistan</li>
+<li>albania</li>
+<li>algeria</li>
+<li>angola</li>
+<li>argentina</li>
+<li>armenia</li>
+<li>aruba</li>
+<li>australia</li>
+<li>azerbaijan</li>
+<li>bahrain</li>
+<li>bangladesh</li>
+<li>barbados</li>
+<li>belarus</li>
+<li>belize</li>
+<li>benin</li>
+<li>bermuda</li>
+<li>bhutan</li>
+<li>bolivia</li>
+<li>bosnia_and_herzegovina</li>
+<li>botswana</li>
+<li>brazil</li>
+<li>brunei</li>
+<li>bulgaria</li>
+<li>burundi</li>
+<li>cambodia</li>
+<li>canada</li>
+<li>cape_verde</li>
+<li>chile</li>
+<li>coat_of_arms</li>
+<li>colombia</li>
+<li>comoros</li>
+<li>costa_rica</li>
+<li>croatia</li>
+<li>cuba</li>
+<li>democratic_republic_of_the_congo</li>
+<li>denmark</li>
+<li>djibouti</li>
+<li>egypt</li>
+<li>el_salvador</li>
+<li>england</li>
+<li>eritrea</li>
+<li>eswatini</li>
+<li>ethiopia</li>
+<li>europe</li>
+<li>faroe_islands</li>
+<li>fiji</li>
+<li>french_polynesia</li>
+<li>georgia</li>
+<li>ghana</li>
+<li>gibraltar</li>
+<li>grenada</li>
+<li>guatemala</li>
+<li>guernsey</li>
+<li>guinea</li>
+<li>guyana</li>
+<li>haiti</li>
+<li>honduras</li>
+<li>hong_kong</li>
+<li>hungary</li>
+<li>iceland</li>
+<li>india</li>
+<li>indonesia_garuda_pancasila</li>
+<li>international_monetary_fund_logo</li>
+<li>iran</li>
+<li>iraq</li>
+<li>israel_alternative</li>
+<li>jamaica</li>
+<li>japan</li>
+<li>jersey</li>
+<li>jordan</li>
+<li>kazakhstan</li>
+<li>kenya</li>
+<li>kiribati</li>
+<li>kuwait</li>
+<li>kyrgyzstan</li>
+<li>laos</li>
+<li>lebanon</li>
+<li>lesotho</li>
+<li>liberia</li>
+<li>libya</li>
+<li>macau</li>
+<li>madagascar</li>
+<li>malawi</li>
+<li>malaysia</li>
+<li>maldives</li>
+<li>mauritania</li>
+<li>mauritius</li>
+<li>mexico</li>
+<li>moldova</li>
+<li>mongolia</li>
+<li>morocco</li>
+<li>mozambique</li>
+<li>myanmar</li>
+<li>namibia</li>
+<li>nepal</li>
+<li>new_zealand</li>
+<li>nicaragua</li>
+<li>nigeria</li>
+<li>north_macedonia</li>
+<li>norway</li>
+<li>oman</li>
+<li>pakistan</li>
+<li>panama</li>
+<li>papua_new_guinea</li>
+<li>paraguay</li>
+<li>per</li>
+<li>polski</li>
+<li>qatar</li>
+<li>romania</li>
+<li>rwanda</li>
+<li>saint_helena</li>
+<li>samoa</li>
+<li>saudi_arabia</li>
+<li>serbia</li>
+<li>seychelles</li>
+<li>sierra_leone</li>
+<li>singapore</li>
+<li>so_tom_and_prncipe</li>
+<li>somalia</li>
+<li>south_africa_heraldic</li>
+<li>south_korea</li>
+<li>south_sudan</li>
+<li>sri_lanka</li>
+<li>sudan</li>
+<li>suriname</li>
+<li>sweden</li>
+<li>switzerland</li>
+<li>syria</li>
+<li>tajikistan</li>
+<li>tanzania</li>
+<li>thailand</li>
+<li>the_bahamas</li>
+<li>the_cayman_islands</li>
+<li>the_central_african_republic</li>
+<li>the_czech_republic</li>
+<li>the_dominican_republic</li>
+<li>the_falkland_islands</li>
+<li>the_gambia</li>
+<li>the_isle_of_man</li>
+<li>the_netherlands_antilles</li>
+<li>the_peoples_republic_of_china</li>
+<li>the_philippines</li>
+<li>the_presidency_of_turkey</li>
+<li>the_russian_federation</li>
+<li>the_solomon_islands</li>
+<li>the_united_arab_emirates</li>
+<li>the_united_states_obverse</li>
+<li>tonga</li>
+<li>trinidad_and_tobago</li>
+<li>tunisia</li>
+<li>turkmenistan</li>
+<li>tuvalu</li>
+<li>uganda</li>
+<li>ukraine</li>
+<li>united_kingdom</li>
+<li>united_states</li>
+<li>uruguay</li>
+<li>uzbekistan</li>
+<li>vanuatu</li>
+<li>venezuela</li>
+<li>vietnam</li>
+<li>yemen</li>
+<li>zambia</li>
+<li>zimbabwe</li>
+</ul>
+<h3 id="flag"><a href="/docs/api-docs/flag">Flag</a></h3>
+<ul>
+<li>afghanistan</li>
+<li>albania</li>
+<li>algeria</li>
+<li>angola</li>
+<li>argentina</li>
+<li>armenia</li>
+<li>aruba</li>
+<li>australia</li>
+<li>azerbaijan</li>
+<li>bahrain</li>
+<li>bangladesh</li>
+<li>barbados</li>
+<li>belarus</li>
+<li>belize</li>
+<li>benin</li>
+<li>bermuda</li>
+<li>bhutan</li>
+<li>bolivia</li>
+<li>bosnia_and_herzegovina</li>
+<li>botswana</li>
+<li>brazil</li>
+<li>brunei</li>
+<li>bulgaria</li>
+<li>burundi</li>
+<li>cambodia</li>
+<li>canada</li>
+<li>cape_verde</li>
+<li>chile</li>
+<li>coat_of_arms</li>
+<li>colombia</li>
+<li>comoros</li>
+<li>costa_rica</li>
+<li>croatia</li>
+<li>cuba</li>
+<li>democratic_republic_of_the_congo</li>
+<li>denmark</li>
+<li>djibouti</li>
+<li>egypt</li>
+<li>el_salvador</li>
+<li>england</li>
+<li>eritrea</li>
+<li>eswatini</li>
+<li>ethiopia</li>
+<li>europe</li>
+<li>faroe_islands</li>
+<li>fiji</li>
+<li>french_polynesia</li>
+<li>georgia</li>
+<li>ghana</li>
+<li>gibraltar</li>
+<li>grenada</li>
+<li>guatemala</li>
+<li>guernsey</li>
+<li>guinea</li>
+<li>guyana</li>
+<li>haiti</li>
+<li>honduras</li>
+<li>hong_kong</li>
+<li>hungary</li>
+<li>iceland</li>
+<li>india</li>
+<li>indonesia_garuda_pancasila</li>
+<li>international_monetary_fund_logo</li>
+<li>iran</li>
+<li>iraq</li>
+<li>israel_alternative</li>
+<li>jamaica</li>
+<li>japan</li>
+<li>jersey</li>
+<li>jordan</li>
+<li>kazakhstan</li>
+<li>kenya</li>
+<li>kiribati</li>
+<li>kuwait</li>
+<li>kyrgyzstan</li>
+<li>laos</li>
+<li>lebanon</li>
+<li>lesotho</li>
+<li>liberia</li>
+<li>libya</li>
+<li>macau</li>
+<li>madagascar</li>
+<li>malawi</li>
+<li>malaysia</li>
+<li>maldives</li>
+<li>mauritania</li>
+<li>mauritius</li>
+<li>mexico</li>
+<li>moldova</li>
+<li>mongolia</li>
+<li>morocco</li>
+<li>mozambique</li>
+<li>myanmar</li>
+<li>namibia</li>
+<li>nepal</li>
+<li>new_zealand</li>
+<li>nicaragua</li>
+<li>nigeria</li>
+<li>north_macedonia</li>
+<li>norway</li>
+<li>oman</li>
+<li>pakistan</li>
+<li>panama</li>
+<li>papua_new_guinea</li>
+<li>paraguay</li>
+<li>per</li>
+<li>polski</li>
+<li>qatar</li>
+<li>romania</li>
+<li>rwanda</li>
+<li>saint_helena</li>
+<li>samoa</li>
+<li>sao_tome_and_prncipe</li>
+<li>saudi_arabia</li>
+<li>serbia</li>
+<li>seychelles</li>
+<li>sierra_leone</li>
+<li>singapore</li>
+<li>somalia</li>
+<li>south_africa_heraldic</li>
+<li>south_korea</li>
+<li>south_sudan</li>
+<li>sri_lanka</li>
+<li>sudan</li>
+<li>suriname</li>
+<li>sweden</li>
+<li>switzerland</li>
+<li>syria</li>
+<li>tajikistan</li>
+<li>tanzania</li>
+<li>thailand</li>
+<li>the_bahamas</li>
+<li>the_cayman_islands</li>
+<li>the_central_african_republic</li>
+<li>the_czech_republic</li>
+<li>the_dominican_republic</li>
+<li>the_falkland_islands</li>
+<li>the_gambia</li>
+<li>the_isle_of_man</li>
+<li>the_netherlands_antilles</li>
+<li>the_peoples_republic_of_china</li>
+<li>the_philippines</li>
+<li>the_presidency_of_turkey</li>
+<li>the_russian_federation</li>
+<li>the_solomon_islands</li>
+<li>the_united_arab_emirates</li>
+<li>tonga</li>
+<li>trinidad_and_tobago</li>
+<li>tunisia</li>
+<li>turkmenistan</li>
+<li>tuvalu</li>
+<li>uganda</li>
+<li>ukraine</li>
+<li>united_kingdom</li>
+<li>united_states</li>
+<li>uruguay</li>
+<li>uzbekistan</li>
+<li>vanuatu</li>
+<li>venezuela</li>
+<li>vietnam</li>
+<li>yemen</li>
+<li>zambia</li>
+<li>zimbabwe</li>
+</ul>
+<h3 id="currency"><a href="/docs/api-docs/currency">Currency</a></h3>
+<ul>
+<li>Afghan Afghani</li>
+<li>Albanian Lek</li>
+<li>Algerian Dinar</li>
+<li>Angolan Kwanza</li>
+<li>Argentine Peso</li>
+<li>Armenian Dram</li>
+<li>Aruban or Dutch Guilder</li>
+<li>Australian Dollar</li>
+<li>Azerbaijan Manat</li>
+<li>Bahamian Dollar</li>
+<li>Bahraini Dinar</li>
+<li>Bangladeshi Taka</li>
+<li>Barbados Dollar</li>
+<li>Basotho Loti</li>
+<li>Belarusian Ruble</li>
+<li>Belizean Dollar</li>
+<li>Bermudian Dollar</li>
+<li>Bhutanese Ngultrum</li>
+<li>Bolivian Bolíviano</li>
+<li>Bosnian Convertible Mark</li>
+<li>Botswana Pula</li>
+<li>Brazilian Real</li>
+<li>British Pound</li>
+<li>Bruneian Dollar</li>
+<li>Bulgarian Lev</li>
+<li>Burmese Kyat</li>
+<li>Burundian Franc</li>
+<li>Cambodian Riel</li>
+<li>Canadian Dollar</li>
+<li>Cape Verdean Escudo</li>
+<li>Caymanian Dollar</li>
+<li>Central African CFA Franc BEAC</li>
+<li>CFA Franc</li>
+<li>CFP Franc</li>
+<li>Chilean Peso</li>
+<li>Chinese Yuan Renminbi</li>
+<li>Colombian Peso</li>
+<li>Comorian Franc</li>
+<li>Congolese Franc</li>
+<li>Costa Rican Colon</li>
+<li>Croatian Kuna</li>
+<li>Cuban Peso</li>
+<li>Czech Koruna</li>
+<li>Danish Krone</li>
+<li>Djiboutian Franc</li>
+<li>Dominican Peso</li>
+<li>Dutch Guilder</li>
+<li>East Caribbean Dollar</li>
+<li>Egyptian Pound</li>
+<li>Emirati Dirham</li>
+<li>Eritrean Nakfa</li>
+<li>Ethiopian Birr</li>
+<li>Euro</li>
+<li>Falkland Island Pound</li>
+<li>Faroese Króna</li>
+<li>Fijian Dollar</li>
+<li>Gambian Dalasi</li>
+<li>Georgian Lari</li>
+<li>Ghanaian Cedi</li>
+<li>Gibraltar Pound</li>
+<li>Guatemalan Quetzal</li>
+<li>Guernsey Pound</li>
+<li>Guinean Franc</li>
+<li>Guyanese Dollar</li>
+<li>Haitian Gourde</li>
+<li>Honduran Lempira</li>
+<li>Hong Kong Dollar</li>
+<li>Hungarian Forint</li>
+<li>Icelandic Krona</li>
+<li>IMF Special Drawing Rights</li>
+<li>Indian Rupee</li>
+<li>Indonesian Rupiah</li>
+<li>Iranian Rial</li>
+<li>Iraqi Dinar</li>
+<li>Isle of Man Pound</li>
+<li>Israeli Shekel</li>
+<li>Jamaican Dollar</li>
+<li>Japanese Yen</li>
+<li>Jersey Pound</li>
+<li>Jordanian Dinar</li>
+<li>Kazakhstani Tenge</li>
+<li>Kenyan Shilling</li>
+<li>Kiribati Dollar</li>
+<li>Kuwaiti Dinar</li>
+<li>Kyrgyzstani Som</li>
+<li>Lao Kip</li>
+<li>Lebanese Pound</li>
+<li>Liberian Dollar</li>
+<li>Libyan Dinar</li>
+<li>Macau Pataca</li>
+<li>Macedonian Denar</li>
+<li>Malagasy Ariary</li>
+<li>Malawian Kwacha</li>
+<li>Malaysian Ringgit</li>
+<li>Maldivian Rufiyaa</li>
+<li>Mauritanian Ouguiya</li>
+<li>Mauritanian Rupee</li>
+<li>Mexican Peso</li>
+<li>Moldovan Leu</li>
+<li>Mongolian Tughrik</li>
+<li>Moroccan Dirham</li>
+<li>Mozambican Metical</li>
+<li>Namibian Dollar</li>
+<li>Nepalese Rupee</li>
+<li>New Zealand Dollar</li>
+<li>Ni-Vanuatu Vatu</li>
+<li>Nicaraguan Cordoba</li>
+<li>Nigerian Naira</li>
+<li>Norwegian Krone</li>
+<li>Omani Rial</li>
+<li>Pakistani Rupee</li>
+<li>Panamanian Balboa</li>
+<li>Papua New Guinean Kina</li>
+<li>Paraguayan Guarani</li>
+<li>Peruvian Sol</li>
+<li>Philippine Peso</li>
+<li>Polish Zloty</li>
+<li>Qatari Riyal</li>
+<li>Romanian Leu</li>
+<li>Russian Ruble</li>
+<li>Rwandan Franc</li>
+<li>Saint Helenian Pound</li>
+<li>Samoan Tala</li>
+<li>Sao Tomean Dobra</li>
+<li>Saudi Arabian Riyal</li>
+<li>Serbian Dinar</li>
+<li>Seychellois Rupee</li>
+<li>Sierra Leonean Leone</li>
+<li>Singapore Dollar</li>
+<li>Solomon Islander Dollar</li>
+<li>Somali Shilling</li>
+<li>South African Rand</li>
+<li>South Korean Won</li>
+<li>South Sudanese Pound</li>
+<li>Sri Lankan Rupee</li>
+<li>Sudanese Pound</li>
+<li>Surinamese Dollar</li>
+<li>Swazi Lilangeni</li>
+<li>Swedish Krona</li>
+<li>Swiss Franc</li>
+<li>Syrian Pound</li>
+<li>Taiwan New Dollar</li>
+<li>Tajikistani Somoni</li>
+<li>Tanzanian Shilling</li>
+<li>Thai Baht</li>
+<li>Tongan Pa’anga</li>
+<li>Trinidadian Dollar</li>
+<li>Tunisian Dinar</li>
+<li>Turkish Lira</li>
+<li>Turkmenistani Manat</li>
+<li>Tuvaluan Dollar</li>
+<li>Ugandan Shilling</li>
+<li>Ukrainian Hryvnia</li>
+<li>Uruguayan Peso</li>
+<li>US Dollar</li>
+<li>Uzbekistani Som</li>
+<li>Venezuelan Bolívar</li>
+<li>Vietnamese Dong</li>
+<li>Yemeni Rial</li>
+<li>Zambian Kwacha</li>
+<li>Zimbabwean Dollar</li>
+</ul>
+<h3 id="region"><a href="/docs/api-docs/region">Region</a></h3>
+<ul>
+<li>Africa</li>
+<li>America</li>
+<li>Antartica</li>
+<li>Asia</li>
+<li>Europe</li>
+<li>Oceania</li>
+</ul>
+<h3 id="sub-region"><a href="/docs/api-docs/sub-region">Sub Region</a></h3>
+<ul>
+<li>Adélie Land</li>
+<li>Australia and New Zealand</li>
+<li>Caribbean</li>
+<li>Central America</li>
+<li>Central Asia</li>
+<li>Dronning Maud Land</li>
+<li>East Antarctica</li>
+<li>Eastern Africa</li>
+<li>Eastern Asia</li>
+<li>Eastern Europe</li>
+<li>Ellsworth Land</li>
+<li>Ellsworth Mountains</li>
+<li>Enderby Land</li>
+<li>Marie Byrd Land</li>
+<li>Melanesia</li>
+<li>Micronesia</li>
+<li>Middle Africa</li>
+<li>Middle East</li>
+<li>North Victoria Land</li>
+<li>North-east Antarctic Peninsula</li>
+<li>North-west Antarctic Peninsula</li>
+<li>Northern Africa</li>
+<li>Northern America</li>
+<li>Northern Europe</li>
+<li>Polynesia</li>
+<li>Sourthern Asia</li>
+<li>South America</li>
+<li>South Antarctic Peninsula</li>
+<li>South Orkney Islands</li>
+<li>South Victoria Land</li>
+<li>South-eastern Asia</li>
+<li>Southern Africa</li>
+<li>Southern Europe</li>
+<li>Transantarctic Mountains</li>
+<li>Western Africa</li>
+<li>Western Asia</li>
+<li>Western Europe</li>
+</ul> </div> <footer class="astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">  <p>Last updated: <time datetime="2024-03-10T05:33:21.000Z">Mar 10, 2024</time></p> </div> <div class="pagination-links astro-u2l5gyhi" dir="ltr"> <a href="/docs/introduction/get-api-key/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>  <span class="astro-u2l5gyhi"> Previous <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Get API-Key access</span> </span> </a> <a href="/docs/api-docs/country/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-u2l5gyhi"> Next <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Country</span> </span> </a> </div>  </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

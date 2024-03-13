@@ -1,6 +1,6 @@
 ---
 import "../tailwind.css";
-import Flag from '../assets/logo.svg';
+import Flag from '../assets/logo/flag.svg';
 import { Picture } from "astro:assets";
 
 export const prerender = false
@@ -37,6 +37,7 @@ if (Astro.cookies.has("id_user")) {
 
 <head>
   <meta charset="UTF-8" />
+  <title>Profile</title>
 </head>
 <body class="flex flex-col h-screen bg-[#162332] font-lexend m-0">
   <header class="flex justify-between items-center m-0 border-black bg-[#23344b] text-base text-white py-[10px] px-6 max-[1200px]:py-5 max-[1200px]:text-xl">
@@ -111,7 +112,7 @@ if (Astro.cookies.has("id_user")) {
   </main>
 </body>
 
-<script>
+<script type="module">
   let copyText = document.querySelector('.copy-text');
   copyText?.querySelector('button')?.addEventListener('click', () => {
     let input = copyText.querySelector('input.text');
