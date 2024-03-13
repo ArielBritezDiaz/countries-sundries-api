@@ -25,9 +25,6 @@
   <a href="">
     <img src="https://badgen.net/badge/Date Created/2024-03-15?color=grey" alt="" />
   </a>
-  <a href="">
-    <img src="https://img.shields.io/github/followers/ArielBritezDiaz.svg?style=social&label=Follow&maxAge=2592000" alt="" />
-  </a>
 </p>
 
 <p align="center">
