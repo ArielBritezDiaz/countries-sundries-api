@@ -14,7 +14,7 @@ import DetailsQueryNote from '../../../../components/aside/note/details-query-pa
 import QueryParamsExplanation from '../../../../components/repetitive-texts/query-params-explanation.astro';
 
 In this section we will show you the **`flag`** endpoints, its parameters, combinations and specific details.\
-At the moment, <a href="/" class="no-underline">Countries Sundries</a> covers a total of coats of arms of 164 countries, including different international organizations.
+At the moment, <a href="/" id="link" class="no-underline">Countries Sundries</a> covers a total of coats of arms of 164 countries, including different international organizations.
 Since it is so similar to the `coat-of-arm` endpoint, there will be almost no change with respect to that section.
 
 ## Endpoint response and parameters
@@ -68,7 +68,7 @@ curl -X GET 'http://countries-sundries-api.com/flag/all?type=svg' -H 'x-countrie
 
 ## `flag/details`
 This endpoint will allow you to obtain all the previous information but returning a single register, this will allow a much faster response if you need a single country and not many.\
-All Query Parameters (except <a href="/docs/api-reference/global-query-parameters/" class="no-underline">Global Query Parameters</a>) are enabled for `details`.\
+All Query Parameters (except <a href="/docs/api-reference/global-query-parameters/" id="link" class="no-underline">Global Query Parameters</a>) are enabled for `details`.\
 If no Query Parameter is specified, the first register will be returned.
 
 ### Example Request

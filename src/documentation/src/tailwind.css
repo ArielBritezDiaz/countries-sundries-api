@@ -55,6 +55,16 @@
   padding-bottom: 10px;
 }
 
+.social-icons:where(.astro-kmkmnagf)::after {
+  content: "";
+  height: 2.5rem;
+  border-inline-color: #fff;
+}
+
+.right-group:where(.astro-kmkmnagf), .social-icons:where(.astro-kmkmnagf) {
+  font-size: 1rem;
+}
+
 body {
   font-family: 'lexend-500', Georgia;
 }
