@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-project": "bun run build ./src/api/ && astro check && npm build ./src/documentation/",
+    "start-api": "cd src/api/ && bun run build",
+    "start-project": "npm run start-api && astro check && npm build ./src/documentation/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },  
   "keywords": [],
