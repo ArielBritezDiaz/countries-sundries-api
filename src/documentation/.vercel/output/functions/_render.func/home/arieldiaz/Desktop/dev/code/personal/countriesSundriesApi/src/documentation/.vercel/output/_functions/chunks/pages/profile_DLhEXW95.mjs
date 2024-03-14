@@ -1,0 +1,83 @@
+import { e as createAstro, f as createComponent, r as renderTemplate, h as addAttribute, i as renderComponent, j as renderHead } from '../astro_Drdr-_T1.mjs';
+import 'kleur/colors';
+/* empty css                          */
+import { $ as $$Picture } from './generic_CB3G66m3.mjs';
+
+const Flag = new Proxy({"src":"/_astro/flag.-OZt9HJP.svg","width":210,"height":212,"format":"svg"}, {
+						get(target, name, receiver) {
+							if (name === 'clone') {
+								return structuredClone(target);
+							}
+							if (name === 'fsPath') {
+								return "/home/arieldiaz/Desktop/dev/code/personal/countriesSundriesApi/src/documentation/src/assets/logo/flag.svg";
+							}
+							
+							return target[name];
+						}
+					});
+
+var __freeze = Object.freeze;
+var __defProp = Object.defineProperty;
+var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(raw || cooked.slice()) }));
+var _a;
+const $$Astro = createAstro();
+const prerender = false;
+const $$Profile = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Profile;
+  let profileData;
+  const cookieHeader = Astro2.request.headers.get("cookie");
+  const match = cookieHeader?.match(/access_token=([^;]+)/);
+  console.log("match:", match ? match[0] : null);
+  const split = match ? match[0] : null;
+  const access_token = split?.split("=")[1];
+  let data = null;
+  if (Astro2.cookies.has("id_user")) {
+    console.log("Tiene la cookie");
+    const id_user = Astro2.cookies.get("id_user")?.value;
+    const fetchData = async () => {
+      const response = await fetch(`https://countries-sundries-api-sigma.vercel.app/api/v1/user/profile?id_user=${id_user}`, {
+        method: "GET",
+        headers: {
+          "x-api-version": "1",
+          "Content-Type": "application/json"
+        }
+      });
+      profileData = await response.json();
+      return profileData;
+    };
+    data = await fetchData();
+    console.log("data:", data);
+  }
+  return renderTemplate(_a || (_a = __template(['<head><meta charset="UTF-8"><title>Profile</title>', '</head> <body class="flex flex-col h-screen bg-[#162332] font-lexend m-0"> <header class="flex justify-between items-center m-0 border-black bg-[#23344b] text-base text-white py-[10px] px-6 max-[1200px]:py-5 max-[1200px]:text-xl"> <a href="/" target="_blank"> ', '</a> <div class="flex justify-between items-center w-44 max-[1200px]:w-52"> <div class="flex justify-between items-center w-14 gap-x-5"> <a href="https://www.linkedin.com/in/ariel-britez-diaz-technical/" target="_blank"> <span class="icon-[mdi--linkedin] bg-white w-5 h-5 hover:bg-neutral-400 max-[1200px]:w-6 max-[1200px]:h-6"></span> </a> <a href="https://github.com/ArielBritezDiaz" target="_blank"> <span class="icon-[bi--github] bg-white w-4 h-4 hover:bg-neutral-400 max-[1200px]:w-6 max-[1200px]:h-6"></span> </a> </div> <div class="flex flex-col border-l-[1px] px-4"> <span>Countries</span> <span>Sundries</span> </div> </div> </header> <main class="flex flex-row items-center justify-center h-screen gap-20 max-[1200px]:flex-col max-[1200px]:py-10"> ', ` </main> <script type="module">
+  let copyText = document.querySelector('.copy-text');
+  copyText?.querySelector('button')?.addEventListener('click', () => {
+    let input = copyText.querySelector('input.text');
+    input?.select();
+    document.execCommand('copy');
+    copyText.classList.add('copied');
+    window?.getSelection()?.removeAllRanges();
+    setTimeout(() => {
+      copyText.classList.remove('copied');
+    }, 1000);
+  });
+<\/script> <!-- focus o active para el input --></body>`])), renderHead(), renderComponent($$result, "Picture", $$Picture, { "src": Flag, "alt": "test", "class": "w-10 h-10 max-[1200px]:w-16 max-[1200px]:h-16" }), data && access_token ? renderTemplate`<div class="flex flex-col bg-white rounded p-7 w-1/2 h-3/4 mx-10 gap-10"> <p class="text-6xl text-[#23344B] py-5 m-0 max-md:text-3xl">Profile</p> <div class="flex flex-col justify-start alig-items h-[70%] gap-16 text-3xl max-md:text-xl"> <p class="m-0"><span class="text-black underline">Name: </span><span class="text-[#23344b]">${data.name}</span></p> <p class="m-0"><span class="text-black underline">E-mail: </span><span class="text-[#23344b]">${data.email}</span></p> <p class="m-0"><span class="text-black underline">Created At: </span><span class="text-[#23344b]">${data.created_at}</span></p> </div> <div class="text-center w-1/3 p-5 text-3xl bg-[#23344b] hover:bg-[#2f4564] rounded max-md:text-xl max-md:w-1/2"> <a href="/docs/introduction/get-api-key/" class="text-white no-underline">
+Back to Docs
+</a> </div> </div>
+
+        
+        <div class="flex flex-col justify-between align-items-center bg-white rounded p-7 w-1/2 h-3/4 mx-10"> <div> <p class="text-6xl text-[#23344B] no-underline m-0 py-5 max-md:text-3xl">Token</p> </div> <div class="flex justify-center align-center w-full h-full"> <div class="copy-text flex flex-col align-items-center justify-center py-5 gap-3 w-full"> <input type="text" class="text text-2xl p-6 text-white bg-[#23344b] rounded overflow-scroll hover:cursor-default focus:outline-none max-md:text-xl  max-md:p-3"${addAttribute(access_token, "value")} readonly> <div class="flex flex-row justify-center align-items-center"> <button class="bg-[#23344b] text-[#60b4fd] w-18 p-4 rounded transition-all delay-60 hover:bg-[#60b4fd] hover:text-[#23344b] hover:cursor-pointer max-md:w-12 max-md:p-2"> <span class="icon-[solar--copy-bold-duotone] w-9 h-9 max-md:w-6 max-md:h-6"></span> </button> </div> </div> </div> </div>` : renderTemplate`<div class="flex flex-col align-items-center justify-center text-white text-5xl gap-20"> <div class="flex flex-col gap-16"> <p class="flex align-center justify-center m-0 text-neutral-200">You're not logged in yet.</p> <p class="flex align-center justify-center m-0">Click on the Google link to get started!</p> </div> <div class="flex align-center justify-center text-7xl bg-white w-20 h-20 m-auto rounded-full transition-all delay-60 hover:bg-[#23344b]"> <a href="https://countries-sundries-api-sigma.vercel.app/v1/auth/google/login" class="flex align-items-center justify-center m-auto"> <span class="icon-[flat-color-icons--google]"></span> </a> </div> </div>`);
+}, "/home/arieldiaz/Desktop/dev/code/personal/countriesSundriesApi/src/documentation/src/pages/profile.astro", void 0);
+
+const $$file = "/home/arieldiaz/Desktop/dev/code/personal/countriesSundriesApi/src/documentation/src/pages/profile.astro";
+const $$url = "/profile";
+
+const profile = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	default: $$Profile,
+	file: $$file,
+	prerender,
+	url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+export { Flag as F, profile as p };
