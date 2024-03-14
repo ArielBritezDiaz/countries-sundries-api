@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/**", "use": "@vercel/docker" },
+    { "src": "documentation/**", "use": "@astro/build" }
+  ]
+}
