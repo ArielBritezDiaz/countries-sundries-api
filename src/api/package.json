@@ -19,6 +19,9 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
+  "trustedDependencies": [
+    "@prisma/client"
+  ],
   "dependencies": {
     "@fastify/secure-session": "^7.1.0",
     "@fastify/static": "^7.0.1",
@@ -70,6 +73,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "latest",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.3.3",

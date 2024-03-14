@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("PRISMA_DATABASE_URL")
+}
+
+model User {
+  id_user Int @id @default(autoincrement())
+  name String @db.VarChar(30)
+  email String @unique @db.VarChar(110)
+  password String? @db.VarChar(255)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Region {
+  id_region Int @id @default(autoincrement())
+  name String @db.VarChar(30)
+  
+  sub_region Sub_Region[]
+  country Country[]
+}
+
+model Sub_Region {
+  id_sub_region Int @id @default(autoincrement())
+  name String @db.VarChar(50)
+  id_region Int
+  region Region @relation(fields: [id_region], references: [id_region])
+
+  country Country[]
+}
+
+model Date_Format {
+  id_date_format Int @id @default(autoincrement())
+  format String @db.VarChar(30)
+
+  country Country[]
+}
+
+model Currency {
+  id_currency Int @id @default(autoincrement())
+  abbr String @db.VarChar(20)
+  name String @db.VarChar(40)
+  symbol String @db.VarChar(30)
+
+  country Country[]
+}
+
+model Flag {
+  id_flag Int @id @default(autoincrement())
+  name String @db.VarChar(50)
+  type String @db.VarChar(10)
+  url String @db.VarChar(255)
+
+  country Country[]
+}
+
+model Coat_Of_Arm {
+  id_coat_of_arm Int @id @default(autoincrement())
+  name String @db.VarChar(50)
+  type String @db.VarChar(10)
+  url String @db.VarChar(255)
+
+  country Country[]
+}
+
+model Country {
+  id_country Int @id @default(autoincrement())
+  name String @db.VarChar(100)
+  official_name String @db.VarChar(100)
+  abbr String  @db.VarChar(5)
+  internet_tld String  @db.VarChar(20)
+  motto String? @db.VarChar(100)
+  anthem String? @db.VarChar(100)
+  capital String @db.VarChar(100)
+  official_language String @db.VarChar(50)
+  population Int
+  iso_3166_1_alpha_2 String? @db.VarChar(5)
+  iso_3166_1_alpha_3 String? @db.VarChar(5)
+  calling_code String? @db.VarChar(10)
+  timezone String? @db.VarChar(20)
+  id_coat_of_arm Int?
+  id_flag Int?
+  id_currency Int?
+  id_date_format Int?
+  id_region Int?
+  id_sub_region Int?
+
+  coat_of_arm Coat_Of_Arm? @relation(fields: [id_coat_of_arm], references: [id_coat_of_arm])
+  flag Flag? @relation(fields: [id_flag], references: [id_flag])
+  currency Currency? @relation(fields: [id_currency], references: [id_currency])
+  date_format Date_Format? @relation(fields: [id_date_format], references: [id_date_format])
+  region Region? @relation(fields: [id_region], references: [id_region])
+  sub_region Sub_Region? @relation(fields: [id_sub_region], references: [id_sub_region])
+}
