@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-project": "(nest build ./src/api/) && (astro check && astro build ./src/documentation/)",
+    "start-project": "bun run build ./src/api/ && astro check && npm build ./src/documentation/",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  },  
   "keywords": [],
   "author": "",
   "license": "ISC"
