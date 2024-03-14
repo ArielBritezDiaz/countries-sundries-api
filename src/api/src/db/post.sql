@@ -2,71 +2,80 @@ CREATE DATABASE countries_sundries;
 
 USE countries_sundries;
 
-CREATE TABLE Region(
-    id_region INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL
+CREATE TABLE User (
+  id_user INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30),
+  email VARCHAR(110) UNIQUE,
+  password VARCHAR(255),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Sub_Region(
-    id_sub_region INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    id_region INT NOT NULL,
-    FOREIGN KEY(id_region) REFERENCES Region(id_region)
+CREATE TABLE Region (
+  id_region INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30)
 );
 
-CREATE TABLE Date_Format(
-    id_date_format INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    format VARCHAR(30) NOT NULL
+CREATE TABLE Sub_Region (
+  id_sub_region INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50),
+  id_region INT,
+  FOREIGN KEY (id_region) REFERENCES Region(id_region)
 );
 
-CREATE TABLE Currency(
-    id_currency INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    abbr VARCHAR(20) NOT NULL,
-    name VARCHAR(40) NOT NULL,
-    symbol VARCHAR(30) NOT NULL
+CREATE TABLE Date_Format (
+  id_date_format INT AUTO_INCREMENT PRIMARY KEY,
+  format VARCHAR(30)
 );
 
-CREATE TABLE Flag(
-    id_flag INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    type VARCHAR(10) NOT NULL,
-    url VARCHAR(255) NOT NULL
+CREATE TABLE Currency (
+  id_currency INT AUTO_INCREMENT PRIMARY KEY,
+  abbr VARCHAR(20),
+  name VARCHAR(40),
+  symbol VARCHAR(30)
 );
 
-CREATE TABLE Coat_Of_Arm(
-    id_coat_of_arm INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    type VARCHAR(10) NOT NULL,
-    url VARCHAR(255) NOT NULL
+CREATE TABLE Flag (
+  id_flag INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50),
+  type VARCHAR(10),
+  url VARCHAR(255)
 );
 
-CREATE TABLE Country(
-    id_country INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    official_name VARCHAR(100) NOT NULL,
-    abbr VARCHAR(5) NOT NULL,
-    internet_tld VARCHAR(20) NOT NULL,
-    motto VARCHAR(100),
-    anthem VARCHAR(100),
-    capital VARCHAR(100) NOT NULL,
-    official_language VARCHAR(50) NOT NULL,
-    population INT NOT NULL,
-    iso_3166_1_alpha_2 VARCHAR(5) NOT NULL,
-    iso_3166_1_alpha_3 VARCHAR(5) NOT NULL,
-    calling_code VARCHAR(7) NOT NULL,
-    timezone VARCHAR(20) NOT NULL,
-    id_coat_of_arm INT NULL,
-    id_flag INT NULL,
-    id_currency INT NULL,
-    id_date_format INT NULL,
-    id_region INT NULL,
-    id_sub_region INT NULL,
-    FOREIGN KEY(id_coat_of_arm) REFERENCES Coat_Of_Arm(id_coat_of_arm),
-    FOREIGN KEY(id_flag) REFERENCES Flag(id_flag),
-    FOREIGN KEY(id_currency) REFERENCES Currency(id_currency),
-    FOREIGN KEY(id_date_format) REFERENCES Date_Format(id_date_format),
-    FOREIGN KEY(id_region) REFERENCES Region(id_region),
-    FOREIGN KEY(id_sub_region) REFERENCES Sub_Region(id_sub_region)
+CREATE TABLE Coat_Of_Arm (
+  id_coat_of_arm INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50),
+  type VARCHAR(10),
+  url VARCHAR(255)
+);
+
+CREATE TABLE Country (
+  id_country INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  official_name VARCHAR(100),
+  abbr VARCHAR(5),
+  internet_tld VARCHAR(20),
+  motto VARCHAR(100),
+  anthem VARCHAR(100),
+  capital VARCHAR(100),
+  official_language VARCHAR(50),
+  population INT,
+  iso_3166_1_alpha_2 VARCHAR(5),
+  iso_3166_1_alpha_3 VARCHAR(5),
+  calling_code VARCHAR(10),
+  timezone VARCHAR(20),
+  id_coat_of_arm INT,
+  id_flag INT,
+  id_currency INT,
+  id_date_format INT,
+  id_region INT,
+  id_sub_region INT,
+  FOREIGN KEY (id_coat_of_arm) REFERENCES Coat_Of_Arm(id_coat_of_arm),
+  FOREIGN KEY (id_flag) REFERENCES Flag(id_flag),
+  FOREIGN KEY (id_currency) REFERENCES Currency(id_currency),
+  FOREIGN KEY (id_date_format) REFERENCES Date_Format(id_date_format),
+  FOREIGN KEY (id_region) REFERENCES Region(id_region),
+  FOREIGN KEY (id_sub_region) REFERENCES Sub_Region(id_sub_region)
 );
 
 

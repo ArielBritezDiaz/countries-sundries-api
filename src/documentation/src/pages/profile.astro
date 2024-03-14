@@ -18,7 +18,7 @@ if (Astro.cookies.has("id_user")) {
   // console.log(id_user)
   
   const fetchData = async () => {
-    const response = await fetch(`http://localhost:3000/api/v1/user/profile?id_user=${id_user}`, {
+    const response = await fetch(`${process.env.PROTOCOL}://${process.env.HOST}/api/v1/user/profile?id_user=${id_user}`, {
       method: 'GET',
       headers: {
         'x-api-version': '1',
