@@ -8,7 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "start-api": "cd ../api/ && bun run build",
+    "start-api": "cd ../api/ && bun install && bun run build",
     "start-project": "npm run start-api && astro check && npm build"
   },
   "dependencies": {
