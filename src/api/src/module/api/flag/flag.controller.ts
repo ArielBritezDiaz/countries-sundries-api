@@ -6,10 +6,10 @@ import { flagSchema } from './schema/flag.schema';
 import { FlagService } from './flag.service';
 //DTO import
 import { FlagValueControlDTO } from './dto/flag.dto';
-//Pipe import
-import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
+//Validation import
+import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
 //Guard import
-import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
+import { AuthGuard } from '../../auth/guard/auth-token-api.guard';
 
 @UseGuards(AuthGuard)
 @Controller(`flag`)

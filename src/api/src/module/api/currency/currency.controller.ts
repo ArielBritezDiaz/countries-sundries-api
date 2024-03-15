@@ -7,10 +7,10 @@ import { currencyDetailsSchema } from './schema/currency-details.schema';
 import { CurrencyService } from './currency.service';
 //DTO import
 import { CurrenciesValueControlDTO } from './dto/currency.dto';
-//Pipe import
-import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
+//Validation import
+import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
 //Guard import
-import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
+import { AuthGuard } from '../../auth/guard/auth-token-api.guard';
 
 @UseGuards(AuthGuard)
 @Controller(`currency`)

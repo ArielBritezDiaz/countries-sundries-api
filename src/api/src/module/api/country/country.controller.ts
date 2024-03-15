@@ -4,10 +4,10 @@ import { Response } from 'express';
 import { CountryService } from './country.service';
 //DTO import
 import { CountryValueControlDTO } from './dto/country.dto';
-//Validation import
-import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
 //Schema import
 import { countrySchema } from './schema/country.schema';
+//Validation import
+import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
 //Guard import
 import { AuthGuard } from '../../auth/guard/auth-token-api.guard';
 

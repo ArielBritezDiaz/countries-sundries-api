@@ -6,10 +6,10 @@ import { subRegionSchema } from './schema/sub_region.schema';
 import { SubRegionService } from './subRegion.service';
 //DTO import
 import { SubRegionsValueControlDTO } from './dto/subRegion.dto';
-//Pipe import
+//Validation import
 import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
 //Guard import
-import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
+import { AuthGuard } from '../../auth/guard/auth-token-api.guard';
 
 @UseGuards(AuthGuard)
 @Controller(`sub-region`)
