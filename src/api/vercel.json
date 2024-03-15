@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "installCommand": "bun install",
+  "buildCommand": "bun run build",
+  "devCommand": "bun run start:dev",
+  "outputDirectory": "dist",
+  "name": "countries-sundries-api",
+  "packagerManager": "bun@1.0.30"
+}
