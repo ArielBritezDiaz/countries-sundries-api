@@ -6,6 +6,7 @@
   "version": "0.1.0",
   "license": "Ariel Diaz 2024",
   "scripts": {
+    "generate": "npx prisma generate",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -20,6 +21,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "vercel-build": "npx prisma generate && npx prisma db push && npm run build",
     "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
   },
   "trustedDependencies": [
     "@prisma/client"
