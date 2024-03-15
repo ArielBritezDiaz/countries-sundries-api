@@ -41,7 +41,7 @@ async function bootstrap() {
   }));
   //Middleware
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:4321', 'http://localhost:4321/profile', 'https://accounts.google.com', process.env.HOST],
+    origin: ['http://localhost:3000', 'http://localhost:4321', 'http://localhost:4321/profile', 'https://accounts.google.com', process.env.HOST, 'https://countries-sundries-api-server-seven.vercel.app/'],
     allowedHeaders: [
       'Content-Type',
       'x-countries_sundries-key',
