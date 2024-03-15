@@ -6,8 +6,8 @@
   "version": "0.1.0",
   "license": "Ariel Diaz 2024",
   "scripts": {
-    "generate": "npx prisma generate",
     "build": "nest build",
+    "postinstall": "prisma generate",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -19,8 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "vercel-build": "npx prisma generate && npx prisma db push && npm run build",
-    "postinstall": "prisma generate"
+    "vercel-build": "npx prisma generate && npx prisma db push && npm run build"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
