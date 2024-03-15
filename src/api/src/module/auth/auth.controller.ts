@@ -4,7 +4,7 @@ import { Response } from 'express';
 import { AuthService } from './auth.service';
 //Interface import
 import { SignInUserDTO } from '../user/dto/user.dto';
-import { ZodValidationPipe } from 'src/pipe/body-params.pipe';
+import { ZodValidationPipe } from '../../pipe/body-params.pipe';
 import { signInUserSchema } from '../user/schema/user.schema';
 import { AuthGuard } from './guard/auth-token-api.guard';
 import { GoogleAuthGuard } from './guard/google-strategy.guard';
