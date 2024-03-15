@@ -9,7 +9,7 @@ import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
 //Schema import
 import { countrySchema } from './schema/country.schema';
 //Guard import
-import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
+import { AuthGuard } from '../../auth/guard/auth-token-api.guard';
 
 @UseGuards(AuthGuard)
 @Controller('country')
