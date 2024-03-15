@@ -23,8 +23,6 @@
     "@prisma/client"
   ],
   "dependencies": {
-    "@fastify/secure-session": "^7.1.0",
-    "@fastify/static": "^7.0.1",
     "@nestjs/cache-manager": "^2.2.1",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.0",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "installCommand": "bun install",
-  "buildCommand": "bun run build",
-  "devCommand": "bun run start:dev",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run start:dev",
   "outputDirectory": "dist",
   "name": "countries-sundries-api"
 }

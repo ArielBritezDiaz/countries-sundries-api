@@ -14,7 +14,7 @@ export class ApiVersionGuard implements CanActivate {
     const requestUrl = req.url;
 
     // This is the list of excluded URLs
-    const excludedUrls = ['/v1/auth/google/login', 'v1/auth/google/redirect','/v1/user/profile'];
+    const excludedUrls = ['/v1/auth/google/login', 'v1/auth/google/redirect','/v1/user/profile', '/v1/user/test'];
 
     // This is the check if the requested URL is in the excluded URLs
     const isExcludedUrl = excludedUrls.some((excludedUrl) => requestUrl.includes(excludedUrl));
