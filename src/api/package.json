@@ -6,7 +6,8 @@
   "version": "0.1.0",
   "license": "Ariel Diaz 2024",
   "scripts": {
-    "build": "npx prisma db push && npx prisma generate && nest build && npm run postinstall",
+    "build": "npx prisma generate && nest build",
+    "vercel-install": "npm install && npx prisma generate",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
