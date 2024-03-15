@@ -1,56 +1,52 @@
-CREATE DATABASE countries_sundries;
-
-USE countries_sundries;
-
-CREATE TABLE User (
-  id_user INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE "User" (
+  id_user SERIAL PRIMARY KEY,
   name VARCHAR(30),
   email VARCHAR(110) UNIQUE,
   password VARCHAR(255),
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP
 );
 
-CREATE TABLE Region (
-  id_region INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE "Region" (
+  id_region SERIAL PRIMARY KEY,
   name VARCHAR(30)
 );
 
-CREATE TABLE Sub_Region (
-  id_sub_region INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE "Sub_Region" (
+  id_sub_region SERIAL PRIMARY KEY,
   name VARCHAR(50),
   id_region INT,
-  FOREIGN KEY (id_region) REFERENCES Region(id_region)
+  FOREIGN KEY (id_region) REFERENCES "Region"(id_region)
 );
 
-CREATE TABLE Date_Format (
-  id_date_format INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE "Date_Format" (
+  id_date_format SERIAL PRIMARY KEY,
   format VARCHAR(30)
 );
 
-CREATE TABLE Currency (
-  id_currency INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE "Currency" (
+  id_currency SERIAL PRIMARY KEY,
   abbr VARCHAR(20),
   name VARCHAR(40),
   symbol VARCHAR(30)
 );
 
-CREATE TABLE Flag (
-  id_flag INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE "Flag" (
+  id_flag SERIAL PRIMARY KEY,
   name VARCHAR(50),
   type VARCHAR(10),
   url VARCHAR(255)
 );
 
-CREATE TABLE Coat_Of_Arm (
-  id_coat_of_arm INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE "Coat_Of_Arm" (
+  id_coat_of_arm SERIAL PRIMARY KEY,
   name VARCHAR(50),
   type VARCHAR(10),
   url VARCHAR(255)
 );
 
-CREATE TABLE Country (
-  id_country INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE "Country" (
+  id_country SERIAL PRIMARY KEY,
   name VARCHAR(100),
   official_name VARCHAR(100),
   abbr VARCHAR(5),
@@ -70,12 +66,12 @@ CREATE TABLE Country (
   id_date_format INT,
   id_region INT,
   id_sub_region INT,
-  FOREIGN KEY (id_coat_of_arm) REFERENCES Coat_Of_Arm(id_coat_of_arm),
-  FOREIGN KEY (id_flag) REFERENCES Flag(id_flag),
-  FOREIGN KEY (id_currency) REFERENCES Currency(id_currency),
-  FOREIGN KEY (id_date_format) REFERENCES Date_Format(id_date_format),
-  FOREIGN KEY (id_region) REFERENCES Region(id_region),
-  FOREIGN KEY (id_sub_region) REFERENCES Sub_Region(id_sub_region)
+  FOREIGN KEY (id_coat_of_arm) REFERENCES "Coat_Of_Arm"(id_coat_of_arm),
+  FOREIGN KEY (id_flag) REFERENCES "Flag"(id_flag),
+  FOREIGN KEY (id_currency) REFERENCES "Currency"(id_currency),
+  FOREIGN KEY (id_date_format) REFERENCES "Date_Format"(id_date_format),
+  FOREIGN KEY (id_region) REFERENCES "Region"(id_region),
+  FOREIGN KEY (id_sub_region) REFERENCES "Sub_Region"(id_sub_region)
 );
 
 
