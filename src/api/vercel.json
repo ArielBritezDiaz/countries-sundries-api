@@ -4,6 +4,5 @@
   "buildCommand": "bun run build",
   "devCommand": "bun run start:dev",
   "outputDirectory": "dist",
-  "name": "countries-sundries-api",
-  "packagerManager": "bun@1.0.30"
+  "name": "countries-sundries-api"
 }
