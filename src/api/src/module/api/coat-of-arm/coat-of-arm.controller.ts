@@ -6,10 +6,10 @@ import { coatOfArmSchema } from './schema/coat-of-arm.schema';
 import { CoatOfArmService } from './coat-of-arm.service';
 //DTO import
 import { CoatOfArmValueControlDTO } from './dto/coat-of-arm.dto';
-//Pipe import
-import { ZodValidationPipe } from 'src/pipe/query-params.pipe';
+//Validation import
+import { ZodValidationPipe } from '../../../pipe/query-params.pipe';
 //Guard import
-import { AuthGuard } from 'src/module/auth/guard/auth-token-api.guard';
+import { AuthGuard } from '../../auth/guard/auth-token-api.guard';
 
 @UseGuards(AuthGuard)
 @Controller(`coat-of-arm`)
