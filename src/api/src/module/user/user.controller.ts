@@ -4,7 +4,7 @@ import { Response } from 'express';
 import { UserService } from './user.service';
 //DTO import
 import { SignUpUserDTO } from './dto/user.dto';
-import { ZodValidationPipe } from 'src/pipe/body-params.pipe';
+import { ZodValidationPipe } from '../../pipe/body-params.pipe';
 import { SignUpUserSchema } from './schema/user.schema';
 
 
@@ -69,7 +69,7 @@ export class UserController {
         message: 'The API is working!'
       })
     } catch(error) {
-      if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })
+      if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message, "no": "funciona" })
       console.error(error);
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ message: 'Internal Server Error' });
     }
