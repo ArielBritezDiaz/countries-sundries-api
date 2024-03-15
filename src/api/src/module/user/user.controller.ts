@@ -59,4 +59,19 @@ export class UserController {
     }
   }
 
+  @Get('test')
+  async test(
+    @Res() res: Response,
+    @Query() query: Record<string, any>,
+  ) {
+    try {
+      return res.send({
+        message: 'The API is working!'
+      })
+    } catch(error) {
+      if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message })
+      console.error(error);
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ message: 'Internal Server Error' });
+    }
+  }
 }
