@@ -14,7 +14,7 @@
     "DB_NAME": "countries_sundries",
     "PRISMA_DATABASE_URL": "mysql://admin:TomyTomaco2013@personal-dev-instance-1.cdonwzkem94h.sa-east-1.rds.amazonaws.com:3306/countries_sundries",
     "API_REDIS_HOST": "localhost",
-    "#API_REDIS_PORT": "37",
+    "API_REDIS_PORT": "37",
     "BCRYPT_SALT_ROUNDS": "",
     "JWT_SECRET": "Y9pDRjzEjaI+O73W5fncoG7F9YfjuhPH3ODytLwj3MKxiAjvxr21HH2sHRHOBp6pr1wixKMetnMxH/c7ApE50gMOgDPFXsFjJRe3TiUs+o3Ato21iMOWJQ==",
     "GOOGLE_CLIENT_ID": "718957069003-uo201v5q6vp2f3rm2qvke17qdts4ajlp.apps.googleusercontent.com",
