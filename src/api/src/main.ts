@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 //Guard import
 import { ApiVersionGuard } from './guard/api-version.guard';
-import * as session from 'express-session';
+const session = require( 'express-session');
 import * as passport from 'passport';
 
 async function bootstrap() {
