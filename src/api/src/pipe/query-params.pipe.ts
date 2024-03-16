@@ -6,12 +6,13 @@ export class ZodValidationPipe implements PipeTransform {
 
   transform(value: unknown, metadata: ArgumentMetadata) {
     try {
-      // console.log("value from zod validation pipe:", value)
-      // console.log("metadata from zod validation pipe:", metadata)
-      // console.log("schema from zod validation pipe:", this.schema)
+      console.log("value from zod validation pipe:", value)
+      console.log("metadata from zod validation pipe:", metadata)
+      console.log("schema from zod validation pipe:", this.schema)
       const parsedValue = this.schema.parse(value);
       return parsedValue
     } catch (error) {
+      console.log("error from zod validation pipe:", error)
       throw new BadRequestException('Validation query params failed');
     }
   }

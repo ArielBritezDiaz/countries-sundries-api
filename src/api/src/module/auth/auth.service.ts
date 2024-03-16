@@ -7,23 +7,26 @@ import { AuthDTO, UserDetails } from "./dto/auth.dto";
 import * as bcrypt from 'bcrypt';
 //JWT import
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from "../prisma/prisma.service";
 import { GoogleStrategy } from "./utils/google-strategy.utils";
+import { InjectRepository } from "@nestjs/typeorm";
+import { User } from "../user/entity/user.entity";
+import { Repository } from "typeorm";
 
 //Authenticator Operations
 @Injectable()
 export class AuthService {
   constructor(
-    private prismaService: PrismaService,
     private UserService: UserService,
     private jwtService: JwtService,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
   
   async validateUser(details: UserDetails) {
     console.log("AuthService", AuthService)
     console.log("details:", details)
 
-    const user = await this.prismaService.user.findUnique({
+    const user = await this.userRepository.findOne({
       where: {
         email: details.email
       }
@@ -35,12 +38,10 @@ export class AuthService {
     }
 
     console.log('User not found')
-    const newUser = this.prismaService.user.create({
-      data: {
-        name: details.name,
-        email: details.email,
-        password: null
-      }
+    const newUser = await this.userRepository.save({
+      name: details.name,
+      email: details.email,
+      password: null
     })
 
     return newUser
@@ -53,7 +54,7 @@ export class AuthService {
 
     const access_token = await this.jwtService.signAsync(payload)
 
-    const user = await this.prismaService.user.findUnique({
+    const user = await this.userRepository.findOne({
       where: {
         id_user
       }
@@ -72,6 +73,7 @@ export class AuthService {
     const id_user = user.id_user
     const payload = { id_user }
     console.log("payload:", payload)
+    console.log(process.env.JWT_SECRET)
 
     const access_token = await this.jwtService.signAsync(payload)
 
@@ -121,7 +123,7 @@ export class AuthService {
     const isTokenValid = await this.verifyToken(access_token);
     const status = isTokenValid ? 'Active' : 'Deprecated'
     
-    const user = await this.prismaService.user.findUnique({
+    const user = await this.userRepository.findOne({
       where: {
         id_user
       },

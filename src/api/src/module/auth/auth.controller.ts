@@ -118,6 +118,19 @@ export class AuthController {
       session.id_user = response['user'].id_user
       session.access_token = response.access_token
 
+      // const cookieOptions = {
+      //   httpOnly: false,
+      //   secure: true, // Asegúrate de que tu aplicación esté detrás de HTTPS
+      //   // sameSite: 'strict' as const, // O 'lax' según tus necesidades de seguridad
+      //   maxAge: 360000, // Duración de la cookie en segundos
+      //   path: '/profile' // Ruta de la cookie
+      // };
+
+      // res.cookie('id_user', response['user'].id_user, cookieOptions);
+      // res.cookie('access_token', response.access_token, cookieOptions);
+
+      // return res.redirect(process.env.HOST_DOCS)
+
       console.log("response in redirectProfile:", response)
       return res.status(HttpStatus.OK).redirect('/v1/auth/profile')
     } catch(error) {

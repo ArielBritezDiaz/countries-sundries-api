@@ -1,7 +1,6 @@
-import { Injectable, InternalServerErrorException, UnauthorizedException } from "@nestjs/common";
+import { Injectable, InternalServerErrorException, Logger, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { DatabaseConfig } from "../../interface/database.config.interface";
-import { PrismaService } from "../prisma/prisma.service";
 //DTO import
 import { SignUpUserDTO } from "./dto/user.dto";
 import { SignInUser } from "./interface/user.interface";
@@ -10,14 +9,19 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from "@nestjs/jwt";
 
 import * as moment from 'moment';
+import { EntityManager, Repository } from "typeorm";
+import { User } from "./entity/user.entity";
+import { InjectRepository } from "@nestjs/typeorm";
 
 //CRUD Operations
 @Injectable()
 export class UserService {
   constructor(
-    private readonly prismaService: PrismaService,
+    // private readonly entityManager: EntityManager,
     private configService: ConfigService<{ database: DatabaseConfig }, true>,
     private readonly jwtService: JwtService,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
 
@@ -29,7 +33,7 @@ export class UserService {
     const passw = body.password
     const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS, 10)
 
-    const existsUser = await this.prismaService.user.findUnique({
+    const existsUser = await this.userRepository.findOne({
       where: {
         email: body.email
       }
@@ -48,11 +52,7 @@ export class UserService {
         body.password = hash;
         console.log("body:", body);
         try {
-          const user = await this.prismaService.user.create({
-            data: {
-              ...body,
-            }
-          });
+          const user = await this.userRepository.save(body);
           console.log("response:", user);
   
           if (user) {
@@ -69,7 +69,7 @@ export class UserService {
   }
 
   async signInUser(body: SignInUser): Promise<any> {
-    const user = await this.prismaService.user.findUnique({
+    const user = await this.userRepository.findOne({
       where: {
         email: body.email
       }
@@ -81,15 +81,11 @@ export class UserService {
   }
 
   async getUser(id_user: number): Promise<any> {
-    const userExists = await this.prismaService.user.findUnique({
+    const userExists = await this.userRepository.findOne({
       where: {
         id_user: id_user
       },
-      select: {
-        name: true,
-        email: true,
-        created_at: true
-      }
+      select: ['name', 'email', 'created_at']
     })
 
     console.log("userExists in getUser:", userExists)
@@ -103,5 +99,12 @@ export class UserService {
     if(!userExists) throw new UnauthorizedException('User does not exist')
     
     return user
+  }
+
+  async test(name: string): Promise<any> {
+    const test = await this.userRepository.findOne({where: {name}})
+    Logger.log('Regions:', JSON.stringify(test), 'RegionService');
+    console.log("test in userService:", test)
+    return test
   }
 }

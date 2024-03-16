@@ -1,41 +1,44 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { DatabaseConfig } from '../../../interface/database.config.interface';
-import { PrismaService } from '../../prisma/prisma.service';
 
 //DTO import
 import { CurrenciesValueControlDTO, CurrencyValueControlDTO } from './dto/currency.dto';
 //Interface import
 import { FormattedCurrency } from './interfaces/currency.interface';
+import { Repository, Like } from 'typeorm';
+import { Currency } from './entity/currency.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CurrencyService {
   constructor(
-    private prisma: PrismaService,
+    @InjectRepository(Currency)
+    private readonly currencyRepository: Repository<Currency>,
     private configService: ConfigService<{ database: DatabaseConfig }, true>
   ) {}
 
-  async getAllCurrencies(preferencesParams: CurrenciesValueControlDTO): Promise<FormattedCurrency[]> {
+  async getAllCurrencies(query: CurrenciesValueControlDTO): Promise<FormattedCurrency[]> {
     
-    console.log("preferencesParams", preferencesParams)
+    console.log("query", query)
 
-    let orderBy = {}
-    if(preferencesParams.order_by && preferencesParams.order_direction) {
-      orderBy = {[preferencesParams.order_by]: preferencesParams.order_direction}
-    } else if (preferencesParams.order_by && !preferencesParams.order_direction) {
-      orderBy = {[preferencesParams.order_by]: 'asc'}
-    } else if (!preferencesParams.order_by && preferencesParams.order_direction) {
-      orderBy = {id_currency: preferencesParams.order_direction}
+    let order = {}
+    if(query.order_by && query.order_direction) {
+      order = {[query.order_by]: query.order_direction}
+    } else if (query.order_by && !query.order_direction) {
+      order = {[query.order_by]: 'asc'}
+    } else if (!query.order_by && query.order_direction) {
+      order = {id_currency: query.order_direction}
     }
 
-    const response = await this.prisma.currency.findMany({
-      ...(preferencesParams.from && { skip: preferencesParams.from } ),
-      ...(preferencesParams.take && preferencesParams.take <= 30 ? { take: preferencesParams.take } : { take: 30 } ),
+    const response = await this.currencyRepository.find({
+      ...(query.from && { skip: query.from } ),
+      ...(query.take && query.take <= 30 ? { take: query.take } : { take: 30 } ),
       where: {
-        ...(preferencesParams.id && { id_currency: { equals: preferencesParams.id} }),
-        ...(preferencesParams.name && { name: { equals: preferencesParams.name } }),
-        ...(preferencesParams.abbr && { abbr: { contains: preferencesParams.abbr } }),
-        ...(preferencesParams.symbol && { symbol: { contains: preferencesParams.symbol } }),
+        ...(query.id && { id_currency: query.id }),
+        ...(query.name && { name: query.name }),
+        ...(query.abbr && { abbr: Like(`%${query.abbr}%`) }),
+        ...(query.symbol && { symbol: Like(`%${query.symbol}%`) }),
       },
       select: {
         id_currency: true,
@@ -43,24 +46,24 @@ export class CurrencyService {
         abbr: true,
         symbol: true
       },
-      orderBy
+      order
     });
     // console.log("response", response)
 
     return response;
   }
 
-  async getDetailsCurrency(preferencesParams: CurrencyValueControlDTO): Promise<FormattedCurrency[]> {
+  async getDetailsCurrency(query: CurrencyValueControlDTO): Promise<FormattedCurrency[]> {
     // console.log("query in getAllCurrencies", query)
 
-    console.log(preferencesParams)
+    console.log(query)
 
-    const response = await this.prisma.currency.findFirst({
+    const response = await this.currencyRepository.findOne({
       where: {
-        ...(preferencesParams.id && preferencesParams.id !== null && { id_currency: preferencesParams.id }),
-        ...(preferencesParams.name && { name: { contains: preferencesParams.name.toUpperCase() } }),
-        ...(preferencesParams.abbr && { abbr: { contains: preferencesParams.abbr.toUpperCase() } }),
-        ...(preferencesParams.symbol && { symbol: { contains: preferencesParams.symbol } }),
+        ...(query.id && { id_currency: query.id }),
+        ...(query.name && { name: query.name }),
+        ...(query.abbr && { abbr: Like(`%${query.abbr}%`) }),
+        ...(query.symbol && { symbol: Like(`%${query.symbol}%`) }),
       },
       select: {
         id_currency: true,
