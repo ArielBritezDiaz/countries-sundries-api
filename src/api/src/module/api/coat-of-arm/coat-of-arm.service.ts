@@ -1,40 +1,45 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { DatabaseConfig } from "../../../interface/database.config.interface";
-import { PrismaService } from "../../prisma/prisma.service";
 //DTO import
 import { CoatOfArmValueControlDTO } from "./dto/coat-of-arm.dto";
 //Interface import
 import { FormattedCoatOfArm } from "./interface/coat-of-arm.interface";
+import { InjectRepository } from "@nestjs/typeorm";
+import { CoatOfArm } from "./entity/coat-of-arm.entity";
+import { Repository } from "typeorm";
 
 
 @Injectable()
 export class CoatOfArmService {
   constructor(
-    private prisma: PrismaService,
-    private configService: ConfigService<{ database: DatabaseConfig }, true>
+    private configService: ConfigService<{ database: DatabaseConfig }, true>,
+    @InjectRepository(CoatOfArm)
+    private readonly coatOfArmRepository: Repository<CoatOfArm>
   ) {}
 
   async getCoatOfArmAll(query: CoatOfArmValueControlDTO): Promise<FormattedCoatOfArm[]> {
     // console.log(query)
     
-    const response = await this.prisma.coat_Of_Arm.findMany({
-      ...(query.from && { skip: query.from } ),
-      ...(query.take && query.take <= 30 ? { take: query.take } : { take: 30 } ),
+    let order = {}
+    if(query.order_by && query.order_direction) {
+      order = {[query.order_by]: query.order_direction}
+    } else if (query.order_by && !query.order_direction) {
+      order = {[query.order_by]: 'asc'}
+    } else if (!query.order_by && query.order_direction) {
+      order = {id_coat_of_arm: query.order_direction}
+    }
+
+    const response = await this.coatOfArmRepository.find({
+      skip: query.from || 0,
+      take: query.take && query.take <= 30 ? query.take : 30,
       where: {
         ...(query.id && { id_coat_of_arm: query.id }),
         ...(query.name && { name: query.name }),
         ...(query.type && { type: query.type })
       },
-      select: {
-        id_coat_of_arm: true,
-        name: true,
-        type: true,
-      },
-      orderBy: {
-        ...(query.order_by && { [query.order_by]: query.order_direction })
-      }
-    })
+      order
+    });
     // console.log("response:", response)
 
     const FormattedCoatOfArm = await response.map(coat_of_arm => {
@@ -53,7 +58,7 @@ export class CoatOfArmService {
   async getCoatOfArmDetails(query: CoatOfArmValueControlDTO): Promise<FormattedCoatOfArm[]> {
     // console.log(query)
 
-    const response = await this.prisma.coat_Of_Arm.findFirst({
+    const response = await this.coatOfArmRepository.findOne({
       where: {
         ...(query.id && { id_coat_of_arm: query.id }),
         ...(query.name && { name: query.name }),
@@ -64,9 +69,9 @@ export class CoatOfArmService {
         name: true,
         type: true,
       }
-    })
+    });
 
-    // console.log("response:", response)
+    console.log("response:", response)
 
     const FormattedCoatOfArm = {
         id_coat_of_arm: response.id_coat_of_arm,

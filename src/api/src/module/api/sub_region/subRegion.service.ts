@@ -1,41 +1,58 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { DatabaseConfig } from "../../../interface/database.config.interface";
-import { PrismaService } from "../../prisma/prisma.service";
-//DTO import
 import { SubRegionsValueControlDTO } from "./dto/subRegion.dto";
-//Interface import
 import { FormattedSubRegions } from "./interfaces/subRegion.interface";
+import { InjectRepository } from "@nestjs/typeorm";
+import { SubRegion } from "./entity/sub-region.entity";
+import { Repository, Like } from "typeorm";
 
 @Injectable()
 export class SubRegionService {
   constructor(
-    private prisma: PrismaService,
+    @InjectRepository(SubRegion)
+    private readonly subRegionRepository: Repository<SubRegion>,
     private configService: ConfigService<{ database: DatabaseConfig }, true>
   ){}
 
-  async getAllSubRegions(preferencesParams: SubRegionsValueControlDTO): Promise<FormattedSubRegions[]> {
-    // console.log("preferencesParams in service", preferencesParams)
+  async getAllSubRegions(query: SubRegionsValueControlDTO): Promise<FormattedSubRegions[]> {
+    let order = {};
+    if(query.order_by && query.order_direction) {
+      order = { [query.order_by]: query.order_direction };
+    } else if (query.order_by && !query.order_direction) {
+      order = { [query.order_by]: 'ASC' };
+    } else if (!query.order_by && query.order_direction) {
+      order = { id_sub_region: query.order_direction };
+    }
 
-    const response = await this.prisma.sub_Region.findMany({
-      ...(preferencesParams.from && { skip: preferencesParams.from } ),
-      ...(preferencesParams.take && { take: preferencesParams.take } ),
+    let fromTake = {}
+    if(query.from !== 0 && query.take) {
+      fromTake = { skip: query.from, take: query.take };
+    } else if (query.from !== 0 && !query.take) {
+      fromTake = { skip: query.from, take: 37 };
+    } else if (query.from === 0 || !query.from && query.take) {
+      fromTake = { take: query.take };
+    }
+    
+    console.log("query", query)
+
+    const response = await this.subRegionRepository.find({
+      ...fromTake,
       where: {
-        ...(preferencesParams.id && { id_sub_region: preferencesParams.id }),
-        ...(preferencesParams.name && { name: { contains: preferencesParams.name.toUpperCase() } }),
-        ...(preferencesParams.id_region_fk && { id_region: preferencesParams.id_region_fk })
+        ...(query.id && { id_sub_region: query.id }),
+        ...(query.name && { name: Like(`%${query.name.toUpperCase()}%`) }),
+        ...(query.id_region_fk && { id_region: query.id_region_fk })
       },
       select: {
         id_sub_region: true,
         name: true,
         id_region: true
       },
-      orderBy: {
-        ...(preferencesParams.order_by && { [preferencesParams.order_by]: preferencesParams.order_direction })
-      }
+      order
     });
-    // console.log("response in service", response)
+
+    // console.log("response", response)
     
-    return response !== null ? response : [];
+    return response || [];
   }
 }

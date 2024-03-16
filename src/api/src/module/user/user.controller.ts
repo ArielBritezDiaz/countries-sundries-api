@@ -10,7 +10,9 @@ import { SignUpUserSchema } from './schema/user.schema';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService
+  ) {}
 
   @Post('sign-up')
   @UsePipes(new ZodValidationPipe(SignUpUserSchema))
@@ -29,6 +31,7 @@ export class UserController {
       session.new_user = response
       console.log("session in CONTROLLER:", session)
       if(response) {
+        // return res.send(response)
         return res.status(HttpStatus.CREATED).redirect('http://localhost:3000/api/v1/auth/redirect-profile');
       } else {
         throw new InternalServerErrorException();
@@ -62,11 +65,15 @@ export class UserController {
   @Get('test')
   async test(
     @Res() res: Response,
+    @Body() body: Record<string, any>,
     @Query() query: Record<string, any>,
   ) {
     try {
+      console.log("query in test:", query)
+      const test = await this.userService.test(query.name);
       return res.send({
-        message: 'The API is working!'
+        message: 'The API is working!',
+        test
       })
     } catch(error) {
       if (error instanceof UnauthorizedException) return res.status(HttpStatus.UNAUTHORIZED).send({ message: error.message, "no": "funciona" })

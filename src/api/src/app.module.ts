@@ -11,7 +11,7 @@ import { ImageModule } from './module/api/image/image.module';
 import { UserController } from './module/user/user.controller';
 import { CountryController } from './module/api/country/country.controller';
 import { FlagController } from './module/api/flag/flag.controller';
-// import { CoatOfArmController } from '.module/api-endpoints/coat_of_arms/coat_of_arms.controller';
+import { CoatOfArmController } from './module/api/coat-of-arm/coat-of-arm.controller';
 import { CurrencyController } from './module/api/currency/currency.controller';
 import { RegionController } from './module/api/region/region.controller';
 import { SubRegionController } from './module/api/sub_region/subRegion.controller';
@@ -21,7 +21,8 @@ import { MorganMiddleware } from './middleware/morgan.middleware';
 //DB Config
 import { ConfigModule } from "@nestjs/config";
 import databaseConfiguration from './config/database.config';
-import { PrismaModule } from './module/prisma/prisma.module';
+//import { PrismaModule } from './module/prisma/prisma.module';
+import { DatabaseModule } from './module/database/database.module';
 //Static serve
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
@@ -32,7 +33,6 @@ import { AuthController } from './module/auth/auth.controller';
 //Throttler import
 import { PassportModule } from '@nestjs/passport';
 import { CoatOfArmModule } from './module/api/coat-of-arm/coat-of-arm.module';
-import { CoatOfArmController } from './module/api/coat-of-arm/coat-of-arm.controller';
 import { UTF8Middleware } from './middleware/utf-8.middleware';
 
 @Module({
@@ -53,7 +53,8 @@ import { UTF8Middleware } from './middleware/utf-8.middleware';
     PassportModule.register({
       session: true
     }),
-    PrismaModule,
+    //PrismaModule,
+    DatabaseModule,
     UserModule,
     AuthModule,
     CountryModule,

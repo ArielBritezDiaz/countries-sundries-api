@@ -14,4 +14,3 @@ export const signInUserSchema = z
   }).partial()
 
 export type SignUpUserDTO = z.infer<typeof SignUpUserSchema>;
-export type SignInUserDTO = z.infer<typeof signInUserSchema>;
