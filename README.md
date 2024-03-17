@@ -32,7 +32,9 @@ An API that offers you information about countries and international organizatio
 </p>
 
 ## Overview
- In this section you will find a basic guide to use and the most relevant information for its use.
+⚠️Notice⚠️: This project is developed entirely by Ariel Diaz, it is very advanced, but several errors have not yet been corrected regarding its deployment to production, therefore it is not yet 100% functional. Thank you very much for reading and understanding, have a nice day and as soon as possible Countries Sundries API will be published so you can enjoy this service! 
+
+In this section you will find a basic guide to use and the most relevant information for its use.
 
 ## Getting Started
 Check out [Documentation]() for the specifications and get your API key to access the information.
