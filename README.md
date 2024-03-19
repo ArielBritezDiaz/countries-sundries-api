@@ -59,6 +59,23 @@ fetchApiExample()
   .catch(error => console.error(error));
 ```
 
+## Technologies
+This section discusses the fundamental technologies with which 100% of this project was developed. Due to problems with the deployment, technology modifications were made in search of a guaranteed deployment.
+
+- **[NestJs](https://nestjs.com/) (Backend Framework)**
+- **[MySQL](https://dev.mysql.com/) (Relational Database Management System)**
+- **[Prisma](https://www.prisma.io/) (ORM - Object-Relational Mapping)**
+- **[Bun](https://bun.sh/) (JavaScript Runtime Environment)**
+- **[Starlight](https://starlight.astro.build/) (Astro documentation plugin)**
+- **[Astro](https://astro.build/) (Static Site Generator Framework)**
+- **[TailwindCSS](https://tailwindcss.com/) (CSS Framework)**
+
+The technologies to which the code was transitioned in search of a secure deploy were:
+
+- **[PostgreSQL](https://www.postgresql.org/) (Relational Database Management System)**
+- **[TypeORM](https://typeorm.io/) (ORM - Object-Relational Mapping)**
+- **[NodeJs](https://nodejs.org/en/) (JavaScript Runtime Environment)**
+
 ## Support
 If you want to support me and make it possible for both Countries Sundries API and other projects to grow and provide a better service, you can do it through [PayPal](https://www.paypal.com/paypalme/ArielBritezDiaz)[![PayPal](./public/resources/icons/paypal.svg)](https://www.paypal.com/paypalme/ArielBritezDiaz) !\
 Thank you so much!
