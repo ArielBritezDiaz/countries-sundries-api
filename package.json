@@ -1,14 +1,28 @@
 {
-  "name": "documentation",
+  "name": "countries-sundries-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Countries Sundries is a RESTful API that provides essential information about countries around the world.",
+  "workspaces": [
+    "documentation",
+    "api"
+  ],
   "scripts": {
-    "start-api": "cd src/api/ && bun run build",
-    "start-project": "npm run start-api && astro check && npm build ./src/documentation/",
+    "dev:documentation": "npm run dev --workspace=documentation",
+    "start:documentation": "npm run start --workspace=documentation",
+    "build:documentation": "npm run build --workspace=documentation",
+    "start-api:documentation": "npm run start-api --workspace=documentation",
+    "start-project:documentation": "npm run start-project --workspace=documentation",
+
+    "dev:api": "npm run start:dev --workspace=api",
+    "start:api": "npm run start --workspace=api",
+    "start-dev:api": "npm run start:dev --workspace=api",
+    "build:api": "npm run build --workspace=api",
+    "start-api": "cd api/ && bun run build",
+
+    "start-project": "npm run start-api && astro check && npm build ./documentation/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },  
   "keywords": [],
-  "author": "",
+  "author": "Ariel Díaz",
   "license": "ISC"
 }
